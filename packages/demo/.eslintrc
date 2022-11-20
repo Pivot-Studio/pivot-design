@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "eslint-config-psfe"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  }
+}

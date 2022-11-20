@@ -1,0 +1,16 @@
+.demo-container {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .demo-item {
+    background-color: bisque;
+    border: 1px solid rgba(0, 0, 0, 0.056);
+    padding: 0.2rem 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+}
