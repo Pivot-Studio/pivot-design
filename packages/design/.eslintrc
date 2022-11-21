@@ -2,8 +2,9 @@
   "extends": ["eslint-config-psfe"],
   "settings": {
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true
+      "alias": {
+        "map": [["@", "./packages/demo/components"]], // 相对于项目根目录
+        "extensions": [".tsx"]
       }
     }
   }

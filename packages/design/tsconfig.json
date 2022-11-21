@@ -3,10 +3,6 @@
   "include": ["."],
   "exclude": ["lib"],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["components/*"]
-    },
     "outDir": "lib"
   }
 }

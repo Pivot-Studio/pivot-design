@@ -9,12 +9,5 @@
     "build": "rm -rf lib && tsc"
   },
   "author": "psfe",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/react": "^18.0.21",
-    "eslint-config-psfe": "^1.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "pivot-design-props": "workspace:*"
-  }
+  "license": "ISC"
 }

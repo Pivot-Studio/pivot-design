@@ -10,7 +10,10 @@ module.exports = {
     clean: true, //webpack5新增的，每次打包前删除旧的dist包文件
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, './components'),
+    },
   },
   devServer: {
     port: 8080,

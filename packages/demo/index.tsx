@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactDom from 'react-dom/client';
-import Button from './components/Button';
+import Button from '@/Button';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('');
