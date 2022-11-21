@@ -80,24 +80,36 @@ importers:
   packages/design:
     specifiers:
       '@types/react': ^18.0.21
+      classnames: ^2.3.2
       eslint: ^8.23.0
       eslint-config-psfe: ^1.0.0
       eslint-import-resolver-typescript: ^3.5.1
       eslint-plugin-import: ^2.26.0
-      eslint-plugin-prettier: ^4.2.1
-      eslint-plugin-react: ^7.31.1
-      eslint-plugin-react-hooks: ^4.6.0
+      pivot-design-props: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
     devDependencies:
       '@types/react': 18.0.21
+      classnames: 2.3.2
       eslint: 8.25.0
-      eslint-config-psfe: 1.0.3_k43tnagnk3j7iemtcb5zavmqv4
+      eslint-config-psfe: 1.0.3_fyln4uq2tv75svthy6prqvt6lm
       eslint-import-resolver-typescript: 3.5.1_fyln4uq2tv75svthy6prqvt6lm
       eslint-plugin-import: 2.26.0_wkflncoekcyit2eekjuyilb7xi
-      eslint-plugin-prettier: 4.2.1_eslint@8.25.0
-      eslint-plugin-react: 7.31.10_eslint@8.25.0
-      eslint-plugin-react-hooks: 4.6.0_eslint@8.25.0
+      pivot-design-props: link:../design-props
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+
+  packages/design-props:
+    specifiers:
+      '@types/react': ^18.0.21
+      eslint-config-psfe: ^1.0.0
+      pivot-design-props: workspace:*
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    devDependencies:
+      '@types/react': 18.0.21
+      eslint-config-psfe: 1.0.3
+      pivot-design-props: 'link:'
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
 
@@ -3597,6 +3609,10 @@ packages:
     resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==}
     dev: true
 
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: true
+
   /clean-css/5.3.1:
     resolution: {integrity: sha512-lCr8OHhiWCTw4v8POJovCoh4T7I9U11yVsPjMWWnnMmp9ZowCxyad1Pathle/9HjaDp+fdQKjO9fQydE6RHTZg==}
     engines: {node: '>= 10.0'}
@@ -4372,7 +4388,22 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-config-psfe/1.0.3_k43tnagnk3j7iemtcb5zavmqv4:
+  /eslint-config-psfe/1.0.3:
+    resolution: {integrity: sha512-3Wc5OtfaKy2jTwrOaWLJQpBdchqwIIskXD0Ks7Jqw94es84rBhtWZkc4/Yw1r3yHtBdWMw5AFaY/4HE8aWJSXQ==}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^5.35.1
+      '@typescript-eslint/parser': ^5.35.1
+      eslint: ^8.23.0
+      eslint-plugin-import: ^2.26.0
+      eslint-plugin-prettier: ^4.2.1
+      eslint-plugin-react: ^7.31.1
+      eslint-plugin-react-hooks: ^4.6.0
+      typescript: ^4.8.2
+    dependencies:
+      prettier: 2.7.1
+    dev: true
+
+  /eslint-config-psfe/1.0.3_fyln4uq2tv75svthy6prqvt6lm:
     resolution: {integrity: sha512-3Wc5OtfaKy2jTwrOaWLJQpBdchqwIIskXD0Ks7Jqw94es84rBhtWZkc4/Yw1r3yHtBdWMw5AFaY/4HE8aWJSXQ==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.35.1
@@ -4386,9 +4417,6 @@ packages:
     dependencies:
       eslint: 8.25.0
       eslint-plugin-import: 2.26.0_wkflncoekcyit2eekjuyilb7xi
-      eslint-plugin-prettier: 4.2.1_eslint@8.25.0
-      eslint-plugin-react: 7.31.10_eslint@8.25.0
-      eslint-plugin-react-hooks: 4.6.0_eslint@8.25.0
       prettier: 2.7.1
     dev: true
 
@@ -4562,21 +4590,6 @@ packages:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
-    dev: true
-
-  /eslint-plugin-prettier/4.2.1_eslint@8.25.0:
-    resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      eslint: '>=7.28.0'
-      eslint-config-prettier: '*'
-      prettier: '>=2.0.0'
-    peerDependenciesMeta:
-      eslint-config-prettier:
-        optional: true
-    dependencies:
-      eslint: 8.25.0
-      prettier-linter-helpers: 1.0.0
     dev: true
 
   /eslint-plugin-prettier/4.2.1_znq2sm4m5bonjw4qqm6mwhbe2q:

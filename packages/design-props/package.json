@@ -1,8 +1,9 @@
 {
-  "name": "pivot-design",
+  "name": "pivot-design-props",
   "version": "0.0.1",
   "description": "a react component library by Pivot Studio",
   "main": "index.ts",
+  "private": true,
   "scripts": {
     "watch": "rm -rf ./lib && tsc -w",
     "build": "rm -rf lib && tsc"
@@ -10,11 +11,7 @@
   "author": "psfe",
   "license": "ISC",
   "devDependencies": {
-    "classnames": "^2.3.2",
     "@types/react": "^18.0.21",
-    "eslint-import-resolver-typescript": "^3.5.1",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint": "^8.23.0",
     "eslint-config-psfe": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
