@@ -10,10 +10,10 @@ export interface ButtonProps extends PivotDesignProps {
    * @version 1.0.0
    * @description 自定义样式
    */
-  style?: React.CSSProperties & ButtonCssProperties;
+  style?: React.CSSProperties & ButtonCssTokens;
 }
 
-interface ButtonCssProperties {
+interface ButtonCssTokens {
   /**
    * @version 1.0.0
    * @description 按钮背景颜色
