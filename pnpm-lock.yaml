@@ -79,7 +79,13 @@ importers:
       pivot-design-props: link:../design-props
 
   packages/design-props:
-    specifiers: {}
+    specifiers:
+      '@types/react': ^18.0.25
+      react: ^18.2.0
+    dependencies:
+      react: 18.2.0
+    devDependencies:
+      '@types/react': 18.0.25
 
 packages:
 
@@ -1574,6 +1580,14 @@ packages:
 
   /@types/react/18.0.21:
     resolution: {integrity: sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.1
+    dev: true
+
+  /@types/react/18.0.25:
+    resolution: {integrity: sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2

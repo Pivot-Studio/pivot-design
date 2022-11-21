@@ -3,11 +3,16 @@
   "version": "0.0.1",
   "description": "a react component library by Pivot Studio",
   "main": "index.ts",
-  "private": true,
   "scripts": {
     "watch": "rm -rf ./lib && tsc -w",
     "build": "rm -rf lib && tsc"
   },
   "author": "psfe",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.0.25"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  }
 }
