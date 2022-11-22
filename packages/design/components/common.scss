@@ -1,4 +1,16 @@
 $prefix: 'PIVOT';
-:root {
-  --pivot-button-background-color: rgb(100, 157, 248);
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+body[pivot-theme='light'] {
+  --primary: rgb(100, 157, 248);
+}
+body[pivot-theme='dark'] {
+  --primary: rgb(46, 73, 117);
+}
+
+body {
+  --pivot-button-background-color: var(--primary);
 }
