@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/Button.mdx';
 import { Button } from 'pivot-design';
+import CodeBlock from './src/components/codeBlock';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('Button');
@@ -25,7 +26,9 @@ const App = () => {
       <div className="pivot-design-docs-content">
         {demoSelect()}
         <div className="demo-component">
-          {select === 'Button' ? <ButtonMdx components={{ Button }} /> : null}
+          {select === 'Button' ? (
+            <ButtonMdx components={{ Button, CodeBlock }} />
+          ) : null}
         </div>
       </div>
     </div>

@@ -1,17 +1,11 @@
+import demoObj from './demo/index';
+
 # Button
 
 <div className="title">普通样式</div>
-<Button>button</Button>
-```js
-
-import {Button} from 'pivot-design'; 
-const App: React.FC = () => (
-<>
+<CodeBlock code={demoObj.basic}>
   <Button>button</Button>
-</>
-);
-export default App;
-```
+</CodeBlock>
 
 <div className="title">自定义颜色</div>
 <Button
