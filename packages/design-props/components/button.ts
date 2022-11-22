@@ -13,6 +13,12 @@ export interface ButtonProps extends PivotDesignProps {
    * @default undefined
    */
   style?: React.CSSProperties & ButtonCssTokens;
+  /**
+   * @version 1.0.0
+   * @description 点击事件
+   * @default undefined
+   */
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 interface ButtonCssTokens {
