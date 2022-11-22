@@ -3,7 +3,7 @@ import ReactDom from 'react-dom/client';
 import Button from './components/Button.mdx';
 import './index.scss';
 const App = () => {
-  const [select, setSelect] = useState('');
+  const [select, setSelect] = useState('Button');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -18,9 +18,14 @@ const App = () => {
   };
   return (
     <div className="pivot-design-docs">
-      {demoSelect()}
-      <div className="demo-component">
-        {select === 'Button' ? <Button /> : null}
+      <div className="pivot-design-docs-title">
+        <div className="title">Pivot-Design</div>
+      </div>
+      <div className="pivot-design-docs-content">
+        {demoSelect()}
+        <div className="demo-component">
+          {select === 'Button' ? <Button /> : null}
+        </div>
       </div>
     </div>
   );
