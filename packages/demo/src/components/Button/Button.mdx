@@ -1,9 +1,18 @@
-import { Button } from 'pivot-design';
-
 # Button
 
 <div className="title">普通样式</div>
 <Button>button</Button>
+```js
+
+import {Button} from 'pivot-design'; 
+const App: React.FC = () => (
+<>
+  <Button>button</Button>
+</>
+);
+export default App;
+```
+
 <div className="title">自定义颜色</div>
 <Button
   style={{
@@ -20,3 +29,4 @@ import { Button } from 'pivot-design';
 >
   button
 </Button>
+```
