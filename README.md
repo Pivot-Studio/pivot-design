@@ -17,7 +17,7 @@ Pivot-Studio 前端组件库
 **「注意」**：
 
 - 基于 **「master」** 分支新建自己的分支，分支名尽量规范些，比如`feature-button`、`fix-button-disabled`等。
-- `packages/*`中有 3 个项目包，采用 monorepo 的项目架构进行管理。其中，`demo`用于开发时展示效果，`design`用于组件开发，`design-prop`用于定义组件的 props。你可能会好奇为什么要这样分？可以在群里细说～～
+- `packages/*`中有 3 个项目包，采用 monorepo 的项目架构进行管理。其中，**`demo`用于开发时展示效果并且同时进行文档的编写**，`design`用于组件开发，`design-prop`用于定义组件的 props。你可能会好奇为什么要这样分？可以在群里细说～～
 
 3. 开发组件
 
