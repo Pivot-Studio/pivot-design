@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --open --hot"
+    "start": "webpack serve --mode development --open --hot",
+    "build": "webpack  --mode production"
   },
   "keywords": [],
   "author": "",
