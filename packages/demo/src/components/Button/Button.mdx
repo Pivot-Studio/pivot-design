@@ -7,7 +7,17 @@ import demoObj from './demo/index';
   <Button type="primary">按钮</Button>
   <Button>按钮</Button>
   <Button type="text">按钮</Button>
-  <Button type="disabled">按钮</Button>
+</CodeBlock>
+
+<div className="title">按钮禁用</div>
+<CodeBlock code={demoObj.disabled} line={'6'}>
+  <Button type="primary" disabled>
+    按钮
+  </Button>
+  <Button disabled>按钮</Button>
+  <Button type="text" disabled>
+    按钮
+  </Button>
 </CodeBlock>
 
 <div className="title">自定义颜色</div>

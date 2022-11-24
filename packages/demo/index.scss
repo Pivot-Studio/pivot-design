@@ -30,10 +30,11 @@ html,
       .demo-item {
         // background-color: bisque;
         border: 1px solid rgba(0, 0, 0, 0.056);
-        padding: 0.2rem 0;
+        padding: 0.1rem 0;
         width: 100%;
         text-align: center;
         cursor: pointer;
+
         &.active {
           color: #1677ff;
           font-weight: 500;
@@ -72,8 +73,8 @@ html,
     right: 4px;
     top: 4px;
     .pivot-code-box-icon {
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
       cursor: pointer;
       img {
         width: 100%;

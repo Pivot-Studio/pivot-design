@@ -5,12 +5,19 @@
   border-radius: 15px;
   font-size: 16px;
   color: var(--Brand-1-100);
-
+  &:not(&-disabled):active {
+    opacity: 0.7;
+  }
   &-default {
     border: 1px solid
       var(--button-background-color, var(--pivot-button-background-color));
     background-color: var(--Gray-100);
-    &:hover {
+    &.#{$prefix}-button-disabled {
+      background-color: transparent;
+      border-color: var(--Gray-80);
+      color: var(--Gray-80);
+    }
+    &:not(.#{$prefix}-button-disabled):hover {
       border-color: var(
         --button-background-color,
         var(--pivot-button-hover-background-color)
@@ -25,7 +32,11 @@
       var(--pivot-button-background-color)
     );
     color: var(--Gray-100);
-    &:hover {
+    &.#{$prefix}-button-disabled {
+      background-color: var(--Gray-80);
+      color: var(--Gray-100);
+    }
+    &:not(.#{$prefix}-button-disabled):hover {
       background-color: var(
         --button-background-color,
         var(--pivot-button-hover-background-color)
@@ -34,11 +45,16 @@
   }
 
   &-text {
-    background-color: transparent;
+    background-color: transparent !important;
+    &:not(.#{$prefix}-button-disabled):hover {
+      background-color: var(--Gray-80);
+    }
+    &.#{$prefix}-button-disabled {
+      color: var(--Gray-80);
+    }
   }
 
   &-disabled {
-    background-color: var(--Gray-80);
-    color: var(--Gray-100);
+    cursor: no-drop;
   }
 }

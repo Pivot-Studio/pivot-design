@@ -14,6 +14,14 @@ export default {
       <Button type="primary">按钮</Button>
       <Button>按钮</Button>
       <Button type="text">按钮</Button>
-      <Button type="disabled">按钮</Button>
       `),
+  disabled: getDemo(`
+      <Button type="primary" disabled>
+        按钮
+      </Button>
+      <Button disabled>按钮</Button>
+      <Button type="text" disabled>
+        按钮
+      </Button>
+  `),
 };

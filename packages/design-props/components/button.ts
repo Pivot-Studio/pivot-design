@@ -24,7 +24,13 @@ export interface ButtonProps extends PivotDesignProps {
    * @description 按钮类型
    * @default 'default'
    */
-  type?: 'primary' | 'default' | 'text' | 'link' | 'disabled';
+  type?: 'primary' | 'default' | 'text' | 'link';
+  /**
+   * @version 1.0.0
+   * @description 按钮是否禁用
+   * @default false
+   */
+  disabled?: boolean;
 }
 
 interface ButtonCssTokens {
