@@ -36,7 +36,9 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.5",
+    "babel-plugin-prismjs": "^2.1.0",
     "pivot-design": "workspace:*",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0"

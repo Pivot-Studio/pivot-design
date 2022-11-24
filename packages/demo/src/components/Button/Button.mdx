@@ -3,8 +3,11 @@ import demoObj from './demo/index';
 # Button
 
 <div className="title">普通样式</div>
-<CodeBlock code={demoObj.basic}>
-  <Button>button</Button>
+<CodeBlock code={demoObj.basic} line={'6'}>
+  <Button type="primary">按钮</Button>
+  <Button>按钮</Button>
+  <Button type="text">按钮</Button>
+  <Button type="disabled">按钮</Button>
 </CodeBlock>
 
 <div className="title">自定义颜色</div>

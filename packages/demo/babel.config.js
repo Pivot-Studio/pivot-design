@@ -16,4 +16,12 @@ module.exports = {
     ['@babel/preset-react', { runtime: 'automatic' }],
     '@babel/preset-typescript',
   ],
+  plugins: [
+    ['prismjs', {
+      'languages': ['javascript', 'jsx'],
+      'plugins': ['line-numbers', 'line-highlight', 'copy-to-clipboard'],
+      'theme': 'okaidia',
+      'css': true
+    }]
+  ]
 };

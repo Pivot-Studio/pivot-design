@@ -1,3 +1,1 @@
-import { ButtonProps } from './components/button';
-
-export { ButtonProps };
+export { ButtonProps } from './components/button';

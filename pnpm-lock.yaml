@@ -4,7 +4,10 @@ importers:
 
   .:
     specifiers:
+      core-js: ^3.25.1
       eslint-config-psfe: ^1.0.0
+    dependencies:
+      core-js: 3.25.5
     devDependencies:
       eslint-config-psfe: 1.0.3
 
@@ -19,6 +22,7 @@ importers:
       '@types/react': ^18.0.20
       '@types/react-dom': ^18.0.6
       babel-loader: ^8.2.5
+      babel-plugin-prismjs: ^2.1.0
       core-js: ^3.25.1
       css-loader: ^6.7.1
       eslint: ^8.28.0
@@ -26,6 +30,7 @@ importers:
       html-webpack-plugin: ^5.5.0
       pivot-design: workspace:*
       prettier: ^2.7.1
+      prismjs: ^1.29.0
       react: ^18.2.0
       react-dom: ^18.2.0
       react-router-dom: ^6.4.0
@@ -38,7 +43,9 @@ importers:
       webpack-dev-server: ^4.11.0
     dependencies:
       '@mdx-js/loader': 2.1.5_webpack@5.74.0
+      babel-plugin-prismjs: 2.1.0_prismjs@1.29.0
       pivot-design: link:../design
+      prismjs: 1.29.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
@@ -2140,6 +2147,14 @@ packages:
       - supports-color
     dev: true
 
+  /babel-plugin-prismjs/2.1.0_prismjs@1.29.0:
+    resolution: {integrity: sha512-ehzSKYfeAz4U78zi/sfwsjDPlq0LvDKxNefcZTJ/iKBu+plsHsLqZhUeGf1+82LAcA35UZGbU6ksEx2Utphc/g==}
+    peerDependencies:
+      prismjs: ^1.18.0
+    dependencies:
+      prismjs: 1.29.0
+    dev: false
+
   /bail/2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
     dev: false
@@ -2418,7 +2433,6 @@ packages:
   /core-js/3.25.5:
     resolution: {integrity: sha512-nbm6eZSjm+ZuBQxCUPQKQCoUEfFOXjUZ8dTTyikyKaWrTYmAVbykQfwsKE5dBK88u3QCkCrzsx/PPlKfhsvgpw==}
     requiresBuild: true
-    dev: true
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -4770,6 +4784,11 @@ packages:
       lodash: 4.17.21
       renderkid: 3.0.0
     dev: true
+
+  /prismjs/1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
+    dev: false
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}

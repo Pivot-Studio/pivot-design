@@ -56,3 +56,36 @@ html,
   color: #000;
   font-size: 18px;
 }
+
+.pivot-code-box {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 16px 0;
+  overflow: hidden;
+  border: 1px solid rgba(5, 5, 5, 0.06);
+  border-radius: 6px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  &-actions {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    .pivot-code-box-icon {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  &-demo {
+    padding: 24px 30px;
+    display: flex;
+    border-bottom: 1px solid rgba(5, 5, 5, 0.06);
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}

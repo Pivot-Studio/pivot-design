@@ -1,10 +1,44 @@
 @import '../common.scss';
 .#{$prefix}-button {
   cursor: pointer;
-  padding: 6px 18px;
-  background-color: var(
-    --button-background-color,
-    var(--pivot-button-background-color)
-  );
-  border-radius: 8px;
+  padding: 20px 140px;
+  border-radius: 15px;
+  font-size: 16px;
+  color: var(--Brand-1-100);
+
+  &-default {
+    border: 1px solid
+      var(--button-background-color, var(--pivot-button-background-color));
+    background-color: var(--Gray-100);
+    &:hover {
+      border-color: var(
+        --button-background-color,
+        var(--pivot-button-hover-background-color)
+      );
+      color: var(--pivot-button-hover-background-color);
+    }
+  }
+
+  &-primary {
+    background-color: var(
+      --button-background-color,
+      var(--pivot-button-background-color)
+    );
+    color: var(--Gray-100);
+    &:hover {
+      background-color: var(
+        --button-background-color,
+        var(--pivot-button-hover-background-color)
+      );
+    }
+  }
+
+  &-text {
+    background-color: transparent;
+  }
+
+  &-disabled {
+    background-color: var(--Gray-80);
+    color: var(--Gray-100);
+  }
 }

@@ -19,6 +19,12 @@ export interface ButtonProps extends PivotDesignProps {
    * @default undefined
    */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  /**
+   * @version 1.0.0
+   * @description 按钮类型
+   * @default 'default'
+   */
+  type?: 'primary' | 'default' | 'text' | 'link' | 'disabled';
 }
 
 interface ButtonCssTokens {
