@@ -14,8 +14,14 @@
     background-color: var(--Gray-100);
     &.#{$prefix}-button-disabled {
       background-color: transparent;
-      border-color: var(--Gray-80);
-      color: var(--Gray-80);
+      border-color: var(
+        --button-disabled-background-color,
+        var(--pivot-button-disabled-background-color)
+      );
+      color: var(
+        --button-disabled-background-color,
+        var(--pivot-button-disabled-background-color)
+      );
     }
     &:not(.#{$prefix}-button-disabled):hover {
       border-color: var(
@@ -33,7 +39,10 @@
     );
     color: var(--Gray-100);
     &.#{$prefix}-button-disabled {
-      background-color: var(--Gray-80);
+      background-color: var(
+        --button-disabled-background-color,
+        var(--pivot-button-disabled-background-color)
+      );
       color: var(--Gray-100);
     }
     &:not(.#{$prefix}-button-disabled):hover {
@@ -46,11 +55,12 @@
 
   &-text {
     background-color: transparent !important;
-    &:not(.#{$prefix}-button-disabled):hover {
-      background-color: var(--Gray-80);
-    }
+
     &.#{$prefix}-button-disabled {
-      color: var(--Gray-80);
+      color: var(
+        --button-disabled-background-color,
+        var(--pivot-button-disabled-background-color)
+      );
     }
   }
 

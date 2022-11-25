@@ -3,14 +3,9 @@ import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/Button.mdx';
 import { Button } from 'pivot-design';
 import CodeBlock from './src/components/codeBlock';
-import Prism from 'prismjs';
-
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('Button');
-  useEffect(() => {
-    Prism.highlightAll();
-  }, []);
   const demoSelect = () => {
     return (
       <div className="demo-container">

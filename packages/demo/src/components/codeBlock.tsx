@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import Prism from 'prismjs';
+import React, { useRef, useState, useEffect } from 'react';
 interface ICodeProps {
   children: React.ReactNode;
   code: string;
@@ -10,6 +11,13 @@ interface ICodeProps {
 const CodeBlock: React.FC<ICodeProps> = (props) => {
   const { code, children, line } = props;
   const [expand, setExpand] = useState(false);
+  const codeRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!codeRef.current) {
+      return;
+    }
+    Prism.highlightElement(codeRef.current);
+  }, [expand]);
   return (
     <div className="pivot-code-box">
       <div className="pivot-code-box-demo">{children}</div>
@@ -36,7 +44,9 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
           data-prismjs-copy-error="按Ctrl+C复制"
           data-prismjs-copy-success="文本已复制！"
         >
-          <code className="language-jsx">{code}</code>
+          <code className="language-jsx" ref={codeRef}>
+            {code}
+          </code>
         </pre>
       </div>
     </div>

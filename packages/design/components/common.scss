@@ -7,7 +7,6 @@ $prefix: 'PIVOT';
 body[pivot-theme='light'] {
   --Gray-100: rgba(255, 255, 255, 0.87);
   --Gray-80: rgba(203, 203, 203, 1);
-
   --Brand-1-100: rgba(75, 159, 121, 1);
   --Brand-1-75: rgba(75, 159, 121, 0.75);
   --Brand-1-50: rgba(75, 159, 121, 0.5);
@@ -15,9 +14,11 @@ body[pivot-theme='light'] {
   --Brand-5: #2d895f;
 }
 body[pivot-theme='dark'] {
+  
 }
 
 body {
   --pivot-button-background-color: var(--Brand-1-100);
   --pivot-button-hover-background-color: var(--Brand-5);
+  --pivot-button-disabled-background-color: var(--Gray-80);
 }
