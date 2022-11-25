@@ -17,6 +17,7 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@types/node": "^18.7.18",
+    "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
     "babel-loader": "^8.2.5",
@@ -36,7 +37,9 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.5",
+    "babel-plugin-prismjs": "^2.1.0",
     "pivot-design": "workspace:*",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.0"

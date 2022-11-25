@@ -19,13 +19,31 @@ export interface ButtonProps extends PivotDesignProps {
    * @default undefined
    */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  /**
+   * @version 1.0.0
+   * @description 按钮类型
+   * @default 'default'
+   */
+  type?: 'primary' | 'default' | 'text' | 'link';
+  /**
+   * @version 1.0.0
+   * @description 按钮是否禁用
+   * @default false
+   */
+  disabled?: boolean;
 }
 
 interface ButtonCssTokens {
   /**
    * @version 1.0.0
    * @description 按钮背景颜色
-   * @default undefined
+   * @default --pivot-button-background-color
    */
   '--button-background-color'?: string;
+  /**
+   * @version 1.0.0
+   * @description 按钮禁用时背景颜色
+   * @default --pivot-button-disabled-background-color
+   */
+  '--button-disabled-background-color'?: string;
 }

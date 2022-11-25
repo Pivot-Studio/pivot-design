@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/Button.mdx';
 import { Button } from 'pivot-design';
