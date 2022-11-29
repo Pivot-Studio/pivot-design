@@ -1,0 +1,86 @@
+@import '../common.scss';
+
+.#{$prefix}-card {
+  display: flex;
+  padding: 10px, 8px, 10px, 12px;
+  background-color: rgba(0, 0, 0, 0.04);
+
+  &-middle {
+    width: 375px;
+    height: 224px;
+    padding: 15px, 22px, 10px, 22px;
+  }
+
+  &-small {
+    width: 351px;
+    height: 130px;
+  }
+
+  &-large {
+    width: 316px;
+    height: 470px;
+  }
+
+  &-body {
+    width: 100%;
+    font-size: 14px;
+    line-height: 21px;
+    font-style: normal;
+    text-align: left;
+    vertical-align: top;
+    margin-bottom: 3px;
+  }
+
+  &-actions {
+    width: 100%;
+    height: 29px;
+    font-size: 11px;
+    line-height: 17px;
+    text-align: center;
+    vertical-align: center;
+    color: #b1b1b1;
+
+  }
+
+
+
+}
+
+
+
+
+.#{$prefix}-head {
+  display: flex;
+
+  width: 100%;
+  height: 33px;
+
+  &-title {
+    min-width: 26px;
+    height: 13px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: left;
+    color: #000000;
+  }
+
+  &-extra {
+    padding: 5px, 8px, 5px, 5px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: right;
+
+  }
+
+  &-time {
+    margin-top: 3px;
+    width: 106px;
+    height: 17px;
+    font-size: 11px;
+    line-height: 17px;
+    text-align: left;
+    color: #cbcbcb;
+    vertical-align: center;
+  }
+}

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/Button.mdx';
+
 import { Button } from 'pivot-design';
 import CodeBlock from './src/components/codeBlock';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('Button');
+
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -15,6 +17,7 @@ const App = () => {
         >
           按钮
         </div>
+
       </div>
     );
   };
@@ -29,6 +32,7 @@ const App = () => {
           {select === 'Button' ? (
             <ButtonMdx components={{ Button, CodeBlock }} />
           ) : null}
+
         </div>
       </div>
     </div>
