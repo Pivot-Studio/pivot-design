@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import './index.scss';
 function getAction(actions: React.ReactNode[]) {
   const actionList = actions.map((action, index) => (
-    // eslint-disable-next-line react/no-array-index-key
     <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
       <span>{action}</span>
     </li>
@@ -23,48 +22,48 @@ const Card: React.FC<CardProps> = (props) => {
     bordered = true,
     time,
     extra,
-    children
-
+    children,
   } = props;
   // const triggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   onClick && onClick(e);
   // };
-  //const loadingBlock=(<div></div>)
-  if (loading) {
-    return (<Card className={`${prefix}-card-loading`}>
+  // const loadingBlock=(<div></div>)
 
-    </Card>);
+  if (loading) {
+    return <Card className={`${prefix}-card-loading`}></Card>;
   }
   let head: React.ReactNode;
-  let classNames = classnames(`${prefix}-card`, className, `${prefix}-card-${size}`,
-    { [`${prefix}-card-border`]: bordered });
+  let classNames = classnames(
+    `${prefix}-card`,
+    className,
+    `${prefix}-card-${size}`,
+    { [`${prefix}-card-border`]: bordered }
+  );
 
   if (title || extra || time) {
-    head = (<div className={`${prefix}-head`}>
-      <div className={`${prefix}-head-wrapper`}>
-        {title && <div className={`${prefix}-head-title`}>{title}</div>}
-        {extra && <div className={`${prefix}-head-extra`}>{extra}</div>}
-        {time && <div className={`${prefix}}-head-time`}>{time}</div>}
+    head = (
+      <div className={`${prefix}-head`}>
+        <div className={`${prefix}-head-wrapper`}>
+          {title && <div className={`${prefix}-head-title`}>{title}</div>}
+          {extra && <div className={`${prefix}-head-extra`}>{extra}</div>}
+          {time && <div className={`${prefix}}-head-time`}>{time}</div>}
+        </div>
       </div>
-    </div>);
+    );
   }
   let body: React.ReactNode;
-  body = (
-    <div className={`${prefix}-card-body`}>
-      {children}
-    </div>);
-  const actionDom = actions && actions.length ? (
-    <ul className={`${prefix}-card-actions`}>{getAction(actions)}</ul>
-  ) : null;
+  body = <div className={`${prefix}-card-body`}>{children}</div>;
+  const actionDom =
+    actions && actions.length ? (
+      <ul className={`${prefix}-card-actions`}>{getAction(actions)}</ul>
+    ) : null;
   return (
-    <Card
-      className={classNames}
-      style={style}
-    >
+    <div className={classNames} style={style}>
       {head}
       {body}
       {actionDom}
-    </Card>
+    </div>
   );
 };
+
 export default Card;

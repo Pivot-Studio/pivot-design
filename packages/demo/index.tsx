@@ -7,7 +7,6 @@ import CodeBlock from './src/components/codeBlock';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('Button');
-  const [selectCard, setSelectCard] = useState('Card');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -18,12 +17,11 @@ const App = () => {
           按钮
         </div>
         <div
-          className={`demo-item ${selectCard === 'Card' ? 'active' : ''}`}
-          onClick={() => setSelectCard('Card')}
+          className={`demo-item ${select === 'Card' ? 'active' : ''}`}
+          onClick={() => setSelect('Card')}
         >
-          按钮
+          卡片
         </div>
-
       </div>
     );
   };
@@ -38,10 +36,9 @@ const App = () => {
           {select === 'Button' ? (
             <ButtonMdx components={{ Button, CodeBlock }} />
           ) : null}
-          {selectCard === 'Card' ? (
+          {select === 'Card' ? (
             <CardMdx components={{ Card, CodeBlock }} />
           ) : null}
-
         </div>
       </div>
     </div>
