@@ -36,10 +36,9 @@ const Card: React.FC<CardProps> = (props) => {
     </Card>);
   }
   let head: React.ReactNode;
-  let classNames = classnames(`${prefix}-card`, className, `${prefix}-card-${size}`);
-  if (bordered == true) {
-    classNames = classnames(classNames, `${prefix}-card-border`);
-  }
+  let classNames = classnames(`${prefix}-card`, className, `${prefix}-card-${size}`,
+    { [`${prefix}-card-border`]: bordered });
+
   if (title || extra || time) {
     head = (<div className={`${prefix}-head`}>
       <div className={`${prefix}-head-wrapper`}>

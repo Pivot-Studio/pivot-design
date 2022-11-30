@@ -1,19 +1,25 @@
 import { useState, useEffect } from 'react';
 import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/Button.mdx';
-
-import { Button } from 'pivot-design';
+import CardMdx from './src/components/Card/Card.mdx';
+import { Button, Card } from 'pivot-design';
 import CodeBlock from './src/components/codeBlock';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('Button');
-
+  const [selectCard, setSelectCard] = useState('Card');
   const demoSelect = () => {
     return (
       <div className="demo-container">
         <div
           className={`demo-item ${select === 'Button' ? 'active' : ''}`}
           onClick={() => setSelect('Button')}
+        >
+          按钮
+        </div>
+        <div
+          className={`demo-item ${selectCard === 'Card' ? 'active' : ''}`}
+          onClick={() => setSelectCard('Card')}
         >
           按钮
         </div>
@@ -31,6 +37,9 @@ const App = () => {
         <div className="demo-component">
           {select === 'Button' ? (
             <ButtonMdx components={{ Button, CodeBlock }} />
+          ) : null}
+          {selectCard === 'Card' ? (
+            <CardMdx components={{ Card, CodeBlock }} />
           ) : null}
 
         </div>
