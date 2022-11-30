@@ -3,55 +3,55 @@ import { PivotDesignProps } from './';
 export interface CardProps extends PivotDesignProps {
   /**
    * @version 1.0.0
-   * @description ×Ô¶¨ÒåÑùÊ½
+   * @description è‡ªå®šä¹‰æ ·å¼
    * @default undefined
    */
   style?: React.CSSProperties
   /**
    * @version 1.0.0
-   * @description ×Ô¶¨Òå´óĞ¡
+   * @description è‡ªå®šä¹‰å¤§å°
    * @default undefined
    */
   size?: 'small' | 'middle' | 'large'
   /**
   * @version 1.0.0
-  * @description ¿¨Æ¬ÄÚÈİÊÇ·ñ¼ÓÔØ
+  * @description å¡ç‰‡å†…å®¹æ˜¯å¦åŠ è½½
   * @default middle
   */
   loading?: boolean
   /**
   * @version 1.0.0
-  * @description ¿¨Æ¬±êÌâ
+  * @description å¡ç‰‡æ ‡é¢˜
   * @default undefined
   */
   title?: string
   /**
   * @version 1.0.0
-  * @description ¿¨Æ¬µ×²¿µÄ²Ù×÷×é
+  * @description å¡ç‰‡åº•éƒ¨çš„æ“ä½œç»„
   * @default undefined
   */
   actions?: Array<React.ReactNode>
   /**
   * @version 1.0.0
-  * @description ÊÇ·ñÓĞ±ß¿ò
+  * @description æ˜¯å¦æœ‰è¾¹æ¡†
   * @default true
   */
   bordered?: boolean
   /**
   * @version 1.0.0
-  * @description ¿¨Æ¬ÓÒÉÏ½Ç±êÇ©
+  * @description å¡ç‰‡å³ä¸Šè§’æ ‡ç­¾
   * @default undefined
   */
   extra?: React.ReactNode
   /**
    * @version 1.0.0
-   * @description Ê±¼ä±êÇ©
+   * @description æ—¶é—´æ ‡ç­¾
    * @default undefined
    */
   time?: string
   /**
   * @version 1.0.0
-  * @description ÄÚÈİ
+  * @description å†…å®¹
   * @default undefined
   */
   children?: React.ReactNode

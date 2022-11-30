@@ -10,9 +10,9 @@ function getDemo(component: string) {
 }
 export default {
   basic: getDemo(`
-  <Card title="²âÊÔ" time="19:20 2020-09-15">
-  <p>  ÎÒºÃÏëÂòAirpodsµ«ÊÇÃ»ÓÐÇ®£¬ÁºÀÏÊ¦¿É²»¿ÉÒÔ×ÊÖúÎÒ</p>
-  <p>Ò»µãÇ®Ç®ÄØ°¡£¿²»¶à²»¶àµÄ </p>
+  <Card title="æµ‹è¯•" time="19:20 2020-09-15">
+  <p>  æˆ‘å¥½æƒ³ä¹°Airpodsä½†æ˜¯æ²¡æœ‰é’±ï¼Œæ¢è€å¸ˆå¯ä¸å¯ä»¥èµ„åŠ©æˆ‘</p>
+  <p>ä¸€ç‚¹é’±é’±å‘¢å•Šï¼Ÿä¸å¤šä¸å¤šçš„ </p>
   </Card>
   `)
 };
