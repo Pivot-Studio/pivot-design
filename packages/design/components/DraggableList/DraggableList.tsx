@@ -4,6 +4,7 @@ import { prefix } from '../constants';
 import classnames from 'classnames';
 import DraggableItem from './DraggableItem';
 import './DraggableList.scss';
+// TODO: index 优化：使用children.map()来渲染子列表
 function DraggableList(props: DraggableListProps) {
   const { className, style, children } = props;
   const draggingRef = useRef<HTMLDivElement>();

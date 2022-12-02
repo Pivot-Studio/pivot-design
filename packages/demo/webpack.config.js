@@ -52,6 +52,9 @@ module.exports = {
             loader: '@mdx-js/loader',
             /** @type {import('@mdx-js/loader').Options} */
             options: {}
+          },
+          {
+            loader: path.resolve(__dirname, 'loaders/index.js')
           }
         ]
       }
