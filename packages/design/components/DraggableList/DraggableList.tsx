@@ -1,28 +1,47 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { DraggableListProps } from 'pivot-design-props';
 import { prefix } from '../constants';
+import { DndContext, initDraggableContext } from './utils/context';
 import classnames from 'classnames';
 import DraggableItem from './DraggableItem';
 import './DraggableList.scss';
-// TODO: index 优化：使用children.map()来渲染子列表
 function DraggableList(props: DraggableListProps) {
-  const { className, style, children } = props;
+  const {
+    className,
+    style,
+    children: childrenWithNewline,
+    onDragEnter,
+  } = props;
+  const children = childrenWithNewline?.filter((v) => typeof v !== 'string');
+  const [ctx, setCtx] = useState(initDraggableContext);
   const draggingRef = useRef<HTMLDivElement>();
   const dragListRef = useRef<HTMLDivElement>(null);
-  const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragStartHandler = (
+    e: React.DragEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    setCtx({ activeId: index });
     const target = e.target as HTMLDivElement;
     draggingRef.current = target;
     e.dataTransfer.effectAllowed = 'move';
-    setTimeout(() => {
-      (target as any).classList.add('moving');
-    });
   };
-  const dragEndHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    const { target } = e;
-    (target as any).classList.remove('moving');
+  const dragEndHandler = (
+    e: React.DragEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    setCtx({ activeId: null });
   };
-  const dragEnterHandler = (e: React.DragEvent<HTMLDivElement>) => {
+  //TODO:不改变dom结构，使用transform动画来实现效果
+  //在ctx记录每一个DraggableItem的坐标
+  const dragEnterHandler = (
+    e: React.DragEvent<HTMLDivElement>,
+    index: number
+  ) => {
     e.preventDefault();
+    if (onDragEnter) {
+      onDragEnter(e, index);
+      return;
+    }
     const target = e.target as HTMLDivElement;
     if (target === draggingRef.current || target == dragListRef.current) return;
     const childrenArr = Array.from(
@@ -30,6 +49,7 @@ function DraggableList(props: DraggableListProps) {
     );
     const draggingIndex = childrenArr.indexOf(draggingRef.current!);
     const dragEnterIndex = childrenArr.indexOf(target.parentNode as Element);
+    
     if (draggingIndex > dragEnterIndex) {
       dragListRef.current?.insertBefore(
         draggingRef.current!,
@@ -44,20 +64,27 @@ function DraggableList(props: DraggableListProps) {
     }
   };
   return (
-    <div
-      ref={dragListRef}
-      className={classnames(`${prefix}-draggable-list`, className)}
-      style={style}
-      onDragStart={(e) => dragStartHandler(e)}
-      onDragEnter={(e) => dragEnterHandler(e)}
-      onDragOver={(e) => e.preventDefault()}
-      onDragEnd={(e) => dragEndHandler(e)}
-    >
-      {children &&
-        children.map((item, index) => (
-          <DraggableItem key={index}>{item}</DraggableItem>
-        ))}
-    </div>
+    <DndContext.Provider value={ctx}>
+      <div
+        ref={dragListRef}
+        className={classnames(`${prefix}-draggable-list`, className)}
+        style={style}
+      >
+        {children &&
+          children.map((item, index) => (
+            <DraggableItem
+              key={index}
+              id={index}
+              onDragStart={(e) => dragStartHandler(e, index)}
+              onDragEnter={(e) => dragEnterHandler(e, index)}
+              onDragOver={(e) => e.preventDefault()}
+              onDragEnd={(e) => dragEndHandler(e, index)}
+            >
+              {item}
+            </DraggableItem>
+          ))}
+      </div>
+    </DndContext.Provider>
   );
 }
 DraggableList.Item = DraggableItem;

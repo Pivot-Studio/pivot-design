@@ -7,6 +7,7 @@ export interface DraggableListProps extends PivotDesignProps {
    * @default undefined
    */
   children?: React.ReactNode[];
+  onDragEnter?: (e: React.DragEvent, index: number) => void;
 }
 
 export interface DraggableItemProps extends PivotDesignProps {
@@ -16,4 +17,9 @@ export interface DraggableItemProps extends PivotDesignProps {
    * @default undefined
    */
   children?: React.ReactNode;
+  id?: number;
+  onDragStart?: React.DragEventHandler<HTMLDivElement>;
+  onDragEnter?: React.DragEventHandler<HTMLDivElement>;
+  onDragOver?: React.DragEventHandler<HTMLDivElement>;
+  onDragEnd?: React.DragEventHandler<HTMLDivElement>;
 }
