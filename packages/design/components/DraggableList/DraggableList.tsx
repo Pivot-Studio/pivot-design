@@ -53,7 +53,10 @@ function DraggableList(props: DraggableListProps) {
       onDragOver={(e) => e.preventDefault()}
       onDragEnd={(e) => dragEndHandler(e)}
     >
-      {children}
+      {children &&
+        children.map((item, index) => (
+          <DraggableItem key={index}>{item}</DraggableItem>
+        ))}
     </div>
   );
 }

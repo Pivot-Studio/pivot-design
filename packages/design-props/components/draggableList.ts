@@ -6,7 +6,7 @@ export interface DraggableListProps extends PivotDesignProps {
    * @description 列表默认插槽
    * @default undefined
    */
-  children?: React.ReactNode;
+  children?: React.ReactNode[];
 }
 
 export interface DraggableItemProps extends PivotDesignProps {
