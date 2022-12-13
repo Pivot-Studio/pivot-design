@@ -11,6 +11,7 @@ import './index.scss';
 //   ));
 //   return actionList;
 // }
+let num: number = 0;
 const Card: React.FC<CardProps> = (props) => {
   const {
     className,
@@ -32,28 +33,53 @@ const Card: React.FC<CardProps> = (props) => {
   if (loading) {
     return <Card className={`${prefix}-card-loading`}></Card>;
   }
-  let head: React.ReactNode;
+
   let classNames = classnames(
     `${prefix}-card`,
     className,
     `${prefix}-card-${size}`,
     { [`${prefix}-card-border`]: bordered }
   );
-
-  if (title || extra || time) {
-    head = (
-      <div className={`${prefix}-head`}>
-        <div className={`${prefix}-head-wrapper`}>
-          {title && <div className={`${prefix}-head-title`}>{title}</div>}
-          {extra && <div className={`${prefix}-head-extra`}>{extra}</div>}
-          {time && <div className={`${prefix}-head-time`}>{time}</div>}
+  const head = (title?: string, extra?: React.ReactNode, time?: string) => {
+    if (title || extra || time) {
+      return (
+        <div className={`${prefix}-head`}>
+          <div className={`${prefix}-head-wrapper`}>
+            {title && <div className={`${prefix}-head-title`}>{title}</div>}
+            {extra && <div className={`${prefix}-head-extra`}>{extra}</div>}
+            {time && <div className={`${prefix}-head-time`}>{time}</div>}
+          </div>
         </div>
-      </div>
-    );
-  }
+      );
+    } else return <div></div>;
+  };
 
   const body = (children: React.ReactNode) => {
-    return <div className={`${prefix}-card-body`}>{children}</div>;
+    num++;
+    const btn = () => {
+      return (
+        <div>
+          <input
+            id={`${prefix}-card-body-btn-exp-${num}`}
+            className={`${prefix}-card-body-exp`}
+            type="checkbox"
+          />
+          <label
+            className={`${prefix}-card-body-btn`}
+            htmlFor={`${prefix}-card-body-btn-exp-${num}`}
+          ></label>
+        </div>
+      );
+    };
+    const text = (children: React.ReactNode) => {
+      return <div className={`${prefix}-card-body-text`}>{children}</div>;
+    };
+    return (
+      <div className={classnames(`${prefix}-card-body`)}>
+        {text(children)}
+        {btn()}
+      </div>
+    );
   };
   const actionDom = (actions: React.ReactNode) => {
     return <div className={`${prefix}-actions`}>{actions}</div>;
@@ -61,7 +87,7 @@ const Card: React.FC<CardProps> = (props) => {
 
   return (
     <div className={classNames} style={style}>
-      {head}
+      {head(title, extra, time)}
       {body(children)}
       {actionDom(actions)}
     </div>
