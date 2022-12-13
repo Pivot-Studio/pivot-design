@@ -46,7 +46,7 @@ const Card: React.FC<CardProps> = (props) => {
         <div className={`${prefix}-head-wrapper`}>
           {title && <div className={`${prefix}-head-title`}>{title}</div>}
           {extra && <div className={`${prefix}-head-extra`}>{extra}</div>}
-          {time && <div className={`${prefix}}-head-time`}>{time}</div>}
+          {time && <div className={`${prefix}-head-time`}>{time}</div>}
         </div>
       </div>
     );
