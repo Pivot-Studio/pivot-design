@@ -3,14 +3,14 @@ import { CardProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
 import './index.scss';
-function getAction(actions: React.ReactNode[]) {
-  const actionList = actions.map((action, index) => (
-    <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
-      <span>{action}</span>
-    </li>
-  ));
-  return actionList;
-}
+// function getAction(actions: React.ReactNode[]) {
+//   const actionList = actions.map((action, index) => (
+//     <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
+//       <span>{action}</span>
+//     </li>
+//   ));
+//   return actionList;
+// }
 const Card: React.FC<CardProps> = (props) => {
   const {
     className,
@@ -51,17 +51,19 @@ const Card: React.FC<CardProps> = (props) => {
       </div>
     );
   }
-  let body: React.ReactNode;
-  body = <div className={`${prefix}-card-body`}>{children}</div>;
-  const actionDom =
-    actions && actions.length ? (
-      <ul className={`${prefix}-card-actions`}>{getAction(actions)}</ul>
-    ) : null;
+
+  const body = (children: React.ReactNode) => {
+    return <div className={`${prefix}-card-body`}>{children}</div>;
+  };
+  const actionDom = (actions: React.ReactNode) => {
+    return <div className={`${prefix}-actions`}>{actions}</div>;
+  };
+
   return (
     <div className={classNames} style={style}>
       {head}
-      {body}
-      {actionDom}
+      {body(children)}
+      {actionDom(actions)}
     </div>
   );
 };
