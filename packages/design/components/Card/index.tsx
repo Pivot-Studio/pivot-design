@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CardProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
@@ -29,6 +29,14 @@ const Card: React.FC<CardProps> = (props) => {
   //   onClick && onClick(e);
   // };
   // const loadingBlock=(<div></div>)
+  const descRef = useRef<any>();
+  const [needExpandBtn, setNeedExpandBtn] = useState<boolean>(false);
+  useEffect(() => {
+    /** 组件加载完成，ref加载完成，初始状态判断。 */
+    setNeedExpandBtn(
+      descRef?.current?.scrollHeight > descRef?.current?.clientHeight
+    );
+  }, []);
 
   if (loading) {
     return <Card className={`${prefix}-card-loading`}></Card>;
@@ -56,29 +64,35 @@ const Card: React.FC<CardProps> = (props) => {
 
   const body = (children: React.ReactNode) => {
     num++;
-    const btn = () => {
+    //console.log(children, 'children');
+    // if(children.length){
+    // }
+    const btn = (children: React.ReactNode) => {
       return (
-        <div>
+        <div className={`${prefix}-card-body-content`}>
           <input
             id={`${prefix}-card-body-btn-exp-${num}`}
             className={`${prefix}-card-body-exp`}
             type="checkbox"
           />
-          <label
-            className={`${prefix}-card-body-btn`}
-            htmlFor={`${prefix}-card-body-btn-exp-${num}`}
-          ></label>
+
+          <div className={`${prefix}-card-body-text`} ref={descRef}>
+            {children}
+          </div>
+          {needExpandBtn && (
+            <label
+              className={`${prefix}-card-body-btn`}
+              htmlFor={`${prefix}-card-body-btn-exp-${num}`}
+            ></label>
+          )}
         </div>
       );
     };
-    const text = (children: React.ReactNode) => {
-      return <div className={`${prefix}-card-body-text`}>{children}</div>;
-    };
+    // const text = (children: React.ReactNode) => {
+    //   return <div className={`${prefix}-card-body-text`}>{children}</div>;
+    // };
     return (
-      <div className={classnames(`${prefix}-card-body`)}>
-        {text(children)}
-        {btn()}
-      </div>
+      <div className={classnames(`${prefix}-card-body`)}>{btn(children)}</div>
     );
   };
   const actionDom = (actions: React.ReactNode) => {

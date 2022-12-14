@@ -55,5 +55,22 @@ export interface CardProps extends PivotDesignProps {
   * @default undefined
   */
   children?: React.ReactNode
-
+   /**
+  * @version 1.0.0
+  * @description 文字最大显示长度
+  * @default 4
+  */
+ maxLength?: number
+  /**
+  * @version 1.0.0
+  * @description 展开按钮文字
+  * @default 展开
+  */
+ expandText?: string
+  /**
+  * @version 1.0.0
+  * @description 收起按钮文字
+  * @default 收起
+  */
+ collapseText?: string
 }
