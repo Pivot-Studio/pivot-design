@@ -2,11 +2,14 @@ import { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import DraggableListMdx from './src/components/DraggableList/index.mdx';
 import ButtonMdx from './src/components/Button/index.mdx';
-import { Button, DraggableList, DraggableItem } from 'pivot-design';
+import { Button, DraggableList, DraggableItem, arrayMove } from 'pivot-design';
 import CodeBlock from './src/components/codeBlock';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('DraggableList');
+  const [items, setItems] = useState([1, 2, 3, 4, 5]);
+  const reorderItems = (oldIndex: number, newIndex: number) =>
+    setItems(arrayMove(items, oldIndex, newIndex));
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -38,7 +41,13 @@ const App = () => {
           ) : null}
           {select === 'DraggableList' ? (
             <DraggableListMdx
-              components={{ DraggableList, DraggableItem, CodeBlock }}
+              reorderItems={reorderItems}
+              items={items}
+              components={{
+                DraggableList,
+                DraggableItem,
+                CodeBlock,
+              }}
             />
           ) : null}
         </div>

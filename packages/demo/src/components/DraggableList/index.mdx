@@ -1,12 +1,12 @@
 # DraggableList
 
-export const items = [1, 2, 3, 4, 5];
-
 可拖拽列表
 
 <CodeBlock line={''}>
-  <DraggableList>
-    {items.map((item) => {
+  <DraggableList
+    onDragEnd={(oldIndex, newIndex) => props.reorderItems(oldIndex, newIndex)}
+  >
+    {props.items.map((item) => {
       return <DraggableItem className="demo-list-item">{item}</DraggableItem>;
     })}
   </DraggableList>

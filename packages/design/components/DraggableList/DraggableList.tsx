@@ -24,22 +24,35 @@ function DraggableList(props: DraggableListProps) {
   const {
     className,
     style,
-    children: childrenWithNewline,
     transitionDuration = 300,
-    onDragEnter,
+    onDragEnd,
+    children,
   } = props;
 
-  let a = 1;
-  console.log(a);
-
   let { node: draggableNodes, setActiveId, activeId } = useContext(Context);
-  const children = childrenWithNewline?.filter((v) => typeof v !== 'string');
+  /**
+   *
+   */
   const dragListRef = useRef<HTMLDivElement>(null);
+  /**
+   * 克隆节点
+   */
   const helper = useRef<HTMLElement>();
   const activeNodeRef = useRef<DraggableNode>();
+  /**
+   * 激活节点的margin
+   */
   const activeNodeMargin = useRef({ left: 0, right: 0, top: 0, bottom: 0 });
+  /**
+   * start事件时的坐标
+   */
   const initOffset = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  /**
+   * start事件触发标识
+   */
   const touched = useRef(false);
+  const oldIndex = useRef(0);
+  const newIndex = useRef(0);
 
   const updateHelperPosition = (event: MouseEvent) => {
     const offset = getPositionFromEvent(event);
@@ -69,20 +82,23 @@ function DraggableList(props: DraggableListProps) {
             node.node.current as HTMLElement,
             transitionDuration
           );
-
           // 动画计算
-          node.clientRect = node.node.current?.getBoundingClientRect();
+          if (!node.clientRect) {
+            node.clientRect = node.node.current?.getBoundingClientRect();
+          }
+          // 加一层缓存防止移动但未松开时，clientRect会随着translate而变
           const nextNode = i + 1 < length && draggableNodesArr[i + 1];
           if (nextNode) {
             nextNode.clientRect =
               nextNode.node.current?.getBoundingClientRect();
           }
           // 拖拽下移
+          // 这里高度除以2是为了优化移动触发条件
           if (
             i > activeIndex &&
             activeClientRect!.top +
               helperTranslate.y +
-              activeClientRect!.height >
+              activeClientRect!.height / 2 >
               node.clientRect!.top
           ) {
             translate.y = -(
@@ -92,17 +108,19 @@ function DraggableList(props: DraggableListProps) {
                 activeNodeMargin.current.bottom
               )
             );
+            newIndex.current = i;
           } else if (
             i < activeIndex &&
             activeClientRect!.top + helperTranslate.y <
-              node.clientRect!.top + node.clientRect!.height
+              node.clientRect!.top + node.clientRect!.height / 2
           ) {
-            translate.y = translate.y =
+            translate.y =
               node.clientRect!.height +
               Math.max(
                 activeNodeMargin.current.top,
                 activeNodeMargin.current.bottom
               );
+            newIndex.current = i;
           }
         }
         setTranslate3d(node.node.current as DragNode, translate);
@@ -119,10 +137,9 @@ function DraggableList(props: DraggableListProps) {
       setTransitionDuration(node.node.current as HTMLElement);
       setTranslate3d(node.node.current as DragNode);
     }
+    onDragEnd && onDragEnd(oldIndex.current, newIndex.current);
   };
   const handleStart = (event: any) => {
-    console.log(a++);
-
     const node = closest(event.target, (n) => n.dragitemid);
     if (node) {
       const activeId = node.dragitemid!;
@@ -130,8 +147,8 @@ function DraggableList(props: DraggableListProps) {
       const activeNode = activeNodeDescriptor?.node.current;
       if (activeNode) {
         setActiveId && setActiveId(activeId);
-        // To Deprecate
         activeNodeRef.current = activeNodeDescriptor;
+        oldIndex.current = activeNodeDescriptor.index;
         activeNodeDescriptor.clientRect = activeNode.getBoundingClientRect();
         const { x, y, height, width } = activeNodeDescriptor.clientRect;
         activeNodeMargin.current = getElementMargin(activeNode);
@@ -165,51 +182,7 @@ function DraggableList(props: DraggableListProps) {
       container.addEventListener('mousedown', handleStart);
     }
   }, []);
-  const draggingRef = useRef<HTMLDivElement>();
 
-  // const dragStartHandler = (
-  //   e: React.DragEvent<HTMLDivElement>,
-  //   index: number
-  // ) => {
-  //   const target = e.target as HTMLDivElement;
-  //   draggingRef.current = target;
-  //   e.dataTransfer.effectAllowed = 'move';
-  // };
-  // const dragEndHandler = (
-  //   e: React.DragEvent<HTMLDivElement>,
-  //   index: number
-  // ) => {};
-
-  // const dragEnterHandler = (
-  //   e: React.DragEvent<HTMLDivElement>,
-  //   index: number
-  // ) => {
-  //   e.preventDefault();
-  //   if (onDragEnter) {
-  //     onDragEnter(e, index);
-  //     return;
-  //   }
-  //   const target = e.target as HTMLDivElement;
-  //   if (target === draggingRef.current || target == dragListRef.current) return;
-  //   const childrenArr = Array.from(
-  //     dragListRef.current!.querySelectorAll(`.${prefix}-draggable-item`)
-  //   );
-  //   const draggingIndex = childrenArr.indexOf(draggingRef.current!);
-  //   const dragEnterIndex = childrenArr.indexOf(target.parentNode as Element);
-
-  //   if (draggingIndex > dragEnterIndex) {
-  //     dragListRef.current?.insertBefore(
-  //       draggingRef.current!,
-  //       target.parentNode
-  //     );
-  //   } else if (draggingIndex < dragEnterIndex) {
-  //     // 如果第二个参数是null的话，则插入到最后一个位置去
-  //     dragListRef.current?.insertBefore(
-  //       draggingRef.current!,
-  //       target.parentNode!.nextSibling
-  //     );
-  //   }
-  // };
   return (
     <div
       ref={dragListRef}

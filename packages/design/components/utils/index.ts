@@ -24,3 +24,5 @@ export const vendorPrefix = (function () {
       return pre && pre.length ? pre[0].toUpperCase() + pre.substr(1) : '';
   }
 })();
+
+
