@@ -10,8 +10,9 @@
   "author": "psfe",
   "license": "ISC",
   "devDependencies": {
-    "classnames": "^2.3.2",
     "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.9",
+    "classnames": "^2.3.2",
     "pivot-design-props": "workspace:*"
   },
   "dependencies": {

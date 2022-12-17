@@ -1,13 +1,13 @@
 # DraggableList
 
+export const items = [1, 2, 3, 4, 5];
+
 可拖拽列表
 
 <CodeBlock line={''}>
   <DraggableList>
-    <div className="demo-list-item">1</div>
-    <div className="demo-list-item">2</div>
-    <div className="demo-list-item">3</div>
-    <div className="demo-list-item">4</div>
-    <div className="demo-list-item">5</div>
+    {items.map((item) => {
+      return <DraggableItem className="demo-list-item">{item}</DraggableItem>;
+    })}
   </DraggableList>
 </CodeBlock>

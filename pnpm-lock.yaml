@@ -77,6 +77,7 @@ importers:
   packages/design:
     specifiers:
       '@types/react': ^18.0.21
+      '@types/react-dom': ^18.0.9
       classnames: ^2.3.2
       pivot-design-props: workspace:*
       react: ^18.2.0
@@ -86,6 +87,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
       '@types/react': 18.0.21
+      '@types/react-dom': 18.0.9
       classnames: 2.3.2
       pivot-design-props: link:../design-props
 
@@ -1646,6 +1648,12 @@ packages:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
       '@types/react': 18.0.21
+    dev: true
+
+  /@types/react-dom/18.0.9:
+    resolution: {integrity: sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==}
+    dependencies:
+      '@types/react': 18.0.25
     dev: true
 
   /@types/react/18.0.21:
