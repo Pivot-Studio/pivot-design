@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import DraggableListMdx from './src/components/DraggableList/index.mdx';
 import ButtonMdx from './src/components/Button/index.mdx';
 import { Button, DraggableList, DraggableItem, arrayMove } from 'pivot-design';
-import CodeBlock from './src/components/codeBlock';
+import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('DraggableList');

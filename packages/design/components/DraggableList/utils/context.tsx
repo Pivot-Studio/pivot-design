@@ -6,13 +6,6 @@ import {
   UniqueIdentifier,
 } from './type';
 
-// export class NodeManager {
-//   nodes: DraggableNode[];
-//   constructor() {
-//     this.nodes = [];
-//   }
-// }
-
 //TODO:不改变dom结构，使用transform动画来实现效果
 //在ctx记录每一个DraggableItem的坐标
 const initDraggableContext: SortableContextDescriptor = {

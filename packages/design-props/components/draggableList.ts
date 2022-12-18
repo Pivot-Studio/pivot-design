@@ -7,7 +7,19 @@ export interface DraggableListProps extends PivotDesignProps {
    * @default undefined
    */
   children?: React.ReactNode[];
+  /**
+   * @version 1.0.0
+   * @description 元素排序时移动的动画时长(ms)
+   * @default 300
+   */
   transitionDuration?: number;
+  /**
+   * @version 1.0.0
+   * @description 拖拽结束时的回调函数
+   * @param oldIndex 激活元素原本的索引
+   * @param newIndex 激活元素移动到所在位置的索引
+   * @default undefined
+   */
   onDragEnd?: (oldIndex: number, newIndex: number) => void;
 }
 
@@ -18,9 +30,4 @@ export interface DraggableItemProps extends PivotDesignProps {
    * @default undefined
    */
   children?: React.ReactNode;
-  id?: number;
-  onDragStart?: React.DragEventHandler<HTMLDivElement>;
-  onDragEnter?: React.DragEventHandler<HTMLDivElement>;
-  onDragOver?: React.DragEventHandler<HTMLDivElement>;
-  onDragEnd?: React.DragEventHandler<HTMLDivElement>;
 }
