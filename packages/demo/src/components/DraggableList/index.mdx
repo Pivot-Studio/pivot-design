@@ -1,8 +1,10 @@
+import demoObj from './demo/index';
+
 # DraggableList
 
 可拖拽列表
 
-<CodeBlock line={''}>
+<CodeBlock line={''} code={demoObj.basic}>
   <DraggableList
     onDragEnd={(oldIndex, newIndex) => props.reorderItems(oldIndex, newIndex)}
   >

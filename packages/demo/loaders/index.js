@@ -28,7 +28,7 @@
 // }
 module.exports = function loader(source) {
   let newSource = source.trim();
-  //TODO 无法分辨最近的闭括号
+  // 非贪婪模式匹配
   const CodeBlockReg = /<CodeBlock(.*)>([\n\r\s\S]*?)<\/CodeBlock>/g;
   const H1Reg = /# (\w+)/;
 
@@ -46,6 +46,7 @@ module.exports = function loader(source) {
   }
 
   while ((m = CodeBlockReg.exec(source))) {
+    if (m[1].includes('code')) continue
     newSource = newSource.replace(
       m[1],
       m[1] + ` code={\`${getDemo(component, m[2])}\`}`

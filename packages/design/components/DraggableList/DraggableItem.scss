@@ -2,4 +2,6 @@
 
 .#{$prefix}-draggable-item {
   margin: 8px 0;
+  user-select: none;
+  --webkit-user-select: none;
 }

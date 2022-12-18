@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { DraggableListProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import { Context, SortableContext } from './utils/context';
@@ -19,7 +19,6 @@ const EVENTS = {
   move: ['touchmove', 'mousemove'],
   start: ['touchstart', 'mousedown'],
 };
-
 function DraggableList(props: DraggableListProps) {
   const {
     className,
@@ -60,13 +59,13 @@ function DraggableList(props: DraggableListProps) {
       x: offset.x - initOffset.current.x,
       y: offset.y - initOffset.current.y,
     };
-    // setTransitionDuration(helper.current as HTMLElement, transitionDuration);
     setTranslate3d(helper.current as HTMLElement, translate);
     return translate;
   };
 
   const handleMove = (event: MouseEvent) => {
     if (touched.current) {
+      newIndex.current = oldIndex.current;
       const helperTranslate = updateHelperPosition(event);
       const draggableNodesArr = Object.values(draggableNodes);
       const { index: activeIndex, clientRect: activeClientRect } =
@@ -120,7 +119,10 @@ function DraggableList(props: DraggableListProps) {
                 activeNodeMargin.current.top,
                 activeNodeMargin.current.bottom
               );
-            newIndex.current = i;
+            // 当上移时，由于i是从小到大遍历，为了要取到最小的那个i
+            if (newIndex.current === oldIndex.current) {
+              newIndex.current = i;
+            }
           }
         }
         setTranslate3d(node.node.current as DragNode, translate);
@@ -128,16 +130,21 @@ function DraggableList(props: DraggableListProps) {
     }
   };
   const handleEnd = (event) => {
-    touched.current = false;
-    helper.current?.parentNode?.removeChild(helper.current);
-    setActiveId && setActiveId('');
-    const draggableNodesArr = Object.values(draggableNodes);
-    for (let i = 0; i < draggableNodesArr.length; i++) {
-      const node = draggableNodesArr[i] as DraggableNode;
-      setTransitionDuration(node.node.current as HTMLElement);
-      setTranslate3d(node.node.current as DragNode);
+    if (touched.current) {
+      touched.current = false;
+      helper.current?.parentNode?.removeChild(helper.current);
+      setActiveId && setActiveId('');
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mouseup', handleEnd);
+      const draggableNodesArr = Object.values(draggableNodes);
+      for (let i = 0; i < draggableNodesArr.length; i++) {
+        const node = draggableNodesArr[i] as DraggableNode;
+        node.clientRect = undefined;
+        setTransitionDuration(node.node.current as HTMLElement);
+        setTranslate3d(node.node.current as DragNode);
+      }
+      onDragEnd && onDragEnd(oldIndex.current, newIndex.current);
     }
-    onDragEnd && onDragEnd(oldIndex.current, newIndex.current);
   };
   const handleStart = (event: any) => {
     const node = closest(event.target, (n) => n.dragitemid);
@@ -148,7 +155,7 @@ function DraggableList(props: DraggableListProps) {
       if (activeNode) {
         setActiveId && setActiveId(activeId);
         activeNodeRef.current = activeNodeDescriptor;
-        oldIndex.current = activeNodeDescriptor.index;
+        newIndex.current = oldIndex.current = activeNodeDescriptor.index;
         activeNodeDescriptor.clientRect = activeNode.getBoundingClientRect();
         const { x, y, height, width } = activeNodeDescriptor.clientRect;
         activeNodeMargin.current = getElementMargin(activeNode);
@@ -190,19 +197,6 @@ function DraggableList(props: DraggableListProps) {
       style={style}
     >
       {children}
-      {/* {children &&
-          children.map((item, index) => (
-            <DraggableItem
-              key={index}
-              id={index}
-              onDragStart={(e) => dragStartHandler(e, index)}
-              onDragEnter={(e) => dragEnterHandler(e, index)}
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnd={(e) => dragEndHandler(e, index)}
-            >
-              {item}
-            </DraggableItem>
-          ))} */}
     </div>
   );
 }

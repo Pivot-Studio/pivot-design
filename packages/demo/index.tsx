@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactDom from 'react-dom/client';
 import DraggableListMdx from './src/components/DraggableList/index.mdx';
 import ButtonMdx from './src/components/Button/index.mdx';
@@ -9,7 +9,7 @@ const App = () => {
   const [select, setSelect] = useState('DraggableList');
   const [items, setItems] = useState([1, 2, 3, 4, 5]);
   const reorderItems = (oldIndex: number, newIndex: number) =>
-    setItems(arrayMove(items, oldIndex, newIndex));
+    setItems((items) => arrayMove(items, oldIndex, newIndex));
   const demoSelect = () => {
     return (
       <div className="demo-container">
