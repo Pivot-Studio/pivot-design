@@ -4,43 +4,58 @@
   display: flex;
   flex-wrap:wrap;
   align-content:flex-start;
-  background-color: rgba(0, 0, 0, 0.04);
+ // background-color: rgba(0, 0, 0, 0.04);
+ background-color:var(
+ --card-background-color,
+ var(--pivot-card-background-color)
+);
   padding: 20px;
   margin: 12px;
- 
+  &-borderadius{
+    border-radius:20px ;
+  }
+
   .#{$prefix}-head {
     display: flex;
     
     width: 100%;
     height: 33px;
+ .#{$prefix}-head-wrapper {
+  position: relative;
+  width: 100%;
+  .#{$prefix}-head-title {
+    min-width: 26px;
+    height: 13px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: left;
+    color: #000000;
+  }
 
-    &.#{$prefix}-head-title {
-      min-width: 26px;
-      height: 13px;
-      font-weight: 400;
-      font-size: 13px;
-      line-height: 13px;
-      text-align: left;
-      color: #000000;
-    }
+  .#{$prefix}-head-extra {
+    position: absolute;
+    padding: 5px, 8px, 5px, 5px;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: right;
+    top: 0;
+    right: 0;
+    float: right;
+  }
 
-    &-extra {
-      padding: 5px, 8px, 5px, 5px;
-      font-size: 12px;
-      line-height: 18px;
-      text-align: right;
-    }
-
-    &-time {
-      margin-top: 3px;
-      width: 106px;
-      height: 17px;
-      font-size: 11px;
-      line-height: 17px;
-      text-align: left;
-      color: #cbcbcb;
-      vertical-align: center;
-    }
+  .#{$prefix}-head-time {
+    margin-top: 3px;
+    width: 106px;
+    height: 17px;
+    font-size: 11px;
+    line-height: 17px;
+    text-align: left;
+    color: #cbcbcb;
+    vertical-align: center;
+  }
+}
+    
   }
   &-border{
      border: 1px solid #cbcbcb;

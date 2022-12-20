@@ -24,6 +24,8 @@ const Card: React.FC<CardProps> = (props) => {
     time,
     extra,
     children,
+    cover,
+    boradius = true,
   } = props;
   // const triggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   onClick && onClick(e);
@@ -46,7 +48,10 @@ const Card: React.FC<CardProps> = (props) => {
     `${prefix}-card`,
     className,
     `${prefix}-card-${size}`,
-    { [`${prefix}-card-border`]: bordered }
+    { [`${prefix}-card-border`]: bordered },
+    {
+      [`${prefix}-card-borderadius`]: boradius,
+    }
   );
   const head = (title?: string, extra?: React.ReactNode, time?: string) => {
     if (title || extra || time) {
@@ -101,6 +106,7 @@ const Card: React.FC<CardProps> = (props) => {
 
   return (
     <div className={classNames} style={style}>
+      {cover}
       {head(title, extra, time)}
       {body(children)}
       {actionDom(actions)}

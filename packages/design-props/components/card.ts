@@ -6,7 +6,7 @@ export interface CardProps extends PivotDesignProps {
    * @description 自定义样式
    * @default undefined
    */
-  style?: React.CSSProperties
+  style?: React.CSSProperties&CardCssTokens
   /**
    * @version 1.0.0
    * @description 自定义大小
@@ -73,4 +73,25 @@ export interface CardProps extends PivotDesignProps {
   * @default 收起
   */
  collapseText?: string
+ /**
+  * @version 1.0.0
+  * @description 封面
+  * @default undefined
+  */
+   cover?:React.ReactNode
+   /**
+  * @version 1.0.0
+  * @description 边框角
+  * @default true
+  */
+ boradius?: boolean
+}
+interface CardCssTokens{
+  /**
+  * @version 1.0.0
+  * @description 卡片背景颜色
+  *@default --pivot-card-background-color
+  */
+   '--card-background-color'?:string;
+
 }

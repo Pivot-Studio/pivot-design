@@ -10,11 +10,11 @@ function getDemo(component: string) {
 }
 export default {
   basic: getDemo(`
-  <Card title="测试" time="19:20 2020-09-15">
+  <Card title="测试" time="19:20 2020-09-15" extra={<a href="#">More</a>}>
   <p>  我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
   <p>一点钱钱呢啊？不多不多的 </p>
   </Card>
-  <Card title="多余文本" time="19:20 2020-09-15">
+  <Card title="多余文本" time="19:20 2020-09-15"{<a href="#">...</a>} boradius=false >
   <p> 我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
   <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可</p>
   <Card>
