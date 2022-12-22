@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { prefix } from '../../constants';
+import { prefix } from '../constants';
 let _id = 0;
 
 export function useUniqueId(value?: string) {

@@ -2,9 +2,9 @@ import React from 'react';
 import { DraggableItemProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
-import { useDraggable } from './hooks/useDraggable';
+import { useDraggable } from '../hooks/useDraggable';
 import './DraggableItem.scss';
-import { useUniqueId } from './hooks/useUniqueId';
+import { useUniqueId } from '../hooks/useUniqueId';
 function DraggableItem(props: DraggableItemProps) {
   const { className, children } = props;
   const { isDragging, setDragNode } = useDraggable(useUniqueId());

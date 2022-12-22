@@ -1,6 +1,6 @@
 import Button from './components/Button';
-export { DraggableList, DraggableItem, useDraggable } from './components/DraggableList';
-
+export { DraggableList, DraggableItem } from './components/DraggableList';
+export * from './components/hooks';
 export { Button };
 
 export const arrayMove = (array: any[], from: number, to: number) => {

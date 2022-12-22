@@ -7,14 +7,14 @@ importers:
       '@commitlint/cli': ^17.3.0
       '@commitlint/config-conventional': ^17.3.0
       core-js: ^3.25.1
-      eslint-config-psfe: 1.0.4
+      eslint-config-psfe: 1.0.5
       husky: ^8.0.2
     dependencies:
       core-js: 3.25.5
     devDependencies:
       '@commitlint/cli': 17.3.0
       '@commitlint/config-conventional': 17.3.0
-      eslint-config-psfe: 1.0.4
+      eslint-config-psfe: 1.0.5
       husky: 8.0.2
 
   packages/demo:
@@ -3126,8 +3126,8 @@ packages:
       eslint: 8.28.0
     dev: true
 
-  /eslint-config-psfe/1.0.4:
-    resolution: {integrity: sha512-oKzsycTq7YZ952qGoqcbxFVDgk/wyT1KYwpL4gNWRqD3agt59eYD3O+qoGvscXpnSZECVq19oweC99Q7ukModA==}
+  /eslint-config-psfe/1.0.5:
+    resolution: {integrity: sha512-nhp3zk4rAvMU27O80XwVzfv+cIFnXB2tcYEGvtzvn9BZVCnwLdMUFkRPr41CAoMJLgiPJRDGVk7jqwxA1bO3/A==}
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.40.0_3pldpsdqjickd2iit76wdqhx2y
       '@typescript-eslint/parser': 5.40.0_zksrc6ykdxhogxjbhb5axiabwi

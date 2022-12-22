@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useRef } from 'react';
-import { Context } from '../utils/context';
-import { DragNode, UniqueIdentifier } from '../utils/type';
+import { Context } from '../DraggableList/utils/context';
+import { DragNode, UniqueIdentifier } from '../DraggableList/utils/type';
 interface UseDraggableProps {
   id: UniqueIdentifier;
   index: number;
