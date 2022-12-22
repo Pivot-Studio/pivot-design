@@ -20,13 +20,7 @@ const EVENTS = {
   start: ['touchstart', 'mousedown'],
 };
 function DraggableList(props: DraggableListProps) {
-  const {
-    className,
-    style,
-    transitionDuration = 300,
-    onDragEnd,
-    children,
-  } = props;
+  const { className, style, transitionDuration = 300, onDragEnd, children } = props;
 
   let { node: draggableNodes, setActiveId, activeId } = useContext(Context);
   /**
@@ -68,8 +62,7 @@ function DraggableList(props: DraggableListProps) {
       newIndex.current = oldIndex.current;
       const helperTranslate = updateHelperPosition(event);
       const draggableNodesArr = Object.values(draggableNodes);
-      const { index: activeIndex, clientRect: activeClientRect } =
-        activeNodeRef.current as DraggableNode;
+      const { index: activeIndex, clientRect: activeClientRect } = activeNodeRef.current as DraggableNode;
       for (let i = 0; i < draggableNodesArr.length; i++) {
         const translate = {
           x: 0,
@@ -77,10 +70,7 @@ function DraggableList(props: DraggableListProps) {
         };
         const node = draggableNodesArr[i] as DraggableNode;
         if (node.id !== activeId && activeIndex !== i) {
-          setTransitionDuration(
-            node.node.current as HTMLElement,
-            transitionDuration
-          );
+          setTransitionDuration(node.node.current as HTMLElement, transitionDuration);
           // 动画计算
           if (!node.clientRect) {
             node.clientRect = node.node.current?.getBoundingClientRect();
@@ -88,37 +78,24 @@ function DraggableList(props: DraggableListProps) {
           // 加一层缓存防止移动但未松开时，clientRect会随着translate而变
           const nextNode = i + 1 < length && draggableNodesArr[i + 1];
           if (nextNode) {
-            nextNode.clientRect =
-              nextNode.node.current?.getBoundingClientRect();
+            nextNode.clientRect = nextNode.node.current?.getBoundingClientRect();
           }
           // 拖拽下移
           // 这里高度除以2是为了优化移动触发条件
           if (
             i > activeIndex &&
-            activeClientRect!.top +
-              helperTranslate.y +
-              activeClientRect!.height / 2 >
-              node.clientRect!.top
+            activeClientRect!.top + helperTranslate.y + activeClientRect!.height / 2 > node.clientRect!.top
           ) {
             translate.y = -(
-              node.clientRect!.height +
-              Math.max(
-                activeNodeMargin.current.top,
-                activeNodeMargin.current.bottom
-              )
+              node.clientRect!.height + Math.max(activeNodeMargin.current.top, activeNodeMargin.current.bottom)
             );
             newIndex.current = i;
           } else if (
             i < activeIndex &&
-            activeClientRect!.top + helperTranslate.y <
-              node.clientRect!.top + node.clientRect!.height / 2
+            activeClientRect!.top + helperTranslate.y < node.clientRect!.top + node.clientRect!.height / 2
           ) {
             translate.y =
-              node.clientRect!.height +
-              Math.max(
-                activeNodeMargin.current.top,
-                activeNodeMargin.current.bottom
-              );
+              node.clientRect!.height + Math.max(activeNodeMargin.current.top, activeNodeMargin.current.bottom);
             // 当上移时，由于i是从小到大遍历，为了要取到最小的那个i
             if (newIndex.current === oldIndex.current) {
               newIndex.current = i;
@@ -191,11 +168,7 @@ function DraggableList(props: DraggableListProps) {
   }, []);
 
   return (
-    <div
-      ref={dragListRef}
-      className={classnames(`${prefix}-draggable-list`, className)}
-      style={style}
-    >
+    <div ref={dragListRef} className={classnames(`${prefix}-draggable-list`, className)} style={style}>
       {children}
     </div>
   );

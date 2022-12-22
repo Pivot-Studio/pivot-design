@@ -1,4 +1,4 @@
 import DraggableItem from './DraggableItem';
 import DraggableList from './DraggableList';
-
-export { DraggableList, DraggableItem };
+import { useDraggable } from './hooks';
+export { DraggableList, DraggableItem, useDraggable };
