@@ -10,6 +10,7 @@ export const vendorPrefix = (function () {
   const styles = window.getComputedStyle(document.documentElement, '') || [
     '-moz-hidden-iframe',
   ];
+  // eslint-disable-next-line prefer-destructuring
   const pre = (Array.prototype.slice
     .call(styles)
     .join('')
@@ -24,5 +25,3 @@ export const vendorPrefix = (function () {
       return pre && pre.length ? pre[0].toUpperCase() + pre.substr(1) : '';
   }
 })();
-
-

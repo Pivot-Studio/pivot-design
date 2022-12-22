@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "eslint-config-psfe": "^1.0.0"
+    "eslint-config-psfe": "1.0.3-meta.1"
   },
   "dependencies": {
     "core-js": "^3.25.1"

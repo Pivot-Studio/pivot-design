@@ -205,7 +205,7 @@ DraggableList.Item = DraggableItem;
 export default function SortableList(props: DraggableListProps) {
   return (
     <SortableContext>
-      <DraggableList {...props}></DraggableList>
+      <DraggableList {...props} />
     </SortableContext>
   );
 }

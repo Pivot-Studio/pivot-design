@@ -1,6 +1,6 @@
 import { vendorPrefix } from '../../utils';
 import { UniqueIdentifier } from './type';
-
+import React from 'react';
 export function closest(
   node: Node & { dragitemid?: UniqueIdentifier },
   fn: (...args: any[]) => boolean
@@ -20,16 +20,7 @@ export function setInlineStyles(
     node.style[key] = styles[key];
   });
 }
-export function getElementMargin(element: HTMLElement) {
-  const style = window.getComputedStyle(element);
 
-  return {
-    bottom: getPixelValue(style.marginBottom),
-    left: getPixelValue(style.marginLeft),
-    right: getPixelValue(style.marginRight),
-    top: getPixelValue(style.marginTop),
-  };
-}
 export function setTranslate3d(
   node: HTMLElement,
   translate?: { x: number; y: number }
@@ -65,4 +56,13 @@ function getPixelValue(stringValue: string) {
   }
 
   return 0;
+}
+export function getElementMargin(element: HTMLElement) {
+  const style = window.getComputedStyle(element);
+  return {
+    bottom: getPixelValue(style.marginBottom),
+    left: getPixelValue(style.marginLeft),
+    right: getPixelValue(style.marginRight),
+    top: getPixelValue(style.marginTop),
+  };
 }

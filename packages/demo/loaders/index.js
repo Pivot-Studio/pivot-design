@@ -3,6 +3,7 @@ module.exports = function loader(source) {
   // 非贪婪模式匹配
   const CodeBlockReg = /<CodeBlock(.*)>([\n\r\s\S]*?)<\/CodeBlock>/g;
   const H1Reg = /# (\w+)/;
+  // eslint-disable-next-line prefer-destructuring
   const component = H1Reg.exec(source)[1];
   let m;
   function getDemo(name, component) {
