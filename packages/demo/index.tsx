@@ -1,11 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ReactDom from 'react-dom/client';
-import ButtonMdx from './src/components/Button/Button.mdx';
-import { Button } from 'pivot-design';
-import CodeBlock from './src/components/codeBlock';
+import DraggableListMdx from './src/components/DraggableList/index.mdx';
+import ButtonMdx from './src/components/Button/index.mdx';
+import { Button, DraggableList, DraggableItem, arrayMove } from 'pivot-design';
+import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
-  const [select, setSelect] = useState('Button');
+  const [select, setSelect] = useState('DraggableList');
+  const [items, setItems] = useState([1, 2, 3, 4, 5]);
+  const reorderItems = (oldIndex: number, newIndex: number) =>
+    setItems((items) => arrayMove(items, oldIndex, newIndex));
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -14,6 +18,12 @@ const App = () => {
           onClick={() => setSelect('Button')}
         >
           按钮
+        </div>
+        <div
+          className={`demo-item ${select === 'DraggableList' ? 'active' : ''}`}
+          onClick={() => setSelect('DraggableList')}
+        >
+          拖拽列表
         </div>
       </div>
     );
@@ -28,6 +38,17 @@ const App = () => {
         <div className="demo-component">
           {select === 'Button' ? (
             <ButtonMdx components={{ Button, CodeBlock }} />
+          ) : null}
+          {select === 'DraggableList' ? (
+            <DraggableListMdx
+              reorderItems={reorderItems}
+              items={items}
+              components={{
+                DraggableList,
+                DraggableItem,
+                CodeBlock,
+              }}
+            />
           ) : null}
         </div>
       </div>

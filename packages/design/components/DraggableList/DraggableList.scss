@@ -1,0 +1,9 @@
+@import '../common.scss';
+
+.#{$prefix}-draggable-list {
+  width: 100%;
+}
+.__#{$prefix}_dragging {
+  opacity: 0;
+  visibility: hidden;
+}

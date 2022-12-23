@@ -1,5 +1,19 @@
 import React from 'react';
 import { PivotDesignProps } from './';
+interface ButtonCssTokens {
+  /**
+   * @version 1.0.0
+   * @description 按钮背景颜色
+   * @default --pivot-button-background-color
+   */
+  '--button-background-color'?: string;
+  /**
+   * @version 1.0.0
+   * @description 按钮禁用时背景颜色
+   * @default --pivot-button-disabled-background-color
+   */
+  '--button-disabled-background-color'?: string;
+}
 export interface ButtonProps extends PivotDesignProps {
   /**
    * @version 1.0.0
@@ -31,19 +45,4 @@ export interface ButtonProps extends PivotDesignProps {
    * @default false
    */
   disabled?: boolean;
-}
-
-interface ButtonCssTokens {
-  /**
-   * @version 1.0.0
-   * @description 按钮背景颜色
-   * @default --pivot-button-background-color
-   */
-  '--button-background-color'?: string;
-  /**
-   * @version 1.0.0
-   * @description 按钮禁用时背景颜色
-   * @default --pivot-button-disabled-background-color
-   */
-  '--button-disabled-background-color'?: string;
 }
