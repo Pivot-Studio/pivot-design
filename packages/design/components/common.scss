@@ -1,10 +1,10 @@
-$prefix: 'PIVOT';
+$prefix: "PIVOT";
 * {
   padding: 0;
   margin: 0;
   border: none;
 }
-body[pivot-theme='light'] {
+body[pivot-theme="light"] {
   --Gray-100: rgba(255, 255, 255, 0.87);
   --Gray-80: rgba(203, 203, 203, 1);
   --Gray-5: rgba(0, 0, 0, 0.04);
@@ -14,8 +14,7 @@ body[pivot-theme='light'] {
   --Brand-1-25: rgba(75, 159, 121, 0.25);
   --Brand-5: #2d895f;
 }
-body[pivot-theme='dark'] {
-  
+body[pivot-theme="dark"] {
 }
 
 body {
