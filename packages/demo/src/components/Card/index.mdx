@@ -1,0 +1,19 @@
+import demoObj from './demo/index';
+
+# Card
+
+<div className="title">默认样式</div>
+<CodeBlock code={demoObj.basic} line={'5-15'}>
+  <Card title="测试" time="19:20 2020-09-15" extra={<a href="#">More</a>}>
+  <p>  我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
+  <p>一点钱钱呢啊？不多不多的 </p>
+  </Card>
+  <Card title="多余文本" time="19:20 2020-09-15" extra={<a href="#">...</a>} avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>}  boradius={false} >
+  <p> 我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
+  <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可</p>
+  </Card>
+  <Card title="多余文本" time="19:20 2020-09-15" extra={<a href="#">...</a>} boradius={false} style={{width:"600px",'--card-background-color': 'rgb(233, 233, 15)'}}>
+  <p> 我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
+  <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可</p>
+  </Card>
+</CodeBlock>
