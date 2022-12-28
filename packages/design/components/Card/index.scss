@@ -1,7 +1,8 @@
 @import '../common.scss';
-root {
-}
+$num1: var(--card-minLength, 3);
+$num2: var(--card-maxLength, 6);
 .#{$prefix}-card {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -73,8 +74,10 @@ root {
   }
   &-middle {
     width: 375px;
-    height: 224px;
-    padding: 20px;
+    height: 260px;
+    padding: 10px;
+    padding-bottom: 12px;
+    padding-left: 10px;
   }
 
   &-small {
@@ -116,7 +119,7 @@ root {
       .#{$prefix}-card-body-btn {
         position: absolute;
         right: 0px;
-        top: 60px;
+        top: $num2;
         //position: relative;
         //float: right;
         clear: both;
@@ -149,17 +152,19 @@ root {
       }
 
       .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text + .#{$prefix}-card-body-btn {
-        top: 100px;
+        top: $num2;
       }
     }
   }
 
-  &.#{$prefix}-card-actions {
+  .#{$prefix}-card-actions {
+    position: absolute;
+    bottom: 0px;
     width: 100%;
     height: 29px;
     font-size: 11px;
     line-height: 17px;
-    text-align: center;
+    //text-align: center;
     vertical-align: center;
     color: #b1b1b1;
   }

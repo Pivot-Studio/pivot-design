@@ -3,14 +3,6 @@ import { CardProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
 import './index.scss';
-// function getAction(actions: React.ReactNode[]) {
-//   const actionList = actions.map((action, index) => (
-//     <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
-//       <span>{action}</span>
-//     </li>
-//   ));
-//   return actionList;
-// }
 let num: number = 0;
 const Card: React.FC<CardProps> = (props) => {
   const {
@@ -52,7 +44,7 @@ const Card: React.FC<CardProps> = (props) => {
       [`${prefix}-card-borderadius`]: boradius,
     }
   );
-  const head = (title?: string, extra?: React.ReactNode, time?: string, avatar?: React.ReactNode) => {
+  const head = (title?: React.ReactNode, extra?: React.ReactNode, time?: string, avatar?: React.ReactNode) => {
     if (title || extra || time || avatar) {
       return (
         <div className={`${prefix}-head`}>
@@ -96,7 +88,7 @@ const Card: React.FC<CardProps> = (props) => {
     return <div className={classnames(`${prefix}-card-body`)}>{btn(children)}</div>;
   };
   const actionDom = (actions: React.ReactNode) => {
-    return <div className={`${prefix}-actions`}>{actions}</div>;
+    return <div className={`${prefix}-card-actions`}>{actions}</div>;
   };
 
   return (

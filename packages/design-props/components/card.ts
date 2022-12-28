@@ -24,13 +24,13 @@ export interface CardProps extends PivotDesignProps {
    * @description 卡片标题
    * @default undefined
    */
-  title?: string;
+  title?: React.ReactNode;
   /**
    * @version 1.0.0
    * @description 卡片底部的操作组
    * @default undefined
    */
-  actions?: Array<React.ReactNode>;
+  actions?: React.ReactNode;
   /**
    * @version 1.0.0
    * @description 是否有边框
