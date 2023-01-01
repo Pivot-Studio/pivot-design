@@ -23,9 +23,7 @@ export interface SortableContextDescriptor {
    * 记录每一个拖拽元素
    */
   node: Record<UniqueIdentifier, DraggableNode>;
-  setNode?: React.Dispatch<
-    React.SetStateAction<Record<UniqueIdentifier, DraggableNode>>
-  >;
+  setNode?: React.Dispatch<React.SetStateAction<Record<UniqueIdentifier, DraggableNode>>>;
 }
 
 export interface SortableContextProps {

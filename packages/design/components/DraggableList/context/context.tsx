@@ -1,10 +1,5 @@
 import { createContext, useState } from 'react';
-import {
-  DraggableNode,
-  SortableContextDescriptor,
-  SortableContextProps,
-  UniqueIdentifier,
-} from './type';
+import { DraggableNode, SortableContextDescriptor, SortableContextProps, UniqueIdentifier } from '../utils/types';
 
 //TODO:不改变dom结构，使用transform动画来实现效果
 //在ctx记录每一个DraggableItem的坐标
@@ -12,8 +7,23 @@ const initDraggableContext: SortableContextDescriptor = {
   activeId: '',
   node: {},
 };
-export const Context =
-  createContext<SortableContextDescriptor>(initDraggableContext);
+function dragReducer(
+  state: SortableContextDescriptor,
+  action: {
+    type: string;
+    payload?: Partial<SortableContextDescriptor>;
+  }
+) {
+  switch (action.type) {
+    case '': {
+      break;
+    }
+    default:
+      return state;
+  }
+}
+
+export const Context = createContext<SortableContextDescriptor>(initDraggableContext);
 
 export function SortableContext({ children }: SortableContextProps) {
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
@@ -24,7 +34,5 @@ export function SortableContext({ children }: SortableContextProps) {
     node,
     setNode,
   };
-  return (
-    <Context.Provider value={initDraggableContext}>{children}</Context.Provider>
-  );
+  return <Context.Provider value={initDraggableContext}>{children}</Context.Provider>;
 }

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { DraggableListProps } from 'pivot-design-props';
 import { prefix } from '../constants';
-import { Context, SortableContext } from './utils/context';
+import { Context, SortableContext } from './context/context';
 import classnames from 'classnames';
 import DraggableItem from './DraggableItem';
 import './DraggableList.scss';
@@ -13,7 +13,7 @@ import {
   setTransitionDuration,
   setTranslate3d,
 } from './utils';
-import { DraggableNode, DragNode } from './utils/type';
+import { DraggableNode, DragNode } from './utils/types';
 const EVENTS = {
   end: ['touchend', 'touchcancel', 'mouseup'],
   move: ['touchmove', 'mousemove'],
@@ -46,17 +46,18 @@ function DraggableList(props: DraggableListProps) {
   const touched = useRef(false);
   const oldIndex = useRef(0);
   const newIndex = useRef(0);
-
   const updateHelperPosition = (event: MouseEvent) => {
     const offset = getPositionFromEvent(event);
     const translate = {
       x: offset.x - initOffset.current.x,
       y: offset.y - initOffset.current.y,
     };
+    setInlineStyles(helper.current as HTMLElement, {
+      boxShadow: '-1px 0 15px 0 rgba(34, 33, 81, 0.01),0px 15px 15px 0 rgba(34, 33, 81, 0.25)',
+    });
     setTranslate3d(helper.current as HTMLElement, translate);
     return translate;
   };
-
   const handleMove = (event: MouseEvent) => {
     if (touched.current) {
       newIndex.current = oldIndex.current;
