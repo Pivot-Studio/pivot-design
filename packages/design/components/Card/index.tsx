@@ -19,6 +19,7 @@ const Card: React.FC<CardProps> = (props) => {
     cover,
     avatar,
     boradius = true,
+    Grid = false,
   } = props;
   // const triggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   onClick && onClick(e);
@@ -73,7 +74,7 @@ const Card: React.FC<CardProps> = (props) => {
         <div className={`${prefix}-card-body-content`}>
           <input id={`${prefix}-card-body-btn-exp-${num}`} className={`${prefix}-card-body-exp`} type="checkbox" />
 
-          <div className={`${prefix}-card-body-text`} ref={descRef}>
+          <div className={Grid ? `${prefix}-card-body-grid` : `${prefix}-card-body-text`} ref={descRef}>
             {children}
           </div>
           {needExpandBtn && (
@@ -87,6 +88,7 @@ const Card: React.FC<CardProps> = (props) => {
     // };
     return <div className={classnames(`${prefix}-card-body`)}>{btn(children)}</div>;
   };
+
   const actionDom = (actions: React.ReactNode) => {
     return <div className={`${prefix}-card-actions`}>{actions}</div>;
   };

@@ -70,10 +70,10 @@ export interface CardProps extends PivotDesignProps {
   boradius?: boolean;
   /**
    * @version 1.0.0
-   * @description 类型
-   * @default undefined
+   * @description 栅格
+   * @default false
    */
-  type?: string;
+  Grid?: boolean;
   /**
    * @version 1.0.0
    * @description 头像
