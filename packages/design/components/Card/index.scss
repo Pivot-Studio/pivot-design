@@ -6,9 +6,9 @@
   flex-wrap: wrap;
   align-content: flex-start;
   padding: 10px;
-  padding-bottom: 32px;
+  padding-bottom: 8px;
 
-  padding-left: 10px;
+  //padding-left: 10px;
   background-color: var(--card-background-color, var(--pivot-card-background-color));
   &-borderadius {
     border-radius: 10px;
@@ -72,19 +72,13 @@
   &-border {
     border: 1px solid #cbcbcb;
   }
-  &-middle {
+  &-normal {
     width: 375px;
-    // height: 260px;
   }
 
   &-small {
-    width: 351px;
-    height: 130px;
-  }
-
-  &-large {
     width: 316px;
-    height: 470px;
+    //height: 130px;
   }
 
   .#{$prefix}-card-body {
@@ -109,7 +103,6 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
 
-        //position: relative;
         line-height: 1.5;
         transition: 0.3s max-height;
       }
@@ -128,17 +121,13 @@
         }
       }
       .#{$prefix}-card-body-btn {
-        //position: absolute;
         float: right;
-        //right: 0px;
-        //top: $num2;
-        //position: relative;
-        //float: right;
+
         clear: both;
         margin-left: 20px;
         font-size: 14px;
         padding: 0 8px;
-        //background: #3f51b5;
+
         line-height: 21px;
         border-radius: 4px;
         color: #2b98ba;
@@ -162,24 +151,19 @@
       .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text + .#{$prefix}-card-body-btn::after {
         content: var(--card-collapseText, '收起');
       }
-
-      // .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text + .#{$prefix}-card-body-btn {
-      //   //top: $num2;
-      // }
     }
   }
 
   .#{$prefix}-card-actions {
-    position: absolute;
-    bottom: 0;
-    //padding-top: 20px;
-    //padding-bottom: 10px;
-    margin-bottom: 8px;
+    // position: absolute;
+    //bottom: 0;
+
+    //margin-bottom: 8px;
     width: 100%;
-    //height: 29px;
+
     font-size: 11px;
     line-height: 17px;
-    //text-align: center;
+
     vertical-align: center;
     color: #b1b1b1;
   }

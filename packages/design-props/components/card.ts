@@ -12,11 +12,11 @@ export interface CardProps extends PivotDesignProps {
    * @description 自定义大小
    * @default undefined
    */
-  size?: 'small' | 'middle' | 'large';
+  size?: 'small' | 'normal';
   /**
    * @version 1.0.0
    * @description 卡片内容是否加载
-   * @default middle
+   * @default normal
    */
   loading?: boolean;
   /**

@@ -8,7 +8,7 @@ const Card: React.FC<CardProps> = (props) => {
   const {
     className,
     style,
-    size = 'middle',
+    size = 'normal',
     loading = false,
     title,
     actions,
@@ -21,10 +21,7 @@ const Card: React.FC<CardProps> = (props) => {
     boradius = true,
     Grid = false,
   } = props;
-  // const triggerClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   onClick && onClick(e);
-  // };
-  // const loadingBlock=(<div></div>)
+
   const descRef = useRef<any>();
   const [needExpandBtn, setNeedExpandBtn] = useState<boolean>(false);
   useEffect(() => {
@@ -66,9 +63,7 @@ const Card: React.FC<CardProps> = (props) => {
 
   const body = (children: React.ReactNode) => {
     num++;
-    //console.log(children, 'children');
-    // if(children.length){
-    // }
+
     const btn = (children: React.ReactNode) => {
       return (
         <div className={`${prefix}-card-body-content`}>
@@ -83,9 +78,7 @@ const Card: React.FC<CardProps> = (props) => {
         </div>
       );
     };
-    // const text = (children: React.ReactNode) => {
-    //   return <div className={`${prefix}-card-body-text`}>{children}</div>;
-    // };
+
     return <div className={classnames(`${prefix}-card-body`)}>{btn(children)}</div>;
   };
 
