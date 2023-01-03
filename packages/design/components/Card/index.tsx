@@ -58,7 +58,7 @@ const Card: React.FC<CardProps> = (props) => {
           </div>
         </div>
       );
-    } else return <div></div>;
+    }
   };
 
   const body = (children: React.ReactNode) => {
