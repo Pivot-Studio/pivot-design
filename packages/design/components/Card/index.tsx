@@ -23,15 +23,16 @@ const Card: React.FC<CardProps> = (props) => {
     Grid = false,
   } = props;
 
-  const descRef = useRef<any>();
+  const descRef = useRef<HTMLDivElement | null>(null);
   const [needExpandBtn, setNeedExpandBtn] = useState<boolean>(false);
   useEffect(() => {
     /** 组件加载完成，ref加载完成，初始状态判断。 */
-    setNeedExpandBtn(descRef?.current?.scrollHeight > descRef?.current?.clientHeight);
+    if (descRef?.current?.scrollHeight != undefined)
+      setNeedExpandBtn(descRef?.current?.scrollHeight > descRef?.current?.clientHeight);
   }, []);
 
   if (loading) {
-    return <Card className={`${prefix}-card-loading`}></Card>;
+    return <div className={`${prefix}-card-loading`}></div>;
   }
 
   let classNames = classnames(
@@ -43,7 +44,7 @@ const Card: React.FC<CardProps> = (props) => {
       [`${prefix}-card-borderadius`]: boradius,
     }
   );
-  const head = (title?: React.ReactNode, extra?: React.ReactNode, time?: string, avatar?: React.ReactNode) => {
+  const CardHeader = (title?: React.ReactNode, extra?: React.ReactNode, time?: string, avatar?: React.ReactNode) => {
     if (title || extra || time || avatar) {
       return (
         <div className={`${prefix}-head`}>
@@ -62,12 +63,13 @@ const Card: React.FC<CardProps> = (props) => {
     }
   };
 
-  const body = (children: React.ReactNode) => {
+  const CardBody = (children: React.ReactNode) => {
     num++;
 
     const btn = (children: React.ReactNode) => {
       return (
         <div className={`${prefix}-card-body-content`}>
+          {/* 控制input的id与htmlFor相同 */}
           <input id={`${prefix}-card-body-btn-exp-${num}`} className={`${prefix}-card-body-exp`} type="checkbox" />
 
           <div className={Grid ? `${prefix}-card-body-grid` : `${prefix}-card-body-text`} ref={descRef}>
@@ -83,16 +85,16 @@ const Card: React.FC<CardProps> = (props) => {
     return <div className={classnames(`${prefix}-card-body`)}>{btn(children)}</div>;
   };
 
-  const actionDom = (actions: React.ReactNode) => {
+  const CardActionDom = (actions: React.ReactNode) => {
     return <div className={`${prefix}-card-actions`}>{actions}</div>;
   };
 
   return (
     <div className={classNames} style={style}>
       {cover}
-      {head(title, extra, time, avatar)}
-      {body(children)}
-      {actionDom(actions)}
+      {CardHeader(title, extra, time, avatar)}
+      {CardBody(children)}
+      {CardActionDom(actions)}
     </div>
   );
 };

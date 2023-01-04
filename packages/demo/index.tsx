@@ -38,9 +38,7 @@ const App = () => {
         {demoSelect()}
         <div className="demo-component">
           {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
-          {/* <<<<<< HEAD */}
           {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
-          {/* ======= */}
           {select === 'DraggableList' ? (
             <DraggableListMdx
               reorderItems={reorderItems}
@@ -51,8 +49,7 @@ const App = () => {
                 CodeBlock,
               }}
             />
-          ) : // >>>>>>> c8b6e485e39e8e151ec5e9b313998d9198079c02
-            null}
+          ) : null}
         </div>
       </div>
     </div>
