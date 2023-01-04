@@ -3,6 +3,7 @@ import { CardProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
 import './index.scss';
+//import {Avatar}  from './svg/avatar.tsx';
 let num: number = 0;
 const Card: React.FC<CardProps> = (props) => {
   const {
