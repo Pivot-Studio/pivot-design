@@ -2,10 +2,17 @@
 
 .#{$prefix}-card {
   position: relative;
+  //解决兼容问题
+  height: 100%;
+  height: -moz-available; /* WebKit-based browsers will ignore this. */
+  height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  height: fill-available;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   padding: 10px;
+  padding-left: 23px;
+  padding-right: 24px;
   padding-bottom: 8px;
   background-color: var(--card-background-color, var(--pivot-card-background-color));
   &-borderadius {
@@ -22,8 +29,8 @@
       position: relative;
       width: 100%;
       .#{$prefix}-head-avatar {
-        width: 35px;
-        height: 35px;
+        // width: 35px;
+        //height: 35px;
         border-radius: 50%;
         overflow: hidden;
         margin-right: 11px;
@@ -100,7 +107,10 @@
         -webkit-line-clamp: var(--card-minLength, 3);
         -webkit-box-orient: vertical;
         overflow: hidden;
-
+        height: 100%;
+        height: -moz-available; /* WebKit-based browsers will ignore this. */
+        height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        height: fill-available;
         line-height: 1.5;
         transition: 0.3s max-height;
       }
