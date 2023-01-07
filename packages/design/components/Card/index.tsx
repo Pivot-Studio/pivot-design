@@ -3,7 +3,6 @@ import { CardProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
 import './index.scss';
-//import {Avatar}  from './svg/avatar.tsx';
 let num: number = 0;
 const Card: React.FC<CardProps> = (props) => {
   const {
@@ -27,7 +26,7 @@ const Card: React.FC<CardProps> = (props) => {
   const [needExpandBtn, setNeedExpandBtn] = useState<boolean>(false);
   useEffect(() => {
     /** 组件加载完成，ref加载完成，初始状态判断。 */
-    if (descRef?.current?.scrollHeight != undefined)
+    if (descRef?.current?.scrollHeight != undefined && descRef?.current?.clientHeight != undefined)
       setNeedExpandBtn(descRef?.current?.scrollHeight > descRef?.current?.clientHeight);
   }, []);
 
@@ -60,7 +59,7 @@ const Card: React.FC<CardProps> = (props) => {
           </div>
         </div>
       );
-    }
+    } else return <div></div>;
   };
 
   const CardBody = (children: React.ReactNode) => {
@@ -73,11 +72,11 @@ const Card: React.FC<CardProps> = (props) => {
           <input id={`${prefix}-card-body-btn-exp-${num}`} className={`${prefix}-card-body-exp`} type="checkbox" />
 
           <div className={Grid ? `${prefix}-card-body-grid` : `${prefix}-card-body-text`} ref={descRef}>
+            {needExpandBtn && (
+              <label className={`${prefix}-card-body-btn`} htmlFor={`${prefix}-card-body-btn-exp-${num}`}></label>
+            )}
             {children}
           </div>
-          {needExpandBtn && (
-            <label className={`${prefix}-card-body-btn`} htmlFor={`${prefix}-card-body-btn-exp-${num}`}></label>
-          )}
         </div>
       );
     };
