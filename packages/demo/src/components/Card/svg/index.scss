@@ -1,0 +1,27 @@
+.pivot-actions {
+  text-align: center;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  position: relative;
+  .pivot-actionsChild {
+    align-items: center;
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+
+    padding-right: 33px;
+    font-size: 11px;
+    p {
+      padding-left: 7px;
+    }
+  }
+
+  .pivot-more {
+    position: absolute;
+    right: 2px;
+    top: -10px;
+    overflow: hidden;
+    font-size: 30px;
+  }
+}

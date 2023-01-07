@@ -2,7 +2,8 @@ import { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import DraggableListMdx from './src/components/DraggableList/index.mdx';
 import ButtonMdx from './src/components/Button/index.mdx';
-import { Button, DraggableList, DraggableItem, arrayMove } from 'pivot-design';
+import CardMdx from './src/components/Card/index.mdx';
+import { Button, DraggableList, DraggableItem, arrayMove, Card } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
@@ -13,11 +14,11 @@ const App = () => {
   const demoSelect = () => {
     return (
       <div className="demo-container">
-        <div
-          className={`demo-item ${select === 'Button' ? 'active' : ''}`}
-          onClick={() => setSelect('Button')}
-        >
+        <div className={`demo-item ${select === 'Button' ? 'active' : ''}`} onClick={() => setSelect('Button')}>
           按钮
+        </div>
+        <div className={`demo-item ${select === 'Card' ? 'active' : ''}`} onClick={() => setSelect('Card')}>
+          卡片
         </div>
         <div
           className={`demo-item ${select === 'DraggableList' ? 'active' : ''}`}
@@ -36,9 +37,8 @@ const App = () => {
       <div className="pivot-design-docs-content">
         {demoSelect()}
         <div className="demo-component">
-          {select === 'Button' ? (
-            <ButtonMdx components={{ Button, CodeBlock }} />
-          ) : null}
+          {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
+          {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
           {select === 'DraggableList' ? (
             <DraggableListMdx
               reorderItems={reorderItems}
@@ -55,6 +55,4 @@ const App = () => {
     </div>
   );
 };
-ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(
-  <App />
-);
+ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(<App />);
