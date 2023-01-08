@@ -16,11 +16,12 @@ export function SortableContext({ children }: SortableContextProps) {
     clientRect: null,
   });
   const listenerRef = useRef(new Listeners(window));
-  const isActiveRef = useRef(false);
   useEffect(() => {
+    console.log('effect');
+
     const handleMove = (event: MouseEvent) => {
       event.stopPropagation();
-      if (!isActiveRef.current) return;
+      if (!activeId) return;
       const currentCoordinates = getEventCoordinates(event)!;
       const transform = {
         x: currentCoordinates.x - activeRectRef.current.initOffset!.x,
@@ -32,8 +33,8 @@ export function SortableContext({ children }: SortableContextProps) {
       });
     };
     const handleEnd = (event: MouseEvent) => {
+      if (!activeId) return;
       event.stopPropagation();
-      isActiveRef.current = false;
       dispatch({
         type: DragActionEnum.INACTIVATED,
       });
@@ -44,14 +45,13 @@ export function SortableContext({ children }: SortableContextProps) {
           y: 0,
         },
       });
-      listenerRef.current.removeAll();
     };
     listenerRef.current.add(
       'mousedown',
       (event) => {
         event.stopPropagation();
         const node = closest(event.target as DragNode, (n: DragNode) => !!n.dragitemid);
-        if (node) {
+        if (node && node.dragitemid) {
           const activeId = node.dragitemid;
           const activeNodeDescriptor = !!activeId && manager.getActiveNode(activeId);
           if (activeNodeDescriptor) {
@@ -69,9 +69,6 @@ export function SortableContext({ children }: SortableContextProps) {
               clientRect,
               marginRect,
             };
-            isActiveRef.current = true;
-            listenerRef.current.add('mousemove', handleMove);
-            listenerRef.current.add('mouseup', handleEnd);
           }
         }
       },
@@ -79,8 +76,12 @@ export function SortableContext({ children }: SortableContextProps) {
         passive: true,
       }
     );
+    listenerRef.current.add('mousemove', handleMove);
+    listenerRef.current.add('mouseup', handleEnd);
     return () => {
-      listenerRef.current.remove('mousedown');
+      console.log('remove');
+
+      listenerRef.current.removeAll();
     };
   }, [activeId, manager]);
 
