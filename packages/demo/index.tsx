@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import DraggableListMdx from './src/components/DraggableList/index.mdx';
 import ButtonMdx from './src/components/Button/index.mdx';
-import { Button, DraggableList, DraggableItem, arrayMove } from 'pivot-design';
+import { Button, DraggableItem, arrayMove, SortableContext } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
@@ -13,10 +13,7 @@ const App = () => {
   const demoSelect = () => {
     return (
       <div className="demo-container">
-        <div
-          className={`demo-item ${select === 'Button' ? 'active' : ''}`}
-          onClick={() => setSelect('Button')}
-        >
+        <div className={`demo-item ${select === 'Button' ? 'active' : ''}`} onClick={() => setSelect('Button')}>
           按钮
         </div>
         <div
@@ -36,15 +33,13 @@ const App = () => {
       <div className="pivot-design-docs-content">
         {demoSelect()}
         <div className="demo-component">
-          {select === 'Button' ? (
-            <ButtonMdx components={{ Button, CodeBlock }} />
-          ) : null}
+          {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
           {select === 'DraggableList' ? (
             <DraggableListMdx
               reorderItems={reorderItems}
               items={items}
               components={{
-                DraggableList,
+                SortableContext,
                 DraggableItem,
                 CodeBlock,
               }}
@@ -55,6 +50,4 @@ const App = () => {
     </div>
   );
 };
-ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(
-  <App />
-);
+ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(<App />);

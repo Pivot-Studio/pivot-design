@@ -1,2 +1,2 @@
-export { useDraggable } from './useDraggable';
 export { useUniqueId } from './useUniqueId';
+export { useDraggable } from '../DraggableList/index';

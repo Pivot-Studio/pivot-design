@@ -1,8 +1,12 @@
-import type { DraggableNode } from '../utils/types';
+import type { DraggableNode, UniqueIdentifier } from '../types';
 
 export default class Manager {
   private nodes: DraggableNode[];
-  constructor() {
+  constructor(manager?: Manager) {
+    if (manager) {
+      this.nodes = manager.nodes;
+      return;
+    }
     this.nodes = [];
   }
   push(node: DraggableNode) {
@@ -10,6 +14,13 @@ export default class Manager {
   }
   clear() {
     this.nodes = [];
+  }
+  getActiveNode(id: UniqueIdentifier) {
+    for (let index = 0; index < this.nodes.length; index++) {
+      const node = this.nodes[index];
+      if (node?.id === id) return node;
+    }
+    return null;
   }
   reorderNodes(isPos: boolean = true) {
     const reorders = [...this.nodes];

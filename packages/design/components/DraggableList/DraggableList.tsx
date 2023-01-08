@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { DraggableListProps } from 'pivot-design-props';
 import { prefix } from '../constants';
-import { Context, SortableContext } from './context/context';
+import { Context, SortableContext } from './context/reducer';
 import classnames from 'classnames';
 import DraggableItem from './DraggableItem';
 import './DraggableList.scss';
@@ -13,7 +13,7 @@ import {
   setTransitionDuration,
   setTranslate3d,
 } from './utils';
-import { DraggableNode, DragNode } from './utils/types';
+import { DraggableNode, DragNode } from './types';
 const EVENTS = {
   end: ['touchend', 'touchcancel', 'mouseup'],
   move: ['touchmove', 'mousemove'],
