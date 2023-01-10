@@ -6,7 +6,7 @@ import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, SortableContextDescriptor } from './types';
 const defaultSensor = MouseSensor;
-export function SortableContext({ children, sensor: Sensor = defaultSensor }: SortableContextProps) {
+export function SortableContext({ children, sensor: Sensor = defaultSensor, onDragEnd }: SortableContextProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { manager } = state;
   const [activator, setActivator] = useState<Activator | null>(null);
@@ -38,7 +38,7 @@ export function SortableContext({ children, sensor: Sensor = defaultSensor }: So
           payload: coordinates,
         });
       },
-      onEnd() {
+      onEnd(event) {
         dispatch({
           type: DragActionEnum.INACTIVATED,
         });
@@ -49,6 +49,7 @@ export function SortableContext({ children, sensor: Sensor = defaultSensor }: So
             y: 0,
           },
         });
+        onDragEnd && onDragEnd(event);
       },
     });
     setActivator({

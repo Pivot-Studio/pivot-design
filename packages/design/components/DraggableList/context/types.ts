@@ -10,7 +10,7 @@ export enum DragActionEnum {
 }
 export interface Activator {
   eventName: string;
-  handler: (event: Event) => void;
+  handler: (event: Event, id: UniqueIdentifier) => void;
 }
 
 export interface State {

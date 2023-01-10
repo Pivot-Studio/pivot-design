@@ -8,6 +8,15 @@ import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('DraggableList');
   const [items, setItems] = useState([1, 2, 3, 4, 5]);
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+  const onDragEnd = ({ delta }) => {
+    setCoordinates(({ x, y }) => {
+      return {
+        x: x + delta.x,
+        y: y + delta.y,
+      };
+    });
+  };
   const reorderItems = (oldIndex: number, newIndex: number) =>
     setItems((items) => arrayMove(items, oldIndex, newIndex));
   const demoSelect = () => {
@@ -38,6 +47,8 @@ const App = () => {
             <DraggableListMdx
               reorderItems={reorderItems}
               items={items}
+              coordinates={coordinates}
+              onDragEnd={onDragEnd}
               components={{
                 SortableContext,
                 DraggableItem,

@@ -3,6 +3,7 @@ import { UniqueIdentifier } from '../../types';
 import { Listeners } from '../../utils';
 import { Coordinate } from '../../../utils/types';
 import { MouseSensor } from '.';
+import { DragEvent } from '../events';
 
 export interface MouseSensorProps {
   eventName?: string;
@@ -22,7 +23,7 @@ export interface MouseSensorProps {
     }
   ): void;
   onMove(coordinates: Coordinate): void;
-  onEnd(): void;
+  onEnd(event: DragEvent): void;
 }
 export interface Sensor {
   new (props: MouseSensorProps): MouseSensor;

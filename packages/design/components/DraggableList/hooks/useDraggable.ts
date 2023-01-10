@@ -11,16 +11,10 @@ export const useDraggable = ({ id, index }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator } = useSortableContext();
   const isDragging = activeId == id;
   const dragNode = useRef<DragNode>();
-  const listener = useListeners(activator);
-  const setDragNodeRef = useCallback(
-    (currentNode: HTMLElement | null) => {
-      dragNode.current = currentNode as DragNode;
-      if (dragNode.current) {
-        dragNode.current.dragitemid = id;
-      }
-    },
-    [id]
-  );
+  const listener = useListeners(activator, id);
+  const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
+    dragNode.current = currentNode as DragNode;
+  }, []);
   // TODO: 导致更新两次
   useEffect(() => {
     dispatch({

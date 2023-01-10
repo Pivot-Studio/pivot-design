@@ -1,5 +1,5 @@
 import { Listeners } from '../../utils';
-import { Coordinate, DragNode, UniqueIdentifier } from '../../types';
+import { Coordinate, UniqueIdentifier } from '../../types';
 import { getEventCoordinates } from '../../../utils';
 import { getElementMargin } from '../../utils';
 import Manager from '../../context/manager';
@@ -13,9 +13,10 @@ const EVENTS = {
 export class MouseSensor {
   private windowListeners: Listeners;
   private manager: Manager;
+  private transform!: Coordinate;
+  private activeId!: UniqueIdentifier;
   private initOffset!: Coordinate | null;
   private clientRect!: DOMRect | null;
-  private activeId!: UniqueIdentifier;
   private marginRect!: {
     left: number;
     top: number;
@@ -38,19 +39,17 @@ export class MouseSensor {
     });
   }
   // TODO 完成一个抽象的类，具体的start又外面实现并传入给draggableItem。move和end又外面传入事件名
-  handleStart(event: Event) {
+  handleStart(event: Event, id: UniqueIdentifier) {
     const { onStart } = this.props;
-    const node = event.target as DragNode;
-    const activeId = node.dragitemid;
-    this.activeId = activeId;
-    const activeNodeDescriptor = !!activeId && this.manager.getActiveNode(activeId);
+    this.activeId = id;
+    const activeNodeDescriptor = this.manager.getActiveNode(id);
     if (activeNodeDescriptor) {
       const activeNode = activeNodeDescriptor.node.current!;
       this.initOffset = getEventCoordinates(event);
       this.clientRect = activeNode.getBoundingClientRect();
       this.marginRect = getElementMargin(activeNode);
       activeNodeDescriptor.clientRect = this.clientRect;
-      onStart(activeId, {
+      onStart(id, {
         initOffset: this.initOffset,
         marginRect: this.marginRect,
         clientRect: this.clientRect,
@@ -65,19 +64,23 @@ export class MouseSensor {
       x: currentCoordinates.x - this.initOffset!.x,
       y: currentCoordinates.y - this.initOffset!.y,
     };
+    this.transform = transform;
     onMove(transform);
   }
-  private handleEnd(event: MouseEvent) {
+  private handleEnd(event: Event) {
     if (!this.activeId) return;
-    event.stopPropagation();
-    this.reset();
     const { onEnd } = this.props;
-    onEnd();
+    onEnd({ activeEvent: event, delta: this.transform });
+    this.reset();
   }
   private reset() {
     this.activeId = '';
     this.initOffset = null;
     this.clientRect = null;
     this.marginRect = null;
+    this.transform = {
+      x: 0,
+      y: 0,
+    };
   }
 }

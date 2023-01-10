@@ -5,8 +5,9 @@ import demoObj from './demo/index';
 可拖拽模块
 
 <CodeBlock line={''}>
-  <SortableContext>
-    <DraggableItem className="demo-list-item">{1}</DraggableItem>
-    <DraggableItem className="demo-list-item">{2}</DraggableItem>
+  <SortableContext onDragEnd={props.onDragEnd}>
+    <DraggableItem className="demo-draggable-item" left={props.coordinates.x} top={props.coordinates.y}>
+      draggable
+    </DraggableItem>
   </SortableContext>
 </CodeBlock>

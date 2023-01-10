@@ -32,10 +32,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
           </div>
         )}
       </div>
-      <div
-        className="line-numbers"
-        style={{ display: expand ? 'block' : 'none' }}
-      >
+      <div className="line-numbers" style={{ display: expand ? 'block' : 'none' }}>
         <pre
           className="data-prismjs-copy"
           lang="zh-Hans-CN"
