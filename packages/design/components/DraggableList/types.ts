@@ -1,4 +1,5 @@
 import React, { MutableRefObject } from 'react';
+import { Sensor } from './sensors/mouse/types';
 
 export type UniqueIdentifier = number | string;
 
@@ -24,4 +25,5 @@ export type DraggableNode = {
 
 export interface SortableContextProps {
   children: React.ReactNode;
+  sensor: Sensor;
 }

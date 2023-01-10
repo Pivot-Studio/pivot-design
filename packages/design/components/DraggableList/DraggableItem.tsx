@@ -37,7 +37,7 @@ function overlayStyle(
 
 function DraggableItem(props: DraggableItemProps) {
   const { className, children } = props;
-  const { isDragging, setDragNode, transform, activeRect } = useDraggable(useUniqueId());
+  const { isDragging, setDragNode, listener, transform, activeRect } = useDraggable(useUniqueId());
   return (
     <>
       <div
@@ -45,6 +45,7 @@ function DraggableItem(props: DraggableItemProps) {
         className={classnames(`${prefix}-draggable-item`, className, {
           [`__${prefix}_dragging`]: isDragging,
         })}
+        {...listener}
       >
         {children}
       </div>

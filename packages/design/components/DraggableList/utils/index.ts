@@ -1,6 +1,7 @@
 import { vendorPrefix } from '../../utils';
 import { UniqueIdentifier } from '../types';
 import React from 'react';
+export { Listeners } from './Listener';
 export function closest(node: HTMLElement & { dragitemid?: UniqueIdentifier }, fn: (...args: any[]) => boolean) {
   while (!fn(node) && node && node !== document.body) {
     // eslint-disable-next-line no-param-reassign

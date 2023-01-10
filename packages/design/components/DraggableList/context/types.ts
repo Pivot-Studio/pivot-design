@@ -8,6 +8,11 @@ export enum DragActionEnum {
   PUSH_NODE,
   TRANSFORM,
 }
+export interface Activator {
+  eventName: string;
+  handler: (event: Event) => void;
+}
+
 export interface State {
   /**
    * 每个子组件是否处于拖拽状态
@@ -21,6 +26,10 @@ export interface State {
    * 当前拖拽元素的偏移值
    */
   transform: Coordinate;
+  /**
+   * 事件触发
+   */
+  activator: Activator | null;
 }
 
 export type ActionType =
