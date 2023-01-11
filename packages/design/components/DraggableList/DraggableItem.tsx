@@ -8,6 +8,7 @@ import './DraggableItem.scss';
 import { useUniqueId } from '../hooks/useUniqueId';
 import { Coordinate } from './types';
 import { vendorPrefix } from '../utils';
+
 function overlayStyle(
   activeRect: {
     marginRect: {
@@ -35,8 +36,12 @@ function overlayStyle(
 }
 
 function DraggableItem(props: DraggableItemProps) {
-  const { className, children, top, left } = props;
-  const { isDragging, setDragNode, listener, transform, activeRect } = useDraggable(useUniqueId());
+  const { className, children, index, top, left } = props;
+  const { id, index: globalIndex } = useUniqueId();
+  const { isDragging, setDragNode, listener, transform, activeRect } = useDraggable({
+    index: index !== undefined ? index : globalIndex,
+    id,
+  });
   return (
     <>
       <div
@@ -53,7 +58,7 @@ function DraggableItem(props: DraggableItemProps) {
         ? createPortal(
             <div
               className={classnames(`${prefix}-draggable-item`, `${prefix}-draggable-overlay`, className)}
-              style={overlayStyle(activeRect.current, transform)}
+              style={overlayStyle(activeRect!.current, transform)}
             >
               {children}
             </div>,

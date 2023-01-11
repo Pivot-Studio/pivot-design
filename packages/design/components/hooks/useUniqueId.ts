@@ -10,5 +10,5 @@ export function useUniqueId(value?: string) {
     // eslint-disable-next-line no-plusplus
     const id = _id++;
     return { id: `${prefix}-${id}`, index: id };
-  }, [prefix, value]);
+  }, [value]);
 }

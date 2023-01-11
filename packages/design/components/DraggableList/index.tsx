@@ -3,3 +3,4 @@ import DraggableItem from './DraggableItem';
 export { SortableContext } from './context/SortableContext';
 export { DraggableItem };
 export { useDraggable } from './hooks/useDraggable';
+export { Sortable } from './Sortable';

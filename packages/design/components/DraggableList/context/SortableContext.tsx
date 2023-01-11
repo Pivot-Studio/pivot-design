@@ -1,21 +1,33 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { MouseSensor } from '../sensors';
 import { SortableContextProps } from '../types';
+import { collisionDetection } from '../utils/collisionDetection';
 import { Listeners } from '../utils/Listener';
 import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, SortableContextDescriptor } from './types';
+
 const defaultSensor = MouseSensor;
+
 export function SortableContext({ children, sensor: Sensor = defaultSensor, onDragEnd }: SortableContextProps) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { manager } = state;
+  // Avoid multiple contexts using the same state
+  const [state, dispatch] = useReducer(reducer, undefined, initialState);
+  const { manager, transform } = state;
   const [activator, setActivator] = useState<Activator | null>(null);
-  const activeRectRef = useRef<SortableContextDescriptor['activeRect']['current']>({
+  // origin information on Start
+  const activeRectRef: SortableContextDescriptor['activeRect'] = useRef({
     initOffset: null,
     marginRect: null,
     clientRect: null,
   });
   const listenerRef = useRef(new Listeners(window));
+  collisionDetection({
+    manager,
+    coordinates: {
+      x: activeRectRef.current.clientRect?.left ?? 0 + transform.x,
+      y: activeRectRef.current.clientRect?.top ?? 0 + transform.y,
+    },
+  });
   useEffect(() => {
     const sensorInstance = new Sensor({
       manager,
@@ -56,13 +68,10 @@ export function SortableContext({ children, sensor: Sensor = defaultSensor, onDr
       eventName: 'onMouseDown',
       handler: sensorInstance.handleStart,
     });
-    // listenerRef.current.add('mousedown', (event: MouseEvent) => {
-    //   sensorInstance.handleStart(event);
-    // });
     return () => {
       listenerRef.current.removeAll();
     };
-  }, [Sensor, manager]);
+  }, [Sensor, manager, onDragEnd]);
 
   const initialContextValue: SortableContextDescriptor = {
     ...state,

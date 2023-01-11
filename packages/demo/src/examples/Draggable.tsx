@@ -1,5 +1,5 @@
 import DraggableListMdx from '../components/DraggableList/index.mdx';
-import { DraggableItem, arrayMove, SortableContext } from 'pivot-design';
+import { DraggableItem, arrayMove, SortableContext, Sortable } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import { useState } from 'react';
 
@@ -26,6 +26,7 @@ const Draggable = () => {
         SortableContext,
         DraggableItem,
         CodeBlock,
+        Sortable,
       }}
     />
   );

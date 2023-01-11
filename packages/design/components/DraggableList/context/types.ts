@@ -60,5 +60,5 @@ export interface SortableContextDescriptor extends State {
       bottom: number;
     } | null;
     clientRect: DOMRect | null;
-  }>;
+  }> | null;
 }

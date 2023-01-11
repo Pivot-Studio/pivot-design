@@ -1,0 +1,6 @@
+@import '../common.scss';
+
+.#{$prefix}-sortable-wrap {
+  display: flex;
+  flex-direction: column;
+}

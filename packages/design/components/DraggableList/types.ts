@@ -27,6 +27,6 @@ export type DraggableNode = {
 
 export interface SortableContextProps {
   children: React.ReactNode;
-  sensor: Sensor;
-  onDragEnd: (event: DragEvent) => void;
+  sensor?: Sensor;
+  onDragEnd?: (event: DragEvent) => void;
 }

@@ -13,5 +13,7 @@ export const defaultSortableContext = {
     x: 0,
     y: 0,
   },
+  activeRect: null,
+  activator: null,
 };
 export const Context = createContext<SortableContextDescriptor>(defaultSortableContext);

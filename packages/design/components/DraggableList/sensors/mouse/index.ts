@@ -60,6 +60,7 @@ export class MouseSensor {
       this.clientRect = activeNode.getBoundingClientRect();
       this.marginRect = getElementMargin(activeNode);
       activeNodeDescriptor.clientRect = this.clientRect;
+
       onStart(id, {
         initOffset: this.initOffset,
         marginRect: this.marginRect,
@@ -70,6 +71,7 @@ export class MouseSensor {
   private handleMove(event: MouseEvent) {
     if (!this.activeId) return;
     const { onMove } = this.props;
+
     const currentCoordinates = getEventCoordinates(event)!;
     const transform = {
       x: currentCoordinates.x - this.initOffset!.x,

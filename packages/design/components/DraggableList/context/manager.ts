@@ -15,6 +15,9 @@ export default class Manager {
   clear() {
     this.nodes = [];
   }
+  getAll() {
+    return this.nodes;
+  }
   getActiveNode(id: UniqueIdentifier) {
     for (let index = 0; index < this.nodes.length; index++) {
       const node = this.nodes[index];

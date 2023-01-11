@@ -12,7 +12,7 @@ export function reducer(state: State, action: ActionType) {
     }
     case DragActionEnum.PUSH_NODE: {
       manager.push(action.payload);
-      return { ...state, manager };
+      return { ...state };
     }
     case DragActionEnum.TRANSFORM: {
       return {
@@ -24,11 +24,12 @@ export function reducer(state: State, action: ActionType) {
       return { ...state };
   }
 }
-export const initialState: State = {
+export const initialState = () => ({
   activeId: '',
   manager: new Manager(),
   transform: {
     x: 0,
     y: 0,
   },
-};
+  activator: null,
+});

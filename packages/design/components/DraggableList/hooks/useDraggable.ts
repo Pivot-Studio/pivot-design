@@ -8,7 +8,7 @@ interface UseDraggableProps {
   index: number;
 }
 export const useDraggable = ({ id, index }: UseDraggableProps) => {
-  const { activeId, transform, dispatch, activeRect, activator } = useSortableContext();
+  const { activeId, transform, dispatch, activeRect, activator, manager } = useSortableContext();
   const isDragging = activeId == id;
   const dragNode = useRef<DragNode>();
   const listener = useSyntheticListeners(activator, id);
@@ -21,7 +21,8 @@ export const useDraggable = ({ id, index }: UseDraggableProps) => {
       type: DragActionEnum.PUSH_NODE,
       payload: { id, index, node: dragNode },
     });
-  }, [dispatch, id, index]);
+    // manager.push({ id, index, node: dragNode });
+  }, [dispatch, id, index, manager]);
 
   return { isDragging, dragNode, transform, activeRect, listener, setDragNode: setDragNodeRef };
 };
