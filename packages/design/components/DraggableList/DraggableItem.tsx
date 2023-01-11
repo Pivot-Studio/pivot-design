@@ -29,7 +29,6 @@ function overlayStyle(
     top: `${y - top}px`,
     width: `${width}px`,
     boxSizing: 'border-box',
-    pointerEvents: 'none',
     position: 'fixed',
     [`${vendorPrefix}Transform`]: `translate3d(${transform.x}px,${transform.y}px,0)`,
   };

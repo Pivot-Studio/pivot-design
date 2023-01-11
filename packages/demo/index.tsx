@@ -1,24 +1,12 @@
 import { useState } from 'react';
 import ReactDom from 'react-dom/client';
-import DraggableListMdx from './src/components/DraggableList/index.mdx';
 import ButtonMdx from './src/components/Button/index.mdx';
-import { Button, DraggableItem, arrayMove, SortableContext } from 'pivot-design';
+import Draggable from '@/examples/Draggable';
+import { Button } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
   const [select, setSelect] = useState('DraggableList');
-  const [items, setItems] = useState([1, 2, 3, 4, 5]);
-  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
-  const onDragEnd = ({ delta }) => {
-    setCoordinates(({ x, y }) => {
-      return {
-        x: x + delta.x,
-        y: y + delta.y,
-      };
-    });
-  };
-  const reorderItems = (oldIndex: number, newIndex: number) =>
-    setItems((items) => arrayMove(items, oldIndex, newIndex));
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -43,19 +31,7 @@ const App = () => {
         {demoSelect()}
         <div className="demo-component">
           {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
-          {select === 'DraggableList' ? (
-            <DraggableListMdx
-              reorderItems={reorderItems}
-              items={items}
-              coordinates={coordinates}
-              onDragEnd={onDragEnd}
-              components={{
-                SortableContext,
-                DraggableItem,
-                CodeBlock,
-              }}
-            />
-          ) : null}
+          {select === 'DraggableList' ? <Draggable /> : null}
         </div>
       </div>
     </div>

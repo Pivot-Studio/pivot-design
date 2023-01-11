@@ -4,6 +4,7 @@ import { getEventCoordinates } from '../../../utils';
 import { getElementMargin } from '../../utils';
 import Manager from '../../context/manager';
 import { MouseSensorProps } from './types';
+import { getOwnerDocument } from '../../../utils';
 
 const EVENTS = {
   start: ['mousedown'],
@@ -13,6 +14,7 @@ const EVENTS = {
 export class MouseSensor {
   private windowListeners: Listeners;
   private manager: Manager;
+  private document!: Document;
   private transform!: Coordinate;
   private activeId!: UniqueIdentifier;
   private initOffset!: Coordinate | null;
@@ -42,6 +44,15 @@ export class MouseSensor {
   handleStart(event: Event, id: UniqueIdentifier) {
     const { onStart } = this.props;
     this.activeId = id;
+    this.document = getOwnerDocument(event.target);
+    // Remove any text selection from the document
+    this.removeTextSelection();
+
+    // Prevent further text selection while dragging
+    this.windowListeners.add('selectionchange', this.removeTextSelection);
+    // Resolved cursor error when mouse moving over Safari
+    this.windowListeners.add('selectstart', (e) => e.preventDefault());
+
     const activeNodeDescriptor = this.manager.getActiveNode(id);
     if (activeNodeDescriptor) {
       const activeNode = activeNodeDescriptor.node.current!;
@@ -70,6 +81,9 @@ export class MouseSensor {
   private handleEnd(event: Event) {
     if (!this.activeId) return;
     const { onEnd } = this.props;
+
+    this.windowListeners.remove('selectstart');
+
     onEnd({ activeEvent: event, delta: this.transform });
     this.reset();
   }
@@ -82,5 +96,8 @@ export class MouseSensor {
       x: 0,
       y: 0,
     };
+  }
+  private removeTextSelection() {
+    this.document.getSelection()?.removeAllRanges();
   }
 }

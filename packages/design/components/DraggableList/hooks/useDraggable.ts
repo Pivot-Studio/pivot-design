@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
 import { DragNode, UniqueIdentifier } from '../types';
-import { useListeners } from './useListeners';
+import { useSyntheticListeners } from './useSyntheticListeners';
 import useSortableContext from './useSortableContext';
 interface UseDraggableProps {
   id: UniqueIdentifier;
@@ -11,7 +11,7 @@ export const useDraggable = ({ id, index }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator } = useSortableContext();
   const isDragging = activeId == id;
   const dragNode = useRef<DragNode>();
-  const listener = useListeners(activator, id);
+  const listener = useSyntheticListeners(activator, id);
   const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dragNode.current = currentNode as DragNode;
   }, []);

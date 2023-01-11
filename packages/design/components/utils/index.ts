@@ -1,6 +1,6 @@
 export { getEventCoordinates } from './getEventCoordinates';
 export { getWindow } from './getWindow';
-
+export { getOwnerDocument } from './getOwnerDocument';
 export const vendorPrefix = (function () {
   if (typeof window === 'undefined' || typeof document === 'undefined') {
     // Server environment
