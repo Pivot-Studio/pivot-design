@@ -6,17 +6,14 @@ import { Button } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
-  const [select, setSelect] = useState('DraggableList');
+  const [select, setSelect] = useState('Draggable');
   const demoSelect = () => {
     return (
       <div className="demo-container">
         <div className={`demo-item ${select === 'Button' ? 'active' : ''}`} onClick={() => setSelect('Button')}>
           按钮
         </div>
-        <div
-          className={`demo-item ${select === 'DraggableList' ? 'active' : ''}`}
-          onClick={() => setSelect('DraggableList')}
-        >
+        <div className={`demo-item ${select === 'Draggable' ? 'active' : ''}`} onClick={() => setSelect('Draggable')}>
           拖拽列表
         </div>
       </div>
@@ -31,7 +28,7 @@ const App = () => {
         {demoSelect()}
         <div className="demo-component">
           {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
-          {select === 'DraggableList' ? <Draggable /> : null}
+          {select === 'Draggable' ? <Draggable /> : null}
         </div>
       </div>
     </div>

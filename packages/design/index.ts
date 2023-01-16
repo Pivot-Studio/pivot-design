@@ -1,5 +1,5 @@
 import Button from './components/Button';
-export { DraggableItem, SortableContext, Sortable } from './components/DraggableList';
+export { DraggableItem, DndContext, Sortable } from './components/Draggable';
 export * from './components/hooks';
 export { Button };
 

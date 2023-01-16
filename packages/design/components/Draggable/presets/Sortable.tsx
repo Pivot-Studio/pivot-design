@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import { prefix } from '../constants';
+import { prefix } from '../../constants';
 import { ReactNode, useState } from 'react';
-import { SortableContext } from './context/SortableContext';
-import { DraggableItem } from '.';
-import { arrayMove } from './utils';
-import { DragEndEvent } from './sensors/events';
+import { DndContext } from '../context/DndContext';
+import { DraggableItem } from '..';
+import { arrayMove } from '../utils';
+import { DragEndEvent } from '../sensors/events';
 
 export function Sortable(props: any) {
   const { items: initialItems, itemClassName } = props;
@@ -13,7 +13,7 @@ export function Sortable(props: any) {
     setItems(arrayMove(items, oldIndex, newIndex));
   };
   return (
-    <SortableContext sortable onDragEnd={reorderItems}>
+    <DndContext sortable onDragEnd={reorderItems}>
       <div className={classNames(`${prefix}-sortable-wrap`)}>
         {items.map((item, index) => {
           return (
@@ -23,6 +23,6 @@ export function Sortable(props: any) {
           );
         })}
       </div>
-    </SortableContext>
+    </DndContext>
   );
 }

@@ -1,5 +1,5 @@
-import DraggableListMdx from '../components/DraggableList/index.mdx';
-import { DraggableItem, arrayMove, SortableContext, Sortable } from 'pivot-design';
+import DraggableMdx from '../components/Draggable/index.mdx';
+import { DraggableItem, arrayMove, DndContext, Sortable } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import { useState } from 'react';
 
@@ -17,13 +17,13 @@ const Draggable = () => {
   const reorderItems = (oldIndex: number, newIndex: number) =>
     setItems((items) => arrayMove(items, oldIndex, newIndex));
   return (
-    <DraggableListMdx
+    <DraggableMdx
       reorderItems={reorderItems}
       items={items}
       coordinates={coordinates}
       onDragEnd={onDragEnd}
       components={{
-        SortableContext,
+        DndContext,
         DraggableItem,
         CodeBlock,
         Sortable,

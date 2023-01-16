@@ -3,18 +3,17 @@ import demoObj from './demo/index';
 # DraggableList
 
 可拖拽模块
-``
 
-<CodeBlock line={''}>
-  <SortableContext onDragEnd={props.onDragEnd}>
+<CodeBlock line={''} code={demoObj.basic}>
+  <DndContext onDragEnd={props.onDragEnd}>
     <DraggableItem className="demo-draggable-item" left={props.coordinates.x} top={props.coordinates.y}>
       draggable
     </DraggableItem>
-  </SortableContext>
+  </DndContext>
 </CodeBlock>
 
 可拖拽列表
 
-<CodeBlock line={''}>
+<CodeBlock line={''} code={demoObj.verticalSortable}>
   <Sortable itemClassName="demo-draggable-item"></Sortable>
 </CodeBlock>

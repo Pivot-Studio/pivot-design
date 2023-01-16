@@ -49,7 +49,7 @@ export type ActionType =
       payload: Coordinate;
     };
 
-export interface SortableContextDescriptor extends State {
+export interface DndContextDescriptor extends State {
   dispatch: Dispatch<ActionType>;
   activeRect: MutableRefObject<{
     initOffset: Coordinate | null;

@@ -1,11 +1,11 @@
 import { createContext } from 'react';
 import Manager from './manager';
-import { SortableContextDescriptor } from './types';
+import { DndContextDescriptor } from './types';
 
 // eslint-disable-next-line no-unused-vars
 const noop = (...args: any[]) => {};
 
-export const defaultSortableContext = {
+export const defaultDndContext = {
   activeId: '',
   manager: new Manager(),
   dispatch: noop,
@@ -16,4 +16,4 @@ export const defaultSortableContext = {
   activeRect: null,
   activator: null,
 };
-export const Context = createContext<SortableContextDescriptor>(defaultSortableContext);
+export const Context = createContext<DndContextDescriptor>(defaultDndContext);

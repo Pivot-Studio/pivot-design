@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
 import { DragNode, UniqueIdentifier } from '../types';
 import { useSyntheticListeners } from './useSyntheticListeners';
-import useSortableContext from './useSortableContext';
+import useDndContext from './useDndContext';
 import { setTransform } from '../utils';
 
 interface UseDraggableProps {
@@ -11,7 +11,7 @@ interface UseDraggableProps {
 }
 
 export const useDraggable = ({ id, index }: UseDraggableProps) => {
-  const { activeId, transform, dispatch, activeRect, activator, manager } = useSortableContext();
+  const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
   const isDragging = activeId == id;
   const node = manager.getActiveNode(id);
   const nodeTransform = node?.transform;

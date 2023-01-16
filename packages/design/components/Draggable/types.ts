@@ -17,16 +17,13 @@ export type DraggableNode = {
   id: UniqueIdentifier;
   index: number;
   node: MutableRefObject<DragNode | undefined>;
-  // cache position
+  // node position information
   clientRect?: DOMRect;
   transform?: Coordinate;
   transition?: boolean;
-  // key: UniqueIdentifier;
-  // activatorNode: MutableRefObject<HTMLElement | null>;
-  // data: DataRef;
 };
 
-export interface SortableContextProps {
+export interface DndContextProps {
   children: React.ReactNode;
   sensor?: Sensor;
   onDragEnd?: (event: DragEndEvent) => void;

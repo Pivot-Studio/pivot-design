@@ -15,6 +15,7 @@ export interface Collision {
   index: number;
   clientRect: DOMRect;
 }
+
 export const collisionDetection = (props: CollisionDetectionProps): Collision[] => {
   const { manager, coordinates, activeId } = props;
   if (!activeId) return [];
@@ -29,20 +30,6 @@ export const collisionDetection = (props: CollisionDetectionProps): Collision[] 
     const node = draggable.node.current!;
     draggable.clientRect = node?.getBoundingClientRect();
     const { clientRect } = draggable;
-    // if (draggable.id === 'PIVOT-2') {
-    //   console.log(
-    //     '移动y:',
-    //     coordinates.y,
-    //     'PIVOT2:top:',
-    //     clientRect.top,
-    //     'height:',
-    //     clientRect.height,
-    //     coordinates.x >= clientRect.left &&
-    //       clientRect.left + clientRect.width >= coordinates.x &&
-    //       coordinates.y >= clientRect.top &&
-    //       clientRect.top + clientRect.height >= coordinates.y
-    //   );
-    // }
 
     if (
       coordinates.x >= clientRect.left &&

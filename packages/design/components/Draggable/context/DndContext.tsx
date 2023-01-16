@@ -1,27 +1,22 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { MouseSensor } from '../sensors';
-import { SortableContextProps } from '../types';
-import { rectSortStrategy } from '../utils/animationCollisions';
+import { DndContextProps } from '../types';
+import { rectSortStrategy } from '../strategies/verticalSortStrategy';
 import { collisionDetection } from '../utils/collisionDetection';
 import { Listeners } from '../utils/Listener';
 import { Context } from './context';
 import { initialState, reducer } from './reducer';
-import { Activator, DragActionEnum, SortableContextDescriptor } from './types';
+import { Activator, DragActionEnum, DndContextDescriptor } from './types';
 
 const defaultSensor = MouseSensor;
 
-export function SortableContext({
-  children,
-  sensor: Sensor = defaultSensor,
-  onDragEnd,
-  sortable,
-}: SortableContextProps) {
+export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd, sortable }: DndContextProps) {
   // Avoid multiple contexts using the same state
   const [state, dispatch] = useReducer(reducer, undefined, initialState);
   const { manager, transform, activeId } = state;
   const [activator, setActivator] = useState<Activator | null>(null);
   // origin information on Start
-  const activeRectRef: SortableContextDescriptor['activeRect'] = useRef({
+  const activeRectRef: DndContextDescriptor['activeRect'] = useRef({
     initOffset: null,
     marginRect: null,
     clientRect: null,
@@ -92,7 +87,7 @@ export function SortableContext({
     };
   }, [Sensor, manager, onDragEnd]);
 
-  const initialContextValue: SortableContextDescriptor = {
+  const initialContextValue: DndContextDescriptor = {
     ...state,
     dispatch,
     sortable,
