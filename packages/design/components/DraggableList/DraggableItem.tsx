@@ -6,39 +6,12 @@ import classnames from 'classnames';
 import { useDraggable } from './hooks/useDraggable';
 import './DraggableItem.scss';
 import { useUniqueId } from '../hooks/useUniqueId';
-import { Coordinate } from './types';
-import { vendorPrefix } from '../utils';
-
-function overlayStyle(
-  activeRect: {
-    marginRect: {
-      left: number;
-      right: number;
-      top: number;
-      bottom: number;
-    } | null;
-    clientRect: DOMRect | null;
-  },
-  transform: Coordinate
-): React.CSSProperties {
-  const { marginRect, clientRect } = activeRect;
-  const { height, width, x, y } = clientRect!;
-  const { top, left } = marginRect!;
-  return {
-    height: `${height}px`,
-    left: `${x - left}px`,
-    top: `${y - top}px`,
-    width: `${width}px`,
-    boxSizing: 'border-box',
-    position: 'fixed',
-    [`${vendorPrefix}Transform`]: `translate3d(${transform.x}px,${transform.y}px,0)`,
-  };
-}
+import { overlayStyle } from './utils';
 
 function DraggableItem(props: DraggableItemProps) {
   const { className, children, index, top, left } = props;
   const { id, index: globalIndex } = useUniqueId();
-  const { isDragging, setDragNode, listener, transform, activeRect } = useDraggable({
+  const { isDragging, setDragNode, listener, transform, attributes, activeRect } = useDraggable({
     index: index !== undefined ? index : globalIndex,
     id,
   });
@@ -49,7 +22,7 @@ function DraggableItem(props: DraggableItemProps) {
         className={classnames(`${prefix}-draggable-item`, className, {
           [`__${prefix}_dragging`]: isDragging,
         })}
-        style={{ top, left }}
+        style={{ top, left, ...attributes }}
         {...listener}
       >
         {children}

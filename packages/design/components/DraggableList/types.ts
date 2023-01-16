@@ -1,5 +1,5 @@
 import React, { MutableRefObject } from 'react';
-import { DragEvent } from './sensors/events';
+import { DragEndEvent } from './sensors/events';
 import { Sensor } from './sensors/mouse/types';
 
 export type UniqueIdentifier = number | string;
@@ -20,6 +20,7 @@ export type DraggableNode = {
   // cache position
   clientRect?: DOMRect;
   transform?: Coordinate;
+  transition?: boolean;
   // key: UniqueIdentifier;
   // activatorNode: MutableRefObject<HTMLElement | null>;
   // data: DataRef;
@@ -28,5 +29,6 @@ export type DraggableNode = {
 export interface SortableContextProps {
   children: React.ReactNode;
   sensor?: Sensor;
-  onDragEnd?: (event: DragEvent) => void;
+  onDragEnd?: (event: DragEndEvent) => void;
+  sortable?: boolean;
 }

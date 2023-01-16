@@ -83,10 +83,16 @@ export class MouseSensor {
   private handleEnd(event: Event) {
     if (!this.activeId) return;
     const { onEnd } = this.props;
-
+    for (let draggable of this.manager.getAll()) {
+      draggable.transform = {
+        x: 0,
+        y: 0,
+      };
+      draggable.transition = false;
+    }
     this.windowListeners.remove('selectstart');
 
-    onEnd({ activeEvent: event, delta: this.transform });
+    onEnd({ activeEvent: event, delta: this.transform, id: this.activeId });
     this.reset();
   }
   private reset() {

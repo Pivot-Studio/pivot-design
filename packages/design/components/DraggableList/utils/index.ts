@@ -1,7 +1,41 @@
 import { vendorPrefix } from '../../utils';
-import { UniqueIdentifier } from '../types';
+import { Coordinate, UniqueIdentifier } from '../types';
 import React from 'react';
 export { Listeners } from './Listener';
+
+export function setTransform(transform?: Coordinate) {
+  if (!transform) return {};
+  return {
+    [`${vendorPrefix}Transform`]: `translate3d(${transform.x}px,${transform.y}px,0)`,
+  };
+}
+
+export function overlayStyle(
+  activeRect: {
+    marginRect: {
+      left: number;
+      right: number;
+      top: number;
+      bottom: number;
+    } | null;
+    clientRect: DOMRect | null;
+  },
+  transform: Coordinate
+): React.CSSProperties {
+  const { marginRect, clientRect } = activeRect;
+  const { height, width, x, y } = clientRect!;
+  const { top, left } = marginRect!;
+  return {
+    height: `${height}px`,
+    left: `${x - left}px`,
+    top: `${y - top}px`,
+    width: `${width}px`,
+    boxSizing: 'border-box',
+    position: 'fixed',
+    ...setTransform(transform),
+  };
+}
+
 export function closest(node: HTMLElement & { dragitemid?: UniqueIdentifier }, fn: (...args: any[]) => boolean) {
   while (!fn(node) && node && node !== document.body) {
     // eslint-disable-next-line no-param-reassign
@@ -39,3 +73,9 @@ export function getElementMargin(element: HTMLElement) {
     top: getPixelValue(style.marginTop),
   };
 }
+
+export const arrayMove = (array: any[], from: number, to: number) => {
+  const resArray = array.slice();
+  resArray.splice(to < 0 ? to + array.length : to, 0, resArray.splice(from, 1)[0]);
+  return resArray;
+};
