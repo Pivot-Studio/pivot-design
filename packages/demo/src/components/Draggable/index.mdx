@@ -1,0 +1,19 @@
+import demoObj from './demo/index';
+
+# Draggable 拖拽
+
+## 基本示例
+
+<CodeBlock line={''} code={demoObj.basic}>
+  <DndContext onDragEnd={props.onDragEnd}>
+    <DraggableItem className="demo-draggable-item" left={props.coordinates.x} top={props.coordinates.y}>
+      draggable
+    </DraggableItem>
+  </DndContext>
+</CodeBlock>
+
+## 可拖拽列表
+
+<CodeBlock line={''} code={demoObj.verticalSortable}>
+  <Sortable itemClassName="demo-draggable-item"></Sortable>
+</CodeBlock>
