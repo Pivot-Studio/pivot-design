@@ -5,7 +5,7 @@ import { prefix } from '../constants';
 import classnames from 'classnames';
 import { useDraggable } from './hooks/useDraggable';
 import './DraggableItem.scss';
-import { useUniqueId } from '../hooks/useUniqueId';
+import { useUniqueId } from './hooks/useUniqueId';
 import { overlayStyle } from './utils';
 
 function DraggableItem(props: DraggableItemProps) {
