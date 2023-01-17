@@ -28,6 +28,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   return (
     <div className="pivot-code-box">
       <div className="pivot-code-box-demo">{children}</div>
+
       <div className="pivot-code-box-actions">
         {expand ? (
           <div className="pivot-code-box-icon" onClick={() => setExpand(false)}>
