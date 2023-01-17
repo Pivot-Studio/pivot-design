@@ -3,10 +3,48 @@ html,
 #root {
   height: 100%;
 }
+
+h1 {
+  padding-bottom: 20px;
+}
+h2 {
+  position: relative;
+  margin: 16px 0;
+  padding: 0 16px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #1677ff;
+  }
+}
+h3 {
+  position: relative;
+  margin: 12px 0;
+  padding: 0 12px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background-color: #1677ff;
+  }
+}
+.display {
+  height: auto;
+}
+.hidden {
+  height: 0;
+}
 .pivot-design-docs {
   padding: 20px;
   background-color: #f7f9fb;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   &-title {
@@ -57,6 +95,7 @@ html,
   color: #000;
   font-size: 18px;
 }
+
 .demo-draggable-item {
   color: #fff;
   background-color: #3685f5;
@@ -75,9 +114,9 @@ html,
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   &-actions {
-    position: absolute;
-    right: 4px;
-    top: 4px;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 4px 8px;
     .pivot-code-box-icon {
       width: 20px;
       height: 20px;

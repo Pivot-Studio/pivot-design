@@ -5,7 +5,7 @@ import { DndContext } from '../context/DndContext';
 import { DraggableItem } from '..';
 import { arrayMove } from '../utils';
 import { DragEndEvent } from '../sensors/events';
-
+import './Sortable.scss';
 export function Sortable(props: any) {
   const { items: initialItems, itemClassName } = props;
   const [items, setItems] = useState<ReactNode[]>(() => initialItems ?? [1, 2, 3, 4, 5]);
