@@ -15,13 +15,13 @@ interface ActiveInfo {
 
 export const rectSortStrategy = (activeInfo: ActiveInfo) => {
   const { activeId, manager, margin, transform } = activeInfo;
-  const activeNode = manager.getActiveNode(activeId)!;
+  const activeNode = manager.getNode(activeId, 'draggables')!;
   const activeNodeRect = activeNode.clientRect!;
   let newIndex = activeNode.index;
-  for (let draggable of manager.getAll()) {
+  for (let draggable of manager.getAll('draggables')) {
     const { id } = draggable;
     if (id === activeId) continue;
-    const draggableNode = manager.getActiveNode(id)!;
+    const draggableNode = manager.getNode(id, 'draggables')!;
     draggableNode.transform = { x: 0, y: 0 };
     draggableNode.transition = true;
     if (

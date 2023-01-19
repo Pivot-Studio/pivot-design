@@ -20,16 +20,23 @@ export const collisionDetection = (props: CollisionDetectionProps): Collision[] 
   const { manager, coordinates, activeId } = props;
   if (!activeId) return [];
   const collisions = [];
-
-  for (let draggable of manager.getAll()) {
-    // active draggable node
+  for (let draggable of manager.getAll('draggables')) {
     if (activeId === draggable.id) {
       continue;
     }
     // inactive draggable node
     const node = draggable.node.current!;
     draggable.clientRect = node?.getBoundingClientRect();
-    const { clientRect } = draggable;
+  }
+  for (let droppable of manager.getAll('droppables')) {
+    // active droppable node
+    if (activeId === droppable.id) {
+      continue;
+    }
+    // inactive droppable node
+    const node = droppable.node.current!;
+    droppable.clientRect = node?.getBoundingClientRect();
+    const { clientRect } = droppable;
 
     if (
       coordinates.x >= clientRect.left &&
@@ -37,7 +44,7 @@ export const collisionDetection = (props: CollisionDetectionProps): Collision[] 
       coordinates.y >= clientRect.top &&
       clientRect.top + clientRect.height >= coordinates.y
     ) {
-      collisions.push({ id: draggable.id, index: draggable.index, clientRect });
+      collisions.push({ id: droppable.id, index: droppable.index, clientRect });
     }
   }
   return collisions;

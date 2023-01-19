@@ -53,7 +53,7 @@ export class MouseSensor {
     // Resolved cursor error when mouse moving over Safari
     this.windowListeners.add('selectstart', (e) => e.preventDefault());
 
-    const activeNodeDescriptor = this.manager.getActiveNode(id);
+    const activeNodeDescriptor = this.manager.getNode(id, 'draggables');
     if (activeNodeDescriptor) {
       const activeNode = activeNodeDescriptor.node.current!;
       this.initOffset = getEventCoordinates(event);
@@ -83,7 +83,7 @@ export class MouseSensor {
   private handleEnd(event: Event) {
     if (!this.activeId) return;
     const { onEnd } = this.props;
-    for (let draggable of this.manager.getAll()) {
+    for (let draggable of this.manager.getAll('draggables')) {
       draggable.transform = {
         x: 0,
         y: 0,

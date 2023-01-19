@@ -1,5 +1,6 @@
 import { Dispatch, MutableRefObject } from 'react';
 import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
+import { Collision } from '../utils/collisionDetection';
 import Manager from './manager';
 
 export enum DragActionEnum {
@@ -42,7 +43,7 @@ export type ActionType =
     }
   | {
       type: DragActionEnum.PUSH_NODE;
-      payload: DraggableNode;
+      payload: { node: DraggableNode; type: 'draggables' | 'droppables' };
     }
   | {
       type: DragActionEnum.TRANSFORM;
@@ -61,5 +62,6 @@ export interface DndContextDescriptor extends State {
     } | null;
     clientRect: DOMRect | null;
   }> | null;
+  collisions: MutableRefObject<Collision[]> | null;
   sortable?: boolean;
 }

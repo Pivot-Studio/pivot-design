@@ -133,6 +133,7 @@ h3 {
     border-bottom: 1px solid rgba(5, 5, 5, 0.06);
     flex-wrap: wrap;
     justify-content: flex-start;
+    align-items: center;
     > :not(.PIVOT-draggable-item) {
       margin: 0 24px;
     }

@@ -13,7 +13,7 @@ interface UseDraggableProps {
 export const useDraggable = ({ id, index }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
   const isDragging = activeId == id;
-  const node = manager.getActiveNode(id);
+  const node = manager.getNode(id, 'draggables');
   const nodeTransform = node?.transform;
   const transition = node?.transition;
   const dragNode = useRef<DragNode>();
@@ -27,7 +27,7 @@ export const useDraggable = ({ id, index }: UseDraggableProps) => {
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
-      payload: { id, index, node: dragNode },
+      payload: { node: { id, index, node: dragNode }, type: 'draggables' },
     });
     // manager.push({ id, index, node: dragNode });
   }, [dispatch, id, index, manager]);
