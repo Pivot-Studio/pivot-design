@@ -3,7 +3,8 @@ import ReactDom from 'react-dom/client';
 import DraggableListMdx from './src/components/DraggableList/index.mdx';
 import ButtonMdx from './src/components/Button/index.mdx';
 import CardMdx from './src/components/Card/index.mdx';
-import { Button, DraggableList, DraggableItem, arrayMove, Card } from 'pivot-design';
+import SkeletonMdx from './src/components/Skeleton/index.mdx';
+import { Button, DraggableList, DraggableItem, arrayMove, Card, Skeleton } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
@@ -26,6 +27,9 @@ const App = () => {
         >
           拖拽列表
         </div>
+        <div className={`demo-item ${select === 'Skeleton' ? 'active' : ''}`} onClick={() => setSelect('Skeleton')}>
+          骨架屏
+        </div>
       </div>
     );
   };
@@ -38,9 +42,9 @@ const App = () => {
         {demoSelect()}
         <div className="demo-component">
           {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
-          {/* <<<<<< HEAD */}
+
           {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
-          {/* ======= */}
+
           {select === 'DraggableList' ? (
             <DraggableListMdx
               reorderItems={reorderItems}
@@ -51,8 +55,8 @@ const App = () => {
                 CodeBlock,
               }}
             />
-          ) : // >>>>>>> c8b6e485e39e8e151ec5e9b313998d9198079c02
-            null}
+          ) : null}
+          {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
         </div>
       </div>
     </div>

@@ -1,8 +1,9 @@
 import Button from './components/Button';
 import Card from './components/Card';
+import Skeleton from './components/Skeleton';
 export { DraggableList, DraggableItem } from './components/DraggableList';
 export * from './components/hooks';
-export { Button, Card };
+export { Button, Card,Skeleton };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();
