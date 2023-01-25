@@ -3,8 +3,9 @@ import { Coordinate, UniqueIdentifier } from '../../types';
 import { getEventCoordinates } from '../../../utils';
 import { getElementMargin } from '../../utils';
 import Manager from '../../context/manager';
-import { MouseSensorProps } from './types';
+import { Collision, MouseSensorProps } from './types';
 import { getOwnerDocument } from '../../../utils';
+import { MutableRefObject } from 'react';
 
 const EVENTS = {
   start: ['mousedown'],
@@ -14,6 +15,7 @@ const EVENTS = {
 export class MouseSensor {
   private windowListeners: Listeners;
   private manager: Manager;
+  private collisions: MutableRefObject<Collision[]>;
   private document!: Document;
   private transform!: Coordinate;
   private activeId!: UniqueIdentifier;
@@ -26,9 +28,10 @@ export class MouseSensor {
     bottom: number;
   } | null;
   constructor(private props: MouseSensorProps) {
-    const { manager, listener } = props;
+    const { manager, listener, collisions } = props;
     this.manager = manager;
     this.windowListeners = listener;
+    this.collisions = collisions;
     this.reset();
     this.handleStart = this.handleStart.bind(this);
     this.handleMove = this.handleMove.bind(this);
@@ -91,8 +94,9 @@ export class MouseSensor {
       draggable.transition = false;
     }
     this.windowListeners.remove('selectstart');
+    console.log(this.collisions);
 
-    onEnd({ activeEvent: event, delta: this.transform, id: this.activeId });
+    onEnd({ nativeEvent: event, delta: this.transform, id: this.activeId, isDrop: this.collisions.current.length > 0 });
     this.reset();
   }
   private reset() {

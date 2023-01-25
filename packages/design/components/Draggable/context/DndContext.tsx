@@ -51,6 +51,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     const sensorInstance = new Sensor({
       manager,
       listener: listenerRef.current,
+      collisions: collisionsRef,
       onStart: (activeId, activeRect) => {
         const { initOffset, clientRect, marginRect } = activeRect;
         activeRectRef.current = {
@@ -75,6 +76,8 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
             ...event,
             newIndex: newIndexRef.current,
             oldIndex: manager.getNode(event.id, 'draggables')!.index,
+            id: event.id,
+            isDrop: event.isDrop,
           });
         dispatch({
           type: DragActionEnum.INACTIVATED,

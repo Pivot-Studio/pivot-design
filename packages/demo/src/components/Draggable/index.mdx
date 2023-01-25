@@ -14,10 +14,10 @@ import demoObj from './demo/index';
 
 ## 拖放示例
 
-<CodeBlock line={''} code={demoObj.basic}>
-  <DndContext>
-    <DraggableItem className="demo-draggable-item">draggable</DraggableItem>
-    <Droppable></Droppable>
+<CodeBlock line={''} code={demoObj.droppable}>
+  <DndContext onDragEnd={props.onDragEnd2}>
+    <div style={{ minWidth: '150px', display: 'flex' }}>{props.parent !== 'A' ? <DraggableBlock /> : null}</div>
+    <Droppable>{props.parent === 'A' ? <DraggableBlock /> : null}</Droppable>
   </DndContext>
 </CodeBlock>
 

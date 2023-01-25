@@ -7,6 +7,7 @@ export enum DragActionEnum {
   ACTIVATED,
   INACTIVATED,
   PUSH_NODE,
+  REMOVE_NODE,
   TRANSFORM,
 }
 export interface Activator {
@@ -44,6 +45,10 @@ export type ActionType =
   | {
       type: DragActionEnum.PUSH_NODE;
       payload: { node: DraggableNode; type: 'draggables' | 'droppables' };
+    }
+  | {
+      type: DragActionEnum.REMOVE_NODE;
+      payload: { id: UniqueIdentifier; type: 'draggables' | 'droppables' };
     }
   | {
       type: DragActionEnum.TRANSFORM;

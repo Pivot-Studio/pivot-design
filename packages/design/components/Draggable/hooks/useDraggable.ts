@@ -30,6 +30,12 @@ export const useDraggable = ({ id, index }: UseDraggableProps) => {
       payload: { node: { id, index, node: dragNode }, type: 'draggables' },
     });
     // manager.push({ id, index, node: dragNode });
+    return () => {
+      dispatch({
+        type: DragActionEnum.REMOVE_NODE,
+        payload: { id, type: 'draggables' },
+      });
+    };
   }, [dispatch, id, index, manager]);
 
   return { isDragging, dragNode, transform, attributes, activeRect, listener, setDragNode: setDragNodeRef };

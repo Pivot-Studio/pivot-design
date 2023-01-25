@@ -9,11 +9,11 @@ import { useUniqueId } from './hooks/useUniqueId';
 import { overlayStyle } from './utils';
 
 function DraggableItem(props: DraggableItemProps) {
-  const { className, children, index, top, left } = props;
-  const { id, index: globalIndex } = useUniqueId();
+  const { className, children, id, index, top, left } = props;
+  const { id: _id, index: globalIndex } = useUniqueId(id);
   const { isDragging, setDragNode, listener, transform, attributes, activeRect } = useDraggable({
     index: index !== undefined ? index : globalIndex,
-    id,
+    id: _id,
   });
   return (
     <>

@@ -19,7 +19,8 @@ export function Droppable(props: any) {
       })}
       style={{ top, left, ...attributes }}
     >
-      {children ? children : 'Droppable'}
+      {children}
+      {'Droppable'}
     </div>
   );
 }

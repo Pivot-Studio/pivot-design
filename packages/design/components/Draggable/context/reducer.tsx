@@ -14,6 +14,10 @@ export function reducer(state: State, action: ActionType) {
       manager.push(action.payload.node, action.payload.type);
       return { ...state };
     }
+    case DragActionEnum.REMOVE_NODE: {
+      manager.remove(action.payload.id, action.payload.type);
+      return { ...state };
+    }
     case DragActionEnum.TRANSFORM: {
       return {
         ...state,

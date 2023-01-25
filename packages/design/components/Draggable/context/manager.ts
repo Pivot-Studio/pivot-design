@@ -14,6 +14,12 @@ export default class Manager {
   push(node: DraggableNode, key: 'draggables' | 'droppables') {
     this.nodes[key].push(node);
   }
+  remove(id: UniqueIdentifier, key: 'draggables' | 'droppables') {
+    const nodes = this.nodes[key];
+    this.nodes[key] = nodes.filter((node) => {
+      return node.id !== id;
+    });
+  }
   clear() {
     this.nodes = {
       draggables: [],
