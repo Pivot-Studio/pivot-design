@@ -30,7 +30,7 @@ export const rectSortStrategy = (activeInfo: ActiveInfo) => {
     ) {
       draggableNode.transform = {
         x: 0,
-        y: -(Math.max(margin.bottom, margin.bottom) + (activeNode.clientRect?.height ?? 0)),
+        y: activeNodeRect.top - draggableNode.clientRect!.top,
       };
       newIndex = draggable.index;
     } else if (
@@ -39,7 +39,7 @@ export const rectSortStrategy = (activeInfo: ActiveInfo) => {
     ) {
       draggableNode.transform = {
         x: 0,
-        y: Math.max(margin.bottom, margin.bottom) + (activeNode.clientRect?.height ?? 0),
+        y: activeNodeRect.top - draggableNode.clientRect!.top,
       };
       if (newIndex === activeNode.index) {
         newIndex = draggable.index;

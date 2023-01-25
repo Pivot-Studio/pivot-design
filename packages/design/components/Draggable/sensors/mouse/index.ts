@@ -70,6 +70,15 @@ export class MouseSensor {
         clientRect: this.clientRect,
       });
     }
+
+    // initialize draggables position
+    for (let draggable of this.manager.getAll('draggables')) {
+      if (this.activeId === draggable.id) {
+        continue;
+      }
+      const node = draggable.node.current!;
+      draggable.clientRect = node?.getBoundingClientRect();
+    }
   }
   private handleMove(event: MouseEvent) {
     if (!this.activeId) return;
