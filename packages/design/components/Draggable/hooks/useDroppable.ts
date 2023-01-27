@@ -33,6 +33,12 @@ export const useDroppable = ({ id, index }: UseDroppableProps) => {
       payload: { node: { id, index, node: dropNode }, type: 'droppables' },
     });
     // manager.push({ id, index, node: dragNode });
+    return () => {
+      dispatch({
+        type: DragActionEnum.REMOVE_NODE,
+        payload: { id, type: 'droppables' },
+      });
+    };
   }, [dispatch, id, index, manager]);
 
   return { over, dropNode, attributes, setDropNode: setDropNodeRef };

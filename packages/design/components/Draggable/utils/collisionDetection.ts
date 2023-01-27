@@ -20,14 +20,7 @@ export const collisionDetection = (props: CollisionDetectionProps): Collision[] 
   const { manager, coordinates, activeId } = props;
   if (!activeId) return [];
   const collisions = [];
-  for (let draggable of manager.getAll('draggables')) {
-    if (activeId === draggable.id) {
-      continue;
-    }
-    // inactive draggable node
-    const node = draggable.node.current!;
-    draggable.clientRect = node?.getBoundingClientRect();
-  }
+
   for (let droppable of manager.getAll('droppables')) {
     // active droppable node
     if (activeId === droppable.id) {

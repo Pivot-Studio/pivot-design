@@ -3,6 +3,7 @@ import { prefix } from '../constants';
 import { useDroppable } from './hooks/useDroppable';
 import { useUniqueId } from './hooks/useUniqueId';
 import './Droppable.scss';
+
 export function Droppable(props: any) {
   const { className, children, index, top, left } = props;
   const { id, index: globalIndex } = useUniqueId();

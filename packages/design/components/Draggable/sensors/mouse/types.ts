@@ -29,5 +29,6 @@ export interface MouseSensorProps {
   onEnd(event: internalDragEndEvent): void;
 }
 export interface Sensor {
+  eventName: string;
   new (props: MouseSensorProps): MouseSensor;
 }

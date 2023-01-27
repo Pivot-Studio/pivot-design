@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { MouseSensor } from '../sensors';
 import { DndContextProps } from '../types';
-import { rectSortStrategy } from '../strategies/verticalSortStrategy';
+import { verticalSortStrategy } from '../strategies/verticalSortStrategy';
 import { Collision, collisionDetection } from '../utils/collisionDetection';
 import { Listeners } from '../utils/Listener';
 import { Context } from './context';
@@ -38,11 +38,10 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
 
     // TODO: sort strategy 适配
     if (sortable) {
-      newIndexRef.current = rectSortStrategy({
+      newIndexRef.current = verticalSortStrategy({
         manager,
         transform,
         activeId,
-        margin: activeRectRef.current.marginRect!,
       });
     }
   }
@@ -92,7 +91,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
       },
     });
     setActivator({
-      eventName: 'onMouseDown',
+      eventName: Sensor.eventName,
       handler: sensorInstance.handleStart,
     });
     return () => {

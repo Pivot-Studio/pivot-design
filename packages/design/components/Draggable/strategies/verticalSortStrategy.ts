@@ -1,46 +1,49 @@
 import Manager from '../context/manager';
 import { Coordinate, UniqueIdentifier } from '../types';
+import { getRectDelta } from '../utils/getRectDelta';
 
 interface ActiveInfo {
   activeId: UniqueIdentifier;
   manager: Manager;
   transform: Coordinate;
-  margin: {
-    left: number;
-    right: number;
-    top: number;
-    bottom: number;
-  };
 }
 
-export const rectSortStrategy = (activeInfo: ActiveInfo) => {
-  const { activeId, manager, margin, transform } = activeInfo;
+export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
+  const { activeId, manager, transform } = activeInfo;
   const activeNode = manager.getNode(activeId, 'draggables')!;
   const activeNodeRect = activeNode.clientRect!;
+  const activeNodeIndex = activeNode.index;
   let newIndex = activeNode.index;
+
   for (let draggable of manager.getAll('draggables')) {
     const { id } = draggable;
     if (id === activeId) continue;
-    const draggableNode = manager.getNode(id, 'draggables')!;
-    draggableNode.transform = { x: 0, y: 0 };
-    draggableNode.transition = true;
+
+    const targetNode = manager.getNode(id, 'draggables')!;
+    targetNode.transform = { x: 0, y: 0 };
+    targetNode.transition = true;
+    const targetIndex = targetNode.index;
     if (
       activeNode.index < draggable.index &&
-      activeNodeRect.top + activeNodeRect.height / 2 + transform.y > draggableNode.clientRect!.top
+      activeNodeRect.top + activeNodeRect.height / 2 + transform.y > targetNode.clientRect!.top
     ) {
-      draggableNode.transform = {
-        x: 0,
-        y: -(Math.max(margin.bottom, margin.bottom) + (activeNode.clientRect?.height ?? 0)),
-      };
+      targetNode.transform = getRectDelta(
+        'vertical',
+        Math.abs(activeNodeIndex - targetIndex),
+        activeNodeRect,
+        targetNode.clientRect
+      );
       newIndex = draggable.index;
     } else if (
       activeNode.index > draggable.index &&
-      activeNodeRect.top + transform.y < draggableNode.clientRect!.top + draggableNode.clientRect!.height / 2
+      activeNodeRect.top + transform.y < targetNode.clientRect!.top + targetNode.clientRect!.height / 2
     ) {
-      draggableNode.transform = {
-        x: 0,
-        y: Math.max(margin.bottom, margin.bottom) + (activeNode.clientRect?.height ?? 0),
-      };
+      targetNode.transform = getRectDelta(
+        'vertical',
+        Math.abs(activeNodeIndex - targetIndex),
+        activeNodeRect,
+        targetNode.clientRect
+      );
       if (newIndex === activeNode.index) {
         newIndex = draggable.index;
       }

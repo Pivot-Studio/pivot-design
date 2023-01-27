@@ -13,6 +13,7 @@ const EVENTS = {
   end: ['mouseup'],
 };
 export class MouseSensor {
+  static eventName = 'onMouseDown';
   private windowListeners: Listeners;
   private manager: Manager;
   private collisions: MutableRefObject<Collision[]>;
@@ -69,6 +70,15 @@ export class MouseSensor {
         marginRect: this.marginRect,
         clientRect: this.clientRect,
       });
+    }
+
+    // initialize draggables position
+    for (let draggable of this.manager.getAll('draggables')) {
+      if (this.activeId === draggable.id) {
+        continue;
+      }
+      const node = draggable.node.current!;
+      draggable.clientRect = node?.getBoundingClientRect();
     }
   }
   private handleMove(event: MouseEvent) {
