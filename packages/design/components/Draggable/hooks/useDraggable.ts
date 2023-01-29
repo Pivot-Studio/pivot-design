@@ -23,13 +23,11 @@ export const useDraggable = ({ id, index }: UseDraggableProps) => {
   }, []);
 
   const attributes = { ...setTransform(nodeTransform), transition: transition ? '300ms' : '' };
-  // TODO: 导致更新两次
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
       payload: { node: { id, index, node: dragNode }, type: 'draggables' },
     });
-    // manager.push({ id, index, node: dragNode });
     return () => {
       dispatch({
         type: DragActionEnum.REMOVE_NODE,

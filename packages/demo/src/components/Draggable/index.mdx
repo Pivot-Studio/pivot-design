@@ -12,6 +12,16 @@ import demoObj from './demo/index';
   </DndContext>
 </CodeBlock>
 
+## 设置拖动点
+
+<CodeBlock line={''} code={demoObj.basic}>
+  <DndContext onDragEnd={props.onDragEnd}>
+    <DraggableItem className="demo-draggable-item" left={props.coordinates.x} top={props.coordinates.y} handle>
+      draggable
+    </DraggableItem>
+  </DndContext>
+</CodeBlock>
+
 ## 拖放示例
 
 <CodeBlock line={''} code={demoObj.droppable}>

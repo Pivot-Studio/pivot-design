@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import { prefix } from '../constants';
-import { useDroppable } from './hooks/useDroppable';
-import { useUniqueId } from './hooks/useUniqueId';
+import { prefix } from '../../../constants';
+import { useDroppable } from '../../hooks/useDroppable';
+import { useUniqueId } from '../../hooks/useUniqueId';
 import './Droppable.scss';
 
 export function Droppable(props: any) {

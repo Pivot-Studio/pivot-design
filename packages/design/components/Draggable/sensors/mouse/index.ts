@@ -104,8 +104,6 @@ export class MouseSensor {
       draggable.transition = false;
     }
     this.windowListeners.remove('selectstart');
-    console.log(this.collisions);
-
     onEnd({ nativeEvent: event, delta: this.transform, id: this.activeId, isDrop: this.collisions.current.length > 0 });
     this.reset();
   }
