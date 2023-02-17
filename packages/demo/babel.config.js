@@ -17,11 +17,14 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   plugins: [
-    ['prismjs', {
-      'languages': ['javascript', 'jsx'],
-      'plugins': ['line-numbers', 'line-highlight', 'copy-to-clipboard'],
-      'theme': 'okaidia',
-      'css': true
-    }]
-  ]
+    [
+      'prismjs',
+      {
+        languages: ['javascript', 'jsx'],
+        plugins: ['line-numbers', 'line-highlight', 'copy-to-clipboard'],
+        theme: 'okaidia',
+        css: true,
+      },
+    ],
+  ],
 };
