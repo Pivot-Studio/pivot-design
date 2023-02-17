@@ -8,7 +8,7 @@
 </CodeBlock>
 
 <div className="title">按钮禁用</div>
-<CodeBlock line={'5-11'}>
+<CodeBlock line={'5-7'}>
   <Button type="primary" disabled>
     按钮
   </Button>
@@ -16,6 +16,13 @@
   <Button type="text" disabled>
     按钮
   </Button>
+</CodeBlock>
+
+<div className="title">按钮尺寸</div>
+<CodeBlock line={'5-13'}>
+  <Button size="small">small</Button>
+  <Button size="middle">middle</Button>
+  <Button size="large">large</Button>
 </CodeBlock>
 
 <div className="title">自定义颜色</div>
@@ -26,12 +33,26 @@
 >
   button
 </Button>
-<div className="title">自定义点击事件</div>
-<Button
-  onClick={(e) => {
-    console.log(e);
+<Button 
+  type="primary"
+  style={{
+    '--button-background-color': '#3685f5',
   }}
 >
   button
 </Button>
+
+<div className="title">自定义点击事件</div>
+<CodeBlock line={'3-13'} code={click}>
+  <ButtonOnClick/>
+</CodeBlock>
+
+
+<div className="title">加载中状态</div>
+<CodeBlock line={'5-11'}>
+  <Button>正常按钮</Button>
+  <Button loading={true}>加载中</Button>
+</CodeBlock>
+
+
 ```

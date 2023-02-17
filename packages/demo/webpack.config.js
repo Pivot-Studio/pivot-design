@@ -20,10 +20,27 @@ module.exports = {
   },
   module: {
     rules: [
+      // {
+      //   test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
+      //   use: 'babel-loader',
+      // },
       {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        use: 'babel-loader',
+        oneOf: [
+          {
+            resourceQuery: /code/, // code后缀，导入为字符串处理
+            use: [
+              {
+                loader: 'raw-loader',
+              },
+            ],
+          },
+          {
+            use: 'babel-loader', // 导入为正常ts，tsx文件
+          },
+        ],
       },
+
       {
         test: /\.(jpg|png|gif|svg)$/, //处理图片文件打包
         type: 'asset', //webpack5新增的处理静态资源的loader，替换之前的url-loder、file-loader,具体的可以官方文档
@@ -51,13 +68,16 @@ module.exports = {
           {
             loader: '@mdx-js/loader',
             /** @type {import('@mdx-js/loader').Options} */
-            options: {}
+            options: {},
           },
           {
-            loader: path.resolve(__dirname, 'loaders/index.js')
-          }
-        ]
-      }
+            loader: path.resolve(__dirname, 'loaders/index.js'),
+          },
+          {
+            loader: path.resolve(__dirname, 'loaders/autoImport.js'),
+          },
+        ],
+      },
     ],
   },
   plugins: [

@@ -2,11 +2,12 @@ import { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/index.mdx';
 import Draggable from '@/examples/Draggable';
+import ButtonOnClick from './src/components/Button/demo/click';
 import { Button } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
-  const [select, setSelect] = useState('Draggable');
+  const [select, setSelect] = useState('Button');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -27,7 +28,7 @@ const App = () => {
       <div className="pivot-design-docs-content">
         {demoSelect()}
         <div className="demo-component">
-          {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
+          {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock, ButtonOnClick }} /> : null}
           {select === 'Draggable' ? <Draggable /> : null}
         </div>
       </div>
