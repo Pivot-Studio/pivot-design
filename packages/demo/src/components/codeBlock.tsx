@@ -54,7 +54,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
         <pre
           className="data-prismjs-copy"
           lang="zh-Hans-CN"
-          data-line={line}
+          {...(line ? { 'data-line': line } : {})}
           data-prismjs-copy="复制文本"
           data-prismjs-copy-error="按Ctrl+C复制"
           data-prismjs-copy-success="文本已复制！"
