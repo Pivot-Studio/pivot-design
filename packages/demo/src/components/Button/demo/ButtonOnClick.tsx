@@ -1,6 +1,6 @@
 import { Button } from 'pivot-design';
 import React from 'react';
-const ButtonOnClick: React.FC = () => {
+const App: React.FC = () => {
   return (
     <Button
       onClick={(e) => {
@@ -11,4 +11,4 @@ const ButtonOnClick: React.FC = () => {
     </Button>
   );
 };
-export default ButtonOnClick;
+export default App;

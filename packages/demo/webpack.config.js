@@ -73,9 +73,6 @@ module.exports = {
           {
             loader: path.resolve(__dirname, 'loaders/index.js'),
           },
-          {
-            loader: path.resolve(__dirname, 'loaders/autoImport.js'),
-          },
         ],
       },
     ],
