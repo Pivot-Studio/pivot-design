@@ -41,50 +41,57 @@ module.exports = function loader(source) {
   const component = H1Reg.exec(sourceCode)[1];
   let m;
   let importComponentsList = '';
-  while ((m = CodeBlockReg.exec(sourceCode))) {
+  while ((m = CodeBlockReg.exec(newSource))) {
     if (m[1].includes('code')) continue; // 如果本来就有code属性，使用code
     const headSource = newSource.slice(0, m.index);
     let restSource = newSource.slice(m.index);
 
-    console.log('/////////////////restSource');
-    console.log(restSource);
-
+    // console.log('/////////////////restSource');
+    // console.log(restSource);
     // 根据>的出现次数，判断是否自动导入，只出现一次>，自动引入闭合标签内的元素，元素名需要和demo中的文件名相同
     const isImport = m[2].match(eval('/>/ig')).length === 1;
     // const importName = isImport ? /<([\s\S]*?)\/>/.exec(m[2])[1] : null;
 
     //好像是每次匹配中间的正则，就会改变下一次m的取值？？？
-    const importName = isImport ? m[2].match(/<([\s\S]*?)\/>/g)[0].slice(1, -2) : null;
+    const importName = isImport
+      ? m[2]
+          .match(/<([\s\S]*?)\/>/g)[0]
+          .slice(1, -2)
+          .trim()
+      : null;
 
     if (isImport) {
       importComponentsList = addImprotComponent(importName, importComponentsList);
     }
-    console.log('/////////////////importName');
-    console.log(importName, isImport);
-    console.log('/////////////////m[1]');
-    console.log(m[1]);
-    console.log('/////////////////m[2]');
-    console.log(m[2]);
-    console.log('/////////////////finish');
-    console.log('/////////////////finish');
-    console.log('/////////////////finish');
+    // console.log('/////////////////importName');
+    // console.log(importName, isImport);
+    // console.log('/////////////////m[1]');
+    // console.log(m[1]);
+    // console.log('/////////////////m[2]');
+    // console.log(m[2]);
+    // console.log('/////////////////finish');
+    // console.log('/////////////////finish');
+    // console.log('/////////////////finish');
 
     if (m[1]) {
-      isImport
-        ? (restSource = restSource.replace(m[1], m[1] + ` code={${importName}Code}`))
-        : (restSource = restSource.replace(m[1], m[1] + ` code={\`${getDemo(component, m[2])}\`}`));
+      const addStr = isImport ? m[1] + ` code={${importName}Code}` : m[1] + ` code={\`${getDemo(component, m[2])}\`}`;
+      restSource = restSource.replace(m[1], addStr);
     } else {
       // 解决当m[1]=''的时候无法replace的问题
-      isImport
-        ? (restSource = restSource.slice(0, 10) + ` code={${importName}Code}` + restSource.slice(10))
-        : (restSource = restSource.slice(0, 10) + ` code={\`${getDemo(component, m[2])}\`}` + restSource.slice(10));
+      const addStr = isImport
+        ? ` code={${importName}Code}` + restSource.slice(10)
+        : ` code={\`${getDemo(component, m[2])}\`}` + restSource.slice(10);
+      restSource = restSource.slice(0, 10) + addStr;
+      CodeBlockReg.lastIndex = m.index + addStr.length;
     }
     newSource = headSource + restSource;
-    console.log('/////////////////newSource');
-    console.log(newSource);
-    console.log('/////////////////finish');
-    console.log('/////////////////finish');
-    console.log('/////////////////finish');
+    // console.log('/////////////////newSource');
+    // console.log(newSource);
+    // console.log('/////////////////finish');
+    // console.log('/////////////////finish');
+    // console.log('/////////////////finish');
   }
-  return improtAll(importComponentsList, newSource);
+  const result = improtAll(importComponentsList, newSource);
+  // console.log(result);
+  return result;
 };

@@ -1,4 +1,3 @@
-
 # Button
 
 <div className="title">普通样式</div>
@@ -9,7 +8,7 @@
 </CodeBlock>
 
 <div className="title">按钮禁用</div>
-<CodeBlock line={'5-2'}>
+<CodeBlock line={'5-7'}>
   <Button type="primary" disabled>
     按钮
   </Button>
@@ -20,7 +19,7 @@
 </CodeBlock>
 
 <div className="title">按钮尺寸</div>
-<CodeBlock line={'5-1'}>
+<CodeBlock line={'5-7'}>
   <Button size="small">small</Button>
   <Button size="middle">middle</Button>
   <Button size="large">large</Button>
@@ -30,15 +29,15 @@
 <CodeBlock line={'5-9'}>
   <Button
     style={{
-      '--button-background-color': 'rgb(233, 233, 15)',
+      '--button-background-color': 'rgb(233, 233, 15)'
     }}
   >
     button
   </Button>
-  <Button 
+  <Button
     type="primary"
     style={{
-      '--button-background-color': '#3685f5',
+      '--button-background-color': '#3685f5'
     }}
   >
     button
@@ -47,14 +46,10 @@
 
 <div className="title">自定义点击事件</div>
 <CodeBlock line={'5-7'}>
-  <ButtonOnClick/>
+  <ButtonOnClick />
 </CodeBlock>
-
 
 <div className="title">加载中和节流防抖</div>
 <CodeBlock line={'5-1009'}>
-  <ButtonLoading/>
+  <ButtonLoading />
 </CodeBlock>
-
-
-```
