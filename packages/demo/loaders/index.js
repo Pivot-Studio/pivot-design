@@ -24,15 +24,20 @@ module.exports = function loader(source) {
   // eslint-disable-next-line prefer-destructuring
   const component = H1Reg.exec(sourceCode)[1];
   let m;
-  while ((m = CodeBlockReg.exec(sourceCode))) {
+  while ((m = CodeBlockReg.exec(newSource))) {
     if (m[1].includes('code')) continue;
+    // 解决当标签内属性相同时重复匹配的问题
     const headSource = newSource.slice(0, m.index);
     let restSource = newSource.slice(m.index);
     if (m[1]) {
-      restSource = restSource.replace(m[1], m[1] + ` code={\`${getDemo(component, m[2])}\`}`);
+      const addStr = ` code={\`${getDemo(component, m[2])}\`}`;
+      restSource = restSource.replace(m[1], m[1] + addStr);
+      CodeBlockReg.lastIndex = m.index + addStr.length;
     } else {
+      const addStr = ` code={\`${getDemo(component, m[2])}\`}` + restSource.slice(10);
       // 解决当m[1]=''的时候无法replace的问题
-      restSource = restSource.slice(0, 10) + ` code={\`${getDemo(component, m[2])}\`}` + restSource.slice(10);
+      restSource = restSource.slice(0, 10) + addStr;
+      CodeBlockReg.lastIndex = m.index + addStr.length;
     }
     newSource = headSource + restSource;
   }

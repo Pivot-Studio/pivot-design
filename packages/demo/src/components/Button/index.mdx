@@ -19,19 +19,23 @@
 </CodeBlock>
 
 <div className="title">自定义颜色</div>
-<Button
-  style={{
-    '--button-background-color': 'rgb(233, 233, 15)',
-  }}
->
-  button
-</Button>
+<CodeBlock line={'5-11'}>
+  <Button
+    style={{
+      '--button-background-color': 'rgb(233, 233, 15)'
+    }}
+  >
+    button
+  </Button>
+</CodeBlock>
+
 <div className="title">自定义点击事件</div>
-<Button
-  onClick={(e) => {
-    console.log(e);
-  }}
->
-  button
-</Button>
-```
+<CodeBlock line={'5-11'}>
+  <Button
+    onClick={(e) => {
+      console.log(e);
+    }}
+  >
+    button
+  </Button>
+</CodeBlock>
