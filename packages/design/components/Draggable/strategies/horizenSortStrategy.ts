@@ -8,7 +8,7 @@ interface ActiveInfo {
   transform: Coordinate;
 }
 
-export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
+export const horizenSortStrategy = (activeInfo: ActiveInfo) => {
   const { activeId, manager, transform } = activeInfo;
   const activeNode = manager.getNode(activeId, 'draggables')!;
   const activeNodeRect = activeNode.clientRect!;
@@ -24,10 +24,10 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
     const targetIndex = draggable.index;
     if (
       activeNode.index < targetIndex &&
-      activeNodeRect.top + activeNodeRect.height / 2 + transform.y > draggable.clientRect!.top
+      activeNodeRect.left + activeNodeRect.width / 2 + transform.x > draggable.clientRect!.left
     ) {
       draggable.transform = getRectDelta(
-        'vertical',
+        'horizen',
         Math.abs(activeNodeIndex - targetIndex),
         activeNodeRect,
         draggable.clientRect
@@ -35,10 +35,10 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
       newIndex = targetIndex;
     } else if (
       activeNode.index > targetIndex &&
-      activeNodeRect.top + transform.y < draggable.clientRect!.top + draggable.clientRect!.height / 2
+      activeNodeRect.left + transform.x < draggable.clientRect!.left + draggable.clientRect!.width / 2
     ) {
       draggable.transform = getRectDelta(
-        'vertical',
+        'horizen',
         Math.abs(activeNodeIndex - targetIndex),
         activeNodeRect,
         draggable.clientRect

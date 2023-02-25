@@ -1,12 +1,12 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { MouseSensor } from '../sensors';
-import { DndContextProps } from '../types';
-import { verticalSortStrategy } from '../strategies/verticalSortStrategy';
+import { DndContextProps } from './types';
 import { Collision, collisionDetection } from '../utils/collisionDetection';
 import { Listeners } from '../utils/Listener';
 import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, DndContextDescriptor } from './types';
+import { sortableRectify } from '../strategies/SortableRectify';
 
 const defaultSensor = MouseSensor;
 
@@ -24,6 +24,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
   const collisionsRef = useRef<Collision[]>([]);
   const listenerRef = useRef(new Listeners(window));
   const newIndexRef = useRef<number>(0);
+
   if (activeId) {
     // TODO: 覆盖功能
     const collisions = collisionDetection({
@@ -36,13 +37,8 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     });
     collisionsRef.current = collisions;
 
-    // TODO: sort strategy 适配
     if (sortable) {
-      newIndexRef.current = verticalSortStrategy({
-        manager,
-        transform,
-        activeId,
-      });
+      newIndexRef.current = sortableRectify({ manager, transform, activeId, sortable });
     }
   }
 
@@ -90,6 +86,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
         });
       },
     });
+    // set activate event to binding with clicked element
     setActivator({
       eventName: Sensor.eventName,
       handler: sensorInstance.handleStart,

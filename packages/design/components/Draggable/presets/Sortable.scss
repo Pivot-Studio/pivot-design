@@ -3,5 +3,12 @@
 .#{$prefix}-sortable-wrap {
   display: flex;
   flex: 1;
-  flex-direction: column;
+
+  &.__#{$prefix}-sortable-vertical {
+    flex-direction: column;
+  }
+
+  &.__#{$prefix}-sortable-horizen {
+    justify-content: space-around;
+  }
 }

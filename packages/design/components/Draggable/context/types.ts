@@ -1,4 +1,6 @@
-import { Dispatch, MutableRefObject } from 'react';
+import { Dispatch, MutableRefObject, ReactNode } from 'react';
+import { DragEndEvent } from '../sensors/events';
+import { Sensor } from '../sensors/mouse/types';
 import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
 import { Collision } from '../utils/collisionDetection';
 import Manager from './manager';
@@ -68,5 +70,16 @@ export interface DndContextDescriptor extends State {
     clientRect: DOMRect | null;
   }> | null;
   collisions: MutableRefObject<Collision[]> | null;
-  sortable?: boolean;
+  sortable?: {
+    direction: 'vertical' | 'horizen';
+  };
+}
+
+export interface DndContextProps {
+  children: ReactNode;
+  sensor?: Sensor;
+  onDragEnd?: (event: DragEndEvent) => void;
+  sortable?: {
+    direction: 'vertical' | 'horizen';
+  };
 }
