@@ -7,14 +7,14 @@ function format(code) {
   });
 }
 
-// 自动添加引入声明，注意要空一行
+// 自动引入声明，注意要空一行
 function improtAll(componentsList, sourceCode) {
   return `${componentsList}
 
 ${sourceCode.trim()}`;
 }
 
-// 自动添加引入声明，注意要空一行
+// 添加引入声明
 function addImprotComponent(name, preList) {
   return `import  ${name}Code  from './demo/${name}.tsx?code';
 import  ${name}  from './demo/${name}.tsx';
@@ -46,13 +46,11 @@ module.exports = function loader(source) {
     const headSource = newSource.slice(0, m.index);
     let restSource = newSource.slice(m.index);
 
-    // console.log('/////////////////restSource');
-    // console.log(restSource);
     // 根据>的出现次数，判断是否自动导入，只出现一次>，自动引入闭合标签内的元素，元素名需要和demo中的文件名相同
-    const isImport = m[2].match(eval('/>/ig')).length === 1;
-    // const importName = isImport ? /<([\s\S]*?)\/>/.exec(m[2])[1] : null;
+    const isImport = m[2].match(/>/gi).length === 1;
 
-    //好像是每次匹配中间的正则，就会改变下一次m的取值？？？
+    // 获取需要引入的组件名，自动匹配demo文件夹中组件
+    // 如 <demo />
     const importName = isImport
       ? m[2]
           .match(/<([\s\S]*?)\/>/g)[0]
@@ -63,15 +61,6 @@ module.exports = function loader(source) {
     if (isImport) {
       importComponentsList = addImprotComponent(importName, importComponentsList);
     }
-    // console.log('/////////////////importName');
-    // console.log(importName, isImport);
-    // console.log('/////////////////m[1]');
-    // console.log(m[1]);
-    // console.log('/////////////////m[2]');
-    // console.log(m[2]);
-    // console.log('/////////////////finish');
-    // console.log('/////////////////finish');
-    // console.log('/////////////////finish');
 
     if (m[1]) {
       const addStr = isImport ? m[1] + ` code={${importName}Code}` : m[1] + ` code={\`${getDemo(component, m[2])}\`}`;
@@ -85,13 +74,7 @@ module.exports = function loader(source) {
       CodeBlockReg.lastIndex = m.index + addStr.length;
     }
     newSource = headSource + restSource;
-    // console.log('/////////////////newSource');
-    // console.log(newSource);
-    // console.log('/////////////////finish');
-    // console.log('/////////////////finish');
-    // console.log('/////////////////finish');
   }
   const result = improtAll(importComponentsList, newSource);
-  // console.log(result);
   return result;
 };
