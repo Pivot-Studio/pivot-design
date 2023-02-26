@@ -67,7 +67,6 @@ module.exports = function loader(source) {
       restSource = restSource.replace(m[1], addStr);
       CodeBlockReg.lastIndex = m.index + addStr.length;
     } else {
-      const addStr = ` code={\`${getDemo(component, m[2])}\`}` + restSource.slice(10);
       // 解决当m[1]=''的时候无法replace的问题
       const addStr = isImport
         ? ` code={${importName}Code}` + restSource.slice(10)
