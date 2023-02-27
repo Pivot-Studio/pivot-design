@@ -3,10 +3,48 @@ html,
 #root {
   height: 100%;
 }
+
+h1 {
+  padding-bottom: 20px;
+}
+h2 {
+  position: relative;
+  margin: 16px 0;
+  padding: 0 16px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #1677ff;
+  }
+}
+h3 {
+  position: relative;
+  margin: 12px 0;
+  padding: 0 12px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background-color: #1677ff;
+  }
+}
+.display {
+  height: auto;
+}
+.hidden {
+  height: 0;
+}
 .pivot-design-docs {
   padding: 20px;
   background-color: #f7f9fb;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   &-title {
@@ -57,11 +95,11 @@ html,
   color: #000;
   font-size: 18px;
 }
-.demo-list-item {
-  width: 100%;
+
+.demo-draggable-item {
   color: #fff;
   background-color: #3685f5;
-  padding: 10px 4px;
+  padding: 8px 18px;
   border-radius: 4px;
 }
 
@@ -76,9 +114,9 @@ html,
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   &-actions {
-    position: absolute;
-    right: 4px;
-    top: 4px;
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 4px 8px;
     .pivot-code-box-icon {
       width: 20px;
       height: 20px;
@@ -94,6 +132,10 @@ html,
     display: flex;
     border-bottom: 1px solid rgba(5, 5, 5, 0.06);
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: center;
+    // > :not(.PIVOT-draggable-item) {
+    //   margin: 0 24px;
+    // }
   }
 }

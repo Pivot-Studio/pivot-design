@@ -2,7 +2,8 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "start": "cd packages/demo && npm run start"
   },
   "workspaces": [
     "packages/*"

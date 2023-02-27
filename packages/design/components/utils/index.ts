@@ -1,3 +1,6 @@
+export { getEventCoordinates } from './getEventCoordinates';
+export { getWindow } from './getWindow';
+export { getOwnerDocument } from './getOwnerDocument';
 export const vendorPrefix = (function () {
   if (typeof window === 'undefined' || typeof document === 'undefined') {
     // Server environment
@@ -7,9 +10,7 @@ export const vendorPrefix = (function () {
   // fix for: https://bugzilla.mozilla.org/show_bug.cgi?id=548397
   // window.getComputedStyle() returns null inside an iframe with display: none
   // in this case return an array with a fake mozilla style in it.
-  const styles = window.getComputedStyle(document.documentElement, '') || [
-    '-moz-hidden-iframe',
-  ];
+  const styles = window.getComputedStyle(document.documentElement, '') || ['-moz-hidden-iframe'];
   // eslint-disable-next-line prefer-destructuring
   const pre = (Array.prototype.slice
     .call(styles)
