@@ -10,19 +10,19 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
     return <div>{avatar && <div className={`${prefix}-skeleton-avatar`}></div>}</div>;
   };
   const SkeletonTitle = (loading?: boolean) => {
-    return <div>{loading && <div className={`${prefix}-skeleton-title`}></div>}</div>;
+    return (
+      <div className={`${prefix}-skeleton-head`}>{loading && <div className={`${prefix}-skeleton-title`}></div>}</div>
+    );
   };
   const SkeletonContent = (loading?: boolean) => {
     return (
-      <div>
+      <div className={`${prefix}-skeleton-content`}>
         {loading && (
-          <div className={`${prefix}-skeleton-content`}>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </div>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
         )}
       </div>
     );

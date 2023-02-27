@@ -4,7 +4,27 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  // margin-top: 20vh;
+  flex-wrap: wrap;
+  .#{$prefix}-skeleton-head {
+    position: relative;
+    .#{$prefix}-skeleton-title {
+      background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+      width: 40%;
+      min-width: 100px;
+      height: 1rem;
+      list-style: none;
+      background-size: 400% 100%;
+      margin-top: 0.6rem;
+      background-position: 100% 50%;
+      animation: skeleton-loading 1.4s ease infinite;
+    }
+  }
+  .#{$prefix}-skeleton-content {
+    padding: 20px;
+    width: 100%;
+    //width: 250px;
+    //width: 250px;
+  }
 }
 li {
   background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
