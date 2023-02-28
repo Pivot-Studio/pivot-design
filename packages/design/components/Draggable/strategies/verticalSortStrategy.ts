@@ -1,3 +1,4 @@
+import { MutableRefObject } from 'react';
 import Manager from '../context/manager';
 import { Coordinate, UniqueIdentifier } from '../types';
 import { getRectDelta } from '../utils/getRectDelta';
@@ -6,14 +7,15 @@ interface ActiveInfo {
   activeId: UniqueIdentifier;
   manager: Manager;
   transform: Coordinate;
+  newIndexRef: MutableRefObject<number>;
 }
 
 export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
-  const { activeId, manager, transform } = activeInfo;
+  const { activeId, manager, transform, newIndexRef } = activeInfo;
   const activeNode = manager.getNode(activeId, 'draggables')!;
   const activeNodeRect = activeNode.clientRect!;
   const activeNodeIndex = activeNode.index;
-  let newIndex = activeNode.index;
+  newIndexRef.current = activeNode.index;
 
   for (let draggable of manager.getAll('draggables')) {
     const { id } = draggable;
@@ -32,7 +34,7 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
         activeNodeRect,
         draggable.clientRect
       );
-      newIndex = targetIndex;
+      newIndexRef.current = targetIndex;
     } else if (
       activeNode.index > targetIndex &&
       activeNodeRect.top + transform.y < draggable.clientRect!.top + draggable.clientRect!.height / 2
@@ -43,10 +45,9 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
         activeNodeRect,
         draggable.clientRect
       );
-      if (newIndex === activeNode.index) {
-        newIndex = targetIndex;
+      if (newIndexRef.current === activeNode.index) {
+        newIndexRef.current = targetIndex;
       }
     }
   }
-  return newIndex;
 };

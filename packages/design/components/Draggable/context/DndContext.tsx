@@ -38,7 +38,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     collisionsRef.current = collisions;
 
     if (sortable) {
-      newIndexRef.current = sortableRectify({ manager, transform, activeId, sortable });
+      sortableRectify({ manager, transform, activeId, sortable, collisions, newIndexRef });
     }
   }
 
@@ -54,6 +54,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
           clientRect,
           marginRect,
         };
+        newIndexRef.current = manager.getNode(activeId, 'draggables')!.index;
         dispatch({
           type: DragActionEnum.ACTIVATED,
           payload: activeId,
