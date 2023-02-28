@@ -16,6 +16,12 @@ export interface Collision {
   clientRect: DOMRect;
 }
 
+export const isCollision = (clientRect: DOMRect, coordinates: Coordinate) =>
+  coordinates.x >= clientRect.left &&
+  clientRect.left + clientRect.width >= coordinates.x &&
+  coordinates.y >= clientRect.top &&
+  clientRect.top + clientRect.height >= coordinates.y;
+
 export const collisionDetection = (props: CollisionDetectionProps): Collision[] => {
   const { manager, coordinates, activeId } = props;
   if (!activeId) return [];
@@ -31,12 +37,7 @@ export const collisionDetection = (props: CollisionDetectionProps): Collision[] 
     droppable.clientRect = node?.getBoundingClientRect();
     const { clientRect } = droppable;
 
-    if (
-      coordinates.x >= clientRect.left &&
-      clientRect.left + clientRect.width >= coordinates.x &&
-      coordinates.y >= clientRect.top &&
-      clientRect.top + clientRect.height >= coordinates.y
-    ) {
+    if (isCollision(clientRect, coordinates)) {
       collisions.push({ id: droppable.id, index: droppable.index, clientRect });
     }
   }

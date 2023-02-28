@@ -27,18 +27,19 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
 
   if (activeId) {
     // TODO: 覆盖功能
+    const coordinates = {
+      x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
+      y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
+    };
     const collisions = collisionDetection({
       activeId,
       manager,
-      coordinates: {
-        x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
-        y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
-      },
+      coordinates,
     });
     collisionsRef.current = collisions;
 
     if (sortable) {
-      sortableRectify({ manager, transform, activeId, sortable, collisions, newIndexRef });
+      sortableRectify({ manager, transform, activeId, sortable, newIndexRef, coordinates });
     }
   }
 
