@@ -3,27 +3,19 @@ import { createPortal } from 'react-dom';
 import { DraggableItemProps } from 'pivot-design-props';
 import { prefix } from '../../../constants';
 import classnames from 'classnames';
-import { useDraggable } from '../../hooks/useDraggable';
 import './DraggableItem.scss';
-import { useUniqueId } from '../../hooks/useUniqueId';
 import { overlayStyle } from '../../utils';
 import Handle from '../Handle/Handle';
-import { useDroppable } from '../../hooks/useDroppable';
-import { useCombinedRefs } from '../../hooks/useCombinedRefs';
+import { useSortable } from '../../hooks/useSortable';
+
 // TODO: 慢慢改吧，顺便sortStrategy那里也改成manager.get（droppable）
-function DraggableItem(props: DraggableItemProps) {
+function SortableItem(props: DraggableItemProps) {
   const { className, children, id, index, top, left, handle = false } = props;
-  const { id: _id, index: globalIndex } = useUniqueId(id);
-  const { isDragging, setDragNode, listener, transform, attributes, activeRect } = useDraggable({
-    index: index !== undefined ? index : globalIndex,
-    id: _id,
-  });
-  const { setDropNode } = useDroppable({ index: index !== undefined ? index : globalIndex, id: _id });
-  const setNodeRef = useCombinedRefs(setDragNode, setDropNode);
+  const { setSortNode, isDragging, listener, activeRect, attributes, transform } = useSortable({ id, index });
   return (
     <>
       <div
-        ref={setNodeRef}
+        ref={setSortNode}
         className={classnames(`${prefix}-draggable-item`, className, {
           [`__${prefix}_dragging`]: isDragging,
           [`__${prefix}_handle`]: handle,
@@ -52,5 +44,4 @@ function DraggableItem(props: DraggableItemProps) {
   );
 }
 
-const Item = React.forwardRef(DraggableItem);
-export default Item;
+export default SortableItem;

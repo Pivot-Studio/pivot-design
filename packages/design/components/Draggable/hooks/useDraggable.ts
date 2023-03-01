@@ -4,14 +4,19 @@ import { DragNode, UniqueIdentifier } from '../types';
 import { useSyntheticListeners } from './useSyntheticListeners';
 import useDndContext from './useDndContext';
 import { setTransform } from '../utils';
+import { useUniqueId } from './useUniqueId';
 
 interface UseDraggableProps {
-  id: UniqueIdentifier;
-  index: number;
+  id?: UniqueIdentifier;
+  index?: number;
 }
 
-export const useDraggable = ({ id, index }: UseDraggableProps) => {
+export const useDraggable = ({ id: propId, index: propsIndex }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
+  const { id: innerId, index: innerIndex } = useUniqueId(propId);
+  const id = innerId;
+  const index = propsIndex ?? innerIndex;
+
   const isDragging = activeId == id;
   const node = manager.getNode(id, 'draggables');
   const nodeTransform = node?.transform;

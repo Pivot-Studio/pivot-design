@@ -2,16 +2,21 @@ import { useCallback, useEffect, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
 import { DragNode, UniqueIdentifier } from '../types';
 import useDndContext from './useDndContext';
+import { useUniqueId } from './useUniqueId';
 
 interface UseDroppableProps {
-  id: UniqueIdentifier;
-  index: number;
+  id?: UniqueIdentifier;
+  index?: number;
 }
 
-export const useDroppable = ({ id, index }: UseDroppableProps) => {
+export const useDroppable = ({ id: propId, index: propsIndex }: UseDroppableProps) => {
   const { dispatch, collisions: collisionsRef, manager } = useDndContext();
   const collisions = collisionsRef?.current;
   // const node = manager.getNode(id, 'droppables');
+  const { id: innerId, index: innerIndex } = useUniqueId(propId);
+  const id = innerId;
+  const index = propsIndex ?? innerIndex;
+
   let over = false;
   if (collisions && collisions.length > 0) {
     for (let collision of collisions) {

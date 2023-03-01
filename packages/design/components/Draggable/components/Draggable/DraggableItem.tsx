@@ -5,15 +5,13 @@ import { prefix } from '../../../constants';
 import classnames from 'classnames';
 import { useDraggable } from '../../hooks/useDraggable';
 import './DraggableItem.scss';
-import { useUniqueId } from '../../hooks/useUniqueId';
 import { overlayStyle } from '../../utils';
 import Handle from '../Handle/Handle';
 function DraggableItem(props: DraggableItemProps) {
   const { className, children, id, index, top, left, handle = false } = props;
-  const { id: _id, index: globalIndex } = useUniqueId(id);
   const { isDragging, setDragNode, listener, transform, attributes, activeRect } = useDraggable({
-    index: index !== undefined ? index : globalIndex,
-    id: _id,
+    index,
+    id,
   });
   return (
     <>

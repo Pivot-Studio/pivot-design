@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import { prefix } from '../../constants';
+import { prefix } from '../../../constants';
 import { ReactNode, useState } from 'react';
-import { DndContext } from '../context/DndContext';
-import SortableItem from '../components/Draggable/SortableItem';
-import { arrayMove } from '../utils';
-import { DragEndEvent } from '../sensors/events';
+import { DndContext } from '../../context/DndContext';
+import SortableItem from '../../components/Draggable/SortableItem';
+import { arrayMove } from '../../utils';
+import { DragEndEvent } from '../../sensors/events';
 import './Sortable.scss';
 export function Sortable(props: any) {
   const { items: initialItems, itemClassName, direction } = props;
