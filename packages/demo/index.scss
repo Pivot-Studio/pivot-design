@@ -138,4 +138,11 @@ h3 {
     //   margin: 0 24px;
     // }
   }
+  .line-numbers {
+    //width: 100%;
+    .code-toolbar {
+      width: 76vw;
+      overflow: auto;
+    }
+  }
 }
