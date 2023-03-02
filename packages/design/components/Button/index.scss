@@ -1,4 +1,4 @@
-@import "../common.scss";
+@import '../common.scss';
 .#{$prefix}-button {
   cursor: pointer;
   margin: 10px;
@@ -22,47 +22,28 @@
     border-radius: 15px;
   }
   &-default {
-    border: 1px solid
-      var(--button-background-color, var(--pivot-button-background-color));
+    border: 1px solid var(--button-background-color, var(--pivot-button-background-color));
     background-color: var(--Gray-100);
     &.#{$prefix}-button-disabled {
       background-color: transparent;
-      border-color: var(
-        --button-disabled-background-color,
-        var(--pivot-button-disabled-background-color)
-      );
-      color: var(
-        --button-disabled-background-color,
-        var(--pivot-button-disabled-background-color)
-      );
+      border-color: var(--button-disabled-background-color, var(--pivot-button-disabled-background-color));
+      color: var(--button-disabled-background-color, var(--pivot-button-disabled-background-color));
     }
     &:not(.#{$prefix}-button-disabled):hover {
-      border-color: var(
-        --button-background-color,
-        var(--pivot-button-hover-background-color)
-      );
+      border-color: var(--button-background-color, var(--pivot-button-hover-background-color));
       color: var(--pivot-button-hover-background-color);
     }
   }
 
   &-primary {
-    background-color: var(
-      --button-background-color,
-      var(--pivot-button-background-color)
-    );
+    background-color: var(--button-background-color, var(--pivot-button-background-color));
     color: var(--Gray-100);
     &.#{$prefix}-button-disabled {
-      background-color: var(
-        --button-disabled-background-color,
-        var(--pivot-button-disabled-background-color)
-      );
+      background-color: var(--button-disabled-background-color, var(--pivot-button-disabled-background-color));
       color: var(--Gray-100);
     }
     &:not(.#{$prefix}-button-disabled):hover {
-      background-color: var(
-        --button-background-color,
-        var(--pivot-button-hover-background-color)
-      );
+      background-color: var(--button-background-color, var(--pivot-button-hover-background-color));
     }
   }
 
@@ -70,10 +51,7 @@
     background-color: transparent !important;
 
     &.#{$prefix}-button-disabled {
-      color: var(
-        --button-disabled-background-color,
-        var(--pivot-button-disabled-background-color)
-      );
+      color: var(--button-disabled-background-color, var(--pivot-button-disabled-background-color));
     }
   }
 
@@ -84,7 +62,7 @@
   &-loading {
     cursor: auto;
     &::before {
-      content: "【Loading... 】";
+      content: '【Loading...】';
     }
   }
 }

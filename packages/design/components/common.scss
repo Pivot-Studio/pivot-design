@@ -1,10 +1,10 @@
-$prefix: "PIVOT";
+$prefix: 'PIVOT';
 * {
   padding: 0;
   margin: 0;
   border: none;
 }
-body[pivot-theme="light"] {
+body[pivot-theme='light'] {
   --Gray-100: rgba(255, 255, 255, 0.87);
   --Gray-80: rgba(203, 203, 203, 1);
   --Brand-1-100: rgba(75, 159, 121, 1);
@@ -13,7 +13,7 @@ body[pivot-theme="light"] {
   --Brand-1-25: rgba(75, 159, 121, 0.25);
   --Brand-5: #2d895f;
 }
-body[pivot-theme="dark"] {
+body[pivot-theme='dark'] {
 }
 
 body {
@@ -21,3 +21,60 @@ body {
   --pivot-button-hover-background-color: var(--Brand-5);
   --pivot-button-disabled-background-color: var(--Gray-80);
 }
+
+// body {
+//   --pivot-primary: $pivot-violet;
+//   --pivot-secondary: $pivot-gray-600;
+//   --pivot-success: $pivot-green;
+//   --pivot-info: $pivot-cyan;
+//   --pivot-warning: $pivot-yellow;
+//   --pivot-danger: $pivot-red;
+//   --pivot-light: $pivot-gray-100;
+//   --pivot-dark: $pivot-gray-800;
+// }
+
+// 中性色彩
+$pivot-white: #fff !default;
+$pivot-gray-100: #f8f9fa !default;
+$pivot-gray-200: #e9ecef !default;
+$pivot-gray-300: #dee2e6 !default;
+$pivot-gray-400: #ced4da !default;
+$pivot-gray-500: #adb5bd !default;
+$pivot-gray-600: #6c757d !default;
+$pivot-gray-700: #495057 !default;
+$pivot-gray-800: #343a40 !default;
+$pivot-gray-900: #212529 !default;
+$pivot-black: #000000 !default;
+
+// 基础色板
+$pivot-violet: #815c94 !default;
+$pivot-indigo: #61649f !default;
+$pivot-purple: #8076a3 !default;
+$pivot-pink: #e9d7df !default;
+$pivot-red: #a8456b !default;
+$pivot-orange: #fbb957 !default;
+$pivot-yellow: #f8df70 !default;
+$pivot-green: rgb(80, 198, 16) !default;
+$pivot-teal: #96c24e !default;
+$pivot-cyan: #93d5dc !default;
+
+// 默认色板
+$pivot-primary: $pivot-teal !default;
+$pivot-secondary: $pivot-gray-600 !default;
+$pivot-success: $pivot-green !default;
+$pivot-info: $pivot-cyan !default;
+$pivot-warning: $pivot-yellow !default;
+$pivot-danger: $pivot-red !default;
+$pivot-light: $pivot-gray-100 !default;
+$pivot-dark: $pivot-gray-800 !default;
+
+$pivot-theme-colors: (
+  'primary': $pivot-primary,
+  'secondary': $pivot-secondary,
+  'success': $pivot-success,
+  'info': $pivot-info,
+  'warning': $pivot-warning,
+  'danger': $pivot-danger,
+  'light': $pivot-light,
+  'dark': $pivot-dark,
+);

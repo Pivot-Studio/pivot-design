@@ -1,0 +1,28 @@
+@import '../common.scss';
+// .#{$prefix}-icon-#{$key} {
+//   color: $pivot-$key;
+// }
+// @each $theme in .#{$prefix}-icon {
+//   .#{$prefix}-icon-#{$theme} {
+//     color: $theme;
+//   }
+// }
+// .#{$prefix}-icon {
+//   .#{$prefix}-icon-#{$theme} {
+//     color: $theme;
+//   }
+// }
+@each $key, $val in $pivot-theme-colors {
+  .#{$prefix}-icon-#{$key} {
+    color: $val;
+  }
+}
+
+.#{$prefix}-icon {
+  margin: 5px;
+
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+}
