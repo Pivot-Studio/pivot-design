@@ -91,7 +91,7 @@ interface CardCssTokens {
   /**
    * @version 1.0.0
    * @description 文字最大显示长度
-   * @default 6
+   * @default 100%
    */
   '--card-maxLength'?: number;
   /**

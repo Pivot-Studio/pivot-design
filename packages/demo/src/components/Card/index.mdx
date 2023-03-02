@@ -1,46 +1,129 @@
-import Avatar from "./svg/avatar.tsx"
-import Agree from "./svg/agree.tsx"
-import Comment from "./svg/comment.tsx"
-import Store from "./svg/store.tsx"
+import Actions from "./svg/index.tsx"
+import More from "./svg/tab.tsx"
+
 
 # Card
 
 <div className="title">默认样式</div>
-<CodeBlock  line={'5-15'}>
-  <Card title={<div>测试</div>} time="19:20 2020-09-15" extra={<a href="#">More</a>} actions={<div><Agree/>16<Comment/>14<Store/>20
-</div>}>
-<div style={{height:"86px"}}>
-  <p>  我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
-  <p>一点钱钱呢啊？不多不多的 </p>
+<CodeBlock  line={'5-7'}>
+  <Card title={<div>测试</div>} time="19:20 2020-09-15" extra={<More/>} actions={<Actions></Actions>} >
+<div>
+   <p>我好想买Airpods但是没有钱，梁老师可不可以资助我
+  一点钱钱呢啊？不多不多的 </p>
  </div>
-  </Card>
-
-  <Card title={<div>多余文本</div>} time="19:20 2020-09-15" extra={<a href="#">...</a>} avatar={<Avatar></Avatar>}  boradius={false}  actions={<div><Agree/>16<Comment/>14<Store/>20
-</div>}>
-  <p> 我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
-  <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可</p>
-   <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可</p>
-    <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可</p>
-  </Card>
-  <Card title={<div>多余文本</div>} time="19:20 2020-09-15" extra={<a href="#">...</a>} boradius={false} style={{width:"600px",'--card-background-color': 'rgb(233, 233, 15)'}} actions={<div><Agree/>16<Comment/>14<Store/>20
-</div>}>
-  <p> 我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
-  <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可</p>
-  </Card>
+</Card>
+</CodeBlock>
+<div className="title">带头像</div>
+<CodeBlock line={'5-7'}>
+<Card title={<div>多余文本</div>} time="19:20 2020-09-15" extra={<More/>} avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35"/>} actions={<Actions/>}>
   
-  </CodeBlock>
-<div className="title">栅格</div>
-<CodeBlock line={'5-11'}>
-<Card style={{'--card-background-color':' rgba(244, 247, 250,1)',}} Grid={true}>
-    <div>足球</div>
-    <div>足球</div>
-    <div>足球</div>
-    <div>足球</div>
-    <div>足球</div>
-    <div>足球</div>
-    <div>足球</div>
-    <div>足球</div>
-
+   我好想买Airpods但是没有钱，梁老师可不可以
+   资助我我好想买Airpods
+   但是没有钱，
+   梁老师可不可以资助我一点钱呢啊？不多不多的，
+  球球了！我好想买Airpods但是没有钱，
+  梁老师可不可以资助我一点钱钱呢啊？
+  不多不多的，球球了！我好想买Airpods但是没有钱，梁老师可
+   我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？
+   不多不多的，球球了！
+   我好想买Airpods但是没有钱，
+   梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！
+   我好想买Airpods但是没有钱，梁老师可
+    我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？
+    
+    不多不多的，球球了！
+    我好想买Airpods但是没有钱，
+    梁老师可不可以资助我一点钱钱呢啊？
+    不多不多的，
+    球球了！我好想买Airpods但是没有钱，梁老师可
+    
   </Card>
+</CodeBlock>
 
+<div className="title">栅格</div>
+<CodeBlock line={'5-7'}>
+<Card avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35"/>} title={<div style={{fontSize:"18px",fontWeight:"700",marginTop:"10px"}}>运动小天才</div>} style={{'--card-background-color':' rgba(244, 247, 250,1)',}} Grid={true}>
+    <div>足球</div>
+    <div>足球</div>
+    <div>足球</div>
+    <div>足球</div>
+    <div>足球</div>
+    <div>足球</div>
+    <div>足球</div>
+    <div>足球</div>
+</Card>
+</CodeBlock>
+<div className="title">收起与展开长度</div>
+<CodeBlock line={'5-7'}>
+<Card title={<div>多余文本</div>} time="19:20 2020-09-15" extra={<More/>} avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35"/>} actions={<Actions/>} style={{'--card-minLength':"5"}}>
+  
+   我好想买Airpods但是没有钱，梁老师可不可以资助我
+   我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢
+   啊？不多不多的，球球了！我好想买Airpods但
+  是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，
+  球球了！我好想买Airpods但是没有钱，梁老师可
+   我好想买Airpods但是没有钱，梁老师可不可以
+   资助我一点钱钱呢啊？不多不多的，球球了！我好
+   想买Airpods但是没有钱，梁老师可不可以资助我一
+   点钱钱呢啊？不多不多的，球球了！我好想买
+   irpods但是没有钱，梁老师可
+    我好想买Airpods但是没有钱，
+    梁老师可不可以资助我一点钱钱呢啊？
+    不多不多的，球球了！我好想买Airpods但是没有钱，
+    梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！
+    我好想买Airpods但是没有钱，梁老师可
+    
+  </Card>
+<Card title={<div>多余文本</div>} time="19:20 2020-09-15" extra={<More/>} avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35"/>} actions={<Actions/>} style={{'--card-maxLength':"7"}}>
+  
+   我好想买Airpods但是没有钱，梁老师可不可以资助我
+   我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢
+   啊？不多不多的，球球了！我好想买Airpods但
+  是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，
+  球球了！我好想买Airpods但是没有钱，梁老师可
+   我好想买Airpods但是没有钱，梁老师可不可以
+   资助我一点钱钱呢啊？不多不多的，球球了！我好
+   想买Airpods但是没有钱，梁老师可不可以资助我一
+   点钱钱呢啊？不多不多的，球球了！我好想买
+   irpods但是没有钱，梁老师可
+    我好想买Airpods但是没有钱，
+    梁老师可不可以资助我一点钱钱呢啊？
+    不多不多的，球球了！我好想买Airpods但是没有钱，
+    梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！
+    我好想买Airpods但是没有钱，梁老师可
+    
+</Card>
+</CodeBlock>
+<div className="title">自定义背景色和宽度</div>
+<CodeBlock line={'5-7'}>
+ <Card title={<div>多余文本</div>} time="19:20 2020-09-15" extra={<a href="#">...</a>} boradius={false} style={{width:"600px",'--card-background-color': 'rgb(233, 233, 15)'}} actions={<Actions/>}>
+  <p> 我好想买Airpods但是没有钱，梁老师可不可以资助我</p>
+  <p>我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢啊？
+  不多不多的，球球了！我好想买Airpods但是没有钱，
+  梁老师可不可以
+  资助我一点钱钱呢啊？不多不多的，球球了！
+  我好想买Airpods但是没有钱，梁老师可</p>
+  </Card>
+</CodeBlock>
+<div className="title">自定义收起和展开文字</div>
+<CodeBlock line={'5-7'}>
+<Card title={<div>多余文本</div>} time="19:20 2020-09-15" extra={<More/>} avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35"/>} actions={<Actions/>} style={{'--card-expandText':'60','--card-collapseText':'70'}}>
+  
+   我好想买Airpods但是没有钱，梁老师可不可以资助我
+   我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢
+   啊？不多不多的，球球了！我好想买Airpods但
+  是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，
+  球球了！我好想买Airpods但是没有钱，梁老师可
+   我好想买Airpods但是没有钱，梁老师可不可以
+   资助我一点钱钱呢啊？不多不多的，球球了！我好
+   想买Airpods但是没有钱，梁老师可不可以资助我一
+   点钱钱呢啊？不多不多的，球球了！我好想买
+   irpods但是没有钱，梁老师可
+    我好想买Airpods但是没有钱，
+    梁老师可不可以资助我一点钱钱呢啊？
+    不多不多的，球球了！我好想买Airpods但是没有钱，
+    梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！
+    我好想买Airpods但是没有钱，梁老师可
+    
+  </Card>
 </CodeBlock>

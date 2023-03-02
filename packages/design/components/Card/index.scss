@@ -1,14 +1,21 @@
 @import '../common.scss';
-
+$cardmin: calc(var(--card-minLength, 3) * 20px);
+$cardmax: calc(var(--card-maxLength, 100%) * 20px);
 .#{$prefix}-card {
   position: relative;
+  //解决兼容问题
+  height: 100%;
+  //height: -moz-available; /* WebKit-based browsers will ignore this. */
+  //height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+  //height: fill-available;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  margin: 0;
   padding: 10px;
+  padding-left: 23px;
+  padding-right: 24px;
   padding-bottom: 8px;
-
-  //padding-left: 10px;
   background-color: var(--card-background-color, var(--pivot-card-background-color));
   &-borderadius {
     border-radius: 10px;
@@ -24,8 +31,8 @@
       position: relative;
       width: 100%;
       .#{$prefix}-head-avatar {
-        width: 35px;
-        height: 35px;
+        // width: 35px;
+        //height: 35px;
         border-radius: 50%;
         overflow: hidden;
         margin-right: 11px;
@@ -78,13 +85,10 @@
 
   &-small {
     width: 316px;
-    //height: 130px;
   }
 
   .#{$prefix}-card-body {
     padding-top: 5px;
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
     font-size: 14px;
     line-height: 21px;
@@ -93,18 +97,28 @@
     vertical-align: top;
     margin-bottom: 3px;
     .#{$prefix}-card-body-content {
-      position: relative;
+      display: flex;
+      // width: 200px;
       .#{$prefix}-card-body-text {
-        position: relative;
-        text-overflow: ellipsis;
-        text-align: justify;
-        display: -webkit-box;
-        -webkit-line-clamp: var(--card-minLength, 3);
-        -webkit-box-orient: vertical;
         overflow: hidden;
-
-        line-height: 1.5;
-        transition: 0.3s max-height;
+        line-height: 20px;
+        max-height: $cardmin;
+        text-align: justify;
+        position: relative;
+        &::before {
+          content: '';
+          float: right;
+          width: 0;
+          height: 100%;
+          margin-bottom: -20px;
+          &::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: #fff;
+          }
+        }
       }
       .#{$prefix}-card-body-grid {
         display: flex;
@@ -122,16 +136,20 @@
       }
       .#{$prefix}-card-body-btn {
         float: right;
-
         clear: both;
+        height: 20px;
+        line-height: 18px;
         margin-left: 20px;
-        font-size: 14px;
-        padding: 0 8px;
-
-        line-height: 21px;
-        border-radius: 4px;
-        color: #2b98ba;
+        position: relative;
+        color: #025cdc;
         cursor: pointer;
+        &::before {
+          content: '...';
+          position: absolute;
+          left: -10px;
+          color: #333;
+          transform: translateX(-100%);
+        }
         &:after {
           content: var(--card-expandText, '展开');
         }
@@ -140,15 +158,15 @@
         display: none;
       }
       .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text {
-        -webkit-line-clamp: var(--card-maxLength, 6);
+        max-height: $cardmax;
       }
       .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-btn::after .#{$prefix}-card-body-text::after {
         visibility: hidden;
       }
-      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-btn::before {
+      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text .#{$prefix}-card-body-btn::before {
         visibility: hidden;
       }
-      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text + .#{$prefix}-card-body-btn::after {
+      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text .#{$prefix}-card-body-btn::after {
         content: var(--card-collapseText, '收起');
       }
     }
