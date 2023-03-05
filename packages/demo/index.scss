@@ -139,3 +139,29 @@ h3 {
     // }
   }
 }
+.pivot-props-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  th,
+  td {
+    padding: 20px 0;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    width: auto;
+    border: 1px solid #ddd;
+  }
+
+  td {
+    width: auto;
+    border: 1px solid #ddd;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+}
