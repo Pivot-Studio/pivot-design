@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "start": "cd packages/demo && npm run start",
+    "start": "npm run build:props && cd packages/demo && npm run start",
     "build:props": "node ./scripts/build_props.mjs"
   },
   "workspaces": [
@@ -12,7 +12,6 @@
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
-    "doctrine": "^3.0.0",
     "eslint-config-psfe": "1.0.5",
     "husky": "^8.0.2",
     "@babel/core": "^7.19.1",

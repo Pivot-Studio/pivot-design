@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve, extname } from "path";
-import { traverse, parseSync, transformFromAstSync } from "@babel/core";
+import { transformFromAstSync } from "@babel/core";
 import { declare } from "@babel/helper-plugin-utils";
 import { parse } from "@babel/parser";
 import dirname from "es-dirname";
