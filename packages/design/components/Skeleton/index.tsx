@@ -7,21 +7,20 @@ import React from 'react';
 const Skeleton: React.FC<SkeletonProps> = (props) => {
   const { loading = true, className, style, active, avatar = false } = props;
   const SkeletonAvatar = (avatar?: boolean) => {
-    return <div>{avatar && <div className={`${prefix}-skeleton-avatar`}></div>}</div>;
+    return <div>{avatar && <div className={`${prefix}-skeleton-avatar`} />}</div>;
   };
   const SkeletonTitle = (loading?: boolean) => {
-    return (
-      <div className={`${prefix}-skeleton-head`}>{loading && <div className={`${prefix}-skeleton-title`}></div>}</div>
-    );
+    return <div className={`${prefix}-skeleton-head`}>{loading && <div className={`${prefix}-skeleton-title`} />}</div>;
   };
   const SkeletonContent = (loading?: boolean) => {
     return (
       <div className={`${prefix}-skeleton-content`}>
         {loading && (
           <ul>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li />
+            <li />
+            <li />
+            <li />
           </ul>
         )}
       </div>
