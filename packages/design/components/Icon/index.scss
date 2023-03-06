@@ -21,8 +21,35 @@
 .#{$prefix}-icon {
   margin: 5px;
 
-  & svg {
-    width: 20px;
-    height: 20px;
+  // & svg {
+  //   width: 20px;
+  //   height: 20px;
+  // }
+  // svg {
+  //   transform: rotate(20deg);
+  // }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @keyframes rotate {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    25% {
+      -webkit-transform: rotate(90deg);
+    }
+    50% {
+      -webkit-transform: rotate(180deg);
+    }
+    75% {
+      -webkit-transform: rotate(270deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  &.#{$prefix}-icon-rotate {
+    animation: rotate 2s linear infinite;
   }
 }

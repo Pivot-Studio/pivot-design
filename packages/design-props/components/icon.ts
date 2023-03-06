@@ -1,13 +1,7 @@
 import React from 'react';
 import { PivotDesignProps } from '.';
-// interface IconCssTokens {
-//   /**
-//    * @version 1.0.0
-//    * @description 图标颜色
-//    * @default --pivot-icon-background-color
-//    */
-//   '--icon-background-color'?: string;
-// }
+//  className, theme = 'primary', icon: iconName = 'Loading', style, size = '16', ossIcon, url, color }
+// type IconTheme = 'primary' |
 export interface IconProps extends PivotDesignProps {
   /**
    * @version 1.0.0
@@ -18,37 +12,43 @@ export interface IconProps extends PivotDesignProps {
   /**
    * @version 1.0.0
    * @description 图标类型
-   * @default 'default'
+   * @default 'primary'
    */
-  type?: 'primary' | 'default' | 'text' | 'link';
+  theme?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';
   /**
    * @version 1.0.0
-   * @description 按钮是否禁用
-   * @default 'middle'
+   * @description 图标尺寸
+   * @default '16'
    */
-  size?: 'small' | 'middle' | 'large';
+  size?: string;
   /**
    * @version 1.0.0
-   * @description 按钮尺寸
+   * @description 图标颜色
+   * @default '#212529'
+   */
+  color?: string;
+  /**
+   * @version 1.0.0
+   * @description 图标来源
+   * @default undefined
+   */
+  icon?: string;
+  /**
+   * @version 1.0.0
+   * @description Pivot Design官方矢量图库中的icon名称
+   * @default undefined
+   */
+  ossIcon?: string;
+  /**
+   * @version 1.0.0
+   * @description 自定义导入的icon链接
+   * @default undefined
+   */
+  url?: string;
+  /**
+   * @version 1.0.0
+   * @description 是否旋转
    * @default false
    */
-  disabled?: boolean;
-  /**
-   * @version 1.0.0
-   * @description 按钮是否正在加载状态
-   * @default false
-   */
-  loading?: boolean;
-  /**
-   * @version 1.0.0
-   * @description 按钮是否防抖，可选择是否立即执行
-   * @default 0
-   */
-  debounce?: number | { delay: number; immediate: boolean };
-  /**
-   * @version 1.0.0
-   * @description 按钮是否节流
-   * @default false
-   */
-  throttle?: number | { delay: number; immediate: boolean };
+  rotate?: boolean;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { prefix } from '../constants';
 import classnames from 'classnames';
+import { IconProps } from 'pivot-design-props';
 import { ReactSVG } from 'react-svg';
 import './index.scss';
 import './icons';
@@ -8,30 +9,35 @@ import './icons';
 import * as Icons from './icons';
 import { getOssIcon } from './service';
 
-export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';
-
-const Icon: React.FC<any> = (props) => {
-  const { className, theme = 'primary', icon: iconName = 'loading', style, size = '16', ossIcon } = props;
-
-  const classes = classnames(`${prefix}-icon`, className, `${prefix}-icon-size-${size}`, {
+const Icon: React.FC<IconProps> = (props) => {
+  const {
+    className,
+    theme = 'primary',
+    icon: iconName,
+    style,
+    color,
+    size = '16',
+    ossIcon,
+    url,
+    rotate = false,
+  } = props;
+  const classes = classnames(`${prefix}-icon`, className, {
     [`${prefix}-icon-${theme}`]: theme,
+    [`${prefix}-icon-rotate`]: rotate,
   });
-
-  const iconToSvgName = (name: string) => {
-    return (Icons as any)[name];
-  };
-
-  // const iconToElement = (name: string) => {
-  //   return React.createElement(Icons && (Icons as any)[name], {});
-  // };
 
   return (
     <>
-      <ReactSVG
-        src={ossIcon ? getOssIcon(ossIcon) : iconToSvgName(`${iconName}Icon`)}
-        className={classes}
-        style={style}
-      />
+      {url || ossIcon ? (
+        <ReactSVG src={url ? url : getOssIcon(ossIcon as string)} className={classes} style={style} />
+      ) : (
+        <div className={classes} style={style}>
+          {React.createElement((Icons && (Icons as any)[iconName as string]) || Icons['DefautError'], {
+            color: color,
+            size: size,
+          })}
+        </div>
+      )}
     </>
   );
 };

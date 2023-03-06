@@ -4,16 +4,12 @@ import React from 'react';
 const App: React.FC = () => {
   return (
     <>
-      <Icon theme="primary" icon="Back" />
-      <Icon theme="secondary" icon="Warning" />
-      <Icon theme="success" icon="Close" />
+      <Icon theme="primary" icon="Loading" />
+      <Icon theme="secondary" icon="Loading" />
+      <Icon theme="success" icon="Loading" />
       <Icon theme="info" icon="Loading" />
       <Icon theme="warning" icon="Loading" />
       <Icon theme="danger" icon="Loading" />
-
-      {/* 引用SVG报错 */}
-      <Icon icon="NoSvg" />
-      <Icon />
     </>
   );
 };

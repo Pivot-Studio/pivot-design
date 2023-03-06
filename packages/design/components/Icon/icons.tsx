@@ -1,5 +1,7 @@
-import loadingIcon from './icon-svg/loading.svg';
-import backIcon from './icon-svg/back.svg';
-import closeIcon from './icon-svg/close.svg';
+import Loading from './icon-svg/loading';
+import Back from './icon-svg/back';
+import Close from './icon-svg/close';
+import DefautError from './icon-svg/defautError';
+import Warning from './icon-svg/Warning';
 
-export { loadingIcon, backIcon, closeIcon };
+export { Loading, Back, Close, DefautError, Warning };
