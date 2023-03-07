@@ -1,6 +1,7 @@
 @import '../common.scss';
 $cardmin: calc(var(--card-minLength, 3) * 20px);
 $cardmax: calc(var(--card-maxLength, 100%) * 20px);
+$cardText: var(--card-expandText);
 .#{$prefix}-card {
   position: relative;
   //解决兼容问题
@@ -151,7 +152,7 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
           transform: translateX(-100%);
         }
         &:after {
-          content: var(--card-expandText, '展开');
+          content: var($cardText, '展开');
         }
       }
       .#{$prefix}-card-body-exp {
