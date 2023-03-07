@@ -1,54 +1,40 @@
 @import '../common.scss';
 .#{$prefix}-skeleton {
+  //position: absolute;
+  //z-index: 99;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  .#{$prefix}-skeleton-head {
-    position: relative;
-    .#{$prefix}-skeleton-title {
-      background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
-      width: 40%;
-      min-width: 100px;
-      height: 1rem;
-      list-style: none;
-      background-size: 400% 100%;
-      margin-top: 0.6rem;
-      background-position: 100% 50%;
-      animation: skeleton-loading 1.4s ease infinite;
+  flex-wrap: unwrap;
+
+  .#{$prefix}-skeleton-content {
+    padding: 10px;
+    width: 100%;
+    //width: 250px;
+    //width: 250px;
+    .#{$prefix}-skeleton-head {
+      //position: relative;
+      .#{$prefix}-skeleton-title {
+        margin: 0 auto;
+        width: 40%;
+        min-width: 80px;
+        height: 1rem;
+      }
     }
   }
-  .#{$prefix}-skeleton-content {
-    padding: 20px;
-    width: 100%;
-    //width: 250px;
-    //width: 250px;
-  }
   .#{$prefix}-skeleton-avatar {
+    width: 35px;
+    height: 35px;
     overflow: hidden;
     border-radius: 50%;
-    background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
-    width: 100%;
-    min-width: 100px;
-    height: 0.6rem;
-    list-style: none;
-    background-size: 400% 100%;
-    margin-top: 0.6rem;
-    background-position: 100% 50%;
-    animation: skeleton-loading 1.4s ease infinite;
   }
 }
 li {
-  background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  list-style: none;
   width: 100%;
   min-width: 100px;
   height: 0.6rem;
-  list-style: none;
-  background-size: 400% 100%;
-  margin-top: 0.6rem;
-  background-position: 100% 50%;
-  animation: skeleton-loading 1.4s ease infinite;
   &:first-child {
     width: 40%;
   }
@@ -56,7 +42,14 @@ li {
     width: 70%;
   }
 }
+.#{$prefix}-skeleton-loading {
+  background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
 
+  background-size: 400% 100%;
+  margin-top: 0.6rem;
+  background-position: 100% 50%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
 @keyframes skeleton-loading {
   0% {
     background-position: 100% 50%;

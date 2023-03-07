@@ -32,7 +32,20 @@ export interface SkeletonProps extends PivotDesignProps {
    * @default 4
    */
   row?: number;
+  /**
+   * @version 1.0.0
+   * @description 标题
+   * @default false
+   */
+  title?: boolean;
+  /**
+   * @version 1.0.0
+   * @description 块状
+   * @default false
+   */
+  bulk?: boolean;
 }
+
 interface CardCssTokens {
   /**
    * @version 1.0.0
