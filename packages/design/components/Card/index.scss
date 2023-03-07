@@ -151,7 +151,7 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
           transform: translateX(-100%);
         }
         &:after {
-          content: var(--card-expandText, '展开');
+          content: '展开';
         }
       }
       .#{$prefix}-card-body-exp {
@@ -167,7 +167,7 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
         visibility: hidden;
       }
       .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text .#{$prefix}-card-body-btn::after {
-        content: var(--card-collapseText, '收起');
+        content: '收起';
       }
     }
   }

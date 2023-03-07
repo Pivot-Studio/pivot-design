@@ -100,16 +100,4 @@ interface CardCssTokens {
    * @default 3
    */
   '--card-minLength'?: number;
-  /**
-   * @version 1.0.0
-   * @description 展开按钮文字
-   * @default 展开
-   */
-  '--card-expandText'?: string;
-  /**
-   * @version 1.0.0
-   * @description 收起按钮文字
-   * @default 收起
-   */
-  '--card-collapseText'?: string;
 }
