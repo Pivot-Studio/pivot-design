@@ -20,20 +20,12 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-      //   use: 'babel-loader',
-      // },
       {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         oneOf: [
           {
             resourceQuery: /code/, // code后缀，导入为字符串处理
-            use: [
-              {
-                loader: 'raw-loader',
-              },
-            ],
+            type: 'asset/source',
           },
           {
             use: 'babel-loader', // 导入为正常ts，tsx文件
