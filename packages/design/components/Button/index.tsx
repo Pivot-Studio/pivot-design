@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import './index.scss';
 import { debounce } from '../utils/debounce';
 import { throttle } from '../utils/throttle';
+import Icon from '../Icon';
 
 const Button: React.FC<ButtonProps> = (props) => {
   const {
@@ -79,6 +80,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       style={style}
       onClick={(e) => triggerClick(e)}
     >
+      {buttonLoading && <Icon icon="Loading" rotate />}
       {children}
     </button>
   );

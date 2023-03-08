@@ -6,7 +6,7 @@ const Loading: React.FC<any> = (props) => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       p-id="2790"
-      width={ props.size ?? '16'}
+      width={props.size ?? '16'}
       height={props.size ?? '16'}
       fill={props.color ?? 'currentColor'}
     >

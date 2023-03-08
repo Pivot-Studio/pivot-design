@@ -1,12 +1,12 @@
-import { Icon } from 'pivot-design';
+import { Loading } from 'pivot-design-icon';
 import React from 'react';
 
 const App: React.FC = () => {
   return (
     <>
-      <Icon icon="Loading" size="30" style={{ margin: '50px', backgroundColor: '#f5f2f0' }} />
+      <Loading size="30" style={{ margin: '50px', backgroundColor: '#f5f2f0' }} />
 
-      <Icon icon="Loading" size="20" rotate={true} />
+      <Loading size="20" rotate={true} />
     </>
   );
 };

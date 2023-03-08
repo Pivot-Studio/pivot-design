@@ -1,3 +1,4 @@
-export { ButtonProps } from './components/button';
-export { DraggableItemProps } from './components/draggable';
-export { IconProps } from './components/icon';
+export type { ButtonProps } from './components/button';
+export type { DraggableItemProps } from './components/draggable';
+export type { IconProps } from './components/icon';
+export type { InputProps } from './components/input';

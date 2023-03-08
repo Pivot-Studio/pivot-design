@@ -1,8 +1,10 @@
 import Button from './components/Button';
 import Icon from './components/Icon';
+import Input from './components/Input';
+
 export { DraggableItem, DndContext, Sortable, useDraggable } from './components/Draggable';
 export * from './components/hooks';
-export { Button, Icon };
+export { Button, Icon, Input };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();

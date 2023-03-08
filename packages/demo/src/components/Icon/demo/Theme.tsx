@@ -1,15 +1,16 @@
-import { Icon } from 'pivot-design';
+import { Loading } from 'pivot-design-icon';
+
 import React from 'react';
 
 const App: React.FC = () => {
   return (
     <>
-      <Icon theme="primary" icon="Loading" />
-      <Icon theme="secondary" icon="Loading" />
-      <Icon theme="success" icon="Loading" />
-      <Icon theme="info" icon="Loading" />
-      <Icon theme="warning" icon="Loading" />
-      <Icon theme="danger" icon="Loading" />
+      <Loading theme="primary" />
+      <Loading theme="secondary" />
+      <Loading theme="success" />
+      <Loading theme="info" />
+      <Loading theme="warning" />
+      <Loading theme="danger" />
     </>
   );
 };

@@ -36,6 +36,7 @@ importers:
       eslint-import-resolver-alias: ^1.1.2
       html-webpack-plugin: ^5.5.0
       pivot-design: workspace:*
+      pivot-design-icon: workspace:*
       prettier: ^2.7.1
       prismjs: ^1.29.0
       raw-loader: ^4.0.2
@@ -53,6 +54,7 @@ importers:
       '@mdx-js/loader': 2.1.5_webpack@5.74.0
       babel-plugin-prismjs: 2.1.0_prismjs@1.29.0
       pivot-design: link:../design
+      pivot-design-icon: link:../design-icon
       prismjs: 1.29.0
       raw-loader: 4.0.2_webpack@5.74.0
       react: 18.2.0
@@ -99,6 +101,23 @@ importers:
       react-svg: 16.1.4_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@types/react': 18.0.21
+      '@types/react-dom': 18.0.9
+      classnames: 2.3.2
+      pivot-design-props: link:../design-props
+
+  packages/design-icon:
+    specifiers:
+      '@types/react': ^18.0.21
+      '@types/react-dom': ^18.0.9
+      classnames: ^2.3.2
+      pivot-design-props: workspace:*
+      react: ^18.2.0
+      react-dom: ^18.2.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    devDependencies:
+      '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
       classnames: 2.3.2
       pivot-design-props: link:../design-props

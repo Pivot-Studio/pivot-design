@@ -1,5 +1,4 @@
-@import '../common.scss';
-
+@import './common.scss';
 @each $key, $val in $pivot-theme-colors {
   .#{$prefix}-icon-#{$key} {
     color: $val;

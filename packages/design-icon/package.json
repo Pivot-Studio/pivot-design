@@ -1,0 +1,22 @@
+{
+  "name": "pivot-design-icon",
+  "version": "0.0.1",
+  "description": "a react component library by Pivot Studio",
+  "main": "index.ts",
+  "scripts": {
+    "watch": "rm -rf ./lib && tsc -w",
+    "build": "rm -rf lib && tsc"
+  },
+  "author": "psfe",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.9",
+    "classnames": "^2.3.2",
+    "pivot-design-props": "workspace:*"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

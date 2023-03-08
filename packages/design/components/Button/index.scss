@@ -1,5 +1,6 @@
 @import '../common.scss';
 .#{$prefix}-button {
+  display: flex;
   cursor: pointer;
   margin: 10px;
   color: var(--Brand-1-100);
@@ -61,8 +62,5 @@
 
   &-loading {
     cursor: auto;
-    &::before {
-      content: '【Loading...】';
-    }
   }
 }

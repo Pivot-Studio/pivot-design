@@ -2,13 +2,14 @@ import { useState } from 'react';
 import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/index.mdx';
 import IconMdx from './src/components/Icon/index.mdx';
+import InputMdx from './src/components/Input/index.mdx';
 
 import Draggable from '@/examples/Draggable';
-import { Button, Icon } from 'pivot-design';
+import { Button, Icon, Input } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
-  const [select, setSelect] = useState('Icon');
+  const [select, setSelect] = useState('Input');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -20,6 +21,9 @@ const App = () => {
         </div>
         <div className={`demo-item ${select === 'Icon' ? 'active' : ''}`} onClick={() => setSelect('Icon')}>
           图标
+        </div>
+        <div className={`demo-item ${select === 'Input' ? 'active' : ''}`} onClick={() => setSelect('Input')}>
+          输入框
         </div>
       </div>
     );
@@ -34,6 +38,7 @@ const App = () => {
         <div className="demo-component">
           {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
           {select === 'Icon' ? <IconMdx components={{ Icon, CodeBlock }} /> : null}
+          {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
 
           {select === 'Draggable' ? <Draggable /> : null}
         </div>
