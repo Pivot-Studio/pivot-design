@@ -1,11 +1,11 @@
 @import '../common.scss';
 
-.input-wrapper {
+.#{$prefix}-input-wrapper {
   display: flex;
   width: 100%;
   margin-bottom: 20px;
   position: relative;
-  .icon-wrapper {
+  .#{$prefix}-icon-wrapper {
     position: absolute;
     height: 100%;
     width: 40px;
@@ -23,16 +23,13 @@
     }
   }
 }
-.icon-wrapper + .input-inner {
+.#{$prefix}-icon-wrapper + .#{$prefix}-input-inner {
   padding-right: 35px;
 }
-.input-inner {
+.#{$prefix}-input-inner {
   width: 100%;
   padding: 15px 30px;
-  // font-family: $input-font-family;
   font-size: 16px;
-  // font-weight: $input-font-weight;
-  // line-height: $input-line-height;
   color: $pivot-gray-700;
   background-color: $pivot-white;
   background-clip: padding-box;
@@ -41,15 +38,12 @@
 
   border-radius: 5px;
 
-  // box-shadow: $input-box-shadow;
   transition: all 100ms ease-out;
   &:hover {
-    // color: $btn-link-hover-color;
     text-decoration: none;
   }
   &:focus {
     color: $pivot-gray-700;
-    // color: #aaa;
     background-color: $pivot-white;
     outline: 0;
   }
@@ -65,8 +59,8 @@
     cursor: not-allowed;
   }
 }
-.input-group-prepend,
-.input-group-append {
+.#{$prefix}-input-group-prepend,
+.#{$prefix}-input-group-append {
   display: flex;
   align-items: center;
   padding: 15px 30px;
@@ -79,17 +73,17 @@
   border: 2px solid $pivot-gray-400;
   border-radius: 5px;
 }
-.input-group {
+.#{$prefix}-input-group {
   padding: 2px;
 }
 
-.input-size-sm .input-inner {
+.#{$prefix}-input-size-sm .#{$prefix}-input-inner {
   padding: 10px 20px;
   font-size: 12px;
   border-radius: 5px;
 }
 
-.input-size-lg .input-inner {
+.#{$prefix}-input-size-lg .#{$prefix}-input-inner {
   padding: 20px 40px;
   font-size: 20px;
   border-radius: 10px;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { PivotDesignProps } from '.';
-//  className, theme = 'primary', icon: iconName = 'Loading', style, size = '16', ossIcon, url, color }
-// type IconTheme = 'primary' |
+
 export interface IconProps extends PivotDesignProps {
   /**
    * @version 1.0.0

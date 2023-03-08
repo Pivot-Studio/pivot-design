@@ -90,6 +90,7 @@ importers:
       '@types/react': ^18.0.21
       '@types/react-dom': ^18.0.9
       classnames: ^2.3.2
+      pivot-design-icon: workspace:*
       pivot-design-props: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -103,6 +104,7 @@ importers:
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.9
       classnames: 2.3.2
+      pivot-design-icon: link:../design-icon
       pivot-design-props: link:../design-props
 
   packages/design-icon:

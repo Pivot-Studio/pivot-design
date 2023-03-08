@@ -1,5 +1,4 @@
 const Loading: React.FC<any> = (props) => {
-  // console.log('color', color);
   return (
     <svg
       viewBox="0 0 1024 1024"

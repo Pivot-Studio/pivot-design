@@ -14,8 +14,7 @@ const Icon: React.FC<IconProps> = (props) => {
     [`${prefix}-icon-rotate`]: rotate,
   });
 
-  return (
-    (url || ossIcon) ?? <ReactSVG src={url ? url : getOssIcon(ossIcon as string)} className={classes} style={style} />
-  );
+  const iconUrl = url ?? getOssIcon(ossIcon as string);
+  return <ReactSVG src={iconUrl} className={classes} style={style} />;
 };
 export default Icon;

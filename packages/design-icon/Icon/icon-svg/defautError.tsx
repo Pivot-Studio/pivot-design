@@ -1,5 +1,4 @@
 const DefautError: React.FC<any> = (props) => {
-  // console.log('color', color);
   return (
     <svg viewBox="0 0 1025 1024" version="1.1" p-id="2753" width="16" height="16">
       <path
