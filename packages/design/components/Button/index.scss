@@ -1,12 +1,25 @@
 @import "../common.scss";
 .#{$prefix}-button {
   cursor: pointer;
-  padding: 20px 140px;
-  border-radius: 15px;
-  font-size: 16px;
+  margin: 10px;
   color: var(--Brand-1-100);
   &:not(&-disabled):active {
     opacity: 0.7;
+  }
+  &-small {
+    font-size: 14px;
+    padding: 10px 60px;
+    border-radius: 12px;
+  }
+  &-middle {
+    font-size: 16px;
+    padding: 15px 100px;
+    border-radius: 15px;
+  }
+  &-large {
+    font-size: 16px;
+    padding: 20px 140px;
+    border-radius: 15px;
   }
   &-default {
     border: 1px solid
@@ -66,5 +79,12 @@
 
   &-disabled {
     cursor: no-drop;
+  }
+
+  &-loading {
+    cursor: auto;
+    &::before {
+      content: "【Loading... 】";
+    }
   }
 }

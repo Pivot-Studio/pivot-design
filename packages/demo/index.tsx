@@ -6,7 +6,7 @@ import { Button } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
 const App = () => {
-  const [select, setSelect] = useState('Draggable');
+  const [select, setSelect] = useState('Button');
   const demoSelect = () => {
     return (
       <div className="demo-container">
