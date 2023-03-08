@@ -1,0 +1,18 @@
+@import '../../../common.scss';
+
+.#{$prefix}-sortable-wrap {
+  display: flex;
+  width: 100%;
+  &.__#{$prefix}-sortable-vertical {
+    flex-direction: column;
+  }
+
+  &.__#{$prefix}-sortable-horizen {
+    justify-content: space-around;
+  }
+
+  &.__#{$prefix}-sortable-grid {
+    width: 500px;
+    flex-wrap: wrap;
+  }
+}

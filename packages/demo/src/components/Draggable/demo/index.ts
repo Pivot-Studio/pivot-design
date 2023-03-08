@@ -38,4 +38,22 @@ const App: React.FC = () => (
   <Sortable itemClassName="demo-draggable-item"></Sortable>
 );
 export default App;`,
+  droppable: `import { DndContext, DraggableItem, Droppable } from 'pivot-design'
+import React, { useState } from 'react';
+const onDragEnd = ({ id, isDrop }: { id: string; isDrop: boolean }) => {
+  setParent(isDrop ? id : '');
+};
+const DraggableBlock = () => (
+  <DraggableItem className="demo-draggable-item" id={'A'}>
+    draggable
+  </DraggableItem>
+);
+const [parent, setParent] = useState('');
+const App: React.FC = () => (
+  <DndContext onDragEnd={onDragEnd}>
+    <div style={{ minWidth: '150px', display: 'flex' }}>{parent !== 'A' ? <DraggableBlock /> : null}</div>
+    <Droppable>{parent === 'A' ? <DraggableBlock /> : null}</Droppable>
+  </DndContext> 
+);
+export default App;`,
 };

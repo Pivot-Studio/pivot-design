@@ -3,8 +3,9 @@ import { Coordinate, UniqueIdentifier } from '../../types';
 import { getEventCoordinates } from '../../../utils';
 import { getElementMargin } from '../../utils';
 import Manager from '../../context/manager';
-import { MouseSensorProps } from './types';
+import { Collision, MouseSensorProps } from './types';
 import { getOwnerDocument } from '../../../utils';
+import { MutableRefObject } from 'react';
 
 const EVENTS = {
   start: ['mousedown'],
@@ -12,8 +13,10 @@ const EVENTS = {
   end: ['mouseup'],
 };
 export class MouseSensor {
+  static eventName = 'onMouseDown';
   private windowListeners: Listeners;
   private manager: Manager;
+  private collisions: MutableRefObject<Collision[]>;
   private document!: Document;
   private transform!: Coordinate;
   private activeId!: UniqueIdentifier;
@@ -26,9 +29,10 @@ export class MouseSensor {
     bottom: number;
   } | null;
   constructor(private props: MouseSensorProps) {
-    const { manager, listener } = props;
+    const { manager, listener, collisions } = props;
     this.manager = manager;
     this.windowListeners = listener;
+    this.collisions = collisions;
     this.reset();
     this.handleStart = this.handleStart.bind(this);
     this.handleMove = this.handleMove.bind(this);
@@ -53,7 +57,7 @@ export class MouseSensor {
     // Resolved cursor error when mouse moving over Safari
     this.windowListeners.add('selectstart', (e) => e.preventDefault());
 
-    const activeNodeDescriptor = this.manager.getActiveNode(id);
+    const activeNodeDescriptor = this.manager.getNode(id, 'draggables');
     if (activeNodeDescriptor) {
       const activeNode = activeNodeDescriptor.node.current!;
       this.initOffset = getEventCoordinates(event);
@@ -66,6 +70,15 @@ export class MouseSensor {
         marginRect: this.marginRect,
         clientRect: this.clientRect,
       });
+    }
+
+    // initialize draggables position
+    for (let draggable of this.manager.getAll('draggables')) {
+      if (this.activeId === draggable.id) {
+        continue;
+      }
+      const node = draggable.node.current!;
+      draggable.clientRect = node?.getBoundingClientRect();
     }
   }
   private handleMove(event: MouseEvent) {
@@ -83,7 +96,7 @@ export class MouseSensor {
   private handleEnd(event: Event) {
     if (!this.activeId) return;
     const { onEnd } = this.props;
-    for (let draggable of this.manager.getAll()) {
+    for (let draggable of this.manager.getAll('draggables')) {
       draggable.transform = {
         x: 0,
         y: 0,
@@ -91,8 +104,7 @@ export class MouseSensor {
       draggable.transition = false;
     }
     this.windowListeners.remove('selectstart');
-
-    onEnd({ activeEvent: event, delta: this.transform, id: this.activeId });
+    onEnd({ nativeEvent: event, delta: this.transform, id: this.activeId, isDrop: this.collisions.current.length > 0 });
     this.reset();
   }
   private reset() {

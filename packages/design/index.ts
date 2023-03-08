@@ -1,6 +1,6 @@
 import Button from './components/Button';
-export { DraggableItem, DndContext, Sortable, useDraggable } from './components/Draggable';
-export * from './components/hooks';
+export { DraggableItem, DndContext, Sortable, useDraggable, Droppable } from './components/Draggable';
+// export * from './components/hooks';
 export { Button };
 
 export const arrayMove = (array: any[], from: number, to: number) => {

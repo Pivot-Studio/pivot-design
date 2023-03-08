@@ -16,6 +16,18 @@ export interface DraggableItemProps extends PivotDesignProps {
   index?: number;
   /**
    * @version 1.0.0
+   * @description 列表子项唯一标识
+   * @default undefined
+   */
+  id?: number | string;
+  /**
+   * @version 1.0.0
+   * @description 是否设置拖动点
+   * @default false
+   */
+  handle?: boolean;
+  /**
+   * @version 1.0.0
    * @description 拖动元素相对定位的top偏移值
    * @default undefined
    */

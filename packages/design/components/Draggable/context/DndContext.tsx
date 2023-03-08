@@ -1,12 +1,12 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { MouseSensor } from '../sensors';
-import { DndContextProps } from '../types';
-import { rectSortStrategy } from '../strategies/verticalSortStrategy';
-import { collisionDetection } from '../utils/collisionDetection';
+import { DndContextProps } from './types';
+import { Collision, collisionDetection } from '../utils/collisionDetection';
 import { Listeners } from '../utils/Listener';
 import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, DndContextDescriptor } from './types';
+import { sortableRectify } from '../strategies/SortableRectify';
 
 const defaultSensor = MouseSensor;
 
@@ -21,26 +21,33 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     marginRect: null,
     clientRect: null,
   });
+  const collisionsRef = useRef<Collision[]>([]);
   const listenerRef = useRef(new Listeners(window));
   const newIndexRef = useRef<number>(0);
-  if (activeId && sortable) {
+
+  if (activeId) {
     // TODO: 覆盖功能
+    const coordinates = {
+      x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
+      y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
+    };
     const collisions = collisionDetection({
       activeId,
       manager,
-      coordinates: {
-        x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
-        y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
-      },
+      coordinates,
     });
-    // TODO: sort strategy 适配
-    newIndexRef.current = rectSortStrategy({ manager, transform, activeId, margin: activeRectRef.current.marginRect! });
+    collisionsRef.current = collisions;
+
+    if (sortable) {
+      sortableRectify({ manager, transform, activeId, sortable, newIndexRef, coordinates });
+    }
   }
 
   useEffect(() => {
     const sensorInstance = new Sensor({
       manager,
       listener: listenerRef.current,
+      collisions: collisionsRef,
       onStart: (activeId, activeRect) => {
         const { initOffset, clientRect, marginRect } = activeRect;
         activeRectRef.current = {
@@ -48,6 +55,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
           clientRect,
           marginRect,
         };
+        newIndexRef.current = manager.getNode(activeId, 'draggables')!.index;
         dispatch({
           type: DragActionEnum.ACTIVATED,
           payload: activeId,
@@ -64,7 +72,9 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
           onDragEnd({
             ...event,
             newIndex: newIndexRef.current,
-            oldIndex: manager.getActiveNode(event.id)!.index,
+            oldIndex: manager.getNode(event.id, 'draggables')!.index,
+            id: event.id,
+            isDrop: event.isDrop,
           });
         dispatch({
           type: DragActionEnum.INACTIVATED,
@@ -78,8 +88,9 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
         });
       },
     });
+    // set activate event to binding with clicked element
     setActivator({
-      eventName: 'onMouseDown',
+      eventName: Sensor.eventName,
       handler: sensorInstance.handleStart,
     });
     return () => {
@@ -90,6 +101,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
   const initialContextValue: DndContextDescriptor = {
     ...state,
     dispatch,
+    collisions: collisionsRef,
     sortable,
     activator,
     activeRect: activeRectRef,

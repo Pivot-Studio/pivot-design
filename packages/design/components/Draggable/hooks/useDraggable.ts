@@ -4,16 +4,21 @@ import { DragNode, UniqueIdentifier } from '../types';
 import { useSyntheticListeners } from './useSyntheticListeners';
 import useDndContext from './useDndContext';
 import { setTransform } from '../utils';
+import { useUniqueId } from './useUniqueId';
 
 interface UseDraggableProps {
-  id: UniqueIdentifier;
-  index: number;
+  id?: UniqueIdentifier;
+  index?: number;
 }
 
-export const useDraggable = ({ id, index }: UseDraggableProps) => {
+export const useDraggable = ({ id: propId, index: propsIndex }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
+  const { id: innerId, index: innerIndex } = useUniqueId(propId);
+  const id = innerId;
+  const index = propsIndex ?? innerIndex;
+
   const isDragging = activeId == id;
-  const node = manager.getActiveNode(id);
+  const node = manager.getNode(id, 'draggables');
   const nodeTransform = node?.transform;
   const transition = node?.transition;
   const dragNode = useRef<DragNode>();
@@ -23,13 +28,17 @@ export const useDraggable = ({ id, index }: UseDraggableProps) => {
   }, []);
 
   const attributes = { ...setTransform(nodeTransform), transition: transition ? '300ms' : '' };
-  // TODO: 导致更新两次
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
-      payload: { id, index, node: dragNode },
+      payload: { node: { id, index, node: dragNode }, type: 'draggables' },
     });
-    // manager.push({ id, index, node: dragNode });
+    return () => {
+      dispatch({
+        type: DragActionEnum.REMOVE_NODE,
+        payload: { id, type: 'draggables' },
+      });
+    };
   }, [dispatch, id, index, manager]);
 
   return { isDragging, dragNode, transform, attributes, activeRect, listener, setDragNode: setDragNodeRef };
