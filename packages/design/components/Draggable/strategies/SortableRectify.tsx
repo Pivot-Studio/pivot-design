@@ -1,4 +1,4 @@
-import { Coordinate, UniqueIdentifier } from '../types';
+import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
 import Manager from '../context/manager';
 import { verticalSortStrategy } from './verticalSortStrategy';
 import { horizenSortStrategy } from './horizenSortStrategy';
@@ -9,19 +9,19 @@ interface SortableRectifyProps {
   coordinates: Coordinate;
   activeId: UniqueIdentifier;
   manager: Manager;
-  newIndexRef: MutableRefObject<number>;
+  overNodeRef: MutableRefObject<DraggableNode>;
   sortable: {
     direction: 'vertical' | 'horizen' | 'grid';
   };
 }
 export function sortableRectify(props: SortableRectifyProps) {
-  const { transform, activeId, manager, sortable, newIndexRef, coordinates } = props;
+  const { transform, activeId, manager, sortable, overNodeRef, coordinates } = props;
   const { direction = 'vertical' } = sortable;
   if (direction === 'vertical') {
-    return verticalSortStrategy({ transform, activeId, manager, newIndexRef });
+    return verticalSortStrategy({ transform, activeId, manager, overNodeRef });
   } else if (direction === 'grid') {
-    return gridSortStrategy({ activeId, manager, newIndexRef, coordinates });
+    return gridSortStrategy({ activeId, manager, overNodeRef, coordinates });
   } else {
-    return horizenSortStrategy({ transform, activeId, manager, newIndexRef });
+    return horizenSortStrategy({ transform, activeId, manager, overNodeRef });
   }
 }

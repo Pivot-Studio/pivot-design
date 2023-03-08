@@ -1,6 +1,6 @@
 import { MutableRefObject } from 'react';
 import Manager from '../context/manager';
-import { Coordinate, UniqueIdentifier } from '../types';
+import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
 import { isCollision } from '../utils/collisionDetection';
 import { getRectDelta } from '../utils/getRectDelta';
 
@@ -8,11 +8,11 @@ interface ActiveInfo {
   activeId: UniqueIdentifier;
   manager: Manager;
   coordinates: Coordinate;
-  newIndexRef: MutableRefObject<number>;
+  overNodeRef: MutableRefObject<DraggableNode>;
 }
 
 export const gridSortStrategy = (activeInfo: ActiveInfo) => {
-  const { activeId, manager, newIndexRef, coordinates } = activeInfo;
+  const { activeId, manager, overNodeRef, coordinates } = activeInfo;
   const activeNode = manager.getNode(activeId, 'draggables')!;
   const activeNodeIndex = activeNode.index;
   const draggables = manager.getAll('draggables');
@@ -23,10 +23,10 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
   }
   // i 是 以位置计算，碰撞位置的索引
   for (let i = 0; i < rectDraggables.length; i++) {
-    if (i !== newIndexRef.current && isCollision(rectDraggables[i]!, coordinates)) {
-      if (newIndexRef.current < i) {
+    if (i !== overNodeRef.current.index && isCollision(rectDraggables[i]!, coordinates)) {
+      if (overNodeRef.current.index < i) {
         // 从前往后
-        for (let j = newIndexRef.current; j < i; j++) {
+        for (let j = overNodeRef.current.index; j < i; j++) {
           const draggable = draggables[j]!;
           if (j < activeNodeIndex) {
             // 先从后往前，再从前往后的时候
@@ -36,9 +36,9 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
             nextNode.transform = getRectDelta('grid', 1, draggable.clientRect, nextNode.clientRect);
           }
         }
-      } else if (newIndexRef.current > i) {
+      } else if (overNodeRef.current.index > i) {
         // 从后往前
-        for (let j = i; j < newIndexRef.current; j++) {
+        for (let j = i; j < overNodeRef.current.index; j++) {
           const draggable = draggables[j]!;
           if (j >= activeNodeIndex) {
             const nextNode = draggables[j + 1]!;
@@ -49,8 +49,7 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
           }
         }
       }
-      newIndexRef.current = i;
-
+      overNodeRef.current = draggables.find((draggable) => draggable.index === i) as DraggableNode;
       break;
     }
   }

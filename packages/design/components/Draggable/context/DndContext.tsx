@@ -7,6 +7,7 @@ import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, DndContextDescriptor } from './types';
 import { sortableRectify } from '../strategies/SortableRectify';
+import { DraggableNode } from '../types';
 
 const defaultSensor = MouseSensor;
 
@@ -23,7 +24,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
   });
   const collisionsRef = useRef<Collision[]>([]);
   const listenerRef = useRef(new Listeners(window));
-  const newIndexRef = useRef<number>(0);
+  const overNodeRef = useRef<DraggableNode>();
 
   if (activeId) {
     // TODO: 覆盖功能
@@ -39,7 +40,8 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     collisionsRef.current = collisions;
 
     if (sortable) {
-      sortableRectify({ manager, transform, activeId, sortable, newIndexRef, coordinates });
+      // todo
+      sortableRectify({ manager, transform, activeId, sortable, overNodeRef, coordinates });
     }
   }
 
@@ -55,7 +57,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
           clientRect,
           marginRect,
         };
-        newIndexRef.current = manager.getNode(activeId, 'draggables')!.index;
+        overNodeRef.current = manager.getNode(activeId, 'draggables')!;
         dispatch({
           type: DragActionEnum.ACTIVATED,
           payload: activeId,
@@ -71,8 +73,8 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
         onDragEnd &&
           onDragEnd({
             ...event,
-            newIndex: newIndexRef.current,
-            oldIndex: manager.getNode(event.id, 'draggables')!.index,
+            overNode: overNodeRef.current!,
+            activeNode: manager.getNode(event.id, 'draggables')!,
             id: event.id,
             isDrop: event.isDrop,
           });

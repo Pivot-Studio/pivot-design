@@ -9,8 +9,8 @@ import './Sortable.scss';
 export function Sortable(props: any) {
   const { items: initialItems, itemClassName, direction } = props;
   const [items, setItems] = useState<ReactNode[]>(() => initialItems ?? [1, 2, 3, 4, 5]);
-  const reorderItems = ({ newIndex, oldIndex }: DragEndEvent) => {
-    setItems(arrayMove(items, oldIndex, newIndex));
+  const reorderItems = ({ activeNode, overNode }: DragEndEvent) => {
+    setItems(arrayMove(items, activeNode.index, overNode.index));
   };
   // TODO：container的用户自定义
   return (

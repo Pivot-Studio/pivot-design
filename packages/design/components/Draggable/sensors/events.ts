@@ -1,4 +1,4 @@
-import { Coordinate } from '../types';
+import { Coordinate, DraggableNode } from '../types';
 
 export interface DragEvent {
   nativeEvent: Event;
@@ -10,7 +10,7 @@ export interface internalDragEndEvent extends DragEvent {
 }
 export interface DragEndEvent extends DragEvent {
   id: number | string;
-  newIndex: number;
-  oldIndex: number;
+  activeNode: DraggableNode;
+  overNode: DraggableNode;
   isDrop: boolean;
 }
