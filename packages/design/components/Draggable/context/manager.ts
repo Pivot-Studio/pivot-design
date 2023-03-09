@@ -27,7 +27,11 @@ export default class Manager {
     };
   }
   getAll(key: 'draggables' | 'droppables') {
-    return this.nodes[key];
+    const nodes = this.nodes[key];
+    if (nodes[0]?.data && nodes[0].data.current?.['sortable']) {
+      return nodes.sort((a, b) => a.data.current!['sortable'].index - b.data.current!['sortable'].index);
+    }
+    return nodes;
   }
   getNode(id: UniqueIdentifier, key: 'draggables' | 'droppables') {
     const nodes = this.nodes[key];

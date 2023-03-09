@@ -8,10 +8,10 @@ import { overlayStyle } from '../../utils';
 import Handle from '../Handle/Handle';
 import { useSortable } from '../../hooks/useSortable';
 
-// TODO: 慢慢改吧，顺便sortStrategy那里也改成manager.get（droppable）
-function SortableItem(props: DraggableItemProps) {
-  const { className, children, id, index, top, left, handle = false } = props;
+function SortableItem(props: any) {
+  const { className, children, id, index, handle = false } = props;
   const { setSortNode, isDragging, listener, activeRect, attributes, transform } = useSortable({ id, index });
+
   return (
     <>
       <div
@@ -20,7 +20,7 @@ function SortableItem(props: DraggableItemProps) {
           [`__${prefix}_dragging`]: isDragging,
           [`__${prefix}_handle`]: handle,
         })}
-        style={{ top, left, ...attributes }}
+        style={{ ...attributes }}
         {...(handle ? {} : listener)}
       >
         {children}

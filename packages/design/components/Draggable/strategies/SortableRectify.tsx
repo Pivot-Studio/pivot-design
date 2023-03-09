@@ -1,4 +1,4 @@
-import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
+import { Coordinate, Data, UniqueIdentifier } from '../types';
 import Manager from '../context/manager';
 import { verticalSortStrategy } from './verticalSortStrategy';
 import { horizenSortStrategy } from './horizenSortStrategy';
@@ -9,7 +9,7 @@ interface SortableRectifyProps {
   coordinates: Coordinate;
   activeId: UniqueIdentifier;
   manager: Manager;
-  overNodeRef: MutableRefObject<DraggableNode>;
+  overNodeRef: MutableRefObject<Data>;
   sortable: {
     direction: 'vertical' | 'horizen' | 'grid';
   };

@@ -1,21 +1,23 @@
 import { MutableRefObject } from 'react';
 import Manager from '../context/manager';
-import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
+import { Coordinate, Data, UniqueIdentifier } from '../types';
 import { getRectDelta } from '../utils/getRectDelta';
+import { SortableData } from './types';
 
 interface ActiveInfo {
   activeId: UniqueIdentifier;
   manager: Manager;
   transform: Coordinate;
-  overNodeRef: MutableRefObject<DraggableNode>;
+  overNodeRef: MutableRefObject<Data>;
 }
 
 export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
   const { activeId, manager, transform, overNodeRef } = activeInfo;
   const activeNode = manager.getNode(activeId, 'draggables')!;
   const activeNodeRect = activeNode.clientRect!;
-  const activeNodeIndex = activeNode.index;
-  overNodeRef.current = activeNode;
+  const activeNodeData = activeNode.data as MutableRefObject<SortableData>;
+  const activeNodeIndex = activeNodeData.current.sortable.index;
+  overNodeRef.current = activeNodeData.current;
 
   for (let draggable of manager.getAll('draggables')) {
     const { id } = draggable;
@@ -23,9 +25,10 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
 
     draggable.transform = { x: 0, y: 0 };
     draggable.transition = true;
-    const targetIndex = draggable.index;
+    const draggableData = draggable.data as MutableRefObject<SortableData>;
+    const targetIndex = draggableData.current.sortable.index;
     if (
-      activeNode.index < targetIndex &&
+      activeNodeIndex < targetIndex &&
       activeNodeRect.top + activeNodeRect.height / 2 + transform.y > draggable.clientRect!.top
     ) {
       draggable.transform = getRectDelta(
@@ -34,9 +37,9 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
         activeNodeRect,
         draggable.clientRect
       );
-      overNodeRef.current = draggable;
+      overNodeRef.current = draggableData.current;
     } else if (
-      activeNode.index > targetIndex &&
+      activeNodeIndex > targetIndex &&
       activeNodeRect.top + transform.y < draggable.clientRect!.top + draggable.clientRect!.height / 2
     ) {
       draggable.transform = getRectDelta(
@@ -45,8 +48,8 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
         activeNodeRect,
         draggable.clientRect
       );
-      if (overNodeRef.current.index === activeNode.index) {
-        overNodeRef.current = draggable;
+      if (overNodeRef.current['sortable'].index === activeNodeIndex) {
+        overNodeRef.current = draggableData.current;
       }
     }
   }

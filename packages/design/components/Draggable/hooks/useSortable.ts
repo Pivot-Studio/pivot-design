@@ -1,24 +1,26 @@
-import { UniqueIdentifier } from '../types';
-import { useUniqueId } from './useUniqueId';
+import { UniqueIdentifier, Data } from '../types';
 import { useDraggable } from './useDraggable';
 import { useDroppable } from './useDroppable';
 import { useCombinedRefs } from './useCombinedRefs';
+import { useMemo } from 'react';
+import { SortableData } from '../strategies/types';
 
 interface UseSortableProps {
-  id?: UniqueIdentifier;
+  id: UniqueIdentifier;
   index?: number;
 }
-
-export const useSortable = ({ id: propId, index: propsIndex }: UseSortableProps) => {
-  const { id: innerId, index: innerIndex } = useUniqueId(propId);
-  const id = innerId;
-  const index = propsIndex ?? innerIndex;
+// todo
+export const useSortable = ({ id, index, containerId, items }: any) => {
+  const data = useMemo<SortableData & Data>(
+    () => ({ sortable: { containerId, index, items } }),
+    [containerId, index, items]
+  );
 
   const { isDragging, setDragNode, listener, transform, attributes, activeRect } = useDraggable({
-    index,
     id,
+    data,
   });
-  const { setDropNode } = useDroppable({ index, id });
+  const { setDropNode } = useDroppable({ id, data });
   const setSortNode = useCombinedRefs(setDragNode, setDropNode);
   return {
     isDragging,

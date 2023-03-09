@@ -10,7 +10,9 @@ export function Sortable(props: any) {
   const { items: initialItems, itemClassName, direction } = props;
   const [items, setItems] = useState<ReactNode[]>(() => initialItems ?? [1, 2, 3, 4, 5]);
   const reorderItems = ({ activeNode, overNode }: DragEndEvent) => {
-    setItems(arrayMove(items, activeNode.index, overNode.index));
+    const activeSortable = activeNode && activeNode.current && activeNode.current['sortable'];
+    const overSortable = overNode && overNode.current && overNode.current['sortable'];
+    setItems((items) => arrayMove(items, activeSortable.index, overSortable.index));
   };
   // TODO：container的用户自定义
   return (
@@ -24,7 +26,7 @@ export function Sortable(props: any) {
       >
         {items.map((item, index) => {
           return (
-            <SortableItem className={itemClassName} index={index} key={index}>
+            <SortableItem className={itemClassName} index={index} key={index} id={item}>
               {item}
             </SortableItem>
           );

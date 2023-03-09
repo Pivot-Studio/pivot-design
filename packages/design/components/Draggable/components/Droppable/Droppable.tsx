@@ -4,10 +4,9 @@ import { useDroppable } from '../../hooks/useDroppable';
 import './Droppable.scss';
 
 export function Droppable(props: any) {
-  const { className, children, index, top, left, id } = props;
+  const { className, children, top, left } = props;
   const { setDropNode, attributes, over } = useDroppable({
-    index,
-    id,
+    id: 'droppable',
   });
 
   return (

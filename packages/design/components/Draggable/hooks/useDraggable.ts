@@ -1,21 +1,18 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
-import { DragNode, UniqueIdentifier } from '../types';
+import { Data, DragNode, UniqueIdentifier } from '../types';
 import { useSyntheticListeners } from './useSyntheticListeners';
 import useDndContext from './useDndContext';
 import { setTransform } from '../utils';
-import { useUniqueId } from './useUniqueId';
+import { useLatestValue } from './useLastValue';
 
 interface UseDraggableProps {
-  id?: UniqueIdentifier;
-  index?: number;
+  id: UniqueIdentifier;
+  data?: Data;
 }
 
-export const useDraggable = ({ id: propId, index: propsIndex }: UseDraggableProps) => {
+export const useDraggable = ({ id, data }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
-  const { id: innerId, index: innerIndex } = useUniqueId(propId);
-  const id = innerId;
-  const index = propsIndex ?? innerIndex;
 
   const isDragging = activeId == id;
   const node = manager.getNode(id, 'draggables');
@@ -26,12 +23,14 @@ export const useDraggable = ({ id: propId, index: propsIndex }: UseDraggableProp
   const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dragNode.current = currentNode as DragNode;
   }, []);
+  const dataRef = useLatestValue({ id, ...data });
 
   const attributes = { ...setTransform(nodeTransform), transition: transition ? '300ms' : '' };
+
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
-      payload: { node: { id, index, node: dragNode }, type: 'draggables' },
+      payload: { node: { id, node: dragNode, data: dataRef }, type: 'draggables' },
     });
     return () => {
       dispatch({
@@ -39,7 +38,7 @@ export const useDraggable = ({ id: propId, index: propsIndex }: UseDraggableProp
         payload: { id, type: 'draggables' },
       });
     };
-  }, [dispatch, id, index, manager]);
+  }, [dispatch, id, manager, dragNode]);
 
   return { isDragging, dragNode, transform, attributes, activeRect, listener, setDragNode: setDragNodeRef };
 };
