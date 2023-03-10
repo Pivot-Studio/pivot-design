@@ -6,24 +6,22 @@ import SortableItem from '../../components/Draggable/SortableItem';
 import { arrayMove } from '../../utils';
 import { DragEndEvent } from '../../sensors/events';
 import './Sortable.scss';
+
+const ListContainer = ({ children }) => (
+  <div className={classNames(`${prefix}-sortable-wrap`, `__${prefix}-sortable-vertical`)}>{children}</div>
+);
+
 export function Sortable(props: any) {
-  const { items: initialItems, itemClassName, direction } = props;
+  const { items: initialItems, itemClassName, direction, Container = ListContainer } = props;
   const [items, setItems] = useState<ReactNode[]>(() => initialItems ?? [1, 2, 3, 4, 5]);
   const reorderItems = ({ activeNode, overNode }: DragEndEvent) => {
     const activeSortable = activeNode && activeNode.current && activeNode.current['sortable'];
     const overSortable = overNode && overNode.current && overNode.current['sortable'];
     setItems((items) => arrayMove(items, activeSortable.index, overSortable.index));
   };
-  // TODO：container的用户自定义
   return (
     <DndContext sortable={{ direction }} onDragEnd={reorderItems}>
-      <div
-        className={classNames(`${prefix}-sortable-wrap`, {
-          [`__${prefix}-sortable-vertical`]: direction === 'vertical',
-          [`__${prefix}-sortable-horizen`]: direction === 'horizen',
-          [`__${prefix}-sortable-grid`]: direction === 'grid',
-        })}
-      >
+      <Container>
         {items.map((item, index) => {
           return (
             <SortableItem className={itemClassName} index={index} key={index} id={item}>
@@ -31,7 +29,7 @@ export function Sortable(props: any) {
             </SortableItem>
           );
         })}
-      </div>
+      </Container>
     </DndContext>
   );
 }

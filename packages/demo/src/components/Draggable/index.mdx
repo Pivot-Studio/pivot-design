@@ -42,7 +42,11 @@ import demoObj from './demo/index';
 ### 水平方向 Horizen
 
 <CodeBlock line={'1-3'} code={demoObj.verticalSortable}>
-  <Sortable direction="horizen" itemClassName="demo-draggable-item demo-sortable-horizen"></Sortable>
+  <Sortable
+    direction="horizen"
+    itemClassName="demo-draggable-item demo-sortable-horizen"
+    Container={props.HorizenContainer}
+  ></Sortable>
 </CodeBlock>
 
 ### 栅格布局
@@ -51,6 +55,13 @@ import demoObj from './demo/index';
   <Sortable
     items={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
     direction="grid"
+    Container={props.GridContainer}
     itemClassName="demo-draggable-item demo-sortable-grid"
   ></Sortable>
+</CodeBlock>
+
+### 多容器拖拽
+
+<CodeBlock line={'1-3'} code>
+  <MultipleContainer items={{ A: ['A1', 'A2', 'A3'], B: ['B1', 'B2', 'B3'] }} />
 </CodeBlock>
