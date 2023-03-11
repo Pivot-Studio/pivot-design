@@ -1,6 +1,6 @@
 import { Coordinate } from '../../utils/types';
 import Manager from '../context/manager';
-import { UniqueIdentifier } from '../types';
+import { DataRef, UniqueIdentifier } from '../types';
 
 interface CollisionDetectionProps {
   activeId: UniqueIdentifier;
@@ -12,7 +12,7 @@ interface CollisionDetectionProps {
 }
 export interface Collision {
   id: UniqueIdentifier;
-  index: number;
+  data: DataRef;
   clientRect: DOMRect;
 }
 
@@ -38,7 +38,7 @@ export const collisionDetection = (props: CollisionDetectionProps): Collision[] 
     const { clientRect } = droppable;
 
     if (isCollision(clientRect, coordinates)) {
-      collisions.push({ id: droppable.id, index: droppable.index, clientRect });
+      collisions.push({ id: droppable.id, data: droppable.data, clientRect });
     }
   }
   return collisions;

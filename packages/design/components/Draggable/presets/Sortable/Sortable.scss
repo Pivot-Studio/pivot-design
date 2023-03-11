@@ -16,3 +16,7 @@
     flex-wrap: wrap;
   }
 }
+.__#{$prefix}_overing {
+  border-color: var(--Gray-80);
+  background-color: red;
+}

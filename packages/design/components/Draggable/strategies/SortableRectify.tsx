@@ -15,10 +15,16 @@ interface SortableRectifyProps {
   };
 }
 export function sortableRectify(props: SortableRectifyProps) {
-  const { transform, activeId, manager, sortable, overNodeRef, coordinates } = props;
+  const { transform, activeId, manager, sortable, overNodeRef, coordinates, collisionsRef } = props;
+  let overContainerId;
+  for (let collision of collisionsRef.current) {
+    if (collision.data.current['sortable'].type === 'container') {
+      overContainerId = collision.id;
+    }
+  }
   const { direction = 'vertical' } = sortable;
   if (direction === 'vertical') {
-    return verticalSortStrategy({ transform, activeId, manager, overNodeRef });
+    return verticalSortStrategy({ transform, activeId, manager, overNodeRef, overContainerId });
   } else if (direction === 'grid') {
     return gridSortStrategy({ activeId, manager, overNodeRef, coordinates });
   } else {

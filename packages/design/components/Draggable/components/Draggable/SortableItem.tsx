@@ -9,8 +9,12 @@ import Handle from '../Handle/Handle';
 import { useSortable } from '../../hooks/useSortable';
 
 function SortableItem(props: any) {
-  const { className, children, id, index, handle = false } = props;
-  const { setSortNode, isDragging, listener, activeRect, attributes, transform } = useSortable({ id, index });
+  const { className, children, id, containerId, index, handle = false } = props;
+  const { setSortNode, isDragging, listener, activeRect, attributes, transform } = useSortable({
+    id,
+    index,
+    containerId,
+  });
 
   return (
     <>

@@ -1,5 +1,13 @@
 import DraggableMdx from '../../components/Draggable/index.mdx';
-import { DraggableItem, Droppable, arrayMove, DndContext, Sortable, MultipleContainer } from 'pivot-design';
+import {
+  DraggableItem,
+  Droppable,
+  arrayMove,
+  DndContext,
+  Sortable,
+  MultipleContainer,
+  useDroppable,
+} from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import { useState } from 'react';
 
@@ -25,10 +33,23 @@ const Draggable = () => {
   };
   const reorderItems = (oldIndex: number, newIndex: number) =>
     setItems((items) => arrayMove(items, oldIndex, newIndex));
-  const HorizenContainer = ({ children }) => (
-    <div className="PIVOT-sortable-wrap __PIVOT-sortable-horizen">{children}</div>
-  );
-  const GridContainer = ({ children }) => <div className="PIVOT-sortable-wrap __PIVOT-sortable-grid">{children}</div>;
+
+  const HorizenContainer = ({ children, id }) => {
+    const { setDropNode } = useDroppable({ id, data: { sortable: { type: 'container' } } });
+    return (
+      <div ref={setDropNode} className="PIVOT-sortable-wrap __PIVOT-sortable-horizen">
+        {children}
+      </div>
+    );
+  };
+  const GridContainer = ({ children, id }) => {
+    const { setDropNode } = useDroppable({ id, data: { sortable: { type: 'container' } } });
+    return (
+      <div ref={setDropNode} className="PIVOT-sortable-wrap __PIVOT-sortable-grid">
+        {children}
+      </div>
+    );
+  };
   return (
     <DraggableMdx
       reorderItems={reorderItems}

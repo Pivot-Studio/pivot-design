@@ -28,10 +28,14 @@ export default class Manager {
   }
   getAll(key: 'draggables' | 'droppables') {
     const nodes = this.nodes[key];
-    if (nodes[0]?.data && nodes[0].data.current?.['sortable']) {
+    if (key === 'draggables') {
       return nodes.sort((a, b) => a.data.current!['sortable'].index - b.data.current!['sortable'].index);
     }
     return nodes;
+  }
+  getContainerNode(id: UniqueIdentifier) {
+    const nodes = [...this.nodes['draggables']];
+    return nodes.filter((n) => n.data.current!['sortable'].containerId === id);
   }
   getNode(id: UniqueIdentifier, key: 'draggables' | 'droppables') {
     const nodes = this.nodes[key];

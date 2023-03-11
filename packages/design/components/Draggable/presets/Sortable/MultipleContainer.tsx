@@ -1,8 +1,30 @@
+import classNames from 'classnames';
+import { DndContext } from '../../context/DndContext';
 import { useState } from 'react';
 import { prefix } from '../../../constants';
+import { useDroppable } from '../../hooks/useDroppable';
 import { UniqueIdentifier } from '../../types';
 import { Sortable } from './Sortable';
 import './Sortable.scss';
+import SortableItem from '../../components/Draggable/SortableItem';
+
+function DroppableContainer(props: any) {
+  const { id, children } = props;
+  const { setDropNode, attributes, over } = useDroppable({ id, data: { sortable: { type: 'container' } } });
+
+  return (
+    <div
+      className={classNames(`${prefix}-sortable-wrap`, `__${prefix}-sortable-vertical`, {
+        [`__${prefix}_overing`]: over,
+      })}
+      style={{ ...attributes }}
+      ref={setDropNode}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function MultipleContainer(props: any) {
   const { items: initialItems } = props;
   const [items, setItems] = useState(
@@ -13,12 +35,18 @@ export function MultipleContainer(props: any) {
       }
   );
   const [containers, setContainers] = useState(Object.keys(items) as UniqueIdentifier[]);
-  // todo: 给Sortable 传一个DroppableContainer
+  // todo: 给Sortable 传一个DroppableContainer,通过判断containerId来去执行动画算法
   return (
-    <div className={`${prefix}-sortable-wrap`}>
+    <DndContext sortable={{ direction: 'vertical' }}>
       {containers.map((containerId) => (
-        <Sortable items={items[containerId]} direction="vertical" />
+        <DroppableContainer id={containerId}>
+          {items[containerId].map((item, index) => (
+            <SortableItem index={index} key={index} id={item} containerId={containerId}>
+              {item}
+            </SortableItem>
+          ))}
+        </DroppableContainer>
       ))}
-    </div>
+    </DndContext>
   );
 }

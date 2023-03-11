@@ -4,6 +4,7 @@ export {
   DndContext,
   Sortable,
   useDraggable,
+  useDroppable,
   Droppable,
   MultipleContainer,
 } from './components/Draggable';

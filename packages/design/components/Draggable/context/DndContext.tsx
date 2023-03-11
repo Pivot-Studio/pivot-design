@@ -39,7 +39,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     collisionsRef.current = collisions;
 
     if (sortable) {
-      sortableRectify({ manager, transform, activeId, sortable, overNodeRef, coordinates });
+      sortableRectify({ manager, transform, activeId, sortable, overNodeRef, coordinates, collisionsRef });
     }
   }
 
@@ -86,6 +86,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
             y: 0,
           },
         });
+        collisionsRef.current = [];
       },
     });
     // set activate event to binding with clicked element
