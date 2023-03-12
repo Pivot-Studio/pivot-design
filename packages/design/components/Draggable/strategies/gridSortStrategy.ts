@@ -18,8 +18,9 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
   const activeNodeData = activeNode.data as MutableRefObject<SortableData>;
   const activeNodeIndex = activeNodeData.current.sortable.index;
   const draggables = manager.getAll('draggables');
-  const rectDraggables = manager.getAll('draggables').map((draggable) => draggable.clientRect);
+  const rectDraggables = manager.getAll('draggables').map((draggable) => draggable.clientRect?.current);
   for (let draggable of draggables) {
+    if (draggable.id === activeId) continue;
     draggable.transition = true;
   }
 
@@ -35,7 +36,7 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
             draggable.transform = { x: 0, y: 0 };
           } else {
             const nextNode = draggables[j + 1]!;
-            nextNode.transform = getRectDelta('grid', 1, draggable.clientRect, nextNode.clientRect);
+            nextNode.transform = getRectDelta('grid', 1, draggable.clientRect?.current, nextNode.clientRect?.current);
           }
         }
       } else if (overNodeRef.current['sortable'].index > i) {
@@ -47,7 +48,7 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
             nextNode.transform = { x: 0, y: 0 };
           } else {
             const nextNode = draggables[j + 1]!;
-            draggable.transform = getRectDelta('grid', 1, nextNode.clientRect, draggable.clientRect);
+            draggable.transform = getRectDelta('grid', 1, nextNode.clientRect?.current, draggable.clientRect?.current);
           }
         }
       }

@@ -58,11 +58,13 @@ export class MouseSensor {
     this.windowListeners.add('selectstart', (e) => e.preventDefault());
 
     const activeNodeDescriptor = this.manager.getNode(id, 'draggables');
+
     if (activeNodeDescriptor) {
       const activeNode = activeNodeDescriptor.node.current!;
       this.initOffset = getEventCoordinates(event);
       this.clientRect = activeNode.getBoundingClientRect();
       this.marginRect = getElementMargin(activeNode);
+      // activeNodeDescriptor.clientRect = this.clientRect;
 
       onStart(id, {
         initOffset: this.initOffset,
@@ -70,15 +72,6 @@ export class MouseSensor {
         clientRect: this.clientRect,
       });
     }
-    //initialize draggables position
-    // for (let draggable of this.manager.getAll('draggables')) {
-    //   if (this.activeId === draggable.id) {
-    //     continue;
-    //   }
-    //   const node = draggable.node.current!;
-    //   draggable.clientRect = node?.getBoundingClientRect();
-    //   // console.log('++++++++++++++++', draggable.id, draggable.clientRect);
-    // }
   }
   private handleMove(event: MouseEvent) {
     if (!this.activeId) return;

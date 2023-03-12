@@ -23,7 +23,7 @@ export type DraggableNode = {
   data: DataRef;
   node: MutableRefObject<DragNode | undefined>;
   // node position information
-  clientRect?: DOMRect;
+  clientRect?: MutableRefObject<DOMRect | undefined>;
   transform?: Coordinate;
   transition?: boolean;
 };

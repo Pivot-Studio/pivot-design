@@ -1,6 +1,6 @@
 import { MutableRefObject } from 'react';
 import Manager from '../context/manager';
-import { Coordinate, Data, DraggableNode, UniqueIdentifier } from '../types';
+import { Coordinate, Data, UniqueIdentifier } from '../types';
 import { getRectDelta } from '../utils/getRectDelta';
 import { SortableData } from './types';
 
@@ -14,7 +14,7 @@ interface ActiveInfo {
 export const horizenSortStrategy = (activeInfo: ActiveInfo) => {
   const { activeId, manager, transform, overNodeRef } = activeInfo;
   const activeNode = manager.getNode(activeId, 'draggables')!;
-  const activeNodeRect = activeNode.clientRect!;
+  const activeNodeRect = activeNode.clientRect?.current!;
   const activeNodeData = activeNode.data as MutableRefObject<SortableData>;
   const activeNodeIndex = activeNodeData.current.sortable.index;
   overNodeRef.current = activeNodeData.current;
@@ -29,24 +29,24 @@ export const horizenSortStrategy = (activeInfo: ActiveInfo) => {
     const targetIndex = draggableData.current.sortable.index;
     if (
       activeNodeIndex < targetIndex &&
-      activeNodeRect.left + activeNodeRect.width / 2 + transform.x > draggable.clientRect!.left
+      activeNodeRect.left + activeNodeRect.width / 2 + transform.x > draggable.clientRect!.current!.left
     ) {
       draggable.transform = getRectDelta(
         'horizen',
         Math.abs(activeNodeIndex - targetIndex),
         activeNodeRect,
-        draggable.clientRect
+        draggable.clientRect?.current
       );
       overNodeRef.current = draggableData.current;
     } else if (
       activeNodeIndex > targetIndex &&
-      activeNodeRect.left + transform.x < draggable.clientRect!.left + draggable.clientRect!.width / 2
+      activeNodeRect.left + transform.x < draggable.clientRect!.current!.left + draggable.clientRect!.current!.width / 2
     ) {
       draggable.transform = getRectDelta(
         'horizen',
         Math.abs(activeNodeIndex - targetIndex),
         activeNodeRect,
-        draggable.clientRect
+        draggable.clientRect?.current
       );
       if (overNodeRef.current['sortable'].index === activeNodeIndex) {
         overNodeRef.current = draggableData.current;

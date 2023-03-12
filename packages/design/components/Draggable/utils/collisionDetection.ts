@@ -34,8 +34,9 @@ export const collisionDetection = (props: CollisionDetectionProps): Collision[] 
     }
     // inactive droppable node
     const node = droppable.node.current!;
-    droppable.clientRect = node?.getBoundingClientRect();
-    const { clientRect } = droppable;
+    // droppable.clientRect = node?.getBoundingClientRect();
+    // const { clientRect } = droppable;
+    const clientRect = node.getBoundingClientRect();
 
     if (isCollision(clientRect, coordinates)) {
       collisions.push({ id: droppable.id, data: droppable.data, clientRect });

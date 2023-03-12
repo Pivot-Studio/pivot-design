@@ -16,7 +16,7 @@ export const useSortable = ({ id, index, containerId, items }: any) => {
     [containerId, index, items]
   );
 
-  const { isDragging, setDragNode, listener, transform, attributes, activeRect } = useDraggable({
+  const { isDragging, setDragNode, listener, transform, attributes } = useDraggable({
     id,
     data,
   });
@@ -27,7 +27,6 @@ export const useSortable = ({ id, index, containerId, items }: any) => {
     setSortNode,
     listener,
     transform,
-    activeRect,
     attributes,
   };
 };

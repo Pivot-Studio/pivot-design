@@ -13,7 +13,7 @@ interface UseDraggableProps {
 
 export const useDraggable = ({ id, data }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
-
+  const rect = useRef<DOMRect>();
   const isDragging = activeId == id;
   const node = manager.getNode(id, 'draggables');
   const nodeTransform = node?.transform;
@@ -25,7 +25,14 @@ export const useDraggable = ({ id, data }: UseDraggableProps) => {
   }, []);
   const dataRef = useLatestValue({ id, ...data });
 
-  const attributes = { ...setTransform(nodeTransform), transition: transition ? '300ms' : '' };
+  const attributes = {
+    ...setTransform(nodeTransform),
+    ...(isDragging ? setTransform(transform) : {}),
+    transition: transition ? '300ms' : '',
+  };
+  useEffect(() => {
+    rect.current = dragNode.current && dragNode.current.getBoundingClientRect(); // initialize draggables position
+  }, []);
 
   useEffect(() => {
     dispatch({
@@ -35,7 +42,7 @@ export const useDraggable = ({ id, data }: UseDraggableProps) => {
           id,
           node: dragNode,
           data: dataRef,
-          clientRect: dragNode.current && dragNode.current.getBoundingClientRect(), // initialize draggables position
+          clientRect: rect,
         },
         type: 'draggables',
       },

@@ -32,7 +32,6 @@ export function DndContext({
   const containerRef = useRef<number | string>('');
   const listenerRef = useRef(new Listeners(window));
   const overNodeRef = useRef<Data>(null as unknown as Data);
-  console.log(1111);
 
   if (activeId) {
     // TODO: 覆盖功能
@@ -64,10 +63,8 @@ export function DndContext({
       });
     }
   }
-  const a = manager.getAll('draggables').map((d) => d.node.current?.getBoundingClientRect());
-  if (a.length === 6) {
-    // console.log(a);
-  }
+  // const a = manager.getNode('A1', 'draggables');
+  // console.log(a?.id, a?.clientRect);
 
   useEffect(() => {
     const sensorInstance = new Sensor({
