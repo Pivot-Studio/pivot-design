@@ -37,7 +37,36 @@ export function MultipleContainer(props: any) {
   const [containers, setContainers] = useState(Object.keys(items) as UniqueIdentifier[]);
   // todo: 给Sortable 传一个DroppableContainer,通过判断containerId来去执行动画算法
   return (
-    <DndContext sortable={{ direction: 'vertical' }}>
+    <DndContext
+      sortable={{ direction: 'vertical' }}
+      onDragMove={({ activeNode, overNode, container: overContainerId }) => {
+        const { id } = activeNode.current;
+        const { overId } = overNode.current;
+        const { containerId } = activeNode.current.sortable;
+        const { index: overIndex } = overNode.current.sortable;
+
+        if (!overContainerId || !containerId) {
+          return;
+        }
+
+        if (overContainerId != containerId) {
+          setItems((items) => {
+            const activeItems = items[containerId];
+            const overItems = items[overContainerId];
+
+            return {
+              ...items,
+              [containerId]: activeItems.filter((i) => i != id),
+              [overContainerId]: [
+                ...overItems.slice(0, overIndex),
+                id,
+                ...overItems.slice(overIndex, overItems.length + 1),
+              ],
+            };
+          });
+        }
+      }}
+    >
       {containers.map((containerId) => (
         <DroppableContainer id={containerId}>
           {items[containerId].map((item, index) => (

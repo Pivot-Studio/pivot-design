@@ -11,10 +11,16 @@ import { Data } from '../types';
 
 const defaultSensor = MouseSensor;
 
-export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd, sortable }: DndContextProps) {
+export function DndContext({
+  children,
+  sensor: Sensor = defaultSensor,
+  onDragMove,
+  onDragEnd,
+  sortable,
+}: DndContextProps) {
   // Avoid multiple contexts using the same state
   const [state, dispatch] = useReducer(reducer, undefined, initialState);
-  const { manager, transform, activeId } = state;
+  const { manager, transform, activeId, container } = state;
   const [activator, setActivator] = useState<Activator | null>(null);
   // origin information on Start
   const activeRectRef: DndContextDescriptor['activeRect'] = useRef({
@@ -23,8 +29,11 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     clientRect: null,
   });
   const collisionsRef = useRef<Collision[]>([]);
+  const containerRef = useRef<number | string>('');
   const listenerRef = useRef(new Listeners(window));
   const overNodeRef = useRef<Data>(null as unknown as Data);
+  console.log(1111);
+
   if (activeId) {
     // TODO: 覆盖功能
     const coordinates = {
@@ -37,10 +46,27 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
       coordinates,
     });
     collisionsRef.current = collisions;
-
-    if (sortable) {
-      sortableRectify({ manager, transform, activeId, sortable, overNodeRef, coordinates, collisionsRef });
+    for (let collision of collisionsRef.current) {
+      if (collision.data.current!['sortable'].type === 'container') {
+        containerRef.current = collision.id;
+      }
     }
+    if (sortable) {
+      sortableRectify({
+        manager,
+        transform,
+        activeId,
+        sortable,
+        overNodeRef,
+        coordinates,
+        collisionsRef,
+        containerRef,
+      });
+    }
+  }
+  const a = manager.getAll('draggables').map((d) => d.node.current?.getBoundingClientRect());
+  if (a.length === 6) {
+    // console.log(a);
   }
 
   useEffect(() => {
@@ -58,16 +84,27 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
         overNodeRef.current = manager.getNode(activeId, 'draggables')!.data.current!;
         dispatch({
           type: DragActionEnum.ACTIVATED,
-          payload: activeId,
+          payload: { activeId, container: containerRef.current },
         });
       },
-      onMove(coordinates) {
+      onMove(coordinates, id) {
+        onDragMove &&
+          onDragMove({
+            overNode: overNodeRef,
+            activeNode: manager.getNode(id, 'draggables')?.data,
+            container: containerRef.current,
+          });
         dispatch({
           type: DragActionEnum.TRANSFORM,
-          payload: coordinates,
+          payload: {
+            transform: coordinates,
+            container: containerRef.current,
+          },
         });
       },
       onEnd(event) {
+        collisionsRef.current = [];
+        containerRef.current = '';
         onDragEnd &&
           onDragEnd({
             ...event,
@@ -82,11 +119,13 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
         dispatch({
           type: DragActionEnum.TRANSFORM,
           payload: {
-            x: 0,
-            y: 0,
+            transform: {
+              x: 0,
+              y: 0,
+            },
+            container: containerRef.current,
           },
         });
-        collisionsRef.current = [];
       },
     });
     // set activate event to binding with clicked element
@@ -97,7 +136,7 @@ export function DndContext({ children, sensor: Sensor = defaultSensor, onDragEnd
     return () => {
       listenerRef.current.removeAll();
     };
-  }, [Sensor, manager, onDragEnd]);
+  }, [Sensor, manager, onDragEnd, onDragMove]);
 
   const initialContextValue: DndContextDescriptor = {
     ...state,

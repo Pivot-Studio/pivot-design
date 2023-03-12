@@ -10,6 +10,12 @@ export interface DraggableItemProps extends PivotDesignProps {
   children?: React.ReactNode;
   /**
    * @version 1.0.0
+   * @description 列表子项唯一标识
+   * @default undefined
+   */
+  id?: number | string;
+  /**
+   * @version 1.0.0
    * @description 是否设置拖动点
    * @default false
    */

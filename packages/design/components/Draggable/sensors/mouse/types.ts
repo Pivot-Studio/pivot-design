@@ -25,7 +25,7 @@ export interface MouseSensorProps {
       clientRect: DOMRect | null;
     }
   ): void;
-  onMove(coordinates: Coordinate): void;
+  onMove(coordinates: Coordinate, id: UniqueIdentifier): void;
   onEnd(event: internalDragEndEvent): void;
 }
 export interface Sensor {

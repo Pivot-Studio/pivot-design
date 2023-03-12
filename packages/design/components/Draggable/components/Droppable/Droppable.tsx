@@ -7,6 +7,7 @@ export function Droppable(props: any) {
   const { className, children, top, left } = props;
   const { setDropNode, attributes, over } = useDroppable({
     id: 'droppable',
+    data: { sortable: { type: 'container' } },
   });
 
   return (

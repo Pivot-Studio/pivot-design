@@ -30,8 +30,17 @@ export const useDraggable = ({ id, data }: UseDraggableProps) => {
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
-      payload: { node: { id, node: dragNode, data: dataRef }, type: 'draggables' },
+      payload: {
+        node: {
+          id,
+          node: dragNode,
+          data: dataRef,
+          clientRect: dragNode.current && dragNode.current.getBoundingClientRect(), // initialize draggables position
+        },
+        type: 'draggables',
+      },
     });
+
     return () => {
       dispatch({
         type: DragActionEnum.REMOVE_NODE,

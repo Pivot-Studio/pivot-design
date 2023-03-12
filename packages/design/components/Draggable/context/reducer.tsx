@@ -5,7 +5,7 @@ export function reducer(state: State, action: ActionType) {
   const { manager } = state;
   switch (action.type) {
     case DragActionEnum.ACTIVATED: {
-      return { ...state, activeId: action.payload };
+      return { ...state, activeId: action.payload.activeId, container: action.payload.container };
     }
     case DragActionEnum.INACTIVATED: {
       return { ...state, activeId: '' };
@@ -21,7 +21,8 @@ export function reducer(state: State, action: ActionType) {
     case DragActionEnum.TRANSFORM: {
       return {
         ...state,
-        transform: action.payload,
+        transform: action.payload.transform,
+        container: action.payload.container,
       };
     }
     default:
@@ -30,6 +31,7 @@ export function reducer(state: State, action: ActionType) {
 }
 export const initialState = () => ({
   activeId: '',
+  container: '',
   manager: new Manager(),
   transform: {
     x: 0,

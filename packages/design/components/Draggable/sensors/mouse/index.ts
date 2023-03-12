@@ -63,7 +63,6 @@ export class MouseSensor {
       this.initOffset = getEventCoordinates(event);
       this.clientRect = activeNode.getBoundingClientRect();
       this.marginRect = getElementMargin(activeNode);
-      activeNodeDescriptor.clientRect = this.clientRect;
 
       onStart(id, {
         initOffset: this.initOffset,
@@ -71,15 +70,15 @@ export class MouseSensor {
         clientRect: this.clientRect,
       });
     }
-
-    // initialize draggables position
-    for (let draggable of this.manager.getAll('draggables')) {
-      if (this.activeId === draggable.id) {
-        continue;
-      }
-      const node = draggable.node.current!;
-      draggable.clientRect = node?.getBoundingClientRect();
-    }
+    //initialize draggables position
+    // for (let draggable of this.manager.getAll('draggables')) {
+    //   if (this.activeId === draggable.id) {
+    //     continue;
+    //   }
+    //   const node = draggable.node.current!;
+    //   draggable.clientRect = node?.getBoundingClientRect();
+    //   // console.log('++++++++++++++++', draggable.id, draggable.clientRect);
+    // }
   }
   private handleMove(event: MouseEvent) {
     if (!this.activeId) return;
@@ -91,7 +90,7 @@ export class MouseSensor {
       y: currentCoordinates.y - this.initOffset!.y,
     };
     this.transform = transform;
-    onMove(transform);
+    onMove(transform, this.activeId);
   }
   private handleEnd(event: Event) {
     if (!this.activeId) return;

@@ -8,9 +8,9 @@ import './DraggableItem.scss';
 import { overlayStyle } from '../../utils';
 import Handle from '../Handle/Handle';
 function DraggableItem(props: DraggableItemProps) {
-  const { className, children, top, left, handle = false } = props;
+  const { className, children, top, left, handle = false, id } = props;
   const { isDragging, setDragNode, listener, transform, attributes, activeRect } = useDraggable({
-    id: 'draggable',
+    id: id ? id : 'draggable',
   });
   return (
     <>

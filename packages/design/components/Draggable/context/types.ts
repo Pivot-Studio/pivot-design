@@ -23,6 +23,10 @@ export interface State {
    */
   activeId: UniqueIdentifier;
   /**
+   * 拖拽组件处于的容器Id
+   */
+  container: UniqueIdentifier;
+  /**
    * 拖拽元素记录中心
    */
   manager: Manager;
@@ -39,7 +43,10 @@ export interface State {
 export type ActionType =
   | {
       type: DragActionEnum.ACTIVATED;
-      payload: UniqueIdentifier;
+      payload: {
+        activeId: UniqueIdentifier;
+        container: UniqueIdentifier;
+      };
     }
   | {
       type: DragActionEnum.INACTIVATED;
@@ -54,7 +61,10 @@ export type ActionType =
     }
   | {
       type: DragActionEnum.TRANSFORM;
-      payload: Coordinate;
+      payload: {
+        transform: Coordinate;
+        container: UniqueIdentifier;
+      };
     };
 
 export interface DndContextDescriptor extends State {
@@ -78,6 +88,8 @@ export interface DndContextDescriptor extends State {
 export interface DndContextProps {
   children: ReactNode;
   sensor?: Sensor;
+  // todo
+  onDragMove?: (event: any) => void;
   onDragEnd?: (event: DragEndEvent) => void;
   sortable?: {
     direction: 'vertical' | 'horizen';
