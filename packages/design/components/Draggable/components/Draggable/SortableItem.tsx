@@ -1,27 +1,25 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
-import { DraggableItemProps } from 'pivot-design-props';
 import { prefix } from '../../../constants';
 import classnames from 'classnames';
 import './DraggableItem.scss';
-import { overlayStyle } from '../../utils';
 import Handle from '../Handle/Handle';
 import { useSortable } from '../../hooks/useSortable';
 
 function SortableItem(props: any) {
-  const { className, children, id, containerId, index, handle = false } = props;
-  const { setSortNode, isDragging, listener, attributes } = useSortable({
+  const { className, children, id, containerId, index, handle = false, isDragOverlay } = props;
+  const { setSortNode, hasDragOverlay, isDragging, listener, attributes } = useSortable({
     id,
     index,
     containerId,
+    isDragOverlay,
   });
-
   return (
     <>
       <div
         ref={setSortNode}
         className={classnames(`${prefix}-draggable-item`, className, {
-          [`${prefix}-draggable-overlay`]: isDragging,
+          [`${prefix}-draggable-overlay`]: isDragOverlay,
+          [`__${prefix}_dragging`]: !isDragOverlay && hasDragOverlay && isDragging,
           [`__${prefix}_handle`]: handle,
         })}
         style={{ ...attributes }}

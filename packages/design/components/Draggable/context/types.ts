@@ -83,12 +83,16 @@ export interface DndContextDescriptor extends State {
   sortable?: {
     direction: 'vertical' | 'horizen';
   };
+  hasDragOverlay: boolean;
 }
 
 export interface DndContextProps {
   children: ReactNode;
+  hasDragOverlay?: boolean;
   sensor?: Sensor;
+  items?: UniqueIdentifier[];
   // todo
+  onDragStart?: (event: any) => void;
   onDragMove?: (event: any) => void;
   onDragEnd?: (event: DragEndEvent) => void;
   sortable?: {

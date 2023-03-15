@@ -47,6 +47,7 @@ export class MouseSensor {
   // TODO 完成一个抽象的类，具体的start又外面实现并传入给draggableItem。move和end又外面传入事件名
   handleStart(event: Event, id: UniqueIdentifier) {
     const { onStart } = this.props;
+    event.stopPropagation();
     this.activeId = id;
     this.document = getOwnerDocument(event.target);
     // Remove any text selection from the document

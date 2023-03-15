@@ -36,8 +36,14 @@ export function MultipleContainer(props: any) {
   );
   const [containers, setContainers] = useState(Object.keys(items) as UniqueIdentifier[]);
   // todo: 给Sortable 传一个DroppableContainer,通过判断containerId来去执行动画算法
+
   return (
     <DndContext
+      items={Object.keys(items).reduce((p, c) => {
+        p.push(...items[c]);
+        return p;
+      }, [])}
+      hasDragOverlay={true}
       sortable={{ direction: 'vertical' }}
       onDragMove={({ activeNode, overNode, container: overContainerId }) => {
         const { id } = activeNode.current;

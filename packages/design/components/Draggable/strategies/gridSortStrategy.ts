@@ -18,7 +18,7 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
   const activeNodeData = activeNode.data as MutableRefObject<SortableData>;
   const activeNodeIndex = activeNodeData.current.sortable.index;
   const draggables = manager.getAll('draggables');
-  const rectDraggables = manager.getAll('draggables').map((draggable) => draggable.clientRect?.current);
+  const rectDraggables = draggables.map((draggable) => draggable.clientRect);
   for (let draggable of draggables) {
     if (draggable.id === activeId) continue;
     draggable.transition = true;
@@ -26,7 +26,7 @@ export const gridSortStrategy = (activeInfo: ActiveInfo) => {
 
   // i 是 以位置计算，碰撞位置的索引
   for (let i = 0; i < rectDraggables.length; i++) {
-    if (i !== overNodeRef.current['sortable'].index && isCollision(rectDraggables[i]!, coordinates)) {
+    if (i !== overNodeRef.current['sortable'].index && isCollision(rectDraggables[i]?.current!, coordinates)) {
       if (overNodeRef.current['sortable'].index < i) {
         // 从前往后
         for (let j = overNodeRef.current['sortable'].index; j < i; j++) {

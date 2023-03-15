@@ -10,21 +10,10 @@ export function setTransform(transform?: Coordinate) {
   };
 }
 
-export function overlayStyle(
-  activeRect: {
-    marginRect: {
-      left: number;
-      right: number;
-      top: number;
-      bottom: number;
-    } | null;
-    clientRect: DOMRect | null;
-  },
-  transform: Coordinate
-): React.CSSProperties {
-  const { marginRect, clientRect } = activeRect;
+export function overlayStyle(clientRect: DOMRect | null, margin: any, transform: Coordinate): React.CSSProperties {
   const { height, width, x, y } = clientRect!;
-  const { top, left } = marginRect!;
+  const { left, top } = margin;
+
   return {
     height: `${height}px`,
     left: `${x - left}px`,
@@ -35,7 +24,6 @@ export function overlayStyle(
     ...setTransform(transform),
   };
 }
-
 export function closest(node: HTMLElement & { dragitemid?: UniqueIdentifier }, fn: (...args: any[]) => boolean) {
   while (!fn(node) && node && node !== document.body) {
     // eslint-disable-next-line no-param-reassign

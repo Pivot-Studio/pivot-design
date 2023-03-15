@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { MouseSensor } from '../sensors';
 import { DndContextProps } from './types';
 import { Collision, collisionDetection } from '../utils/collisionDetection';
@@ -7,15 +7,19 @@ import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, DndContextDescriptor } from './types';
 import { sortableRectify } from '../strategies/SortableRectify';
-import { Data } from '../types';
+import { Data, UniqueIdentifier } from '../types';
 
 const defaultSensor = MouseSensor;
 
 export function DndContext({
   children,
+  items: propsItems = [],
   sensor: Sensor = defaultSensor,
+  onDragStart,
   onDragMove,
   onDragEnd,
+  hasDragOverlay = false,
+  DragOverlay,
   sortable,
 }: DndContextProps) {
   // Avoid multiple contexts using the same state
@@ -32,6 +36,14 @@ export function DndContext({
   const containerRef = useRef<number | string>('');
   const listenerRef = useRef(new Listeners(window));
   const overNodeRef = useRef<Data>(null as unknown as Data);
+  const previousItemsRef = useRef<UniqueIdentifier[]>([]);
+  const items = useMemo<UniqueIdentifier[]>(() => {
+    return propsItems.map((item: any) => (typeof item === 'object' && item.id ? item.id : item));
+  }, [propsItems]);
+
+  useEffect(() => {
+    previousItemsRef.current = items;
+  }, [items]);
 
   if (activeId) {
     // TODO: 覆盖功能
@@ -63,8 +75,6 @@ export function DndContext({
       });
     }
   }
-  // const a = manager.getNode('A1', 'draggables');
-  // console.log(a?.id, a?.clientRect);
 
   useEffect(() => {
     const sensorInstance = new Sensor({
@@ -79,10 +89,16 @@ export function DndContext({
           marginRect,
         };
         overNodeRef.current = manager.getNode(activeId, 'draggables')!.data.current!;
+        // resolved：解决Safari中使用useEffect获取Rect时候是基于整个滚动页面来计算的问题，使得不同浏览器不兼容
+        //，每次点击时候都重新计算一下初始位置
+        for (let d of manager.getAll('draggables')) {
+          if (d.clientRect) d.clientRect.current = d.node.current?.getBoundingClientRect();
+        }
         dispatch({
           type: DragActionEnum.ACTIVATED,
           payload: { activeId, container: containerRef.current },
         });
+        onDragStart && onDragStart({ activeId });
       },
       onMove(coordinates, id) {
         onDragMove &&
@@ -140,8 +156,20 @@ export function DndContext({
     dispatch,
     collisions: collisionsRef,
     sortable,
+    hasDragOverlay,
     activator,
     activeRect: activeRectRef,
   };
-  return <Context.Provider value={initialContextValue}>{children}</Context.Provider>;
+
+  return (
+    <Context.Provider value={initialContextValue}>
+      {children}
+      {DragOverlay && activeId ? (
+        <DragOverlay
+          index={manager.getNode(activeId, 'draggables')?.data.current?.['sortable']?.index ?? -1}
+          id={activeId}
+        />
+      ) : null}
+    </Context.Provider>
+  );
 }

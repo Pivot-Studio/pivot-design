@@ -12,7 +12,7 @@ interface UseDraggableProps {
 }
 
 export const useDraggable = ({ id, data }: UseDraggableProps) => {
-  const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
+  const { activeId, transform, dispatch, activeRect, activator, manager, hasDragOverlay } = useDndContext();
   const rect = useRef<DOMRect>();
   const isDragging = activeId == id;
   const node = manager.getNode(id, 'draggables');
@@ -22,17 +22,17 @@ export const useDraggable = ({ id, data }: UseDraggableProps) => {
   const listener = useSyntheticListeners(activator, id);
   const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dragNode.current = currentNode as DragNode;
+    if (currentNode && !rect.current) {
+      rect.current = currentNode.getBoundingClientRect(); // initialize draggables position
+    }
   }, []);
   const dataRef = useLatestValue({ id, ...data });
 
   const attributes = {
     ...setTransform(nodeTransform),
-    ...(isDragging ? setTransform(transform) : {}),
+    ...(isDragging && !hasDragOverlay ? setTransform(transform) : {}),
     transition: transition ? '300ms' : '',
   };
-  useEffect(() => {
-    rect.current = dragNode.current && dragNode.current.getBoundingClientRect(); // initialize draggables position
-  }, []);
 
   useEffect(() => {
     dispatch({
@@ -56,5 +56,14 @@ export const useDraggable = ({ id, data }: UseDraggableProps) => {
     };
   }, [dispatch, id, manager, dragNode]);
 
-  return { isDragging, dragNode, transform, attributes, activeRect, listener, setDragNode: setDragNodeRef };
+  return {
+    hasDragOverlay,
+    isDragging,
+    dragNode,
+    transform,
+    attributes,
+    activeRect,
+    listener,
+    setDragNode: setDragNodeRef,
+  };
 };
