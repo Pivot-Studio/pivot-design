@@ -3,11 +3,8 @@ $cardmin: calc(var(--card-minLength, 3) * 20px);
 $cardmax: calc(var(--card-maxLength, 100%) * 20px);
 .#{$prefix}-card {
   position: relative;
-  //解决兼容问题
+
   height: 100%;
-  //height: -moz-available; /* WebKit-based browsers will ignore this. */
-  //height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-  //height: fill-available;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
