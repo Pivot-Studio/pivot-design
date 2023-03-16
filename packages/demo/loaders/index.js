@@ -34,7 +34,6 @@ function getDemo(name, component) {
 module.exports = function loader(source) {
   const sourceCode = source.trim();
   let newSource = sourceCode;
-
   const CodeBlockReg = /<CodeBlock(.*)>([\n\r\s\S]*?)<\/CodeBlock>/g;
   const H1Reg = /# (\w+)/;
   // eslint-disable-next-line prefer-destructuring
