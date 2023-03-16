@@ -31,7 +31,7 @@ const Card: React.FC<CardProps> = (props) => {
   }, []);
 
   if (loading) {
-    return <div className={`${prefix}-card-loading`}></div>;
+    return <div className={`${prefix}-card-loading`} />;
   }
 
   let classNames = classnames(
@@ -59,7 +59,7 @@ const Card: React.FC<CardProps> = (props) => {
           </div>
         </div>
       );
-    } else return <div></div>;
+    } else return <div />;
   };
 
   const CardBody = (children: React.ReactNode) => {
@@ -73,7 +73,7 @@ const Card: React.FC<CardProps> = (props) => {
 
           <div className={Grid ? `${prefix}-card-body-grid` : `${prefix}-card-body-text`} ref={descRef}>
             {needExpandBtn && (
-              <label className={`${prefix}-card-body-btn`} htmlFor={`${prefix}-card-body-btn-exp-${num}`}></label>
+              <label className={`${prefix}-card-body-btn`} htmlFor={`${prefix}-card-body-btn-exp-${num}`} />
             )}
             {children}
           </div>

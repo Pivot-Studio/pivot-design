@@ -11,9 +11,6 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
       <div>{avatar && <div className={classnames(`${prefix}-skeleton-avatar`, `${prefix}-skeleton-loading`)} />}</div>
     );
   };
-  const SkeletonBulk = (bulk?: boolean) => {
-    return <div className={classnames(`${prefix}-skeleton-loading`)} />;
-  };
   const SkeletonTitle = (title?: boolean) => {
     return (
       <div className={classnames(`${prefix}-skeleton-head`)}>
@@ -21,7 +18,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
       </div>
     );
   };
-  const SkeletonContent = (loading?: boolean) => {
+  const SkeletonContent = (bulk?: boolean) => {
     const rowList = [...Array(row)].map((_, index) => (
       // eslint-disable-next-line react/no-array-index-key
       <li key={index} className={`${prefix}-skeleton-loading`} />
@@ -29,17 +26,23 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
     return (
       <div className={classnames(`${prefix}-skeleton-content `)}>
         {SkeletonTitle(title)}
-        {loading && <ul>{rowList}</ul>}
+        {!bulk && <ul>{rowList}</ul>}
       </div>
     );
   };
   return (
-    <div
-      className={classnames({ [`${prefix}-skeleton-active`]: active }, `${prefix}-skeleton`, className)}
-      style={style}
-    >
-      {SkeletonAvatar(avatar)}
-      {SkeletonContent(loading)}
+    <div style={{ display: loading ? 'block' : 'none' }}>
+      <div
+        className={classnames(
+          { [`${prefix}-skeleton-active`]: active, [`${prefix}-skeleton-loading`]: bulk },
+          `${prefix}-skeleton`,
+          className
+        )}
+        style={style}
+      >
+        {SkeletonAvatar(avatar)}
+        {SkeletonContent(bulk)}
+      </div>
     </div>
   );
 };

@@ -1,9 +1,8 @@
 @import '../common.scss';
 .#{$prefix}-skeleton {
-  //position: absolute;
-  //z-index: 99;
   width: 100%;
   height: 100%;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   flex-wrap: unwrap;
@@ -11,10 +10,7 @@
   .#{$prefix}-skeleton-content {
     padding: 10px;
     width: 100%;
-    //width: 250px;
-    //width: 250px;
     .#{$prefix}-skeleton-head {
-      //position: relative;
       .#{$prefix}-skeleton-title {
         margin: 0 auto;
         width: 40%;

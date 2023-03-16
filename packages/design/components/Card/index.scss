@@ -99,7 +99,6 @@ $cardText: var(--card-expandText);
     margin-bottom: 3px;
     .#{$prefix}-card-body-content {
       display: flex;
-      // width: 200px;
       .#{$prefix}-card-body-text {
         overflow: hidden;
         line-height: 20px;
@@ -152,7 +151,7 @@ $cardText: var(--card-expandText);
           transform: translateX(-100%);
         }
         &:after {
-          content: var($cardText, '展开');
+          content: '展开';
         }
       }
       .#{$prefix}-card-body-exp {
@@ -168,7 +167,7 @@ $cardText: var(--card-expandText);
         visibility: hidden;
       }
       .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text .#{$prefix}-card-body-btn::after {
-        content: var(--card-collapseText, '收起');
+        content: '收起';
       }
     }
   }
