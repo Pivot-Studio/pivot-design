@@ -3,7 +3,7 @@ import ReactDom from 'react-dom/client';
 import ButtonMdx from './src/components/Button/index.mdx';
 import CardMdx from './src/components/Card/index.mdx';
 import { Card } from 'pivot-design';
-import Draggable from '@/examples/Draggable';
+import Draggable from '@/examples/Draggable/Draggable';
 import { Button } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';

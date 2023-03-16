@@ -15,5 +15,6 @@ export const defaultDndContext = {
   },
   activeRect: null,
   activator: null,
+  collisions: null,
 };
 export const Context = createContext<DndContextDescriptor>(defaultDndContext);

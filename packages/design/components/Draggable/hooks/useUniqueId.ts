@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { prefix } from '../../constants';
 let _id = 0;
 
-export function useUniqueId(value?: string) {
+export function useUniqueId(value?: string | number) {
   return useMemo(() => {
     if (value) {
       return { id: value, index: _id + 1 };
