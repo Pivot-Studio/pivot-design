@@ -1,6 +1,7 @@
 @import '../common.scss';
 $cardmin: calc(var(--card-minLength, 3) * 20px);
 $cardmax: calc(var(--card-maxLength, 100%) * 20px);
+<<<<<<< HEAD
 $cardText: var(--card-expandText);
 .#{$prefix}-card {
   position: relative;
@@ -9,6 +10,12 @@ $cardText: var(--card-expandText);
   //height: -moz-available; /* WebKit-based browsers will ignore this. */
   //height: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
   //height: fill-available;
+=======
+.#{$prefix}-card {
+  position: relative;
+
+  height: 100%;
+>>>>>>> 703dd1ed7c578660b31be78091cd70cb07d1df4e
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -99,6 +106,10 @@ $cardText: var(--card-expandText);
     margin-bottom: 3px;
     .#{$prefix}-card-body-content {
       display: flex;
+<<<<<<< HEAD
+=======
+      // width: 200px;
+>>>>>>> 703dd1ed7c578660b31be78091cd70cb07d1df4e
       .#{$prefix}-card-body-text {
         overflow: hidden;
         line-height: 20px;

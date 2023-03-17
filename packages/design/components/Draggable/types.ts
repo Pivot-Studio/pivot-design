@@ -1,6 +1,4 @@
-import React, { MutableRefObject } from 'react';
-import { DragEndEvent } from './sensors/events';
-import { Sensor } from './sensors/mouse/types';
+import { MutableRefObject } from 'react';
 
 export type UniqueIdentifier = number | string;
 
@@ -23,9 +21,4 @@ export type DraggableNode = {
   transition?: boolean;
 };
 
-export interface DndContextProps {
-  children: React.ReactNode;
-  sensor?: Sensor;
-  onDragEnd?: (event: DragEndEvent) => void;
-  sortable?: boolean;
-}
+export type noop = (...args: any[]) => void;

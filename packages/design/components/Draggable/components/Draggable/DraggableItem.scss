@@ -1,4 +1,4 @@
-@import '../common.scss';
+@import '../../../common.scss';
 
 .#{$prefix}-draggable-item {
   &.#{$prefix}-draggable-overlay {
@@ -18,8 +18,15 @@
   cursor: -webkit-grab;
   user-select: none;
   --webkit-user-select: none;
-}
-.__#{$prefix}_dragging {
-  opacity: 0;
-  visibility: hidden;
+
+  &.__#{$prefix}_dragging {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.__#{$prefix}_handle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
 }
