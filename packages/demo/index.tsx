@@ -5,7 +5,7 @@ import CardMdx from './src/components/Card/index.mdx';
 import SkeletonMdx from './src/components/Skeleton/index.mdx';
 import { Skeleton } from 'pivot-design';
 import { Card } from 'pivot-design';
-import Draggable from '@/components/Draggable';
+import Draggable from '@/examples/Draggable/Draggable.tsx';
 import { Button } from 'pivot-design';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
