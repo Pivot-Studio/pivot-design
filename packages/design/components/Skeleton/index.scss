@@ -1,13 +1,16 @@
 @import '../common.scss';
 .#{$prefix}-skeleton {
+  //position: absolute;
+  //display: block;
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   flex-wrap: unwrap;
 
   .#{$prefix}-skeleton-content {
+    display: block;
     padding: 10px;
     width: 100%;
     .#{$prefix}-skeleton-head {
@@ -28,8 +31,8 @@
 }
 li {
   list-style: none;
+  display: block;
   width: 100%;
-  min-width: 100px;
   height: 0.6rem;
   &:first-child {
     width: 40%;

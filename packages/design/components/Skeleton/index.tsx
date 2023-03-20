@@ -31,7 +31,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
     );
   };
   return (
-    <div style={{ display: loading ? 'block' : 'none' }}>
+    <div style={{ display: loading ? 'block' : 'none', width: '100%' }}>
       <div
         className={classnames(
           { [`${prefix}-skeleton-active`]: active, [`${prefix}-skeleton-loading`]: bulk },

@@ -25,10 +25,11 @@ export interface SkeletonProps extends PivotDesignProps {
    * @description 是否加载
    * @default undefined
    */
+
   loading?: boolean;
   /**
    * @version 1.0.0
-   * @description 自定义样式
+   * @description 自定义条数
    * @default 4
    */
   row?: number;
@@ -49,8 +50,14 @@ export interface SkeletonProps extends PivotDesignProps {
 interface CardCssTokens {
   /**
    * @version 1.0.0
-   * @description 卡片背景颜色
-   *@default --pivot-card-background-color
+   * @description 背景颜色
+   *@default --pivot-Skeleton-background-color
    */
-  '--card-background-color'?: string;
+  '--skeleton-background-color'?: string;
+  /**
+   * @version 1.0.0
+   * @description 自定义段落宽度
+   * @default default
+   */
+  '--skeleton-paragraph-size'?: string;
 }
