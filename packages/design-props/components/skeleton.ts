@@ -60,4 +60,22 @@ interface CardCssTokens {
    * @default 0.8
    */
   '--skeleton-paragraph-size'?: number;
+  /**
+   * @version 1.0.0
+   * @description 是否展示动画效果
+   * @default active
+   */
+  '--skeleton-active'?: string;
+  /**
+   * @version 1.0.0
+   * @description 标题长度
+   * @default 1
+   */
+  '--skeleton-title-height'?: number;
+  /**
+   * @version 1.0.0
+   * @description 标题宽度
+   * @default 40%
+   */
+  '--skeleton-title-width'?: number;
 }

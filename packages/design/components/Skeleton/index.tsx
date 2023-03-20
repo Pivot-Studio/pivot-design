@@ -5,7 +5,16 @@ import './index.scss';
 import React from 'react';
 
 const Skeleton: React.FC<SkeletonProps> = (props) => {
-  const { loading = true, className, style, active, avatar = false, row = 4, title = false, bulk = false } = props;
+  const {
+    loading = true,
+    className,
+    style,
+    active = true,
+    avatar = false,
+    row = 4,
+    title = false,
+    bulk = false,
+  } = props;
   const SkeletonAvatar = (avatar?: boolean) => {
     return (
       <div>{avatar && <div className={classnames(`${prefix}-skeleton-avatar`, `${prefix}-skeleton-loading`)} />}</div>
@@ -30,20 +39,19 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
       </div>
     );
   };
+
   return (
-    <div style={{ display: loading ? 'block' : 'none', width: '100%' }}>
-      <div
-        className={classnames(
-          { [`${prefix}-skeleton-active`]: active, [`${prefix}-skeleton-loading`]: bulk },
-          `${prefix}-skeleton`,
-          className
-        )}
-        style={style}
-      >
-        {SkeletonAvatar(avatar)}
-        {SkeletonContent(bulk)}
-      </div>
-    </div>
+    <>
+      {loading && (
+        <div
+          className={classnames({ [`${prefix}-skeleton-loading`]: bulk }, `${prefix}-skeleton`, className)}
+          style={style}
+        >
+          {SkeletonAvatar(avatar)}
+          {SkeletonContent(bulk)}
+        </div>
+      )}
+    </>
   );
 };
 export default Skeleton;
