@@ -57,7 +57,7 @@ interface CardCssTokens {
   /**
    * @version 1.0.0
    * @description 自定义段落宽度
-   * @default default
+   * @default 0.8
    */
-  '--skeleton-paragraph-size'?: string;
+  '--skeleton-paragraph-size'?: number;
 }
