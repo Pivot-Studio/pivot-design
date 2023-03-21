@@ -1,0 +1,90 @@
+@import '../common.scss';
+
+.#{$prefix}-input-wrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  .#{$prefix}-icon-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 40px;
+    justify-content: center;
+    color: $pivot-gray-700;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      color: $pivot-gray-600;
+      margin: auto;
+    }
+  }
+}
+.#{$prefix}-icon-wrapper + .#{$prefix}-input-inner {
+  padding-right: 35px;
+}
+.#{$prefix}-input-inner {
+  width: 100%;
+  padding: 15px 30px;
+  font-size: 16px;
+  color: $pivot-gray-700;
+  background-color: $pivot-white;
+  background-clip: padding-box;
+  border: 2px solid $pivot-gray-400;
+  border-radius: 1rem;
+
+  border-radius: 5px;
+
+  transition: all 100ms ease-out;
+  &:hover {
+    text-decoration: none;
+  }
+  &:focus {
+    color: $pivot-gray-700;
+    background-color: $pivot-white;
+    outline: 0;
+  }
+  &::placeholder {
+    color: $pivot-gray-600;
+  }
+  &:disabled,
+  &[readonly] {
+    background-color: $pivot-gray-200;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+}
+.#{$prefix}-input-group-prepend,
+.#{$prefix}-input-group-append {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  margin-bottom: 10;
+  font-size: 16px;
+  font-weight: 100;
+  text-align: center;
+  white-space: nowrap;
+  background-color: $pivot-white;
+  border: 2px solid $pivot-gray-400;
+  border-radius: 5px;
+}
+.#{$prefix}-input-group {
+  padding: 2px;
+}
+
+.#{$prefix}-input-size-sm .#{$prefix}-input-inner {
+  padding: 10px 20px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.#{$prefix}-input-size-lg .#{$prefix}-input-inner {
+  padding: 20px 40px;
+  font-size: 20px;
+  border-radius: 10px;
+}
