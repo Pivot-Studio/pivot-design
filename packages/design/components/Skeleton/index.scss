@@ -13,8 +13,9 @@
     width: 100%;
     .#{$prefix}-skeleton-head {
       .#{$prefix}-skeleton-title {
+        border-radius: 4px;
         margin: 0 auto;
-        width: calc(var(--skeleton-title-width, 40%) * 100%);
+        width: calc(var(--skeleton-title-width, 40%));
         height: calc(var(--skeleton-title-height, 1) * 1rem);
       }
     }
@@ -27,6 +28,7 @@
   }
 }
 li {
+  border-radius: 4px;
   list-style: none;
   display: block;
   width: 100%;

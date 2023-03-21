@@ -5,16 +5,7 @@ import './index.scss';
 import React from 'react';
 
 const Skeleton: React.FC<SkeletonProps> = (props) => {
-  const {
-    loading = true,
-    className,
-    style,
-    active = true,
-    avatar = false,
-    row = 4,
-    title = false,
-    bulk = false,
-  } = props;
+  const { loading = true, className, style, avatar = false, row = 4, title = false, bulk = false } = props;
   const SkeletonAvatar = (avatar?: boolean) => {
     return (
       <div>{avatar && <div className={classnames(`${prefix}-skeleton-avatar`, `${prefix}-skeleton-loading`)} />}</div>
@@ -28,10 +19,7 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
     );
   };
   const SkeletonContent = (bulk?: boolean) => {
-    const rowList = [...Array(row)].map((_, index) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <li key={index} className={`${prefix}-skeleton-loading`} />
-    ));
+    const rowList = [...Array(row)].map((_, index) => <li key={index} className={`${prefix}-skeleton-loading`} />);
     return (
       <div className={classnames(`${prefix}-skeleton-content `)}>
         {SkeletonTitle(title)}
