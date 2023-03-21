@@ -14,6 +14,14 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   // 使用max-height实现不确定数值的transition
   const [codeDisplay, setCodeDisplay] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
+  //实现代码区与样式区一样宽
+  const codewidthRef = useRef<HTMLElement>(null);
+  const stylewidthRef = useRef<HTMLElement>(null);
+  if (codewidthRef.current && stylewidthRef.current) {
+    if (stylewidthRef.current?.clientWidth - 90 > codewidthRef.current?.clientWidth) {
+      codewidthRef.current.style.width = stylewidthRef.current?.clientWidth - 80 + 'px';
+    }
+  }
   useEffect(() => {
     if (!codeRef.current) {
       return;
@@ -27,7 +35,9 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   };
   return (
     <div className="pivot-code-box">
-      <div className="pivot-code-box-demo">{children}</div>
+      <div className="pivot-code-box-demo" ref={stylewidthRef}>
+        {children}
+      </div>
 
       <div className="pivot-code-box-actions">
         {expand ? (
@@ -58,6 +68,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
           data-prismjs-copy="复制文本"
           data-prismjs-copy-error="按Ctrl+C复制"
           data-prismjs-copy-success="文本已复制！"
+          ref={codewidthRef}
         >
           <code className="language-jsx" ref={codeRef}>
             {code}
