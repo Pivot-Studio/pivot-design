@@ -16,28 +16,29 @@ export interface Collision {
   clientRect: DOMRect;
 }
 
+export const isCollision = (clientRect: DOMRect, coordinates: Coordinate) =>
+  coordinates.x >= clientRect.left &&
+  clientRect.left + clientRect.width >= coordinates.x &&
+  coordinates.y >= clientRect.top &&
+  clientRect.top + clientRect.height >= coordinates.y;
+
 export const collisionDetection = (props: CollisionDetectionProps): Collision[] => {
   const { manager, coordinates, activeId } = props;
   if (!activeId) return [];
   const collisions = [];
 
-  for (let draggable of manager.getAll()) {
-    // active draggable node
-    if (activeId === draggable.id) {
+  for (let droppable of manager.getAll('droppables')) {
+    // active droppable node
+    if (activeId === droppable.id) {
       continue;
     }
-    // inactive draggable node
-    const node = draggable.node.current!;
-    draggable.clientRect = node?.getBoundingClientRect();
-    const { clientRect } = draggable;
+    // inactive droppable node
+    const node = droppable.node.current!;
+    droppable.clientRect = node?.getBoundingClientRect();
+    const { clientRect } = droppable;
 
-    if (
-      coordinates.x >= clientRect.left &&
-      clientRect.left + clientRect.width >= coordinates.x &&
-      coordinates.y >= clientRect.top &&
-      clientRect.top + clientRect.height >= coordinates.y
-    ) {
-      collisions.push({ id: draggable.id, index: draggable.index, clientRect });
+    if (isCollision(clientRect, coordinates)) {
+      collisions.push({ id: droppable.id, index: droppable.index, clientRect });
     }
   }
   return collisions;

@@ -12,8 +12,45 @@ import demoObj from './demo/index';
   </DndContext>
 </CodeBlock>
 
+## 设置拖动点
+
+<CodeBlock line={''} code={demoObj.basic}>
+  <DndContext onDragEnd={props.onDragEnd}>
+    <DraggableItem className="demo-draggable-item" left={props.coordinates.x} top={props.coordinates.y} handle>
+      draggable
+    </DraggableItem>
+  </DndContext>
+</CodeBlock>
+
+## 拖放示例
+
+<CodeBlock line={''} code={demoObj.droppable}>
+  <DndContext onDragEnd={props.onDragEnd2}>
+    <div style={{ minWidth: '150px', display: 'flex' }}>{props.parent !== 'A' ? <DraggableBlock /> : null}</div>
+    <Droppable>{props.parent === 'A' ? <DraggableBlock /> : null}</Droppable>
+  </DndContext>
+</CodeBlock>
+
 ## 可拖拽列表
 
-<CodeBlock line={''} code={demoObj.verticalSortable}>
-  <Sortable itemClassName="demo-draggable-item"></Sortable>
+### 垂直方向 Vertical
+
+<CodeBlock line={'1-3'} code={demoObj.verticalSortable}>
+  <Sortable direction="vertical" itemClassName="demo-draggable-item"></Sortable>
+</CodeBlock>
+
+### 水平方向 Horizen
+
+<CodeBlock line={'1-3'} code={demoObj.verticalSortable}>
+  <Sortable direction="horizen" itemClassName="demo-draggable-item demo-sortable-horizen"></Sortable>
+</CodeBlock>
+
+### 栅格布局
+
+<CodeBlock line={'1-3'} code={demoObj.verticalSortable}>
+  <Sortable
+    items={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+    direction="grid"
+    itemClassName="demo-draggable-item demo-sortable-grid"
+  ></Sortable>
 </CodeBlock>

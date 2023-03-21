@@ -1,11 +1,15 @@
-import { Dispatch, MutableRefObject } from 'react';
+import { Dispatch, MutableRefObject, ReactNode } from 'react';
+import { DragEndEvent } from '../sensors/events';
+import { Sensor } from '../sensors/mouse/types';
 import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
+import { Collision } from '../utils/collisionDetection';
 import Manager from './manager';
 
 export enum DragActionEnum {
   ACTIVATED,
   INACTIVATED,
   PUSH_NODE,
+  REMOVE_NODE,
   TRANSFORM,
 }
 export interface Activator {
@@ -42,7 +46,11 @@ export type ActionType =
     }
   | {
       type: DragActionEnum.PUSH_NODE;
-      payload: DraggableNode;
+      payload: { node: DraggableNode; type: 'draggables' | 'droppables' };
+    }
+  | {
+      type: DragActionEnum.REMOVE_NODE;
+      payload: { id: UniqueIdentifier; type: 'draggables' | 'droppables' };
     }
   | {
       type: DragActionEnum.TRANSFORM;
@@ -61,5 +69,17 @@ export interface DndContextDescriptor extends State {
     } | null;
     clientRect: DOMRect | null;
   }> | null;
-  sortable?: boolean;
+  collisions: MutableRefObject<Collision[]> | null;
+  sortable?: {
+    direction: 'vertical' | 'horizen';
+  };
+}
+
+export interface DndContextProps {
+  children: ReactNode;
+  sensor?: Sensor;
+  onDragEnd?: (event: DragEndEvent) => void;
+  sortable?: {
+    direction: 'vertical' | 'horizen';
+  };
 }

@@ -1,0 +1,13 @@
+.PIVOT-draggable-handle {
+  background-color: transparent;
+  cursor: grab;
+  cursor: -webkit-grab;
+  user-select: none;
+  --webkit-user-select: none;
+  padding: 10px 8px;
+  margin-right: -10px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

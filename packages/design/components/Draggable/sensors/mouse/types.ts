@@ -4,11 +4,14 @@ import { Listeners } from '../../utils';
 import { Coordinate } from '../../../utils/types';
 import { MouseSensor } from '.';
 import { internalDragEndEvent } from '../events';
-
+import { Collision } from '../../utils/collisionDetection';
+import { MutableRefObject } from 'react';
+export { Collision } from '../../utils/collisionDetection';
 export interface MouseSensorProps {
   eventName?: string;
   manager: Manager;
   listener: Listeners;
+  collisions: MutableRefObject<Collision[]>;
   onStart(
     activeId: UniqueIdentifier,
     activeRect: {
@@ -26,5 +29,6 @@ export interface MouseSensorProps {
   onEnd(event: internalDragEndEvent): void;
 }
 export interface Sensor {
+  eventName: string;
   new (props: MouseSensorProps): MouseSensor;
 }

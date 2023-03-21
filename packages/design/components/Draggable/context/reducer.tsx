@@ -11,7 +11,11 @@ export function reducer(state: State, action: ActionType) {
       return { ...state, activeId: '' };
     }
     case DragActionEnum.PUSH_NODE: {
-      manager.push(action.payload);
+      manager.push(action.payload.node, action.payload.type);
+      return { ...state };
+    }
+    case DragActionEnum.REMOVE_NODE: {
+      manager.remove(action.payload.id, action.payload.type);
       return { ...state };
     }
     case DragActionEnum.TRANSFORM: {
