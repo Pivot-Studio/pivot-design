@@ -14,14 +14,6 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   // 使用max-height实现不确定数值的transition
   const [codeDisplay, setCodeDisplay] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
-  //实现代码区与样式区一样宽
-  const codewidthRef = useRef<HTMLElement>(null);
-  const stylewidthRef = useRef<HTMLElement>(null);
-  if (codewidthRef.current && stylewidthRef.current) {
-    if (stylewidthRef.current?.clientWidth - 90 > codewidthRef.current?.clientWidth) {
-      codewidthRef.current.style.width = stylewidthRef.current?.clientWidth - 80 + 'px';
-    }
-  }
   useEffect(() => {
     if (!codeRef.current) {
       return;

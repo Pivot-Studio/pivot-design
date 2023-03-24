@@ -44,7 +44,7 @@ export interface SkeletonProps extends PivotDesignProps {
    * @description 块状
    * @default false
    */
-  bulk?: boolean;
+  brick?: boolean;
 }
 
 interface CardCssTokens {
