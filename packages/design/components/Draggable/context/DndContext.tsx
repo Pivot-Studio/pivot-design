@@ -146,10 +146,7 @@ export function DndContext({
       eventName: Sensor.eventName,
       handler: sensorInstance.handleStart,
     });
-    return () => {
-      listenerRef.current.removeAll();
-    };
-  }, [Sensor, manager, onDragEnd, onDragMove]);
+  }, [Sensor, manager, onDragEnd, onDragMove, onDragStart]);
 
   const initialContextValue: DndContextDescriptor = {
     ...state,
