@@ -33,11 +33,13 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
     }
 
     const targetIndex = data.current!['sortable'].index;
-
+    // 向下
     if (
       activeNodeIndex < targetIndex &&
       activeNodeRect.top + activeNodeRect.height / 2 + transform.y > draggable.clientRect!.current!.top
     ) {
+      // console.log(data.current.sortable, `${activeNodeRect.top}+${transform.y}`, draggable.clientRect!.current!.top);
+
       draggable.transform = getRectDelta(
         'vertical',
         Math.abs(activeNodeIndex - targetIndex),

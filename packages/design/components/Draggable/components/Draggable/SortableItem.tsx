@@ -13,6 +13,8 @@ function SortableItem(props: any) {
     containerId,
     isDragOverlay,
   });
+  // todo: overinto 别的container时，由于重新渲染导致rectClient变化，导致动画不流畅
+  // 【同时】重新计算rectClient和transform
   return (
     <>
       <div
@@ -28,20 +30,6 @@ function SortableItem(props: any) {
         {children}
         {handle ? <Handle {...(handle ? listener : {})} /> : null}
       </div>
-      {/* {isDragging
-        ? createPortal(
-            <div
-              className={classnames(`${prefix}-draggable-item`, `${prefix}-draggable-overlay`, className, {
-                [`__${prefix}_handle`]: handle,
-              })}
-              style={overlayStyle(activeRect!.current, transform)}
-            >
-              {children}
-              {handle ? <Handle {...(handle ? listener : {})} /> : null}
-            </div>,
-            document.body
-          )
-        : null} */}
     </>
   );
 }

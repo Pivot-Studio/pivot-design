@@ -7,6 +7,7 @@ import { UniqueIdentifier } from '../../types';
 import { Sortable } from './Sortable';
 import './Sortable.scss';
 import SortableItem from '../../components/Draggable/SortableItem';
+import { createPortal } from 'react-dom';
 
 function DroppableContainer(props: any) {
   const { id, children } = props;
@@ -36,7 +37,14 @@ export function MultipleContainer(props: any) {
   );
   const [containers, setContainers] = useState(Object.keys(items) as UniqueIdentifier[]);
   // todo: 给Sortable 传一个DroppableContainer,通过判断containerId来去执行动画算法
-
+  const renderDragOverlay = ({ id, index, containerId }) => {
+    return createPortal(
+      <SortableItem isDragOverlay={true} id={id}>
+        {items[containerId][index]}
+      </SortableItem>,
+      document.body
+    );
+  };
   return (
     <DndContext
       items={Object.keys(items).reduce((p, c) => {
@@ -44,22 +52,24 @@ export function MultipleContainer(props: any) {
         return p;
       }, [])}
       hasDragOverlay={true}
+      DragOverlay={renderDragOverlay}
       sortable={{ direction: 'vertical' }}
       onDragMove={({ activeNode, overNode, container: overContainerId }) => {
         const { id } = activeNode.current;
         const { overId } = overNode.current;
         const { containerId } = activeNode.current.sortable;
-        const { index: overIndex } = overNode.current.sortable;
+        let { index: overIndex } = overNode.current.sortable;
 
         if (!overContainerId || !containerId) {
           return;
         }
-
         if (overContainerId != containerId) {
           setItems((items) => {
             const activeItems = items[containerId];
             const overItems = items[overContainerId];
-
+            if (overIndex === overItems.length - 1) {
+              overIndex += 1;
+            }
             return {
               ...items,
               [containerId]: activeItems.filter((i) => i != id),

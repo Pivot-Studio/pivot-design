@@ -37,16 +37,21 @@ export function DndContext({
   const listenerRef = useRef(new Listeners(window));
   const overNodeRef = useRef<Data>(null as unknown as Data);
   const previousItemsRef = useRef<UniqueIdentifier[]>([]);
+  const sensorRef = useRef<any>(null);
   const items = useMemo<UniqueIdentifier[]>(() => {
     return propsItems.map((item: any) => (typeof item === 'object' && item.id ? item.id : item));
   }, [propsItems]);
 
   useEffect(() => {
     previousItemsRef.current = items;
-  }, [items]);
+    sensorRef.current && sensorRef.current.updateInitialOffset(true);
+    for (let d of manager.getAll('draggables')) {
+      if (d.clientRect) d.clientRect.current = d.node.current?.getBoundingClientRect();
+    }
+  }, [items, manager]);
 
   if (activeId) {
-    // TODO: 覆盖功能
+    // todo: item更新时所有的transform和activeRect都要变
     const coordinates = {
       x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
       y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
@@ -77,7 +82,9 @@ export function DndContext({
   }
 
   useEffect(() => {
-    const sensorInstance = new Sensor({
+    console.log('sensor set');
+
+    sensorRef.current = new Sensor({
       manager,
       listener: listenerRef.current,
       collisions: collisionsRef,
@@ -100,7 +107,13 @@ export function DndContext({
         });
         onDragStart && onDragStart({ activeId });
       },
-      onMove(coordinates, id) {
+      onMove(coordinates, activeRect, id) {
+        const { initOffset, clientRect, marginRect } = activeRect;
+        activeRectRef.current = {
+          initOffset,
+          clientRect,
+          marginRect,
+        };
         onDragMove &&
           onDragMove({
             overNode: overNodeRef,
@@ -144,9 +157,9 @@ export function DndContext({
     // set activate event to binding with clicked element
     setActivator({
       eventName: Sensor.eventName,
-      handler: sensorInstance.handleStart,
+      handler: sensorRef.current.handleStart,
     });
-  }, [Sensor, manager, onDragEnd, onDragMove, onDragStart]);
+  }, [Sensor, manager]);
 
   const initialContextValue: DndContextDescriptor = {
     ...state,
@@ -165,6 +178,7 @@ export function DndContext({
         <DragOverlay
           index={manager.getNode(activeId, 'draggables')?.data.current?.['sortable']?.index ?? -1}
           id={activeId}
+          containerId={containerRef.current}
         />
       ) : null}
     </Context.Provider>

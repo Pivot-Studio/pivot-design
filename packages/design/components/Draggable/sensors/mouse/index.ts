@@ -3,7 +3,7 @@ import { Coordinate, UniqueIdentifier } from '../../types';
 import { getEventCoordinates } from '../../../utils';
 import { getElementMargin } from '../../utils';
 import Manager from '../../context/manager';
-import { Collision, MouseSensorProps } from './types';
+import { Collision, MouseSensorProps, Sensor } from './types';
 import { getOwnerDocument } from '../../../utils';
 import { MutableRefObject } from 'react';
 
@@ -21,13 +21,14 @@ export class MouseSensor {
   private transform!: Coordinate;
   private activeId!: UniqueIdentifier;
   private initOffset!: Coordinate | null;
-  private clientRect!: DOMRect | null;
+  private clientRect?: DOMRect | null;
   private marginRect!: {
     left: number;
     top: number;
     right: number;
     bottom: number;
   } | null;
+  private updateInitialOffsetFlag: boolean;
   constructor(private props: MouseSensorProps) {
     const { manager, listener, collisions } = props;
     this.manager = manager;
@@ -37,12 +38,7 @@ export class MouseSensor {
     this.handleStart = this.handleStart.bind(this);
     this.handleMove = this.handleMove.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
-    EVENTS.move.forEach((eventName) => {
-      this.windowListeners.add(eventName, this.handleMove);
-    });
-    EVENTS.end.forEach((eventName) => {
-      this.windowListeners.add(eventName, this.handleEnd);
-    });
+    this.updateInitialOffsetFlag = false;
   }
   // TODO 完成一个抽象的类，具体的start又外面实现并传入给draggableItem。move和end又外面传入事件名
   handleStart(event: Event, id: UniqueIdentifier) {
@@ -57,7 +53,12 @@ export class MouseSensor {
     this.windowListeners.add('selectionchange', this.removeTextSelection);
     // Resolved cursor error when mouse moving over Safari
     this.windowListeners.add('selectstart', (e) => e.preventDefault());
-
+    EVENTS.move.forEach((eventName) => {
+      this.windowListeners.add(eventName, this.handleMove);
+    });
+    EVENTS.end.forEach((eventName) => {
+      this.windowListeners.add(eventName, this.handleEnd);
+    });
     const activeNodeDescriptor = this.manager.getNode(id, 'draggables');
 
     if (activeNodeDescriptor) {
@@ -74,17 +75,32 @@ export class MouseSensor {
       });
     }
   }
+  updateInitialOffset(flag: boolean) {
+    this.updateInitialOffsetFlag = flag;
+  }
   private handleMove(event: MouseEvent) {
     if (!this.activeId) return;
     const { onMove } = this.props;
-
     const currentCoordinates = getEventCoordinates(event)!;
+    if (this.updateInitialOffsetFlag) {
+      this.initOffset = currentCoordinates;
+      this.clientRect = this.manager.getNode(this.activeId, 'draggables')?.node.current?.getBoundingClientRect();
+      this.updateInitialOffset(false);
+    }
     const transform = {
       x: currentCoordinates.x - this.initOffset!.x,
       y: currentCoordinates.y - this.initOffset!.y,
     };
     this.transform = transform;
-    onMove(transform, this.activeId);
+    onMove(
+      transform,
+      {
+        initOffset: this.initOffset,
+        marginRect: this.marginRect,
+        clientRect: this.clientRect,
+      },
+      this.activeId
+    );
   }
   private handleEnd(event: Event) {
     if (!this.activeId) return;
@@ -97,6 +113,7 @@ export class MouseSensor {
       draggable.transition = false;
     }
     this.windowListeners.remove('selectstart');
+    this.windowListeners.removeAll();
     onEnd({ nativeEvent: event, delta: this.transform, id: this.activeId, isDrop: this.collisions.current.length > 0 });
     this.reset();
   }

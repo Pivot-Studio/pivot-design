@@ -25,10 +25,24 @@ export interface MouseSensorProps {
       clientRect: DOMRect | null;
     }
   ): void;
-  onMove(coordinates: Coordinate, id: UniqueIdentifier): void;
+  onMove(
+    coordinates: Coordinate,
+    activeRect: {
+      initOffset: Coordinate | null;
+      marginRect: {
+        left: number;
+        right: number;
+        top: number;
+        bottom: number;
+      } | null;
+      clientRect: DOMRect | null;
+    },
+    id: UniqueIdentifier
+  ): void;
   onEnd(event: internalDragEndEvent): void;
 }
 export interface Sensor {
+  updateInitialOffset(arg0: boolean): unknown;
   eventName: string;
   new (props: MouseSensorProps): MouseSensor;
 }

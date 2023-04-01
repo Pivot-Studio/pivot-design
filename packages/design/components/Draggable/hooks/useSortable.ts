@@ -2,7 +2,7 @@ import { UniqueIdentifier, Data } from '../types';
 import { useDraggable } from './useDraggable';
 import { useDroppable } from './useDroppable';
 import { useCombinedRefs } from './useCombinedRefs';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { SortableData } from '../strategies/types';
 import useDndContext from './useDndContext';
 import { getElementMargin, overlayStyle } from '../utils';
@@ -28,6 +28,8 @@ export const useSortable = ({ id, index, containerId, items, isDragOverlay }: an
       transform
     );
     const listener = useSyntheticListeners(activator, id);
+    // console.log(node?.node.current?.getBoundingClientRect()!);
+
     return { transform, attributes, isDragging: true, listener };
   }
   const { isDragging, setDragNode, listener, transform, attributes, hasDragOverlay } = useDraggable({
