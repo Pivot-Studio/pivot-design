@@ -22,13 +22,8 @@ export const useSortable = ({ id, index, containerId, items, isDragOverlay }: an
   if (isDragOverlay) {
     const { transform, manager, activeRect, activator } = useDndContext();
     const node = manager.getNode(id, 'draggables');
-    const attributes = overlayStyle(
-      node?.node.current?.getBoundingClientRect()!,
-      getElementMargin(node?.node.current!),
-      transform
-    );
+    const attributes = overlayStyle(activeRect?.current.clientRect, getElementMargin(node?.node.current!), transform);
     const listener = useSyntheticListeners(activator, id);
-    // console.log(node?.node.current?.getBoundingClientRect()!);
 
     return { transform, attributes, isDragging: true, listener };
   }

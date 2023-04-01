@@ -54,7 +54,7 @@ export const useDraggable = ({ id, data }: UseDraggableProps) => {
         payload: { id, type: 'draggables' },
       });
     };
-  }, [dispatch, id, manager, dragNode]);
+  }, [dispatch, id, manager, dragNode, dataRef]);
 
   return {
     hasDragOverlay,

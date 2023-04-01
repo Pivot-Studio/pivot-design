@@ -44,7 +44,6 @@ export function DndContext({
 
   useEffect(() => {
     previousItemsRef.current = items;
-    sensorRef.current && sensorRef.current.updateInitialOffset(true);
     for (let d of manager.getAll('draggables')) {
       if (d.clientRect) d.clientRect.current = d.node.current?.getBoundingClientRect();
     }
@@ -72,6 +71,7 @@ export function DndContext({
         manager,
         transform,
         activeId,
+        activeRectRef,
         sortable,
         overNodeRef,
         coordinates,
@@ -107,13 +107,7 @@ export function DndContext({
         });
         onDragStart && onDragStart({ activeId });
       },
-      onMove(coordinates, activeRect, id) {
-        const { initOffset, clientRect, marginRect } = activeRect;
-        activeRectRef.current = {
-          initOffset,
-          clientRect,
-          marginRect,
-        };
+      onMove(coordinates, id) {
         onDragMove &&
           onDragMove({
             overNode: overNodeRef,

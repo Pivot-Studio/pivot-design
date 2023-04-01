@@ -28,7 +28,6 @@ export class MouseSensor {
     right: number;
     bottom: number;
   } | null;
-  private updateInitialOffsetFlag: boolean;
   constructor(private props: MouseSensorProps) {
     const { manager, listener, collisions } = props;
     this.manager = manager;
@@ -38,7 +37,6 @@ export class MouseSensor {
     this.handleStart = this.handleStart.bind(this);
     this.handleMove = this.handleMove.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
-    this.updateInitialOffsetFlag = false;
   }
   // TODO 完成一个抽象的类，具体的start又外面实现并传入给draggableItem。move和end又外面传入事件名
   handleStart(event: Event, id: UniqueIdentifier) {
@@ -75,32 +73,17 @@ export class MouseSensor {
       });
     }
   }
-  updateInitialOffset(flag: boolean) {
-    this.updateInitialOffsetFlag = flag;
-  }
+ 
   private handleMove(event: MouseEvent) {
     if (!this.activeId) return;
     const { onMove } = this.props;
     const currentCoordinates = getEventCoordinates(event)!;
-    if (this.updateInitialOffsetFlag) {
-      this.initOffset = currentCoordinates;
-      this.clientRect = this.manager.getNode(this.activeId, 'draggables')?.node.current?.getBoundingClientRect();
-      this.updateInitialOffset(false);
-    }
     const transform = {
       x: currentCoordinates.x - this.initOffset!.x,
       y: currentCoordinates.y - this.initOffset!.y,
     };
     this.transform = transform;
-    onMove(
-      transform,
-      {
-        initOffset: this.initOffset,
-        marginRect: this.marginRect,
-        clientRect: this.clientRect,
-      },
-      this.activeId
-    );
+    onMove(transform, this.activeId);
   }
   private handleEnd(event: Event) {
     if (!this.activeId) return;

@@ -12,9 +12,9 @@ interface ActiveInfo {
   overContainerId: UniqueIdentifier;
 }
 export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
-  const { activeId, manager, transform, overNodeRef, overContainerId } = activeInfo;
+  const { activeId, manager, transform, overNodeRef, overContainerId, activeRectRef } = activeInfo;
   const activeNode = manager.getNode(activeId, 'draggables')!;
-  const activeNodeRect = activeNode.clientRect!.current!;
+  const activeNodeRect = activeRectRef.current.clientRect;
   const activeNodeData = activeNode.data as MutableRefObject<SortableData>;
   const { index: activeNodeIndex, containerId: activeNodeContainerId } = activeNodeData.current.sortable;
   overNodeRef.current = activeNodeData.current;
@@ -43,7 +43,7 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
       draggable.transform = getRectDelta(
         'vertical',
         Math.abs(activeNodeIndex - targetIndex),
-        activeNodeRect,
+        activeNode.clientRect?.current,
         draggable.clientRect?.current
       );
       overNodeRef.current = data.current!;
@@ -54,7 +54,7 @@ export const verticalSortStrategy = (activeInfo: ActiveInfo) => {
       draggable.transform = getRectDelta(
         'vertical',
         Math.abs(activeNodeIndex - targetIndex),
-        activeNodeRect,
+        activeNode.clientRect?.current,
         draggable.clientRect?.current
       );
       if (overNodeRef.current['sortable'].index === activeNodeIndex) {
