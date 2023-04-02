@@ -5,6 +5,8 @@ import IconMdx from './src/components/Icon/index.mdx';
 import InputMdx from './src/components/Input/index.mdx';
 import { Button, Icon, Input } from 'pivot-design';
 import CardMdx from './src/components/Card/index.mdx';
+import SkeletonMdx from './src/components/Skeleton/index.mdx';
+import { Skeleton } from 'pivot-design';
 import { Card } from 'pivot-design';
 import Draggable from '@/examples/Draggable/Draggable';
 import CodeBlock from '@/components/codeBlock';
@@ -24,6 +26,8 @@ const App = () => {
         <div className={`demo-item ${select === 'Draggable' ? 'active' : ''}`} onClick={() => setSelect('Draggable')}>
           拖拽列表
         </div>
+        <div className={`demo-item ${select === 'Skeleton' ? 'active' : ''}`} onClick={() => setSelect('Skeleton')}>
+          骨架屏
         <div className={`demo-item ${select === 'Icon' ? 'active' : ''}`} onClick={() => setSelect('Icon')}>
           图标
         </div>
@@ -47,6 +51,7 @@ const App = () => {
           {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
           {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
           {select === 'Draggable' ? <Draggable /> : null}
+          {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
         </div>
       </div>
     </div>

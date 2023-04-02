@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CardProps } from 'pivot-design-props';
 import { prefix } from '../constants';
+import Skeleton from '../Skeleton';
 import classnames from 'classnames';
 import './index.scss';
 let num: number = 0;
@@ -29,10 +30,6 @@ const Card: React.FC<CardProps> = (props) => {
     if (descRef?.current?.scrollHeight != undefined && descRef?.current?.clientHeight != undefined)
       setNeedExpandBtn(descRef?.current?.scrollHeight > descRef?.current?.clientHeight);
   }, []);
-
-  if (loading) {
-    return <div className={`${prefix}-card-loading`} />;
-  }
 
   let classNames = classnames(
     `${prefix}-card`,
@@ -90,10 +87,11 @@ const Card: React.FC<CardProps> = (props) => {
 
   return (
     <div className={classNames} style={style}>
+      {loading && <Skeleton loading={loading} />}
       {cover}
-      {CardHeader(title, extra, time, avatar)}
-      {CardBody(children)}
-      {CardActionDom(actions)}
+      {!loading && CardHeader(title, extra, time, avatar)}
+      {!loading && CardBody(children)}
+      {!loading && CardActionDom(actions)}
     </div>
   );
 };

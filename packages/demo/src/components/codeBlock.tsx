@@ -31,7 +31,13 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
 
       <div className="pivot-code-box-actions">
         {expand ? (
-          <div className="pivot-code-box-icon" onClick={() => setExpand(false)}>
+          <div
+            className="pivot-code-box-icon"
+            onClick={() => {
+              setExpand(false);
+              setCodeDisplay(false);
+            }}
+          >
             <img src="https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg" />
           </div>
         ) : (
