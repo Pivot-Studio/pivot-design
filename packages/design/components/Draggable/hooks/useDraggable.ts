@@ -8,7 +8,7 @@ import { useLatestValue } from './useLastValue';
 
 interface UseDraggableProps {
   id: UniqueIdentifier;
-  data?: Data;
+  data?: Data; // useSortable needed
 }
 
 export const useDraggable = ({ id, data }: UseDraggableProps) => {

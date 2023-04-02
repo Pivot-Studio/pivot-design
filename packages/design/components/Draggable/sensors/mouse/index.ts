@@ -73,7 +73,7 @@ export class MouseSensor {
       });
     }
   }
- 
+
   private handleMove(event: MouseEvent) {
     if (!this.activeId) return;
     const { onMove } = this.props;

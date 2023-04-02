@@ -36,14 +36,12 @@ export function DndContext({
   const containerRef = useRef<number | string>('');
   const listenerRef = useRef(new Listeners(window));
   const overNodeRef = useRef<Data>(null as unknown as Data);
-  const previousItemsRef = useRef<UniqueIdentifier[]>([]);
   const sensorRef = useRef<any>(null);
   const items = useMemo<UniqueIdentifier[]>(() => {
     return propsItems.map((item: any) => (typeof item === 'object' && item.id ? item.id : item));
   }, [propsItems]);
 
   useEffect(() => {
-    previousItemsRef.current = items;
     for (let d of manager.getAll('draggables')) {
       if (d.clientRect) d.clientRect.current = d.node.current?.getBoundingClientRect();
     }
@@ -82,8 +80,6 @@ export function DndContext({
   }
 
   useEffect(() => {
-    console.log('sensor set');
-
     sensorRef.current = new Sensor({
       manager,
       listener: listenerRef.current,

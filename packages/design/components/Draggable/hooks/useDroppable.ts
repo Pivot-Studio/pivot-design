@@ -5,6 +5,12 @@ import useDndContext from './useDndContext';
 
 interface UseDroppableProps {
   id: UniqueIdentifier;
+  /**
+   * sortable container needed，example below：
+   * ```js
+   * data: { sortable: { type: 'container' } }
+   * ```
+   */
   data?: Data;
 }
 
