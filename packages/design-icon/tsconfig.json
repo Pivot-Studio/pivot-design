@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [".", "Icon/icons/.tsx"],
+  "exclude": ["lib"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "lib"
+  }
+}

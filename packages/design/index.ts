@@ -1,6 +1,11 @@
 import Button from './components/Button';
+import Icon from './components/Icon';
+import Input from './components/Input';
 import Card from './components/Card';
 import Skeleton from './components/Skeleton';
+export * from './components/hooks';
+export { Button, Icon, Input, Card };
+
 export { DraggableItem, DndContext, Sortable, useDraggable, Droppable } from './components/Draggable';
 export * from './components/hooks';
 export { Button, Card, Skeleton };

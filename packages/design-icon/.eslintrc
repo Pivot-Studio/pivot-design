@@ -1,0 +1,11 @@
+{
+  "extends": ["eslint-config-psfe"],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./packages/design/components"]], // 相对于项目根目录
+        "extensions": [".tsx"]
+      }
+    }
+  }
+}

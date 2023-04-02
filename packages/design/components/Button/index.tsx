@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import './index.scss';
 import { debounce } from '../utils/debounce';
 import { throttle } from '../utils/throttle';
+import { Loading } from 'pivot-design-icon';
 
 const Button: React.FC<ButtonProps> = (props) => {
   const {
@@ -79,6 +80,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       style={style}
       onClick={(e) => triggerClick(e)}
     >
+      {buttonLoading && <Loading rotate />}
       {children}
     </button>
   );
