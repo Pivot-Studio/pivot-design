@@ -27,13 +27,17 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   };
   return (
     <div className="pivot-code-box">
-      <div className="pivot-code-box-demo" ref={stylewidthRef}>
-        {children}
-      </div>
+      <div className="pivot-code-box-demo">{children}</div>
 
       <div className="pivot-code-box-actions">
         {expand ? (
-          <div className="pivot-code-box-icon" onClick={() => setExpand(false)}>
+          <div
+            className="pivot-code-box-icon"
+            onClick={() => {
+              setExpand(false);
+              setCodeDisplay(false);
+            }}
+          >
             <img src="https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg" />
           </div>
         ) : (
@@ -60,7 +64,6 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
           data-prismjs-copy="复制文本"
           data-prismjs-copy-error="按Ctrl+C复制"
           data-prismjs-copy-success="文本已复制！"
-          ref={codewidthRef}
         >
           <code className="language-jsx" ref={codeRef}>
             {code}
