@@ -28,6 +28,7 @@ const App = () => {
         </div>
         <div className={`demo-item ${select === 'Skeleton' ? 'active' : ''}`} onClick={() => setSelect('Skeleton')}>
           骨架屏
+        </div>
         <div className={`demo-item ${select === 'Icon' ? 'active' : ''}`} onClick={() => setSelect('Icon')}>
           图标
         </div>

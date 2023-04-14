@@ -4,11 +4,8 @@ import Input from './components/Input';
 import Card from './components/Card';
 import Skeleton from './components/Skeleton';
 export * from './components/hooks';
-export { Button, Icon, Input, Card };
-
+export { Button, Icon, Input, Card, Skeleton };
 export { DraggableItem, DndContext, Sortable, useDraggable, Droppable } from './components/Draggable';
-export * from './components/hooks';
-export { Button, Card, Skeleton };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();
