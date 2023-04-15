@@ -11,18 +11,17 @@ export interface MouseSensorProps {
   eventName?: string;
   manager: Manager;
   listener: Listeners;
-  collisions: MutableRefObject<Collision[]>;
   onStart(
     activeId: UniqueIdentifier,
     activeRect: {
-      initOffset: Coordinate | null;
-      marginRect: {
+      initOffset?: Coordinate;
+      marginRect?: {
         left: number;
         right: number;
         top: number;
         bottom: number;
-      } | null;
-      clientRect: DOMRect | null;
+      };
+      clientRect?: DOMRect;
     }
   ): void;
   onMove(coordinates: Coordinate, id: UniqueIdentifier): void;

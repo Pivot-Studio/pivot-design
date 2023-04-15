@@ -20,6 +20,9 @@ export interface DragNode extends HTMLElement {
 
 export type DraggableNode = {
   id: UniqueIdentifier;
+  // custom data：
+  // like Droppable: data = { type:string; }
+  // like Sortable: data = { sortable: { containerId, index, items }}
   data: DataRef;
   node: MutableRefObject<DragNode | undefined>;
   // node position information

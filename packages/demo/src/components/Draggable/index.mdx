@@ -1,67 +1,45 @@
-import demoObj from './demo/index';
-
 # Draggable 拖拽
 
 ## 基本示例
 
-<CodeBlock line={''} code={demoObj.basic}>
-  <DndContext onDragEnd={props.onDragEnd}>
-    <DraggableItem className="demo-draggable-item" left={props.coordinates.x} top={props.coordinates.y}>
-      draggable
-    </DraggableItem>
-  </DndContext>
+<CodeBlock line={''}>
+  <Basic />
 </CodeBlock>
 
-## 设置拖动点
+## 自定义拖拽过程中的样式
 
-<CodeBlock line={''} code={demoObj.basic}>
-  <DndContext onDragEnd={props.onDragEnd}>
-    <DraggableItem className="demo-draggable-item" left={props.coordinates.x} top={props.coordinates.y} handle>
-      draggable
-    </DraggableItem>
-  </DndContext>
+<CodeBlock line={''}>
+  <WithDragOverlay />
 </CodeBlock>
 
-## 拖放示例
+## 设置可拖拽区域
 
-<CodeBlock line={''} code={demoObj.droppable}>
-  <DndContext onDragEnd={props.onDragEnd2}>
-    <div style={{ minWidth: '150px', display: 'flex' }}>{props.parent !== 'A' ? <DraggableBlock /> : null}</div>
-    <Droppable>{props.parent === 'A' ? <DraggableBlock /> : null}</Droppable>
-  </DndContext>
+<CodeBlock line={''}>
+  <WithHandler />
 </CodeBlock>
 
-## 可拖拽列表
+## 拖放案例
 
-### 垂直方向 Vertical
-
-<CodeBlock line={'1-3'} code={demoObj.verticalSortable}>
-  <Sortable direction="vertical" itemClassName="demo-draggable-item"></Sortable>
+<CodeBlock line={''}>
+  <Droppable />
 </CodeBlock>
 
-### 水平方向 Horizen
+## 🌟 拖拽排序组件
 
-<CodeBlock line={'1-3'} code={demoObj.verticalSortable}>
-  <Sortable
-    direction="horizen"
-    itemClassName="demo-draggable-item demo-sortable-horizen"
-    Container={props.HorizenContainer}
-  ></Sortable>
+### 垂直方向拖拽
+
+<CodeBlock line={''}>
+  <VerticalSortable />
 </CodeBlock>
 
-### 栅格布局
+### 水平方向拖拽
 
-<CodeBlock line={'1-3'} code={demoObj.verticalSortable}>
-  <Sortable
-    items={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-    direction="grid"
-    Container={props.GridContainer}
-    itemClassName="demo-draggable-item demo-sortable-grid"
-  ></Sortable>
+<CodeBlock line={''}>
+  <HorizenSortable />
 </CodeBlock>
 
-### 多容器拖拽
+### 网格拖拽
 
-<CodeBlock line={'1-3'} code>
-  <MultipleContainer items={{ A: ['A1', 'A2', 'A3'], B: ['B1', 'B2', 'B3'] }} />
+<CodeBlock line={''}>
+  <GridSortable />
 </CodeBlock>

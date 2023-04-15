@@ -9,6 +9,7 @@ interface CollisionDetectionProps {
    * 当前激活元素的坐标位置
    */
   coordinates: Coordinate;
+  droppableRects: { clientRect: DOMRect; id: UniqueIdentifier }[];
 }
 export interface Collision {
   id: UniqueIdentifier;
@@ -23,24 +24,15 @@ export const isCollision = (clientRect: DOMRect, coordinates: Coordinate) =>
   clientRect.top + clientRect.height >= coordinates.y;
 
 export const collisionDetection = (props: CollisionDetectionProps): Collision[] => {
-  const { manager, coordinates, activeId } = props;
+  const { manager, coordinates, activeId, droppableRects } = props;
   if (!activeId) return [];
-  const collisions = [];
+  const collisions: Collision[] = [];
 
-  for (let droppable of manager.getAll('droppables')) {
-    // active droppable node
-    if (activeId === droppable.id) {
-      continue;
+  droppableRects.forEach((rect) => {
+    if (isCollision(rect.clientRect, coordinates)) {
+      const droppable = manager.getNode(rect.id, 'droppables')!;
+      collisions.push({ id: droppable.id, data: droppable.data, clientRect: rect.clientRect });
     }
-    // inactive droppable node
-    const node = droppable.node.current!;
-    // droppable.clientRect = node?.getBoundingClientRect();
-    // const { clientRect } = droppable;
-    const clientRect = node.getBoundingClientRect();
-
-    if (isCollision(clientRect, coordinates)) {
-      collisions.push({ id: droppable.id, data: droppable.data, clientRect });
-    }
-  }
+  });
   return collisions;
 };

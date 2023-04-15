@@ -1,0 +1,22 @@
+.demo-sortable-wrap {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  &.__demo-sortable-vertical {
+    flex-direction: column;
+  }
+
+  .demo-sortable-item {
+    width: 50%;
+    background-color: #6193f0;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    margin: 8px 0;
+    border-radius: 16px;
+    cursor: grab;
+    cursor: -webkit-grab;
+    user-select: none;
+  }
+}

@@ -3,9 +3,8 @@ import { Coordinate, UniqueIdentifier } from '../../types';
 import { getEventCoordinates } from '../../../utils';
 import { getElementMargin } from '../../utils';
 import Manager from '../../context/manager';
-import { Collision, MouseSensorProps, Sensor } from './types';
+import { MouseSensorProps } from './types';
 import { getOwnerDocument } from '../../../utils';
-import { MutableRefObject } from 'react';
 
 const EVENTS = {
   start: ['mousedown'],
@@ -16,23 +15,21 @@ export class MouseSensor {
   static eventName = 'onMouseDown';
   private windowListeners: Listeners;
   private manager: Manager;
-  private collisions: MutableRefObject<Collision[]>;
   private document!: Document;
   private transform!: Coordinate;
   private activeId!: UniqueIdentifier;
-  private initOffset!: Coordinate | null;
-  private clientRect?: DOMRect | null;
-  private marginRect!: {
+  private initOffset?: Coordinate;
+  private clientRect?: DOMRect;
+  private marginRect?: {
     left: number;
     top: number;
     right: number;
     bottom: number;
-  } | null;
+  };
   constructor(private props: MouseSensorProps) {
-    const { manager, listener, collisions } = props;
+    const { manager, listener } = props;
     this.manager = manager;
     this.windowListeners = listener;
-    this.collisions = collisions;
     this.reset();
     this.handleStart = this.handleStart.bind(this);
     this.handleMove = this.handleMove.bind(this);
@@ -46,7 +43,6 @@ export class MouseSensor {
     this.document = getOwnerDocument(event.target);
     // Remove any text selection from the document
     this.removeTextSelection();
-
     // Prevent further text selection while dragging
     this.windowListeners.add('selectionchange', this.removeTextSelection);
     // Resolved cursor error when mouse moving over Safari
@@ -59,12 +55,12 @@ export class MouseSensor {
     });
     const activeNodeDescriptor = this.manager.getNode(id, 'draggables');
 
-    if (activeNodeDescriptor) {
-      const activeNode = activeNodeDescriptor.node.current!;
-      this.initOffset = getEventCoordinates(event);
-      this.clientRect = activeNode.getBoundingClientRect();
+    if (activeNodeDescriptor && activeNodeDescriptor.node.current) {
+      const activeNode = activeNodeDescriptor.node.current;
+
+      this.clientRect = activeNodeDescriptor.clientRect?.current;
+      this.initOffset = getEventCoordinates(event) as Coordinate;
       this.marginRect = getElementMargin(activeNode);
-      // activeNodeDescriptor.clientRect = this.clientRect;
 
       onStart(id, {
         initOffset: this.initOffset,
@@ -97,14 +93,14 @@ export class MouseSensor {
     }
     this.windowListeners.remove('selectstart');
     this.windowListeners.removeAll();
-    onEnd({ nativeEvent: event, delta: this.transform, id: this.activeId, isDrop: this.collisions.current.length > 0 });
+    onEnd({ nativeEvent: event, delta: this.transform, id: this.activeId });
     this.reset();
   }
   private reset() {
     this.activeId = '';
-    this.initOffset = null;
-    this.clientRect = null;
-    this.marginRect = null;
+    this.initOffset = undefined;
+    this.clientRect = undefined;
+    this.marginRect = undefined;
     this.transform = {
       x: 0,
       y: 0,

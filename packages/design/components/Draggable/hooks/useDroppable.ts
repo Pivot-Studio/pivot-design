@@ -15,17 +15,9 @@ interface UseDroppableProps {
 }
 
 export const useDroppable = ({ id, data }: UseDroppableProps) => {
-  const { dispatch, collisions: collisionsRef, manager } = useDndContext();
-  const collisions = collisionsRef?.current;
+  const { dispatch, manager, container } = useDndContext();
+  let over = container === id;
 
-  let over = false;
-  if (collisions && collisions.length > 0) {
-    for (let collision of collisions) {
-      if (collision.id === id) {
-        over = true;
-      }
-    }
-  }
   const dropNode = useRef<DragNode>();
   const setDropNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dropNode.current = currentNode as DragNode;

@@ -1,8 +1,7 @@
 import { Dispatch, MutableRefObject, ReactNode } from 'react';
 import { DragEndEvent } from '../sensors/events';
 import { Sensor } from '../sensors/mouse/types';
-import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
-import { Collision } from '../utils/collisionDetection';
+import { Coordinate, Data, DraggableNode, UniqueIdentifier } from '../types';
 import Manager from './manager';
 
 export enum DragActionEnum {
@@ -68,34 +67,28 @@ export type ActionType =
     };
 
 export interface DndContextDescriptor extends State {
+  droppableRects: { clientRect: DOMRect; id: UniqueIdentifier }[];
   dispatch: Dispatch<ActionType>;
   activeRect: MutableRefObject<{
-    initOffset: Coordinate | null;
-    marginRect: {
+    initOffset?: Coordinate;
+    marginRect?: {
       left: number;
       right: number;
       top: number;
       bottom: number;
-    } | null;
-    clientRect: DOMRect | null;
-  }> | null;
-  collisions: MutableRefObject<Collision[]> | null;
-  sortable?: {
-    direction: 'vertical' | 'horizen';
-  };
+    };
+    clientRect?: DOMRect;
+  } | null>;
+  overNodeRef: MutableRefObject<Data | undefined>;
   hasDragOverlay: boolean;
 }
 
 export interface DndContextProps {
   children: ReactNode;
-  hasDragOverlay?: boolean;
+  DragOverlay?: ReactNode;
   sensor?: Sensor;
-  items?: UniqueIdentifier[];
   // todo
   onDragStart?: (event: any) => void;
   onDragMove?: (event: any) => void;
   onDragEnd?: (event: DragEndEvent) => void;
-  sortable?: {
-    direction: 'vertical' | 'horizen';
-  };
 }

@@ -5,10 +5,9 @@ import classnames from 'classnames';
 import { useDraggable } from '../../hooks/useDraggable';
 import './DraggableItem.scss';
 import Handle from '../Handle/Handle';
-import { setTransform } from '../../utils';
 function DraggableItem(props: DraggableItemProps) {
-  const { className, children, top, left, handle = false, id, isDragOverlay } = props;
-  const { isDragging, setDragNode, listener, attributes, transform } = useDraggable({
+  const { className, children, top, left, handle = false, id } = props;
+  const { isDragging, setDragNode, listener, attributes, hasDragOverlay } = useDraggable({
     id: id ? id : 'draggable',
   });
   return (
@@ -16,18 +15,18 @@ function DraggableItem(props: DraggableItemProps) {
       <div
         ref={setDragNode}
         className={classnames(`${prefix}-draggable-item`, className, {
-          [`${prefix}-draggable-overlay`]: isDragging,
+          [`__${prefix}_hidden`]: isDragging && hasDragOverlay,
+          [`__${prefix}_dragging`]: isDragging,
           [`__${prefix}_handle`]: handle,
         })}
-        style={{ top, left, ...attributes, ...(isDragOverlay ? setTransform(transform) : {}) }}
+        style={{ top, left, ...attributes }}
         {...(handle ? {} : listener)}
       >
         {children}
-        {handle ? <Handle {...(handle ? listener : {})} /> : null}
+        {handle ? <Handle {...(handle ? listener : {})} isDragging={isDragging} /> : null}
       </div>
     </>
   );
 }
 
-const Item = React.forwardRef(DraggableItem);
-export default Item;
+export default DraggableItem;

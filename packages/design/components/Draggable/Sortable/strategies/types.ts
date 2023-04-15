@@ -1,4 +1,4 @@
-import { UniqueIdentifier } from '../types';
+import { UniqueIdentifier } from '../../types';
 
 export type SortableData = {
   sortable: {

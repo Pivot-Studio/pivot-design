@@ -1,13 +1,6 @@
 import DraggableMdx from '../../components/Draggable/index.mdx';
-import {
-  DraggableItem,
-  Droppable,
-  arrayMove,
-  DndContext,
-  Sortable,
-  MultipleContainer,
-  useDroppable,
-} from 'pivot-design';
+import { DraggableItem, Droppable, arrayMove, DndContext, MultipleContainer, useDroppable } from 'pivot-design';
+import './index.scss';
 import CodeBlock from '@/components/codeBlock';
 import { useState } from 'react';
 
@@ -65,7 +58,6 @@ const Draggable = () => {
         Droppable,
         DraggableItem,
         CodeBlock,
-        Sortable,
         DraggableBlock,
         MultipleContainer,
       }}

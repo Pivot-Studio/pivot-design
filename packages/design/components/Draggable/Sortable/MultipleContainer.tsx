@@ -1,12 +1,11 @@
 import classNames from 'classnames';
-import { DndContext } from '../../context/DndContext';
+import { DndContext } from '../context/DndContext';
 import { useState } from 'react';
-import { prefix } from '../../../constants';
-import { useDroppable } from '../../hooks/useDroppable';
-import { UniqueIdentifier } from '../../types';
+import { prefix } from '../../constants';
+import { useDroppable } from '../hooks/useDroppable';
+import { UniqueIdentifier } from '../types';
 import { Sortable } from './Sortable';
-import './Sortable.scss';
-import SortableItem from '../../components/Draggable/SortableItem';
+import SortableItem from './SortableItem';
 import { createPortal } from 'react-dom';
 
 function DroppableContainer(props: any) {

@@ -15,21 +15,25 @@ export const useDraggable = ({ id, data }: UseDraggableProps) => {
   const { activeId, transform, dispatch, activeRect, activator, manager, hasDragOverlay } = useDndContext();
   const rect = useRef<DOMRect>();
   const isDragging = activeId == id;
+
   const node = manager.getNode(id, 'draggables');
-  const nodeTransform = node?.transform;
-  const transition = node?.transition;
+  const nodeTransform = node?.transform; // sortable needed
+  const transition = node?.transition; // sortable needed
   const dragNode = useRef<DragNode>();
   const listener = useSyntheticListeners(activator, id);
+
   const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dragNode.current = currentNode as DragNode;
     if (currentNode && !rect.current) {
       rect.current = currentNode.getBoundingClientRect(); // initialize draggables position
     }
   }, []);
-  const dataRef = useLatestValue({ id, ...data });
+
+  const dataRef = useLatestValue({ id, ...data }); // sortable needed
 
   const attributes = {
     ...setTransform(nodeTransform),
+    // When there is no dragOverlay, the dragging element is setting `transform`
     ...(isDragging && !hasDragOverlay ? setTransform(transform) : {}),
     transition: transition ? '300ms' : '',
   };

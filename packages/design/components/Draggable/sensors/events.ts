@@ -6,7 +6,6 @@ export interface DragEvent {
 }
 export interface internalDragEndEvent extends DragEvent {
   id: number | string;
-  isDrop: boolean;
 }
 export interface DragEndEvent extends DragEvent {
   id: number | string;

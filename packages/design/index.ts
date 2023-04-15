@@ -1,14 +1,14 @@
 import Button from './components/Button';
 export {
   DraggableItem,
+  SortableItem,
   DndContext,
-  Sortable,
   useDraggable,
   useDroppable,
   Droppable,
   MultipleContainer,
+  SortableContext,
 } from './components/Draggable';
-// export * from './components/hooks';
 export { Button };
 
 export const arrayMove = (array: any[], from: number, to: number) => {

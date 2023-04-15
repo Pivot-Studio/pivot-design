@@ -4,10 +4,10 @@ import { useDroppable } from '../../hooks/useDroppable';
 import './Droppable.scss';
 
 export function Droppable(props: any) {
-  const { className, children, top, left } = props;
+  const { className, children, style } = props;
   const { setDropNode, attributes, over } = useDroppable({
     id: 'droppable',
-    data: { sortable: { type: 'container' } },
+    data: { type: 'container' },
   });
 
   return (
@@ -16,7 +16,7 @@ export function Droppable(props: any) {
       className={classNames(`${prefix}-droppable`, className, {
         [`__${prefix}_overing`]: over,
       })}
-      style={{ top, left, ...attributes }}
+      style={{ ...style, ...attributes }}
     >
       {children}
       {'Droppable'}
