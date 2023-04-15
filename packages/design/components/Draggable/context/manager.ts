@@ -29,13 +29,13 @@ export default class Manager {
   getAll(key: 'draggables' | 'droppables') {
     const nodes = this.nodes[key];
     if (key === 'draggables') {
-      return nodes.sort((a, b) => a.data.current!['sortable'].index - b.data.current!['sortable'].index);
+      return nodes.sort((a, b) => a.data['sortable'].index - b.data['sortable'].index);
     }
     return nodes;
   }
   getContainerNode(id: UniqueIdentifier) {
     const nodes = [...this.nodes['draggables']];
-    return nodes.filter((n) => n.data.current!['sortable'].containerId === id);
+    return nodes.filter((n) => n.data['sortable'].containerId === id);
   }
   getNode(id: UniqueIdentifier, key: 'draggables' | 'droppables') {
     const nodes = this.nodes[key];

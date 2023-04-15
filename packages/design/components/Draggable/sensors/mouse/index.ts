@@ -1,7 +1,6 @@
 import { Listeners } from '../../utils';
 import { Coordinate, UniqueIdentifier } from '../../types';
 import { getEventCoordinates } from '../../../utils';
-import { getElementMargin } from '../../utils';
 import Manager from '../../context/manager';
 import { MouseSensorProps } from './types';
 import { getOwnerDocument } from '../../../utils';
@@ -56,15 +55,10 @@ export class MouseSensor {
     const activeNodeDescriptor = this.manager.getNode(id, 'draggables');
 
     if (activeNodeDescriptor && activeNodeDescriptor.node.current) {
-      const activeNode = activeNodeDescriptor.node.current;
-
       this.clientRect = activeNodeDescriptor.clientRect?.current;
       this.initOffset = getEventCoordinates(event) as Coordinate;
-      this.marginRect = getElementMargin(activeNode);
-
-      onStart(id, {
+      onStart(event, id, {
         initOffset: this.initOffset,
-        marginRect: this.marginRect,
         clientRect: this.clientRect,
       });
     }
@@ -79,7 +73,7 @@ export class MouseSensor {
       y: currentCoordinates.y - this.initOffset!.y,
     };
     this.transform = transform;
-    onMove(transform, this.activeId);
+    onMove(transform, this.activeId, event);
   }
   private handleEnd(event: Event) {
     if (!this.activeId) return;

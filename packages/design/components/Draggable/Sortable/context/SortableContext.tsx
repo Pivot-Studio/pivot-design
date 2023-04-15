@@ -1,24 +1,34 @@
 import { Data, UniqueIdentifier } from '../../types';
 import { createContext, ReactNode, useMemo } from 'react';
-import useDndContext from '../../hooks/useDndContext';
-import Manager from '../../context/manager';
-
+import useDndContext from '../../context/useDndContext';
 interface SortableContextProps {
+  children: ReactNode;
   /**
    * Sortable Container‘s id
    */
   id: UniqueIdentifier;
+  /**
+   * Sortable items data
+   */
   items: UniqueIdentifier[];
-  children: ReactNode;
+  /**
+   * Sortable type
+   */
   type?: 'vertical' | 'horizen' | 'grid';
+  /**
+   * Sortable items transfrom transition time when sorting
+   */
+  transitionTime?: string;
 }
 
 export interface SortableContextDescriptor {
   items: UniqueIdentifier[];
   containerId: UniqueIdentifier;
   droppableRects: DOMRect[];
+  transitionTime: string;
   /**
    * 当前是否处于拖拽过程中
+   *
    * Whether an element is currently being dragged
    */
   dragging: boolean;
@@ -35,21 +45,25 @@ const defaultSortableContext = {
   active: {},
   type: 'vertical' as const,
   droppableRects: [],
+  transitionTime: '300ms',
 };
 
 export const Context = createContext<SortableContextDescriptor>(defaultSortableContext);
 
 export const SortableContext = (props: SortableContextProps) => {
-  const { id = 'Sortable', children, items: propsItems, type = 'vertical' } = props;
-  const { activeId, transform, manager, overNodeRef, droppableRects: globalDroppableRects } = useDndContext();
+  const { id = 'Sortable', children, items: propsItems, type = 'vertical', transitionTime = '300ms' } = props;
+  const { activeId, manager, overNodeRef, droppableRects: globalDroppableRects } = useDndContext();
+
   const droppableRects = useMemo(() => {
     return globalDroppableRects.map((rect) => rect.clientRect);
   }, [globalDroppableRects]);
+
   const activeNode = manager.getNode(activeId, 'draggables');
+
   const dragging = !!activeId;
-  // sortable Id 由context来控制
+
   const items = useMemo<UniqueIdentifier[]>(() => {
-    return propsItems.map((item) => (item && typeof item === 'object' && 'id' in item ? item.id : item));
+    return propsItems.map((item) => (item && typeof item === 'object' && 'id' in item ? item['id'] : item));
   }, [propsItems]);
 
   const initialContextValue: SortableContextDescriptor = {
@@ -57,9 +71,10 @@ export const SortableContext = (props: SortableContextProps) => {
     containerId: id,
     over: overNodeRef.current,
     dragging,
-    active: activeNode?.data.current,
+    active: activeNode?.data,
     droppableRects,
     type,
+    transitionTime,
   };
 
   return <Context.Provider value={initialContextValue}>{children}</Context.Provider>;

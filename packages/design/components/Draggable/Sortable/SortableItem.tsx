@@ -7,7 +7,7 @@ import { useSortable } from './useSortable';
 
 function SortableItem(props: any) {
   const { className, children, id, index, handle = false } = props;
-  const { setSortNode, hasDragOverlay, isDragging, listener, attributes } = useSortable({
+  const { setSortNode, hasDragOverlay, isActive, listener, attributes } = useSortable({
     id,
     index,
   });
@@ -16,7 +16,7 @@ function SortableItem(props: any) {
       <div
         ref={setSortNode}
         className={classnames(`${prefix}-sortable-item`, className, {
-          [`__${prefix}_dragging`]: !hasDragOverlay && isDragging,
+          [`__${prefix}_dragging`]: !hasDragOverlay && isActive,
           [`__${prefix}_handle`]: handle,
         })}
         style={{ ...attributes }}

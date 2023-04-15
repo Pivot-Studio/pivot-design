@@ -1,4 +1,5 @@
-import { Coordinate, DataRef } from '../types';
+import { SortableData } from '../Sortable/strategies/types';
+import { Coordinate, Data } from '../types';
 
 export interface DragEvent {
   nativeEvent: Event;
@@ -7,9 +8,19 @@ export interface DragEvent {
 export interface internalDragEndEvent extends DragEvent {
   id: number | string;
 }
+
+export interface DragStartEvent {
+  id: number | string;
+  nativeEvent: Event;
+}
+export interface DragMoveEvent extends DragEvent {
+  active?: Data;
+  over?: Data;
+  container?: number | string;
+}
 export interface DragEndEvent extends DragEvent {
   id: number | string;
-  activeNode?: DataRef;
-  overNode?: DataRef;
+  active: Data<SortableData['sortable']>;
+  over: Data<SortableData['sortable']>;
   isDrop: boolean;
 }

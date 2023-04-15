@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
 import { Data, DragNode, UniqueIdentifier } from '../types';
-import useDndContext from './useDndContext';
+import useDndContext from '../context/useDndContext';
 
 interface UseDroppableProps {
   id: UniqueIdentifier;
@@ -14,7 +14,7 @@ interface UseDroppableProps {
   data?: Data;
 }
 
-export const useDroppable = ({ id, data }: UseDroppableProps) => {
+export const useDroppable = ({ id, data: customData }: UseDroppableProps) => {
   const { dispatch, manager, container } = useDndContext();
   let over = container === id;
 
@@ -22,13 +22,14 @@ export const useDroppable = ({ id, data }: UseDroppableProps) => {
   const setDropNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dropNode.current = currentNode as DragNode;
   }, []);
-  const dataRef = useRef({ id, ...data });
+  const data = useMemo(() => ({ id, ...customData }), [customData, id]); // sortable needed
+
   const attributes = {};
 
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
-      payload: { node: { id, node: dropNode, data: dataRef }, type: 'droppables' },
+      payload: { node: { id, node: dropNode, data }, type: 'droppables' },
     });
     return () => {
       dispatch({

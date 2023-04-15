@@ -7,10 +7,8 @@ const Container = ({ children }) => {
 };
 const HorizenSortable = () => {
   const [items, setItems] = useState([1, 2, 3, 4, 5]);
-  const reorderItems = ({ activeNode, overNode }: DragEndEvent) => {
-    const activeSortable = activeNode && activeNode['sortable'];
-    const overSortable = overNode && overNode['sortable'];
-    setItems((items) => arrayMove(items, activeSortable.index, overSortable.index));
+  const reorderItems = ({ active, over }: DragEndEvent) => {
+    setItems((items) => arrayMove(items, active.index, over.index));
   };
   return (
     <DndContext onDragEnd={reorderItems}>

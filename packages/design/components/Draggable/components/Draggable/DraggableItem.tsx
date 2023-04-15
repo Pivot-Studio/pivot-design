@@ -7,7 +7,7 @@ import './DraggableItem.scss';
 import Handle from '../Handle/Handle';
 function DraggableItem(props: DraggableItemProps) {
   const { className, children, top, left, handle = false, id } = props;
-  const { isDragging, setDragNode, listener, attributes, hasDragOverlay } = useDraggable({
+  const { isActive, setDragNode, listener, attributes, hasDragOverlay } = useDraggable({
     id: id ? id : 'draggable',
   });
   return (
@@ -15,15 +15,15 @@ function DraggableItem(props: DraggableItemProps) {
       <div
         ref={setDragNode}
         className={classnames(`${prefix}-draggable-item`, className, {
-          [`__${prefix}_hidden`]: isDragging && hasDragOverlay,
-          [`__${prefix}_dragging`]: isDragging,
+          [`__${prefix}_hidden`]: isActive && hasDragOverlay,
+          [`__${prefix}_dragging`]: isActive,
           [`__${prefix}_handle`]: handle,
         })}
         style={{ top, left, ...attributes }}
         {...(handle ? {} : listener)}
       >
         {children}
-        {handle ? <Handle {...(handle ? listener : {})} isDragging={isDragging} /> : null}
+        {handle ? <Handle {...(handle ? listener : {})} isDragging={isActive} /> : null}
       </div>
     </>
   );

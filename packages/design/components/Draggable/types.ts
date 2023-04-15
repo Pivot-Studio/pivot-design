@@ -23,7 +23,7 @@ export type DraggableNode = {
   // custom data：
   // like Droppable: data = { type:string; }
   // like Sortable: data = { sortable: { containerId, index, items }}
-  data: DataRef;
+  data: Data;
   node: MutableRefObject<DragNode | undefined>;
   // node position information
   clientRect?: MutableRefObject<DOMRect | undefined>;

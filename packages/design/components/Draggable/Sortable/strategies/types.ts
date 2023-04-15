@@ -1,9 +1,9 @@
-import { UniqueIdentifier } from '../../types';
+import { Data, UniqueIdentifier } from '../../types';
 
-export type SortableData = {
+export type SortableData = Data<{
   sortable: {
     containerId: UniqueIdentifier;
     items: UniqueIdentifier[];
     index: number;
   };
-};
+}>;

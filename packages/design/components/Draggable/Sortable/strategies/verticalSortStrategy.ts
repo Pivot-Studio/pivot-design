@@ -5,8 +5,8 @@ interface VerticalSortStrategyProps {
   droppableRects: DOMRect[];
   index: number;
   containerId: UniqueIdentifier;
-  active: SortableData;
-  over: SortableData;
+  active?: SortableData;
+  over?: SortableData;
 }
 
 function getItemGap(clientRects: DOMRect[], index: number, activeIndex: number) {
@@ -52,7 +52,7 @@ export const verticalSortStrategy = ({
   const { index: overIndex, containerId: overContainer } = overSortable;
 
   const activeRect = rects[activeIndex];
-  const overRect = rects[overIndex];
+  // const overRect = rects[overIndex];
   if (!activeRect) {
     return {
       x: 0,

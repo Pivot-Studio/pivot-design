@@ -9,7 +9,7 @@ export const useMeasureDroppableContainer = (manager: Manager, activeId: UniqueI
     }
     const droppableContainers = manager
       .getAll('droppables')
-      .sort((a, b) => a.data.current!['sortable'].index - b.data.current!['sortable'].index);
+      .sort((a, b) => a.data['sortable'].index - b.data['sortable'].index);
     return droppableContainers.map((droppable) => {
       return {
         clientRect: droppable.node.current!.getBoundingClientRect(),

@@ -1,6 +1,6 @@
-import { Coordinate } from '../../utils/types';
-import Manager from '../context/manager';
-import { DataRef, UniqueIdentifier } from '../types';
+import { Coordinate } from '../../../utils/types';
+import Manager from '../../context/manager';
+import { Data, UniqueIdentifier } from '../../types';
 
 interface CollisionDetectionProps {
   activeId: UniqueIdentifier;
@@ -13,7 +13,7 @@ interface CollisionDetectionProps {
 }
 export interface Collision {
   id: UniqueIdentifier;
-  data: DataRef;
+  data: Data;
   clientRect: DOMRect;
 }
 

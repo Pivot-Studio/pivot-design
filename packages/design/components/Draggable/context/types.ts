@@ -1,5 +1,5 @@
-import { Dispatch, MutableRefObject, ReactNode } from 'react';
-import { DragEndEvent } from '../sensors/events';
+import { Dispatch, ElementType, MutableRefObject, ReactNode } from 'react';
+import { DragEndEvent, DragMoveEvent, DragStartEvent } from '../sensors/events';
 import { Sensor } from '../sensors/mouse/types';
 import { Coordinate, Data, DraggableNode, UniqueIdentifier } from '../types';
 import Manager from './manager';
@@ -69,26 +69,15 @@ export type ActionType =
 export interface DndContextDescriptor extends State {
   droppableRects: { clientRect: DOMRect; id: UniqueIdentifier }[];
   dispatch: Dispatch<ActionType>;
-  activeRect: MutableRefObject<{
-    initOffset?: Coordinate;
-    marginRect?: {
-      left: number;
-      right: number;
-      top: number;
-      bottom: number;
-    };
-    clientRect?: DOMRect;
-  } | null>;
   overNodeRef: MutableRefObject<Data | undefined>;
   hasDragOverlay: boolean;
 }
 
 export interface DndContextProps {
   children: ReactNode;
-  DragOverlay?: ReactNode;
+  DragOverlay?: ElementType;
   sensor?: Sensor;
-  // todo
-  onDragStart?: (event: any) => void;
-  onDragMove?: (event: any) => void;
+  onDragStart?: (event: DragStartEvent) => void;
+  onDragMove?: (event: DragMoveEvent) => void;
   onDragEnd?: (event: DragEndEvent) => void;
 }
