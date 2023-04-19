@@ -5,6 +5,7 @@ export {
   DndContext,
   useDraggable,
   useDroppable,
+  useSortable,
   Droppable,
   MultipleContainer,
   SortableContext,

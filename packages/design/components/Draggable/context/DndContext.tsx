@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { MouseSensor } from '../sensors';
 import { DndContextProps } from './types';
-import { collisionDetection } from '../utils/algorithm/collisionDetection';
+import { Collision, collisionDetection } from '../utils/algorithm/collisionDetection';
 import { Listeners } from '../utils/Listener';
 import { Context } from './context';
 import { initialState, reducer } from './reducer';
@@ -34,42 +34,59 @@ export function DndContext({
 
   // The location of the droppable elemenets is recalculated only if the activeId changes
   // 【🌟】used by collisions detections & sortable calculation
-  const droppableRects = useMeasureDroppableContainer(manager, activeId);
+
+  // todo: collision要随着droppableRect变化而更新
+  const {
+    droppableRects,
+    collisions,
+    over,
+    container: measureContainer,
+    updateDroppableRects,
+  } = useMeasureDroppableContainer(manager, activeId, activeRectRef, transform);
+
+  if (over) {
+    overNodeRef.current = over;
+  }
+  useEffect(() => {
+    dispatch({
+      type: DragActionEnum.SET_CONTAINER,
+      payload: {
+        container: measureContainer,
+      },
+    });
+  }, [measureContainer]);
+  // useEffect(() => {
+  //   if (activeRectRef.current) {
+  //     const coordinates = {
+  //       x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
+  //       y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
+  //     };
+  //     collisionsRef.current = collisionDetection({
+  //       activeId,
+  //       manager,
+  //       coordinates,
+  //       droppableRects,
+  //     });
+  //   }
+  // }, [droppableRects]);
+  // console.log(droppableRects);
 
   const handleDragMove = useEvent((transform, id, event) => {
-    let currentContainer: UniqueIdentifier = '';
     // Collision Detection with droppable items&containers clientRects
     if (id && activeRectRef.current) {
-      const coordinates = {
-        x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
-        y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
-      };
-      const collisions = collisionDetection({
-        activeId: id,
-        manager,
-        coordinates,
-        droppableRects,
-      });
-      for (let collision of collisions) {
-        if (collision.data && collision.data['type'] === 'container') {
-          currentContainer = collision.id;
-        } else if (collision.data && collision.data['sortable']) {
-          overNodeRef.current = collision.data;
-        }
-      }
       onDragMove &&
         onDragMove({
+          id: activeId,
           delta: transform,
           over: overNodeRef.current!['sortable'],
           active: manager.getNode(id, 'draggables')!.data['sortable'],
-          container: currentContainer,
+          container: measureContainer,
           nativeEvent: event,
         });
       dispatch({
         type: DragActionEnum.TRANSFORM,
         payload: {
           transform,
-          container: currentContainer,
         },
       });
     }
@@ -78,8 +95,8 @@ export function DndContext({
     onDragEnd &&
       onDragEnd({
         ...event,
-        over: overNodeRef.current,
-        active: manager.getNode(activeId, 'draggables')?.data,
+        over: overNodeRef.current!['sortable'],
+        active: manager.getNode(activeId, 'draggables')?.data['sortable'],
         id: activeId,
         isDrop: !!container,
       });
@@ -93,7 +110,6 @@ export function DndContext({
           x: 0,
           y: 0,
         },
-        container: '',
       },
     });
   });
@@ -103,17 +119,16 @@ export function DndContext({
       initOffset,
       clientRect,
     };
+
     overNodeRef.current = manager.getNode(activeId, 'draggables')!.data;
     // resolved：解决Safari中使用useEffect获取Rect时候是基于整个滚动页面来计算的问题，使得不同浏览器不兼容
     //，每次点击时候都重新计算一下初始位置
     // resolved: Safari is using useEffect to retrieve rects based on the entire scroll page, making them incompatible with browsers
     //, recalculate the initial position each time you click
-    // for (let d of manager.getAll('draggables')) {
-    //   if (d.clientRect) d.clientRect.current = d.node.current?.getBoundingClientRect();
-    // }
+
     dispatch({
       type: DragActionEnum.ACTIVATED,
-      payload: { activeId, container: container },
+      payload: { activeId },
     });
     onDragStart && onDragStart({ nativeEvent: event, id: activeId });
   });
@@ -139,6 +154,7 @@ export function DndContext({
   const initialContextValue: DndContextDescriptor = {
     ...state,
     droppableRects,
+    updateDroppableRects,
     dispatch,
     overNodeRef,
     hasDragOverlay,
@@ -150,7 +166,7 @@ export function DndContext({
       {children}
       {DragOverlay && activeId ? (
         <DragOverlay
-          index={manager.getNode(activeId, 'draggables')?.data?.['sortable']?.index ?? -1}
+          rect={manager.getNode(activeId, 'draggables')?.clientRect}
           id={activeId}
           containerId={container}
           x={activeRectRef.current!.clientRect!.left + transform.x}

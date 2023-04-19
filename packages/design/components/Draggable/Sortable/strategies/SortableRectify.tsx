@@ -1,19 +1,19 @@
-import { UniqueIdentifier } from '../../types';
+import { Data, UniqueIdentifier } from '../../types';
 import { verticalSortStrategy } from './verticalSortStrategy';
 import { horizenSortStrategy } from './horizenSortStrategy';
 import { gridSortStrategy } from './gridSortStrategy';
 import { SortableData } from './types';
+import { DroppableRectMap } from '../../../Draggable/context/types';
 interface SortableRectifyProps {
-  droppableRects: DOMRect[];
+  droppableRects: DroppableRectMap;
   index: number;
   type: 'vertical' | 'horizen' | 'grid';
-  over?: SortableData;
-  active?: SortableData;
+  over?: Data<SortableData>;
+  active?: Data<SortableData>;
   containerId: UniqueIdentifier;
 }
 export function sortableRectify(props: SortableRectifyProps) {
   const { index, over, active, containerId, droppableRects, type } = props;
-
   if (type === 'vertical') {
     return verticalSortStrategy({ index, active, over, containerId, droppableRects });
   } else if (type === 'horizen') {

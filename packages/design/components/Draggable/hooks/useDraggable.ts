@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
-import { Data, DragNode, UniqueIdentifier } from '../types';
+import { Data, UniqueIdentifier } from '../types';
 import { useSyntheticListeners } from './useSyntheticListeners';
 import useDndContext from '../context/useDndContext';
 import { setTransform } from '../utils';
@@ -15,11 +15,11 @@ export const useDraggable = ({ id, data: customData }: UseDraggableProps) => {
   const rect = useRef<DOMRect>();
   const isActive = activeId == id;
 
-  const dragNode = useRef<DragNode>();
+  const dragNode = useRef<HTMLElement>();
   const listener = useSyntheticListeners(activator, id);
 
-  const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
-    dragNode.current = currentNode as DragNode;
+  const setDragNodeRef = useCallback((currentNode: HTMLElement) => {
+    dragNode.current = currentNode;
     if (currentNode) {
       rect.current = currentNode.getBoundingClientRect(); // initialize draggables position
     }

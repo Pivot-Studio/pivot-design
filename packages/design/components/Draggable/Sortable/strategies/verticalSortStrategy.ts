@@ -1,8 +1,9 @@
+import { DroppableRectMap } from '../../../Draggable/context/types';
 import { UniqueIdentifier } from '../../types';
 import { SortableData } from './types';
 
 interface VerticalSortStrategyProps {
-  droppableRects: DOMRect[];
+  droppableRects: DroppableRectMap;
   index: number;
   containerId: UniqueIdentifier;
   active?: SortableData;
@@ -38,7 +39,7 @@ export const verticalSortStrategy = ({
   active,
   over,
   containerId,
-  droppableRects: rects,
+  droppableRects: globalDroppableMap,
 }: VerticalSortStrategyProps) => {
   if (!active || !over) {
     return {
@@ -51,14 +52,41 @@ export const verticalSortStrategy = ({
   const { index: activeIndex, containerId: activeContainer } = activeSortable;
   const { index: overIndex, containerId: overContainer } = overSortable;
 
+  // 这里需要对container的clientRects进行过滤
+  const rects = globalDroppableMap
+    .get(overContainer)
+    ?.map((rect) => {
+      if (rect.id === containerId || rect.id === activeContainer || rect.id === overContainer) return;
+      return rect.clientRect;
+    })
+    .filter((r) => !!r);
+
+  if (!rects || rects?.length === 0) {
+    return {
+      x: 0,
+      y: 0,
+    };
+  }
+
   const activeRect = rects[activeIndex];
   // const overRect = rects[overIndex];
+
   if (!activeRect) {
     return {
       x: 0,
       y: 0,
     };
   }
+  // ===================================== mutilple container logic ⬇️
+  // if current node's container isn't same as the active container, don't move!
+  if (containerId !== activeContainer) {
+    return {
+      x: 0,
+      y: 0,
+    };
+  }
+  // ===================================== mutilple container logic ⬆️
+
   if (activeContainer === overContainer) {
     if (index === activeIndex) {
       return {

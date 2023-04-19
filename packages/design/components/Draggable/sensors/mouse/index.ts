@@ -55,7 +55,8 @@ export class MouseSensor {
     const activeNodeDescriptor = this.manager.getNode(id, 'draggables');
 
     if (activeNodeDescriptor && activeNodeDescriptor.node.current) {
-      this.clientRect = activeNodeDescriptor.clientRect?.current;
+      // 每次开始的时候都要先获取一下，避免由于页面滚动造成的偏移
+      this.clientRect = activeNodeDescriptor.node.current.getBoundingClientRect();
       this.initOffset = getEventCoordinates(event) as Coordinate;
       onStart(event, id, {
         initOffset: this.initOffset,

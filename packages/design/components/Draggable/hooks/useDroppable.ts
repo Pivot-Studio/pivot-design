@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
-import { Data, DragNode, UniqueIdentifier } from '../types';
+import { Data, UniqueIdentifier } from '../types';
 import useDndContext from '../context/useDndContext';
 
 interface UseDroppableProps {
@@ -18,9 +18,9 @@ export const useDroppable = ({ id, data: customData }: UseDroppableProps) => {
   const { dispatch, manager, container } = useDndContext();
   let over = container === id;
 
-  const dropNode = useRef<DragNode>();
+  const dropNode = useRef<HTMLElement>();
   const setDropNodeRef = useCallback((currentNode: HTMLElement | null) => {
-    dropNode.current = currentNode as DragNode;
+    dropNode.current = currentNode as HTMLElement;
   }, []);
   const data = useMemo(() => ({ id, ...customData }), [customData, id]); // sortable needed
 

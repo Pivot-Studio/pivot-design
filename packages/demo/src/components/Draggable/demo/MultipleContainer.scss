@@ -1,0 +1,34 @@
+.demo-sortable-wrap {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  &.__demo-sortable-vertical {
+    flex-direction: column;
+  }
+}
+.demo-container-over {
+  border: 1px solid #b1aeae;
+}
+.demo-sortable-item {
+  width: 50%;
+  background-color: #6193f0;
+  color: #fff;
+  text-align: center;
+  padding: 12px 0;
+  margin: 8px 0;
+  border-radius: 16px;
+  cursor: grab;
+  cursor: -webkit-grab;
+  user-select: none;
+}
+.drag-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 6px 7.3px 2.7px rgba(0, 0, 0, 0.016), 8.1px 9.8px 6.9px rgba(0, 0, 0, 0.018),
+    9.7px 11.8px 14.2px rgba(0, 0, 0, 0.019), 13.4px 16.4px 29.2px rgba(0, 0, 0, 0.02),
+    37px 45px 80px rgba(0, 0, 0, 0.02);
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}

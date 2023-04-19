@@ -4,8 +4,11 @@ import { ActionType, DragActionEnum, State } from './types';
 export function reducer(state: State, action: ActionType) {
   const { manager } = state;
   switch (action.type) {
+    case DragActionEnum.SET_CONTAINER: {
+      return { ...state, container: action.payload.container };
+    }
     case DragActionEnum.ACTIVATED: {
-      return { ...state, activeId: action.payload.activeId, container: action.payload.container };
+      return { ...state, activeId: action.payload.activeId };
     }
     case DragActionEnum.INACTIVATED: {
       return { ...state, activeId: '' };
@@ -22,7 +25,6 @@ export function reducer(state: State, action: ActionType) {
       return {
         ...state,
         transform: action.payload.transform,
-        container: action.payload.container,
       };
     }
     default:

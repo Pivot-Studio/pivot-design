@@ -13,18 +13,13 @@ export interface Coordinate {
   y: number;
 }
 
-// todo：will deprecated
-export interface DragNode extends HTMLElement {
-  dragitemid: UniqueIdentifier;
-}
-
 export type DraggableNode = {
   id: UniqueIdentifier;
   // custom data：
   // like Droppable: data = { type:string; }
   // like Sortable: data = { sortable: { containerId, index, items }}
   data: Data;
-  node: MutableRefObject<DragNode | undefined>;
+  node: MutableRefObject<HTMLElement | undefined>;
   // node position information
   clientRect?: MutableRefObject<DOMRect | undefined>;
   transform?: Coordinate;

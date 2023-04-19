@@ -17,8 +17,8 @@ export const useSortable = ({ id, index }: UseSortableProps) => {
     () => ({ sortable: { containerId, index, items } }),
     [containerId, index, items]
   );
-  const sortableTransform = sortableRectify({ index, active, over, containerId, droppableRects, type });
 
+  const sortableTransform = sortableRectify({ index, active, over, containerId, droppableRects, type });
   const { isActive, setDragNode, listener, transform, attributes, hasDragOverlay } = useDraggable({
     id,
     data,

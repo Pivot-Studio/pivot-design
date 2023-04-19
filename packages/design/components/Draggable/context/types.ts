@@ -6,6 +6,7 @@ import Manager from './manager';
 
 export enum DragActionEnum {
   ACTIVATED,
+  SET_CONTAINER,
   INACTIVATED,
   PUSH_NODE,
   REMOVE_NODE,
@@ -16,6 +17,7 @@ export interface Activator {
   handler: (event: Event, id: UniqueIdentifier) => void;
 }
 
+export type DroppableRectMap = Map<string | number, { clientRect: DOMRect; id: UniqueIdentifier }[]>;
 export interface State {
   /**
    * 每个子组件是否处于拖拽状态
@@ -41,10 +43,15 @@ export interface State {
 
 export type ActionType =
   | {
+      type: DragActionEnum.SET_CONTAINER;
+      payload: {
+        container: UniqueIdentifier;
+      };
+    }
+  | {
       type: DragActionEnum.ACTIVATED;
       payload: {
         activeId: UniqueIdentifier;
-        container: UniqueIdentifier;
       };
     }
   | {
@@ -62,12 +69,12 @@ export type ActionType =
       type: DragActionEnum.TRANSFORM;
       payload: {
         transform: Coordinate;
-        container: UniqueIdentifier;
       };
     };
 
 export interface DndContextDescriptor extends State {
-  droppableRects: { clientRect: DOMRect; id: UniqueIdentifier }[];
+  droppableRects: DroppableRectMap;
+  updateDroppableRects: () => void;
   dispatch: Dispatch<ActionType>;
   overNodeRef: MutableRefObject<Data | undefined>;
   hasDragOverlay: boolean;

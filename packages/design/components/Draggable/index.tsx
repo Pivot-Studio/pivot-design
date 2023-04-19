@@ -4,6 +4,7 @@ export { Droppable } from './components/Droppable/Droppable';
 export { DndContext } from './context/DndContext';
 export { useDraggable } from './hooks/useDraggable';
 export { useDroppable } from './hooks/useDroppable';
+export { useSortable } from './Sortable/useSortable';
 export { SortableContext } from './Sortable/context/SortableContext';
 export { MultipleContainer } from './Sortable/MultipleContainer';
 export { DraggableItem, SortableItem };

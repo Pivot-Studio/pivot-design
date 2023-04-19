@@ -16,6 +16,7 @@ function SortableItem(props: any) {
       <div
         ref={setSortNode}
         className={classnames(`${prefix}-sortable-item`, className, {
+          [`__${prefix}_hidden`]: isActive && hasDragOverlay,
           [`__${prefix}_dragging`]: !hasDragOverlay && isActive,
           [`__${prefix}_handle`]: handle,
         })}

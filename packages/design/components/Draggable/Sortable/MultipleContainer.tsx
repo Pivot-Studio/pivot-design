@@ -35,7 +35,6 @@ export function MultipleContainer(props: any) {
       }
   );
   const [containers, setContainers] = useState(Object.keys(items) as UniqueIdentifier[]);
-  // todo: 给Sortable 传一个DroppableContainer,通过判断containerId来去执行动画算法
   const renderDragOverlay = ({ id, index, containerId }) => {
     return createPortal(
       <SortableItem isDragOverlay={true} id={id}>

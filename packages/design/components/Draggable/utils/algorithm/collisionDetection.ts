@@ -1,3 +1,4 @@
+import { DroppableRectMap } from '../../../Draggable/context/types';
 import { Coordinate } from '../../../utils/types';
 import Manager from '../../context/manager';
 import { Data, UniqueIdentifier } from '../../types';
@@ -9,7 +10,7 @@ interface CollisionDetectionProps {
    * 当前激活元素的坐标位置
    */
   coordinates: Coordinate;
-  droppableRects: { clientRect: DOMRect; id: UniqueIdentifier }[];
+  droppableRects: DroppableRectMap;
 }
 export interface Collision {
   id: UniqueIdentifier;
@@ -25,14 +26,17 @@ export const isCollision = (clientRect: DOMRect, coordinates: Coordinate) =>
 
 export const collisionDetection = (props: CollisionDetectionProps): Collision[] => {
   const { manager, coordinates, activeId, droppableRects } = props;
+
   if (!activeId) return [];
   const collisions: Collision[] = [];
-
-  droppableRects.forEach((rect) => {
-    if (isCollision(rect.clientRect, coordinates)) {
-      const droppable = manager.getNode(rect.id, 'droppables')!;
-      collisions.push({ id: droppable.id, data: droppable.data, clientRect: rect.clientRect });
-    }
+  droppableRects.forEach((rects, container) => {
+    rects.forEach((rect) => {
+      if (isCollision(rect.clientRect, coordinates)) {
+        const droppable = manager.getNode(rect.id, 'droppables')!;
+        collisions.push({ id: droppable.id, data: droppable.data, clientRect: rect.clientRect });
+      }
+    });
   });
+
   return collisions;
 };

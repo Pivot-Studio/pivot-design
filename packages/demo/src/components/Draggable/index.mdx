@@ -1,5 +1,15 @@
 # Draggable 拖拽
 
+一个轻量级，高性能的用于 React 的可扩展拖放组件。
+
+目前，针对拖拽组件的开源解决方案多种多样。常见的基于 React 技术栈的拖拽组件有 `react-beautiful-dnd`、`react-sortable-hoc` 以及 `react-dnd` 等。这些组件在不断地迭代改进中，因此它们的使用可能会带来额外的学习成本和包的体积增大，这会让一些开发者望而却步。
+
+这里提供一个比较轻量级的 Draggable 组件。其具有以下特点：
+
+- 零依赖和模块化:库没有外部依赖。它是围绕内置的 React 状态管理和上下文构建的，这保持了库的精简。
+- 可拓展性：可供用户自定义事件模型等。
+- 灵活性：实现了各种各样的拖拽效果以及拖拽排序。
+
 ## 基本示例
 
 <CodeBlock line={''}>
@@ -42,4 +52,10 @@
 
 <CodeBlock line={''}>
   <GridSortable />
+</CodeBlock>
+
+### 多容器拖拽（垂直）
+
+<CodeBlock line={''}>
+  <MultipleContainer />
 </CodeBlock>
