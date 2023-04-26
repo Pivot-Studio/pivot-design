@@ -1,16 +1,6 @@
-import { DroppableRectMap } from '../../../Draggable/context/types';
-import { UniqueIdentifier } from '../../types';
-import { SortableData } from './types';
+import { SortStrategyProps } from './SortableRectify';
 
-interface VerticalSortStrategyProps {
-  droppableRects: DroppableRectMap;
-  index: number;
-  containerId: UniqueIdentifier;
-  active?: SortableData;
-  over?: SortableData;
-}
-
-function getItemGap(clientRects: DOMRect[], index: number, activeIndex: number) {
+function getItemGap(clientRects: (DOMRect | undefined)[], index: number, activeIndex: number) {
   const currentRect: DOMRect | undefined = clientRects[index];
   const previousRect: DOMRect | undefined = clientRects[index - 1];
   const nextRect: DOMRect | undefined = clientRects[index + 1];
@@ -40,7 +30,7 @@ export const verticalSortStrategy = ({
   over,
   containerId,
   droppableRects: globalDroppableMap,
-}: VerticalSortStrategyProps) => {
+}: SortStrategyProps) => {
   if (!active || !over) {
     return {
       x: 0,

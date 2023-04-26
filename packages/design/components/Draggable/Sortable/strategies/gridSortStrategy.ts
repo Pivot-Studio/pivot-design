@@ -1,15 +1,6 @@
-import { UniqueIdentifier } from '../../types';
-import { SortableData } from './types';
+import { SortStrategyProps } from './SortableRectify';
 
-interface GridSortStrategyProps {
-  droppableRects: DOMRect[];
-  index: number;
-  containerId: UniqueIdentifier;
-  active?: SortableData;
-  over?: SortableData;
-}
-
-function getItemGap(clientRects: DOMRect[], index: number, activeIndex: number) {
+function getItemGap(clientRects: (DOMRect | undefined)[], index: number, activeIndex: number) {
   const currentRect: DOMRect | undefined = clientRects[index];
   const previousRect: DOMRect | undefined = clientRects[index - 1];
   const nextRect: DOMRect | undefined = clientRects[index + 1];
@@ -54,8 +45,8 @@ export const gridSortStrategy = ({
   active,
   over,
   containerId,
-  droppableRects: rects,
-}: GridSortStrategyProps) => {
+  droppableRects: globalDroppableMap,
+}: SortStrategyProps) => {
   if (!active || !over) {
     return {
       x: 0,
@@ -67,6 +58,21 @@ export const gridSortStrategy = ({
   const { index: activeIndex, containerId: activeContainer } = activeSortable;
   const { index: overIndex, containerId: overContainer } = overSortable;
 
+  // 这里需要对container的clientRects进行过滤
+  const rects = globalDroppableMap
+    .get(overContainer)
+    ?.map((rect) => {
+      if (rect.id === containerId || rect.id === activeContainer || rect.id === overContainer) return;
+      return rect.clientRect;
+    })
+    .filter((r) => !!r);
+
+  if (!rects || rects?.length === 0) {
+    return {
+      x: 0,
+      y: 0,
+    };
+  }
   const activeRect = rects[activeIndex];
   // const overRect = rects[overIndex];
   if (!activeRect) {

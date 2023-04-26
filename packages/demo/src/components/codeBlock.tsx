@@ -1,7 +1,8 @@
 import Prism from 'prismjs';
-import React, { useRef, useState, useEffect, TransitionEventHandler } from 'react';
+import React, { useRef, useState, useEffect, TransitionEventHandler, CSSProperties } from 'react';
 interface ICodeProps {
   children: React.ReactNode;
+  style?: CSSProperties;
   code: string;
   /**
    * @example 1-2, 5, 9-20
@@ -9,7 +10,7 @@ interface ICodeProps {
   line?: string;
 }
 const CodeBlock: React.FC<ICodeProps> = (props) => {
-  const { code, children, line } = props;
+  const { code, children, line, style } = props;
   const [expand, setExpand] = useState(false);
   // 使用max-height实现不确定数值的transition
   const [codeDisplay, setCodeDisplay] = useState(false);
@@ -27,7 +28,9 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   };
   return (
     <div className="pivot-code-box">
-      <div className="pivot-code-box-demo">{children}</div>
+      <div className="pivot-code-box-demo" style={style}>
+        {children}
+      </div>
 
       <div className="pivot-code-box-actions">
         {expand ? (

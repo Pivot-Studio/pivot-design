@@ -12,6 +12,13 @@ interface SortableRectifyProps {
   active?: Data<SortableData>;
   containerId: UniqueIdentifier;
 }
+export interface SortStrategyProps {
+  droppableRects: DroppableRectMap;
+  index: number;
+  containerId: UniqueIdentifier;
+  active?: SortableData;
+  over?: SortableData;
+}
 export function sortableRectify(props: SortableRectifyProps) {
   const { index, over, active, containerId, droppableRects, type } = props;
   if (type === 'vertical') {

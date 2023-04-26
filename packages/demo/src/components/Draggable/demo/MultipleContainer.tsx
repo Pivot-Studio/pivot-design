@@ -1,4 +1,4 @@
-import { DndContext, SortableContext, SortableItem, useDroppable } from 'pivot-design';
+import { DndContext, SortableContext, SortableItem, useDroppable, arrayMove } from 'pivot-design';
 import { useState } from 'react';
 import './MultipleContainer.scss';
 import { createPortal } from 'react-dom';
@@ -44,7 +44,13 @@ const MultipleContainer = () => {
   return (
     <DndContext
       DragOverlay={renderDragOverlay}
-      onDragEnd={() => {}}
+      onDragEnd={(e) => {
+        const { active, over } = e;
+        setItems((items) => ({
+          ...items,
+          [active.containerId]: arrayMove(items[active.containerId], active.index, over.index),
+        }));
+      }}
       onDragMove={({ active, over, container, id }) => {
         const { index: activeIndex, containerId: activeContainer, items: activeItems } = active;
         const { index: overIndex, containerId: overContainer, items: overItems } = over;
