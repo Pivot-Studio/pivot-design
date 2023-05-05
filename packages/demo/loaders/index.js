@@ -34,8 +34,11 @@ function getDemo(name, component) {
 module.exports = function loader(source) {
   const sourceCode = source.trim();
   let newSource = sourceCode;
+
+  // 匹配CodeBlock的属性和CodeBlock元素里的值
   const CodeBlockReg = /<CodeBlock(.*)>([\n\r\s\S]*?)<\/CodeBlock>/g;
   const H1Reg = /# (\w+)/;
+
   // eslint-disable-next-line prefer-destructuring
   const component = H1Reg.exec(sourceCode)[1];
   let m;
@@ -45,6 +48,10 @@ module.exports = function loader(source) {
     const headSource = newSource.slice(0, m.index);
     let restSource = newSource.slice(m.index);
 
+    if (!m[2].match(/<.*>/gi)) {
+      // 没有合法的标签元素，直接跳过
+      continue;
+    }
     // 根据>的出现次数，判断是否自动导入，只出现一次>，自动引入闭合标签内的元素，元素名需要和demo中的文件名相同
     const isImport = m[2].match(/>/gi).length === 1;
 
