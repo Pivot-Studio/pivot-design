@@ -34,11 +34,8 @@ function getDemo(name, component) {
 module.exports = function loader(source) {
   const sourceCode = source.trim();
   let newSource = sourceCode;
-
-  // 匹配CodeBlock的属性和CodeBlock元素里的值
   const CodeBlockReg = /<CodeBlock(.*)>([\n\r\s\S]*?)<\/CodeBlock>/g;
   const H1Reg = /# (\w+)/;
-
   // eslint-disable-next-line prefer-destructuring
   const component = H1Reg.exec(sourceCode)[1];
   let m;
@@ -59,9 +56,9 @@ module.exports = function loader(source) {
     // 如 <demo />
     const importName = isImport
       ? m[2]
-          .match(/<([\s\S]*?)\/>/g)[0]
-          .slice(1, -2)
-          .trim()
+        .match(/<([\s\S]*?)\/>/g)[0]
+        .slice(1, -2)
+        .trim()
       : null;
 
     if (isImport) {
@@ -74,11 +71,9 @@ module.exports = function loader(source) {
       CodeBlockReg.lastIndex = m.index + addStr.length;
     } else {
       // 解决当m[1]=''的时候无法replace的问题
-      const addStr = isImport
-        ? ` code={${importName}Code}` + restSource.slice(10)
-        : ` code={\`${getDemo(component, m[2])}\`}` + restSource.slice(10);
-      restSource = restSource.slice(0, 10) + addStr;
-      CodeBlockReg.lastIndex = m.index + addStr.length;
+      const addStr = isImport ? ` code={${importName}Code}` : ` code={\`${getDemo(component, m[2])}\`}`;
+      restSource = restSource.slice(0, 10) + addStr + restSource.slice(10);
+      CodeBlockReg.lastIndex = headSource.length + m[0].length + addStr.length;
     }
     newSource = headSource + restSource;
   }
