@@ -34,7 +34,6 @@ function getDemo(name, component) {
 module.exports = function loader(source) {
   const sourceCode = source.trim();
   let newSource = sourceCode;
-
   const CodeBlockReg = /<CodeBlock(.*)>([\n\r\s\S]*?)<\/CodeBlock>/g;
   const H1Reg = /# (\w+)/;
   // eslint-disable-next-line prefer-destructuring
@@ -46,6 +45,10 @@ module.exports = function loader(source) {
     const headSource = newSource.slice(0, m.index);
     let restSource = newSource.slice(m.index);
 
+    if (!m[2].match(/<.*>/gi)) {
+      // 没有合法的标签元素，直接跳过
+      continue;
+    }
     // 根据>的出现次数，判断是否自动导入，只出现一次>，自动引入闭合标签内的元素，元素名需要和demo中的文件名相同
     const isImport = m[2].match(/>/gi).length === 1;
 
@@ -53,9 +56,9 @@ module.exports = function loader(source) {
     // 如 <demo />
     const importName = isImport
       ? m[2]
-          .match(/<([\s\S]*?)\/>/g)[0]
-          .slice(1, -2)
-          .trim()
+        .match(/<([\s\S]*?)\/>/g)[0]
+        .slice(1, -2)
+        .trim()
       : null;
 
     if (isImport) {
@@ -68,11 +71,9 @@ module.exports = function loader(source) {
       CodeBlockReg.lastIndex = m.index + addStr.length;
     } else {
       // 解决当m[1]=''的时候无法replace的问题
-      const addStr = isImport
-        ? ` code={${importName}Code}` + restSource.slice(10)
-        : ` code={\`${getDemo(component, m[2])}\`}` + restSource.slice(10);
-      restSource = restSource.slice(0, 10) + addStr;
-      CodeBlockReg.lastIndex = m.index + addStr.length;
+      const addStr = isImport ? ` code={${importName}Code}` : ` code={\`${getDemo(component, m[2])}\`}`;
+      restSource = restSource.slice(0, 10) + addStr + restSource.slice(10);
+      CodeBlockReg.lastIndex = headSource.length + m[0].length + addStr.length;
     }
     newSource = headSource + restSource;
   }

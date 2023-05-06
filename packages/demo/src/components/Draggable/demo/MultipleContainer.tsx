@@ -46,6 +46,11 @@ const MultipleContainer = () => {
       DragOverlay={renderDragOverlay}
       onDragEnd={(e) => {
         const { active, over } = e;
+        console.log('====end', {
+          ...items,
+          [active.containerId]: arrayMove(items[active.containerId], active.index, over.index),
+        });
+
         setItems((items) => ({
           ...items,
           [active.containerId]: arrayMove(items[active.containerId], active.index, over.index),
@@ -64,14 +69,16 @@ const MultipleContainer = () => {
             // if (overIndex === overItems.length - 1) {
             //   overIndex += 1;
             // }
+            console.log('====over', active, over, {
+              ...items,
+              [activeContainer]: activeItems.filter((i) => i != id),
+              [overContainer]: [...overItems.slice(0, overIndex), id, ...overItems.slice(overIndex, overItems.length)],
+            });
+
             return {
               ...items,
               [activeContainer]: activeItems.filter((i) => i != id),
-              [overContainer]: [
-                ...overItems.slice(0, overIndex),
-                id,
-                ...overItems.slice(overIndex, overItems.length + 1),
-              ],
+              [overContainer]: [...overItems.slice(0, overIndex), id, ...overItems.slice(overIndex, overItems.length)],
             };
           });
         }
@@ -79,7 +86,7 @@ const MultipleContainer = () => {
     >
       {containers.map((container) => {
         return (
-          <Container id={container}>
+          <Container key={container} id={container}>
             <SortableContext items={items[container]} id={container} key={container}>
               {items[container].map((item, index) => {
                 return (
