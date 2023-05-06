@@ -133,4 +133,15 @@ h3 {
       margin: 0 24px;
     }
   }
+
+  .line-numbers {
+    //width: 100%;
+    .code-toolbar {
+      .data-prismjs-copy {
+        //width: 70vw;
+        //width: 100%;
+        overflow: auto;
+      }
+    }
+  }
 }

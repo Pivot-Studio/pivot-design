@@ -17,7 +17,7 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm install pnpm -g
+          npm install pnpm@7 -g
           pnpm install
           cd ./packages/demo && npm run build
 

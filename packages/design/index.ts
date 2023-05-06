@@ -10,7 +10,11 @@ export {
   MultipleContainer,
   SortableContext,
 } from './components/Draggable';
-export { Button };
+import Icon from './components/Icon';
+import Input from './components/Input';
+import Card from './components/Card';
+import Skeleton from './components/Skeleton';
+export { Button, Icon, Input, Card, Skeleton };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();

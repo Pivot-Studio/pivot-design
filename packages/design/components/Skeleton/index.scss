@@ -1,0 +1,60 @@
+@import '../common.scss';
+.#{$prefix}-skeleton {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: unwrap;
+
+  .#{$prefix}-skeleton-content {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    .#{$prefix}-skeleton-head {
+      .#{$prefix}-skeleton-title {
+        border-radius: 4px;
+        margin: 0 auto;
+        width: calc(var(--skeleton-title-width, 40%));
+        height: calc(var(--skeleton-title-height, 1) * 1rem);
+      }
+    }
+  }
+  .#{$prefix}-skeleton-avatar {
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+}
+li {
+  border-radius: 4px;
+  list-style: none;
+  display: block;
+  width: 100%;
+  height: calc(var(--skeleton-paragraph-size, 0.8) * 1rem);
+  &:first-child {
+    width: 30%;
+  }
+  &:nth-child(2) {
+    width: 60%;
+  }
+}
+.#{$prefix}-skeleton-loading {
+  background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+
+  background-size: 400% 100%;
+  margin-top: 0.6rem;
+  background-position: 100% 50%;
+
+  animation: var(--skeleton-active, active) 1.4s ease infinite;
+}
+@keyframes active {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
