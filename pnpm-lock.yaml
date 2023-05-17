@@ -34,6 +34,7 @@ importers:
       css-loader: ^6.7.1
       eslint: ^8.28.0
       eslint-import-resolver-alias: ^1.1.2
+      gsap: ^3.11.5
       html-webpack-plugin: ^5.5.0
       pivot-design: workspace:*
       pivot-design-icon: workspace:*
@@ -53,6 +54,7 @@ importers:
     dependencies:
       '@mdx-js/loader': 2.1.5_webpack@5.74.0
       babel-plugin-prismjs: 2.1.0_prismjs@1.29.0
+      gsap: 3.11.5
       pivot-design: link:../design
       pivot-design-icon: link:../design-icon
       prismjs: 1.29.0
@@ -3829,6 +3831,10 @@ packages:
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
+
+  /gsap/3.11.5:
+    resolution: {integrity: sha512-Q89nKCLgoX5xUjznh9LcaIUkz54k1voNucT1Rpf9SJNFIQznBwFqt5qUUQbeVInFyN/n18OUJkpeI6CNEDt74w==}
+    dev: false
 
   /handle-thing/2.0.1:
     resolution: {integrity: sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==}

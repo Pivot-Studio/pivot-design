@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import ReactDom from 'react-dom/client';
+import { Outlet, BrowserRouter as Router, useRoutes } from 'react-router-dom';
+import { Button, Icon, Input, Skeleton, Card } from 'pivot-design';
+import router from '@/routers';
 import ButtonMdx from './src/components/Button/index.mdx';
 import IconMdx from './src/components/Icon/index.mdx';
 import InputMdx from './src/components/Input/index.mdx';
-import { Button, Icon, Input } from 'pivot-design';
 import CardMdx from './src/components/Card/index.mdx';
 import SkeletonMdx from './src/components/Skeleton/index.mdx';
-import { Skeleton } from 'pivot-design';
-import { Card } from 'pivot-design';
 import Draggable from '@/examples/Draggable/Draggable';
 import CodeBlock from '@/components/codeBlock';
 import './index.scss';
@@ -39,12 +39,9 @@ const App = () => {
     );
   };
 
-  return (
-    <div className="pivot-design-docs">
-      <div className="pivot-design-docs-title">
-        <div className="title">Pivot-Design</div>
-      </div>
-      <div className="pivot-design-docs-content">
+  return useRoutes(router);
+
+  /* <div className="pivot-design-docs-content">
         {demoSelect()}
         <div className="demo-component">
           {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
@@ -54,8 +51,11 @@ const App = () => {
           {select === 'Draggable' ? <Draggable /> : null}
           {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
         </div>
-      </div>
-    </div>
-  );
+      </div> */
 };
-ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(<App />);
+
+ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(
+  <Router>
+    <App />
+  </Router>
+);
