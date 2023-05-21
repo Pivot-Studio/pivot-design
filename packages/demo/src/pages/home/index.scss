@@ -1,18 +1,16 @@
 .pivot-design-home {
   // background-color: var(--master-bg-color);
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  perspective: 1px;
-  transform-style: preserve-3d;
+  min-height: 600%;
   .background {
-    position: relative;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background: linear-gradient(60deg, #332051 0%, #000000 100%);
     background-attachment: fixed;
     .pivot-design-home-title {
@@ -53,14 +51,67 @@
       }
     }
     .big-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       display: flex;
       color: var(--master-text-color);
       font-size: 82px;
       font-weight: bold;
       letter-spacing: 0.1em;
+      span {
+        text-shadow: 1px 1px rgba(115, 109, 85, 0.02), 2px 2px rgba(115, 109, 85, 0.02),
+          3px 3px rgba(115, 109, 85, 0.02), 4px 4px rgba(115, 109, 85, 0.02), 0.125rem 0.125rem rgba(115, 109, 85, 0.02),
+          6px 6px rgba(115, 109, 85, 0.02), 7px 7px rgba(115, 109, 85, 0.02), 8px 8px rgba(115, 109, 85, 0.02),
+          9px 9px rgba(115, 109, 85, 0.02), 0.3125rem 0.3125rem rgba(115, 109, 85, 0.02),
+          11px 11px rgba(115, 109, 85, 0.02), 12px 12px rgba(115, 109, 85, 0.02), 13px 13px rgba(115, 109, 85, 0.02),
+          14px 14px rgba(115, 109, 85, 0.02), 0.625rem 0.625rem rgba(115, 109, 85, 0.02),
+          16px 16px rgba(115, 109, 85, 0.02), 17px 17px rgba(115, 109, 85, 0.02), 18px 18px rgba(115, 109, 85, 0.02),
+          19px 19px rgba(115, 109, 85, 0.02), 1.25rem 1.25rem rgba(115, 109, 85, 0.02);
+      }
+
       @for $i from 0 through 11 {
         .title_letter_#{$i} {
           color: darken(#d89ddc, 3% * $i);
+        }
+      }
+    }
+    .layer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      &.left_birds,
+      &.right_birds {
+        opacity: 0;
+
+        background-repeat: no-repeat;
+        background-size: 500px;
+      }
+      &.left_birds {
+        background-position: 40% center;
+        background-image: url(../../images/left_bird.svg);
+      }
+      &.right_birds {
+        background-position: 60% center;
+        background-image: url(../../images/right_birds.svg);
+      }
+      &.bats {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+      &.mountain0,
+      &.mountain1 {
+        top: auto;
+        bottom: -10px;
+      }
+      @for $i from 0 through 2 {
+        &.mountain#{$i} {
+          z-index: calc(10 - $i);
         }
       }
     }
@@ -90,67 +141,5 @@
         width: 400px;
       }
     }
-  }
-}
-
-.waves {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 20vh;
-  margin-bottom: -7px; /*Fix for safari gap*/
-  min-height: 100px;
-  max-height: 150px;
-}
-
-.content {
-  position: relative;
-  height: 20vh;
-  text-align: center;
-  background-color: white;
-}
-
-/* Animation */
-
-.parallax > use {
-  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
-.parallax > use:nth-child(1) {
-  animation-delay: -2s;
-  animation-duration: 7s;
-}
-.parallax > use:nth-child(2) {
-  animation-delay: -3s;
-  animation-duration: 10s;
-}
-.parallax > use:nth-child(3) {
-  animation-delay: -4s;
-  animation-duration: 13s;
-}
-.parallax > use:nth-child(4) {
-  animation-delay: -5s;
-  animation-duration: 20s;
-}
-@keyframes move-forever {
-  0% {
-    transform: translate3d(-90px, 0, 0);
-  }
-  100% {
-    transform: translate3d(85px, 0, 0);
-  }
-}
-/*Shrinking for mobile*/
-@media (max-width: 768px) {
-  .waves {
-    height: 40px;
-    min-height: 40px;
-  }
-  .content {
-    height: 30vh;
-  }
-  h1 {
-    font-size: 24px;
   }
 }
