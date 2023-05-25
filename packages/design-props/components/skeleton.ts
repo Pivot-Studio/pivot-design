@@ -7,7 +7,7 @@ export interface SkeletonProps extends PivotDesignProps {
    * @description 自定义样式
    * @default undefined
    */
-  style?: React.CSSProperties & CardCssTokens;
+  style?: React.CSSProperties & SkeletonCssTokens;
   /**
    * @version 1.0.0
    * @description 是否展示动画效果
@@ -47,7 +47,7 @@ export interface SkeletonProps extends PivotDesignProps {
   brick?: boolean;
 }
 
-interface CardCssTokens {
+interface SkeletonCssTokens {
   /**
    * @version 1.0.0
    * @description 背景颜色
