@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import ReactDom from 'react-dom/client';
-import { Outlet, BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import { Button, Icon, Input, Skeleton, Card } from 'pivot-design';
-import router from '@/routers';
-import ButtonMdx from './src/components/Button/index.mdx';
-import IconMdx from './src/components/Icon/index.mdx';
-import InputMdx from './src/components/Input/index.mdx';
-import CardMdx from './src/components/Card/index.mdx';
-import SkeletonMdx from './src/components/Skeleton/index.mdx';
+// import router from '@/routers';
+import ButtonMdx from '../../components/Button/index.mdx';
+import IconMdx from '../../components/Icon/index.mdx';
+import InputMdx from '../../components/Input/index.mdx';
+import CardMdx from '../../components/Card/index.mdx';
+import SkeletonMdx from '../../components/Skeleton/index.mdx';
 import Draggable from '@/examples/Draggable/Draggable';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 import './index.scss';
-const App = () => {
+
+function Index() {
   const [select, setSelect] = useState('Input');
   const demoSelect = () => {
     return (
@@ -38,23 +37,18 @@ const App = () => {
     );
   };
 
-  return useRoutes(router);
-
-  /* <div className="pivot-design-docs-content">
-        {demoSelect()}
-        <div className="demo-component">
-          {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
-          {select === 'Icon' ? <IconMdx components={{ Icon, CodeBlock }} /> : null}
-          {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
-          {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
-          {select === 'Draggable' ? <Draggable /> : null}
-          {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
-        </div>
-      </div> */
-};
-
-ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Router>
-    <App />
-  </Router>
-);
+  return (
+    <div className="pivot-design-docs-content">
+      {demoSelect()}
+      <div className="demo-component">
+        {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
+        {select === 'Icon' ? <IconMdx components={{ Icon, CodeBlock }} /> : null}
+        {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
+        {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
+        {select === 'Draggable' ? <Draggable /> : null}
+        {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
+      </div>
+    </div>
+  );
+}
+export default Index;
