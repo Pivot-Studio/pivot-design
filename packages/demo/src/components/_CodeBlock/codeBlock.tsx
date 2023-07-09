@@ -1,5 +1,6 @@
 import Prism from 'prismjs';
 import React, { useRef, useState, useEffect, TransitionEventHandler } from 'react';
+import './index.scss';
 interface ICodeProps {
   children: React.ReactNode;
   code: string;
