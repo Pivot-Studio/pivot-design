@@ -134,37 +134,39 @@ const Home: React.FC = () => {
     }
   }, [titleAppeared]);
   return (
-    <div className="background">
-      <div className="layer left_birds" />
-      <div className="layer right_birds" />
-      <div className="layer bats">
-        <Bats />
-      </div>
-      <div className="layer mountain0">
-        <Mountain />
-      </div>
-      <div className="layer mountain1">
-        <Mountain1 />
-      </div>
+    <div className="homepage">
+      <div className="background">
+        <div className="layer left_birds" />
+        <div className="layer right_birds" />
+        <div className="layer bats">
+          <Bats />
+        </div>
+        <div className="layer mountain0">
+          <Mountain />
+        </div>
+        <div className="layer mountain1">
+          <Mountain1 />
+        </div>
 
-      <div className="big-title">
-        {'Pivot'.split('').map((letter, index) => (
-          <span id={`title_letter_${index}`} className={`title_letter_${index}`}>
-            {letter}
-          </span>
-        ))}
-        <span id="title_5">&nbsp;</span>
-        {'Design'.split('').map((letter, index) => (
-          <span id={`title_letter_${index + 6}`} className={`title_letter_${index + 6}`}>
-            {letter}
-          </span>
-        ))}
+        <div className="big-title">
+          {'Pivot'.split('').map((letter, index) => (
+            <span id={`title_letter_${index}`} className={`title_letter_${index}`}>
+              {letter}
+            </span>
+          ))}
+          <span id="title_5">&nbsp;</span>
+          {'Design'.split('').map((letter, index) => (
+            <span id={`title_letter_${index + 6}`} className={`title_letter_${index + 6}`}>
+              {letter}
+            </span>
+          ))}
+        </div>
+        <div className="pivot-design-description">
+          <div className="pivot-design-description-header">当一个与众不同、具有丰富想象力的组件库！</div>
+          <div className="pivot-design-description-content-wrapper" />
+        </div>
+        {/* box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 2px; */}
       </div>
-      <div className="pivot-design-description">
-        <div className="pivot-design-description-header">当一个与众不同、具有丰富想象力的组件库！</div>
-        <div className="pivot-design-description-content-wrapper" />
-      </div>
-      {/* box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px 2px; */}
     </div>
   );
 };

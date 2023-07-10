@@ -1,6 +1,6 @@
 function Logo() {
   return (
-    <svg viewBox="0 0 1000 1000" version="1.1" id="svg_null">
+    <svg viewBox="0 0 1500 375" version="1.1" id="svg_null">
       <g id="root" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <rect id="background" x="0" y="0" width="500" />
         <g id="shape" transform="translate(120.000000, 70.000000)">
@@ -62,13 +62,11 @@ function Logo() {
             height="39.828"
           />
         </g>
-        <g id="Group" transform="translate(40.000000, 364.000000)">
-          <rect id="Rectangle-10" x="0" y="0" width="420" height="58" />
+        <g id="Group" transform="translate(40.000000, 404.000000)">
           <text
             id="headerText"
             fontFamily="Fira Mono"
-            fontSize="100"
-            fontWeight="700"
+            fontSize="150"
             fill="#fff"
             data-text-alignment="C"
             fontStyle="normal"
