@@ -1,5 +1,6 @@
 import Prism from 'prismjs';
 import React, { useRef, useState, useEffect, TransitionEventHandler } from 'react';
+import CodeExpendIcon from '../../images/codeExpend';
 import './index.scss';
 interface ICodeProps {
   children: React.ReactNode;
@@ -49,7 +50,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
               setCodeDisplay(true);
             }}
           >
-            <img src="https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg" />
+            <CodeExpendIcon />
           </div>
         )}
       </div>

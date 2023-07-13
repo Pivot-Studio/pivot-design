@@ -1,7 +1,9 @@
 .pivot-design-home {
   // background-color: var(--master-bg-color);
   position: relative;
-  min-height: 600%;
+  min-height: 300%;
+  background: linear-gradient(60deg, #332051 0%, #000000 100%);
+  background-attachment: fixed;
   .pivot-design-home-title {
     position: fixed;
     left: 0;
@@ -9,12 +11,9 @@
     top: 0;
     display: flex;
     justify-content: space-between;
-    padding: 30px 20px;
+    padding: 20px 20px 0;
     z-index: 100;
     .title {
-      transform: translate3d(0, -18px, 0);
-      width: 200px;
-      height: 36px;
       font-size: 30px;
       color: var(--master-text-color);
     }
@@ -50,8 +49,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(60deg, #332051 0%, #000000 100%);
-    background-attachment: fixed;
 
     .big-title {
       position: absolute;
@@ -113,7 +110,11 @@
         top: auto;
         bottom: -10px;
       }
-      @for $i from 0 through 2 {
+      &.mountain2 {
+        top: auto;
+        bottom: 0vw;
+      }
+      @for $i from 0 through 3 {
         &.mountain#{$i} {
           z-index: calc(10 - $i);
         }

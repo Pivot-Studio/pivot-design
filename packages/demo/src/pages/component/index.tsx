@@ -11,7 +11,7 @@ import CodeBlock from '@/components/_CodeBlock/codeBlock';
 import './index.scss';
 
 function Index() {
-  const [select, setSelect] = useState('Input');
+  const [select, setSelect] = useState('Draggable');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -40,7 +40,7 @@ function Index() {
   return (
     <div className="pivot-design-docs-content">
       {demoSelect()}
-      <div className="demo-component">
+      <div className="demo-component" id="nice">
         {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
         {select === 'Icon' ? <IconMdx components={{ Icon, CodeBlock }} /> : null}
         {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}

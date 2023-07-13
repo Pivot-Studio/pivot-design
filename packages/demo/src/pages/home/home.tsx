@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Bats from '../../images/bat.min';
 import Mountain from '../../images/mountains/mountain.min';
 import Mountain1 from '../../images/mountains/mountain1.min';
+import Mountain2 from '../../images/mountains/mountain2.min';
 
 function darken(h, s, l) {
   return `hsl(${h}, ${s}%, ${l}%)`;
@@ -99,6 +100,10 @@ const Home: React.FC = () => {
       .to('.right_birds', {
         opacity: 0,
       })
+      .to('.mountain2', {
+        translateY: 20,
+        ease: 'power1.in',
+      })
       .to('.mountain1', {
         translateY: 60,
         ease: 'power1.in',
@@ -110,12 +115,10 @@ const Home: React.FC = () => {
       .to('.big-title', {
         scale: 0,
         opacity: 0,
-        delay: 1,
       })
       .to('.pivot-design-description', {
         opacity: 1,
         scale: 1,
-        delay: 2,
       });
   }, []);
   useEffect(() => {
@@ -145,6 +148,9 @@ const Home: React.FC = () => {
       </div>
       <div className="layer mountain1">
         <Mountain1 />
+      </div>
+      <div className="layer mountain2">
+        <Mountain2 />
       </div>
 
       <div className="big-title">
