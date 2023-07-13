@@ -1,13 +1,15 @@
 import { Popover } from 'pivot-design';
 import React from 'react';
+
 import './index.scss';
+import { prefix } from '../../constant';
 
 const App: React.FC = () => {
   return (
     <>
-      <div className="center">
+      <div className={`${prefix}-center`}>
         <Popover placement="top-left" content={<div>prompt text</div>}>
-          <div className="tl">TL</div>
+          <div>TL</div>
         </Popover>
         <Popover placement="top" content={<div>prompt text</div>}>
           <div>Top</div>
@@ -16,7 +18,7 @@ const App: React.FC = () => {
           <div>TR</div>
         </Popover>
       </div>
-      <div className="space">
+      <div className={`${prefix}-space`}>
         <Popover placement="left-top" content={<div>prompt text</div>}>
           <div>LT</div>
         </Popover>
@@ -24,7 +26,7 @@ const App: React.FC = () => {
           <div>RT</div>
         </Popover>
       </div>
-      <div className="space">
+      <div className={`${prefix}-space`}>
         <Popover placement="left" content={<div>prompt text</div>}>
           <div>Left</div>
         </Popover>
@@ -32,7 +34,7 @@ const App: React.FC = () => {
           <div>Right</div>
         </Popover>
       </div>
-      <div className="space">
+      <div className={`${prefix}-space`}>
         <Popover placement="left-bottom" content={<div>prompt text</div>}>
           <div>LB</div>
         </Popover>
@@ -40,7 +42,7 @@ const App: React.FC = () => {
           <div>RB</div>
         </Popover>
       </div>
-      <div className="center">
+      <div className={`${prefix}-center`}>
         <Popover placement="bottom-left" content={<div>prompt text</div>}>
           <div>BL</div>
         </Popover>

@@ -37,7 +37,7 @@ function getAlignPoint(rect: Rect, position: AlignPoint) {
 }
 
 function getStyle(triggerRect: Rect, popoverRect: Rect, placement: PlaceType) {
-  const { clientWidth, clientHeight, scrollLeft, scrollTop } = document.documentElement;
+  const { clientWidth, clientHeight, scrollLeft, scrollTop } = document.documentElement || document.body;
 
   // 获取triggerDom八个点的位置
   const AlignPointLT = getAlignPoint(triggerRect, ['t', 'l']);

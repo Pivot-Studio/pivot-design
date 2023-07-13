@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { PopoverProps } from 'pivot-design-props';
-import React, { cloneElement, useEffect, useRef, useState } from 'react';
+import React, { cloneElement, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { prefix } from '../constants';
 
