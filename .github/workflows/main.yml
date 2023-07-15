@@ -10,14 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js v16.x
+      - name: Use Node.js v14.x
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: '14.x'
 
       - name: Install and Build
         run: |
-          npm install pnpm@8 -g
+          npm install pnpm@7 -g
           pnpm install
           cd ./packages/demo && npm run build
 
