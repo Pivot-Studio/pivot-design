@@ -1,6 +1,6 @@
 import ReactDom from 'react-dom/client';
-import React, { ReactNode } from 'react';
-import { BrowserRouter as Router, useLocation, useRoutes } from 'react-router-dom';
+import React from 'react';
+import { HashRouter, useLocation, useRoutes } from 'react-router-dom';
 import router from '@/routers';
 import './index.scss';
 import { useLayoutEffect } from 'react';
@@ -18,9 +18,10 @@ const AutoScrollToTop: React.FC<{ children: React.ReactElement }> = ({ children 
 };
 
 ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Router>
+  <HashRouter>
     <AutoScrollToTop>
       <App />
     </AutoScrollToTop>
-  </Router>
+  </HashRouter>
+
 );
