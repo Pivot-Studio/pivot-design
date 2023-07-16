@@ -13,16 +13,19 @@
     display: flex;
     flex-direction: row;
     padding: 12px 0;
-    height: 100%;
     margin-top: 50px;
     .demo-container {
       width: 10%;
+      min-width: 100px;
       height: 100%;
       padding-top: 8px;
       padding-right: 20px;
+      margin-left: 5px;
       display: flex;
       align-items: center;
       flex-direction: column;
+      position: sticky;
+      top: 80px;
       .demo-item {
         // background-color: bisque;
         border: 1px solid rgba(0, 0, 0, 0.056);
