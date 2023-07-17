@@ -1,6 +1,6 @@
 import DraggableMdx from '../../components/Draggable/index.mdx';
 import { DraggableItem, Droppable, arrayMove, DndContext, Sortable } from 'pivot-design';
-import CodeBlock from '@/components/codeBlock';
+import CodeBlock from '@/components/_CodeBlock/codeBlock';
 import { useState } from 'react';
 
 const Draggable = () => {

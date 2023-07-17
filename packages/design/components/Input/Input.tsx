@@ -3,11 +3,16 @@ import classNames from 'classnames';
 import { InputProps } from 'pivot-design-props';
 import './index.scss';
 import { prefix } from '../constants';
-import { Search } from 'pivot-design-icon';
+import { Icon } from 'pivot-design-icon';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { disabled, size, icon, prepend, append, onClick, style, onChange, iconOnClick, value, ...restProps } = props;
   const [inputValue, setInputValue] = useState(value);
+
+  function getIcon(): React.ReactNode {
+    if (typeof icon !== 'string') return icon;
+    else return <Icon icon={icon}></Icon>;
+  }
 
   const classes = classNames([`${prefix}-input-wrapper`], {
     [`${prefix}-input-size-${size}`]: size,
@@ -24,11 +29,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         <div
           className={`${prefix}-icon-wrapper`}
           onClick={() => {
-            console.log(1);
             iconOnClick?.();
           }}
         >
-          <Search />
+          {getIcon()}
         </div>
       )}
       <input

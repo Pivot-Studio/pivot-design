@@ -16,5 +16,6 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  } // required to format on save
+  },
+  "svg.preview.background": "white" // required to format on save
 }
