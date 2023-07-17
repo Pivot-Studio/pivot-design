@@ -1,10 +1,12 @@
 import React from 'react';
 import { PivotDesignProps } from '.';
+import { ButtonProps } from './button';
 interface postion {
   x?: number;
   y?: number;
 }
 
+interface ModalCssTokens {}
 export interface ModalProps extends PivotDesignProps {
   /**
    * @version 1.0.0
@@ -18,7 +20,7 @@ export interface ModalProps extends PivotDesignProps {
    * @default undefined
    */
   size?: 'small' | 'normal';
-   /**
+  /**
    * @version 1.0.0
    * @description 自定义蒙层
    * @default undefined
@@ -68,6 +70,12 @@ export interface ModalProps extends PivotDesignProps {
   footer?: null | React.ReactNode;
   /**
    * @version 1.0.0
+   * @description 内容
+   * @default undefined
+   */
+  children?: React.ReactNode;
+  /**
+   * @version 1.0.0
    * @description 对话框是否开启
    * @default undefined
    */
@@ -80,41 +88,27 @@ export interface ModalProps extends PivotDesignProps {
   postion?: postion;
   /**
    * @version 1.0.0
+   * @description 关闭图标
+   * @default undefined
+   */
+  closeIcon?: React.ReactNode;
+  /**
+   * @version 1.0.0
    * @description 是否开启蒙层
    * @default undefined
    */
-   isMask?: boolean;
+  isMask?: boolean;
+  /**
+   * @version 1.0.0
+   * @description 取消按钮参数
+   * @default undefined
+   */
+  CancelButtonProps?: ButtonProps;
+  /**
+   * @version 1.0.0
+   * @description 确定按钮参数
+   * @default undefined
+   */
+  OkButtonProps?: ButtonProps;
 }
 
-interface ModalCssTokens {
-  /**
-   * @version 1.0.0
-   * @description 背景颜色
-   *@default --pivot-Skeleton-background-color
-   */
-  '--skeleton-background-color'?: string;
-  /**
-   * @version 1.0.0
-   * @description 自定义段落宽度
-   * @default 0.8
-   */
-  '--skeleton-paragraph-size'?: number;
-  /**
-   * @version 1.0.0
-   * @description 是否展示动画效果
-   * @default active
-   */
-  '--skeleton-active'?: string;
-  /**
-   * @version 1.0.0
-   * @description 标题长度
-   * @default 1
-   */
-  '--skeleton-title-height'?: number;
-  /**
-   * @version 1.0.0
-   * @description 标题宽度
-   * @default 40%
-   */
-  '--skeleton-title-width'?: number;
-}
