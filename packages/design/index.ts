@@ -2,10 +2,11 @@ import Button from './components/Button';
 import Icon from './components/Icon';
 import Input from './components/Input';
 import Card from './components/Card';
+import Modal from './components/Modal';
 import Skeleton from './components/Skeleton';
 import Popover from './components/Popover/';
 export * from './components/hooks';
-export { Button, Icon, Input, Card, Skeleton, Popover };
+export { Button, Icon, Input, Card, Skeleton, Popover, Modal };
 export { DraggableItem, DndContext, Sortable, useDraggable, Droppable } from './components/Draggable';
 
 export const arrayMove = (array: any[], from: number, to: number) => {

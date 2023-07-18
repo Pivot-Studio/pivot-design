@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Icon, Input, Skeleton, Card, Popover } from 'pivot-design';
+import { Button, Icon, Input, Skeleton, Card, Popover, Modal } from 'pivot-design';
 // import router from '@/routers';
 import ButtonMdx from '../../components/Button/index.mdx';
 import IconMdx from '../../components/Icon/index.mdx';
@@ -7,7 +7,7 @@ import InputMdx from '../../components/Input/index.mdx';
 import CardMdx from '../../components/Card/index.mdx';
 import SkeletonMdx from '../../components/Skeleton/index.mdx';
 import PopoverMdx from '@/components/Popover/index.mdx';
-
+import ModalMdx from '../../components/Modal/index.mdx';
 import Draggable from '@/examples/Draggable/Draggable';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 
@@ -39,6 +39,9 @@ function Index() {
         <div className={`demo-item ${select === 'Popover' ? 'active' : ''}`} onClick={() => setSelect('Popover')}>
           气泡
         </div>
+        <div className={`demo-item ${select === 'Modal' ? 'active' : ''}`} onClick={() => setSelect('Modal')}>
+          弹窗
+        </div>
       </div>
     );
   };
@@ -54,6 +57,7 @@ function Index() {
         {select === 'Popover' ? <PopoverMdx components={{ Popover, CodeBlock }} /> : null}
         {select === 'Draggable' ? <Draggable /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
+        {select === 'Modal' ? <ModalMdx components={{ Modal, CodeBlock }} /> : null}
       </div>
     </div>
   );

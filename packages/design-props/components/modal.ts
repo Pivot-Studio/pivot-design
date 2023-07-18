@@ -16,13 +16,13 @@ export interface ModalProps extends PivotDesignProps {
   style?: React.CSSProperties & ModalCssTokens;
   /**
    * @version 1.0.0
-   * @description 自定义大小
+   * @description 自定义蒙层
    * @default undefined
    */
-  size?: 'small' | 'normal';
+  Modalstyle?: React.CSSProperties & ModalCssTokens;
   /**
    * @version 1.0.0
-   * @description 自定义蒙层
+   * @description 自定义对话框
    * @default undefined
    */
   maskstyle?: React.CSSProperties & ModalCssTokens;
@@ -64,10 +64,16 @@ export interface ModalProps extends PivotDesignProps {
   open: boolean;
   /**
    * @version 1.0.0
-   * @description 对话框是否开启
+   * @description 底部内容
    * @default undefined
    */
   footer?: null | React.ReactNode;
+  /**
+   * @version 1.0.0
+   * @description 底部样式
+   * @default undefined
+   */
+  footerType?: boolean;
   /**
    * @version 1.0.0
    * @description 内容
@@ -111,4 +117,3 @@ export interface ModalProps extends PivotDesignProps {
    */
   OkButtonProps?: ButtonProps;
 }
-
