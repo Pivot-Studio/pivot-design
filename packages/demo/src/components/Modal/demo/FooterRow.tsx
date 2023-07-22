@@ -20,10 +20,11 @@ const App: React.FC = () => {
         ModalOK={ModalOK}
         ModalCancel={ModalCancel}
         footerType={false}
+        CancelButtonProps={{ disabled: true }}
       >
         <p>h1这是内容</p>
       </Modal>
-      <Button onClick={onchange}>按钮</Button>
+      <Button onClick={onchange}>横版</Button>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
-import { ModalProps } from 'pivot-design-props';
+import { ModalProps, ButtonProps } from 'pivot-design-props';
 import Button from '../Button';
 import { prefix } from '../constants';
 import useDrag from './hooks/useDrag';
@@ -24,12 +24,28 @@ const Modal: React.FC<ModalProps> = (props) => {
     CancelButtonProps,
     footerType = true,
   } = props;
+  const getButtonDisabled = (ButtonProps: ButtonProps | undefined) => {
+    if (ButtonProps) {
+      const { disabled } = ButtonProps;
+      if (disabled) {
+        return true;
+      }
+    }
+    return false;
+  };
+  //const {} = CancelButtonProps;
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (getButtonDisabled(CancelButtonProps)) {
+      return;
+    }
     const { ModalCancel } = props;
     ModalCancel?.(e);
   };
   const postionStyle = { left: postion?.x, top: postion?.y };
   const handleOk = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (getButtonDisabled(OkButtonProps)) {
+      return;
+    }
     const { ModalOK } = props;
     ModalOK?.(e);
   }; // useDisplay(open);
@@ -45,7 +61,14 @@ const Modal: React.FC<ModalProps> = (props) => {
           >
             {!closed && (
               <div className={`${prefix}-modal-cancel`} onClick={handleCancel}>
-                {closeIcon === undefined ? 'X' : closeIcon}
+                {closeIcon === undefined ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20" height="20" viewBox="0 0 20 20">
+                    <title>close</title>
+                    <path d="M10 8.586l-7.071-7.071-1.414 1.414 7.071 7.071-7.071 7.071 1.414 1.414 7.071-7.071 7.071 7.071 1.414-1.414-7.071-7.071 7.071-7.071-1.414-1.414-7.071 7.071z" />
+                  </svg>
+                ) : (
+                  closeIcon
+                )}
               </div>
             )}
             <div className={`${prefix}-modal-title`}>{title}</div>
