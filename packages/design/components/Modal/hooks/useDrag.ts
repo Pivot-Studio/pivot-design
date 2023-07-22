@@ -18,7 +18,7 @@ export default function useDrag({
   const [translateX, setTranslateX] = useState(0); // 水平方向偏移量
   const [translateY, setTranslateY] = useState(0); // 垂直方向偏移量
   
-  const dragNode=useRef<any>();
+  const dragNode=useRef<HTMLElement|null>();
   //console.log(dragger, 'dragger');
   const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dragNode.current = currentNode;
@@ -42,7 +42,7 @@ export default function useDrag({
       const initMouseX = event.clientX; // 元素初始水平坐标值
       const initMouseY = event.clientY; // 元素初始垂直坐标
       console.log('mousedown');
-      const { left: boxL, top: boxT, right: boxR, bottom: boxB } = draggerBox.getBoundingClientRect(); // 获取拖拽实体的位置
+      const { left: boxL, top: boxT, right: boxR, bottom: boxB } = draggerBox?.getBoundingClientRect(); // 获取拖拽实体的位置
 
       let deltaMouseX: number; // 实际水平偏移量
       let deltaMouseY: number; // 实际垂直增量值
