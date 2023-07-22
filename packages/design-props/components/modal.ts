@@ -16,13 +16,13 @@ export interface ModalProps extends PivotDesignProps {
   style?: React.CSSProperties & ModalCssTokens;
   /**
    * @version 1.0.0
-   * @description 自定义蒙层
-   * @default undefined
+   * @description 是否可拖动
+   * @default false
    */
-  Modalstyle?: React.CSSProperties & ModalCssTokens;
+  isDragge?: boolean;
   /**
    * @version 1.0.0
-   * @description 自定义对话框
+   * @description 自定义蒙层
    * @default undefined
    */
   maskstyle?: React.CSSProperties & ModalCssTokens;
@@ -59,7 +59,7 @@ export interface ModalProps extends PivotDesignProps {
   /**
    * @version 1.0.0
    * @description 对话框是否开启
-   * @default undefined
+   * @default false
    */
   open: boolean;
   /**
@@ -71,7 +71,7 @@ export interface ModalProps extends PivotDesignProps {
   /**
    * @version 1.0.0
    * @description 底部样式
-   * @default undefined
+   * @default true
    */
   footerType?: boolean;
   /**
@@ -83,13 +83,13 @@ export interface ModalProps extends PivotDesignProps {
   /**
    * @version 1.0.0
    * @description 对话框是否开启
-   * @default undefined
+   * @default  undefined
    */
   closed?: null | React.ReactNode;
   /**
    * @version 1.0.0
    * @description 对话框位置
-   * @default undefined
+   * @default {x: 0, y: 0}
    */
   postion?: postion;
   /**
@@ -101,7 +101,7 @@ export interface ModalProps extends PivotDesignProps {
   /**
    * @version 1.0.0
    * @description 是否开启蒙层
-   * @default undefined
+   * @default true
    */
   isMask?: boolean;
   /**

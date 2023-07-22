@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { ModalProps } from 'pivot-design-props';
 import Button from '../Button';
 import { prefix } from '../constants';
+import useDrag from './hooks/useDrag';
 import './index.scss';
 import classnames from 'classnames';
 const Modal: React.FC<ModalProps> = (props) => {
@@ -9,6 +10,7 @@ const Modal: React.FC<ModalProps> = (props) => {
     title,
     content,
     style,
+    isDragge = false,
     maskstyle,
     className,
     open,
@@ -26,16 +28,21 @@ const Modal: React.FC<ModalProps> = (props) => {
     const { ModalCancel } = props;
     ModalCancel?.(e);
   };
-
+  const postionStyle = { left: postion?.x, top: postion?.y };
   const handleOk = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { ModalOK } = props;
     ModalOK?.(e);
   }; // useDisplay(open);
+  const ModalRef = useDrag({ open, maring: [10, 10, 10, 10], isDragge });
   return (
     <>
       {open && (
         <div className={classnames(`${prefix}-modal`, { [`${prefix}-modal-mask`]: isMask })} style={maskstyle}>
-          <div className={classnames(`${prefix}-modal-card`, className)} style={style}>
+          <div
+            className={classnames(`${prefix}-modal-card`, className)}
+            style={{ ...style, ...postionStyle }}
+            ref={ModalRef}
+          >
             {!closed && (
               <div className={`${prefix}-modal-cancel`} onClick={handleCancel}>
                 {closeIcon === undefined ? 'X' : closeIcon}

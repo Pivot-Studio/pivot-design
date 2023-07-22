@@ -29,17 +29,17 @@ function DraggableItem(props: DraggableItemProps) {
       </div>
       {isDragging
         ? createPortal(
-            <div
-              className={classnames(`${prefix}-draggable-item`, `${prefix}-draggable-overlay`, className, {
-                [`__${prefix}_handle`]: handle,
-              })}
-              style={overlayStyle(activeRect!.current, transform)}
-            >
-              {children}
-              {handle ? <Handle {...(handle ? listener : {})} /> : null}
-            </div>,
-            document.body
-          )
+          <div
+            className={classnames(`${prefix}-draggable-item`, `${prefix}-draggable-overlay`, className, {
+              [`__${prefix}_handle`]: handle,
+            })}
+            style={overlayStyle(activeRect!.current, transform)}
+          >
+            {children}
+            {handle ? <Handle {...(handle ? listener : {})} /> : null}
+          </div>,
+          document.body
+        )
         : null}
     </>
   );
