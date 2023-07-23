@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 import { PivotDesignProps } from '.';
 
 type InputSize = 'lg' | 'sm' | 'md';
@@ -27,7 +27,7 @@ export interface InputProps extends PivotDesignProps, HTMLInputElement {
    * @description 右侧悬浮图标
    * @default undefined
    */
-  icon?: string;
+  icon?: string | React.ReactNode;
   /**
    * @version 1.0.0
    * @description 固定前缀
@@ -58,4 +58,28 @@ export interface InputProps extends PivotDesignProps, HTMLInputElement {
    * @default undefined
    */
   value?: string;
+}
+
+interface VisibilityToggle {
+  /**
+   * @version 1.0.0
+   * @description 密码是否可见
+   * @default false
+   */
+  visible: boolean;
+  /**
+   * @version 1.0.0
+   * @description 点击密码icon后的回调函数
+   * @default undefined
+   */
+  onVisibleChange?: (visible: boolean) => void;
+}
+
+export interface InputPasswdProps extends InputProps {
+  /**
+   * @version 1.0.0
+   * @description 控制密码Input的内容
+   * @default false
+   */
+  visibilityToggle?: VisibilityToggle | boolean;
 }

@@ -13,7 +13,8 @@ import Icon from './components/Icon';
 import Input from './components/Input';
 import Card from './components/Card';
 import Skeleton from './components/Skeleton';
-export { Button, Icon, Input, Card, Skeleton };
+import Popover from './components/Popover/';
+export { Button, Icon, Input, Card, Skeleton, Popover };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();
