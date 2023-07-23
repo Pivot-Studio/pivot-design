@@ -22,7 +22,9 @@ export const useDroppable = ({ id, data: customData }: UseDroppableProps) => {
   const setDropNodeRef = useCallback((currentNode: HTMLElement | null) => {
     dropNode.current = currentNode as HTMLElement;
   }, []);
-  const data = useMemo(() => ({ id, ...customData }), [customData, id]); // sortable needed
+  const data = useMemo(() => {
+    return { id, ...customData };
+  }, [customData, id]); // sortable needed
 
   const attributes = {};
 
@@ -37,7 +39,7 @@ export const useDroppable = ({ id, data: customData }: UseDroppableProps) => {
         payload: { id, type: 'droppables' },
       });
     };
-  }, [dispatch, id, manager]);
+  }, [dispatch, id, manager, data]);
 
   return { over, dropNode, attributes, setDropNode: setDropNodeRef };
 };

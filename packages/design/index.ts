@@ -7,7 +7,6 @@ export {
   useDroppable,
   useSortable,
   Droppable,
-  MultipleContainer,
   SortableContext,
 } from './components/Draggable';
 import Icon from './components/Icon';

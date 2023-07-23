@@ -1,10 +1,12 @@
 import { DndContext, SortableContext, SortableItem, useDroppable, arrayMove } from 'pivot-design';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './MultipleContainer.scss';
 import { createPortal } from 'react-dom';
+const containerData = { type: 'container' };
 
 const Container = ({ children, id }) => {
-  const { over, setDropNode } = useDroppable({ id, data: { type: 'container' } });
+  // todo: 这里会导致内部data一直刷新
+  const { over, setDropNode } = useDroppable({ id, data: containerData });
 
   return (
     <div
@@ -25,9 +27,7 @@ const MultipleContainer = () => {
 
   const renderDragOverlay = (e) => {
     const { rect, x, y, id } = e;
-
     const { width, height } = rect.current;
-
     return createPortal(
       <div
         className="demo-sortable-item drag-overlay"
@@ -38,18 +38,14 @@ const MultipleContainer = () => {
       document.body
     );
   };
-  // const reorderItems = ({ active, over }: DragEndEvent) => {
-  //   setItems((items) => arrayMove(items, active.index, over.index));
-  // };
   return (
     <DndContext
       DragOverlay={renderDragOverlay}
       onDragEnd={(e) => {
         const { active, over } = e;
-        console.log('====end', {
-          ...items,
-          [active.containerId]: arrayMove(items[active.containerId], active.index, over.index),
-        });
+        if (!active || !over) {
+          return;
+        }
 
         setItems((items) => ({
           ...items,
@@ -57,24 +53,19 @@ const MultipleContainer = () => {
         }));
       }}
       onDragMove={({ active, over, container, id }) => {
+        if (!active || !over) {
+          return;
+        }
         const { index: activeIndex, containerId: activeContainer, items: activeItems } = active;
         const { index: overIndex, containerId: overContainer, items: overItems } = over;
 
         if (!overContainer) {
           return;
         }
-
         if (activeContainer != overContainer) {
-          setItems((items) => {
-            // if (overIndex === overItems.length - 1) {
-            //   overIndex += 1;
-            // }
-            console.log('====over', active, over, {
-              ...items,
-              [activeContainer]: activeItems.filter((i) => i != id),
-              [overContainer]: [...overItems.slice(0, overIndex), id, ...overItems.slice(overIndex, overItems.length)],
-            });
+          // 移入别的container
 
+          setItems((items) => {
             return {
               ...items,
               [activeContainer]: activeItems.filter((i) => i != id),

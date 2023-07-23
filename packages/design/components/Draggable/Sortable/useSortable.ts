@@ -13,10 +13,9 @@ interface UseSortableProps {
 }
 export const useSortable = ({ id, index }: UseSortableProps) => {
   const { items, containerId, over, active, type, droppableRects, dragging, transitionTime } = useSortableContext();
-  const data = useMemo<SortableData & Data>(
-    () => ({ sortable: { containerId, index, items } }),
-    [containerId, index, items]
-  );
+  const data = useMemo<SortableData & Data>(() => {
+    return { sortable: { containerId, index, items } };
+  }, [containerId, index, items]);
 
   const sortableTransform = sortableRectify({ index, active, over, containerId, droppableRects, type });
   const { isActive, setDragNode, listener, transform, attributes, hasDragOverlay } = useDraggable({

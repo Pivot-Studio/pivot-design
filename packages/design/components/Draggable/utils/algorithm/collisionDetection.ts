@@ -24,6 +24,10 @@ export const isCollision = (clientRect: DOMRect, coordinates: Coordinate) =>
   coordinates.y >= clientRect.top &&
   clientRect.top + clientRect.height >= coordinates.y;
 
+/**
+ * 碰撞检测，会返回包括元素自身在内的droppable元素
+ * @returns
+ */
 export const collisionDetection = (props: CollisionDetectionProps): Collision[] => {
   const { manager, coordinates, activeId, droppableRects } = props;
 

@@ -6,7 +6,7 @@ import { Listeners } from '../utils/Listener';
 import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, DndContextDescriptor } from './types';
-import { Coordinate, Data, UniqueIdentifier } from '../types';
+import { Coordinate, Data } from '../types';
 import { useEvent } from '../hooks/useEvent';
 import { useMeasureDroppableContainer } from '../hooks/useMeasureDroppableContainer';
 
@@ -44,9 +44,8 @@ export function DndContext({
     updateDroppableRects,
   } = useMeasureDroppableContainer(manager, activeId, activeRectRef, transform);
 
-  if (over) {
-    overNodeRef.current = over;
-  }
+  overNodeRef.current = over;
+
   useEffect(() => {
     dispatch({
       type: DragActionEnum.SET_CONTAINER,
@@ -55,31 +54,29 @@ export function DndContext({
       },
     });
   }, [measureContainer]);
-  // useEffect(() => {
-  //   if (activeRectRef.current) {
-  //     const coordinates = {
-  //       x: (activeRectRef.current.initOffset?.x ?? 0) + transform.x,
-  //       y: (activeRectRef.current.initOffset?.y ?? 0) + transform.y,
-  //     };
-  //     collisionsRef.current = collisionDetection({
-  //       activeId,
-  //       manager,
-  //       coordinates,
-  //       droppableRects,
-  //     });
-  //   }
-  // }, [droppableRects]);
-  // console.log(droppableRects);
 
   const handleDragMove = useEvent((transform, id, event) => {
     // Collision Detection with droppable items&containers clientRects
+    /**
+     * sortable:{
+     *  containerId,
+     * index,
+     * items
+     * }
+     */
+    const activeNode = manager.getNode(activeId, 'draggables');
+    const isSortable = Boolean(overNodeRef.current?.['sortable']) && Boolean(activeNode?.data['sortable']);
     if (id && activeRectRef.current) {
       onDragMove &&
         onDragMove({
           id: activeId,
           delta: transform,
-          over: overNodeRef.current!['sortable'],
-          active: manager.getNode(id, 'draggables')!.data['sortable'],
+          ...(isSortable
+            ? {
+                over: overNodeRef.current && overNodeRef.current['sortable'],
+                active: activeNode?.data['sortable'],
+              }
+            : {}),
           container: measureContainer,
           nativeEvent: event,
         });
@@ -92,13 +89,22 @@ export function DndContext({
     }
   });
   const handleDragEnd = useEvent((event) => {
+    const activeNode = manager.getNode(activeId, 'draggables');
+    if (!activeNode) return;
+    const isSortable = Boolean(overNodeRef.current?.['sortable']) && Boolean(activeNode.data['sortable']);
+
     onDragEnd &&
       onDragEnd({
         ...event,
-        over: overNodeRef.current!['sortable'],
-        active: manager.getNode(activeId, 'draggables')?.data['sortable'],
         id: activeId,
         isDrop: !!container,
+        // 只有拖拽排序才需要用到额外的data
+        ...(isSortable
+          ? {
+              over: overNodeRef.current!['sortable'],
+              active: activeNode.data['sortable'],
+            }
+          : {}),
       });
     dispatch({
       type: DragActionEnum.INACTIVATED,

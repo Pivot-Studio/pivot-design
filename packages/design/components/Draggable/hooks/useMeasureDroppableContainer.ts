@@ -26,6 +26,7 @@ export const useMeasureDroppableContainer = (
     let currentContainer: UniqueIdentifier = '';
     let over = undefined;
 
+    // 更新所有Droppable的信息
     if (activeId !== prevId.current || needUpdateDroppableMap.current) {
       droppableMapRef.current = new Map();
       const droppableContainers = manager
@@ -60,11 +61,16 @@ export const useMeasureDroppableContainer = (
       droppableRects: droppableMapRef.current,
     });
 
-    for (let collision of collisions) {
-      if (collision.data && collision.data['type'] === 'container') {
-        currentContainer = collision.id;
-      } else if (collision.data && collision.data['sortable']) {
-        over = collision.data;
+    if (collisions.length === 0) {
+      // fix:如果在同一次拖拽中，移入又移出后，over不会置零的问题
+      over = manager.getNode(activeId, 'draggables')?.data;
+    } else {
+      for (let collision of collisions) {
+        if (collision.data && collision.data['type'] === 'container') {
+          currentContainer = collision.id;
+        } else if (collision.data && collision.data['sortable']) {
+          over = collision.data;
+        }
       }
     }
 
