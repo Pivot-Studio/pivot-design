@@ -24,6 +24,10 @@ body {
   --pivot-card-background-color: var(--Gray-5);
 }
 
+.__#{$prefix}_hidden {
+  opacity: 0;
+  visibility: hidden;
+}
 // body {
 //   --pivot-primary: $pivot-violet;
 //   --pivot-secondary: $pivot-gray-600;
