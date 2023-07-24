@@ -4,22 +4,16 @@ import { PivotDesignProps } from '.';
 export interface DraggableItemProps extends PivotDesignProps {
   /**
    * @version 1.0.0
+   * @description 列表子项唯一标识（必填）
+   * @default undefined
+   */
+  id: number | string;
+  /**
+   * @version 1.0.0
    * @description 列表子项默认插槽
    * @default undefined
    */
   children?: React.ReactNode;
-  /**
-   * @version 1.0.0
-   * @description 列表子项索引值
-   * @default undefined
-   */
-  index?: number;
-  /**
-   * @version 1.0.0
-   * @description 列表子项唯一标识
-   * @default undefined
-   */
-  id?: number | string;
   /**
    * @version 1.0.0
    * @description 是否设置拖动点

@@ -1,5 +1,5 @@
 import DraggableMdx from '../../components/Draggable/index.mdx';
-import { DraggableItem, Droppable, arrayMove, DndContext, Sortable } from 'pivot-design';
+import { DraggableItem, Droppable, arrayMove, DndContext } from 'pivot-design';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 import { useState } from 'react';
 
@@ -12,7 +12,7 @@ const Draggable = () => {
   const [parent, setParent] = useState('');
   const [items, setItems] = useState([1, 2, 3, 4, 5]);
   const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
-  const onDragEnd = ({ delta }: { delta: { x: number; y: number }; event: Event }) => {
+  const onDragEnd = ({ delta, activeNode }: { delta: { x: number; y: number }; event: Event }) => {
     setCoordinates(({ x, y }) => {
       return {
         x: x + delta.x,
@@ -39,7 +39,6 @@ const Draggable = () => {
         Droppable,
         DraggableItem,
         CodeBlock,
-        Sortable,
         DraggableBlock,
       }}
     />

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Context } from '../context/context';
+import { Context } from './context';
 
 export default function useDndContext() {
   return useContext(Context);
