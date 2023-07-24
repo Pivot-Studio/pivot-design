@@ -17,5 +17,5 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "svg.preview.background": "white" // required to format on save
+  "svg.preview.background": "black" // required to format on save
 }

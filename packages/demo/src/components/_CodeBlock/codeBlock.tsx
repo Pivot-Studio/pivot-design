@@ -1,4 +1,7 @@
 import Prism from 'prismjs';
+import CodeExpendIcon from '../../images/codeExpend';
+import CodeUnexpendIcon from '../../images/codeUnexpand';
+import './index.scss';
 import React, { useRef, useState, useEffect, TransitionEventHandler, CSSProperties } from 'react';
 interface ICodeProps {
   children: React.ReactNode;
@@ -14,7 +17,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   const [expand, setExpand] = useState(false);
   // 使用max-height实现不确定数值的transition
   const [codeDisplay, setCodeDisplay] = useState(false);
-  const codeRef = useRef<HTMLElement>(null);
+  const codeRef = useRef<HTMLElement>(null)
   useEffect(() => {
     if (!codeRef.current) {
       return;
@@ -41,7 +44,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
               setCodeDisplay(false);
             }}
           >
-            <img src="https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg" />
+            <CodeUnexpendIcon />
           </div>
         ) : (
           <div
@@ -51,7 +54,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
               setCodeDisplay(true);
             }}
           >
-            <img src="https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg" />
+            <CodeExpendIcon />
           </div>
         )}
       </div>
