@@ -1,0 +1,24 @@
+@import '../../common.scss';
+
+.#{$prefix}-center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  div {
+    margin: 20px;
+    padding: 3px 15px;
+    border: 1px solid black;
+  }
+}
+
+.#{$prefix}-space {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  div {
+    margin: 20px;
+    padding: 3px 15px;
+    border: 1px solid black;
+    text-align: center;
+  }
+}

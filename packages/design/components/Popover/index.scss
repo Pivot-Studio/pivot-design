@@ -1,0 +1,30 @@
+@import '../common.scss';
+
+.#{$prefix}-trigger {
+  cursor: pointer;
+}
+
+.#{$prefix}-popover {
+  position: absolute;
+  max-width: 200px;
+  z-index: 2;
+  color: white;
+  background-color: rgba($color: #000000, $alpha: 0.9);
+  padding: 9px 10px;
+  border-radius: 6px;
+  transition: opacity 0.3s;
+  font-size: 14px;
+
+  ::before {
+    content: '';
+    position: absolute;
+    left: var(--arrowX);
+    top: var(--arrowY);
+    display: var(--arrowShow);
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    z-index: -1;
+    background-color: black;
+  }
+}

@@ -1,6 +1,7 @@
 const prettier = require('prettier');
 function format(code) {
   return prettier.format(code, {
+    parser: 'babel',
     semi: true,
     singleQuote: true,
     printWidth: 120,

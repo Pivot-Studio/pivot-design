@@ -1,50 +1,45 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
-import { DragNode, UniqueIdentifier } from '../types';
-import useDndContext from './useDndContext';
-import { useUniqueId } from './useUniqueId';
+import { Data, UniqueIdentifier } from '../types';
+import useDndContext from '../context/useDndContext';
 
 interface UseDroppableProps {
-  id?: UniqueIdentifier;
-  index?: number;
+  id: UniqueIdentifier;
+  /**
+   * sortable container needed，example below：
+   * ```js
+   * data: { sortable: { type: 'container' } }
+   * ```
+   */
+  data?: Data;
 }
 
-export const useDroppable = ({ id: propId, index: propsIndex }: UseDroppableProps) => {
-  const { dispatch, collisions: collisionsRef, manager } = useDndContext();
-  const collisions = collisionsRef?.current;
-  // const node = manager.getNode(id, 'droppables');
-  const { id: innerId, index: innerIndex } = useUniqueId(propId);
-  const id = innerId;
-  const index = propsIndex ?? innerIndex;
+export const useDroppable = ({ id, data: customData }: UseDroppableProps) => {
+  const { dispatch, manager, container } = useDndContext();
+  let over = container === id;
 
-  let over = false;
-  if (collisions && collisions.length > 0) {
-    for (let collision of collisions) {
-      if (collision.id === id) {
-        over = true;
-      }
-    }
-  }
-  const dropNode = useRef<DragNode>();
+  const dropNode = useRef<HTMLElement>();
   const setDropNodeRef = useCallback((currentNode: HTMLElement | null) => {
-    dropNode.current = currentNode as DragNode;
+    dropNode.current = currentNode as HTMLElement;
   }, []);
+  const data = useMemo(() => {
+    return { id, ...customData };
+  }, [customData, id]); // sortable needed
 
   const attributes = {};
 
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
-      payload: { node: { id, index, node: dropNode }, type: 'droppables' },
+      payload: { node: { id, node: dropNode, data }, type: 'droppables' },
     });
-    // manager.push({ id, index, node: dragNode });
     return () => {
       dispatch({
         type: DragActionEnum.REMOVE_NODE,
         payload: { id, type: 'droppables' },
       });
     };
-  }, [dispatch, id, index, manager]);
+  }, [dispatch, id, manager, data]);
 
   return { over, dropNode, attributes, setDropNode: setDropNodeRef };
 };

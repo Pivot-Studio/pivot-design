@@ -1,0 +1,26 @@
+@import '../../common.scss';
+
+.#{$prefix}-sortable-item {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 8px 0;
+  cursor: grab;
+  cursor: -webkit-grab;
+  user-select: none;
+  --webkit-user-select: none;
+
+  &.__#{$prefix}_dragging {
+    box-shadow: 6px 7.3px 2.7px rgba(0, 0, 0, 0.016), 8.1px 9.8px 6.9px rgba(0, 0, 0, 0.018),
+      9.7px 11.8px 14.2px rgba(0, 0, 0, 0.019), 13.4px 16.4px 29.2px rgba(0, 0, 0, 0.02),
+      37px 45px 80px rgba(0, 0, 0, 0.02);
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+  }
+
+  &.__#{$prefix}_handle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}

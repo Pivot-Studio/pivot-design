@@ -62,6 +62,7 @@ function Logo() {
             height="39.828"
           />
         </g>
+<<<<<<< HEAD
         <g id="Group" transform="translate(40.000000, 364.000000)">
           <rect id="Rectangle-10" x="0" y="0" width="420" height="58" />
           <text
@@ -69,6 +70,13 @@ function Logo() {
             fontFamily="Fira Mono"
             fontSize="100"
             fontWeight="700"
+=======
+        <g id="Group" transform="translate(40.000000, 404.000000)">
+          <text
+            id="headerText"
+            fontFamily="Fira Mono"
+            fontSize="150"
+>>>>>>> develop
             fill="#fff"
             data-text-alignment="C"
             fontStyle="normal"

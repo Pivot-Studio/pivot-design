@@ -12,10 +12,10 @@ const navigatorList = [
     text: '组件',
     path: '/components',
   },
-  {
-    text: '博客',
-    path: '/blogs',
-  },
+  // {
+  //   text: '博客',
+  //   path: '/blogs',
+  // },
 ];
 
 const Home: React.FC = () => {

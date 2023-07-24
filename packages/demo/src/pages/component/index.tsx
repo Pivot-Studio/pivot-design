@@ -1,17 +1,19 @@
 import { useState } from 'react';
-import { Button, Icon, Input, Skeleton, Card } from 'pivot-design';
+import { Button, Icon, Input, Skeleton, Card, Popover } from 'pivot-design';
 // import router from '@/routers';
 import ButtonMdx from '../../components/Button/index.mdx';
 import IconMdx from '../../components/Icon/index.mdx';
 import InputMdx from '../../components/Input/index.mdx';
 import CardMdx from '../../components/Card/index.mdx';
 import SkeletonMdx from '../../components/Skeleton/index.mdx';
-import Draggable from '@/examples/Draggable/Draggable';
-import CodeBlock from '@/components/_CodeBlock/codeBlock';
+import PopoverMdx from '../../components/Popover/index.mdx';
 import './index.scss';
 
+import Draggable from '@/examples/Draggable/Draggable';
+import CodeBlock from '@/components/_CodeBlock/codeBlock';
+
 function Index() {
-  const [select, setSelect] = useState('Draggable');
+  const [select, setSelect] = useState('Input');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -33,6 +35,9 @@ function Index() {
         <div className={`demo-item ${select === 'Input' ? 'active' : ''}`} onClick={() => setSelect('Input')}>
           输入框
         </div>
+        <div className={`demo-item ${select === 'Popover' ? 'active' : ''}`} onClick={() => setSelect('Popover')}>
+          气泡
+        </div>
       </div>
     );
   };
@@ -45,6 +50,7 @@ function Index() {
         {select === 'Icon' ? <IconMdx components={{ Icon, CodeBlock }} /> : null}
         {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
         {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
+        {select === 'Popover' ? <PopoverMdx components={{ Popover, CodeBlock }} /> : null}
         {select === 'Draggable' ? <Draggable /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
       </div>
