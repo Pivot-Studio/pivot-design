@@ -11,8 +11,11 @@
     top: 0;
     display: flex;
     justify-content: space-between;
-    padding: 20px 20px 0;
+    align-items: center;
+    padding: 18px 36px;
     z-index: 100;
+    background-color: #1c1721;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     .title {
       font-size: 30px;
       color: var(--master-text-color);
@@ -21,7 +24,7 @@
       display: flex;
       .navigator {
         margin: 0 20px;
-        padding: 8px 30px;
+        padding: 4px 24px;
         border: 1px solid transparent;
         box-sizing: border-box;
         border-radius: 20px;

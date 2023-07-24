@@ -13,7 +13,7 @@
   &-content {
     display: flex;
     flex-direction: row;
-    padding: 72px 0 12px;
+    padding: 82px 16px 12px;
     height: 100%;
     color: #fff;
 
@@ -52,7 +52,7 @@
 }
 
 #nice {
-  padding: 30px;
+  padding: 40px 100px;
   word-break: break-all;
 }
 #nice p {
@@ -70,6 +70,7 @@
   position: relative;
   margin: 16px 0;
   padding: 0 16px;
+  font-weight: 400;
   &::before {
     content: '';
     position: absolute;

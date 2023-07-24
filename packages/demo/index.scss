@@ -1,6 +1,4 @@
 :root {
-  --master-bg-color: rgb(252, 234, 220);
-  --master-deep-bg-color: #c76591;
   --master-text-color: #fff;
   --primary: #1677ff;
   --link-color: #eabe9e;
@@ -13,7 +11,11 @@ body,
 html,
 #root {
   height: 100%;
-  font-family: 'ptima-Regular', 'Gilroy ExtraBold', Times, serif;
+  font-family: system, -apple-system, BlinkMacSystemFont, PingFang SC, Segoe UI, Microsoft YaHei, wenquanyi micro hei,
+    Hiragino Sans GB, Hiragino Sans GB W3, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: var(--master-text-color);
 }
 
 .display {
@@ -21,11 +23,6 @@ html,
 }
 .hidden {
   height: 0;
-}
-
-.title {
-  color: #000;
-  font-size: 18px;
 }
 
 .demo-draggable-item {
