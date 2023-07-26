@@ -14,10 +14,10 @@ interface ICodeProps {
 }
 const CodeBlock: React.FC<ICodeProps> = (props) => {
   const { code, children, line, style } = props;
-  const [expand, setExpand] = useState(false);
+  const [expand, setExpand] = useState(true);
   // 使用max-height实现不确定数值的transition
-  const [codeDisplay, setCodeDisplay] = useState(false);
-  const codeRef = useRef<HTMLElement>(null)
+  const [codeDisplay, setCodeDisplay] = useState(true);
+  const codeRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!codeRef.current) {
       return;
