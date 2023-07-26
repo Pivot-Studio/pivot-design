@@ -1,10 +1,13 @@
 :root {
+  --pivot-blue-1: 84, 169, 255;
+
   --text-color-1: #fff;
   --text-color-2: rgba(249, 249, 249, 0.8);
   --text-color-3: rgba(249, 249, 249, 0.6);
   --fill-color-1: rgba(255, 255, 255, 0.145);
-  --primary: #1677ff;
-  --primary-light: #2d83fb;
+  --primary: rgb(22, 119, 255);
+  --primary-light: rgb(46, 131, 250);
+  --bg-hover-primary: rgba(var(--pivot-blue-1), 0.2);
   --link-color: #eabe9e;
 }
 

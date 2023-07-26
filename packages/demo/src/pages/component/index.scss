@@ -17,26 +17,27 @@
     color: #fff;
 
     .demo-container {
-      background: #332b3e;
+      background: #26212c;
       width: 220px;
-      padding-top: 8px;
+      padding: 8px 0.6rem;
+      font-size: 14px;
       .demo-item {
         // background-color: bisque;
-        border: 1px solid rgba(209, 208, 208, 0.649);
-        padding: 0.1rem 0;
-        text-align: center;
+        padding: 0.6rem 1.2rem;
         cursor: pointer;
-
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
         &.active {
+          background: var(--bg-hover-primary);
           color: var(--primary);
-          font-weight: 500;
-          font-size: 18px;
+          font-size: 15px;
         }
       }
     }
     .demo-component {
       margin: 0;
-      padding: 48px 60px 0 48px;
+      padding: 48px 20px 0 48px;
       background-color: rgb(20, 20, 20);
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;

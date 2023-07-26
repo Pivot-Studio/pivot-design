@@ -1,3 +1,5 @@
+import './theme/common.scss';
+import './theme/global.scss';
 import Button from './components/Button';
 export {
   DraggableItem,
@@ -23,4 +25,4 @@ export const arrayMove = (array: any[], from: number, to: number) => {
 };
 
 // 引用默认主题色
-document.body.setAttribute('pivot-theme', 'light');
+document.body.setAttribute('pivot-theme', 'dark');
