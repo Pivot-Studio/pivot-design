@@ -1,12 +1,18 @@
 :root {
-  --master-text-color: #fff;
+  --text-color-1: #fff;
+  --text-color-2: rgba(249, 249, 249, 0.8);
+  --text-color-3: rgba(249, 249, 249, 0.6);
+  --fill-color-1: rgba(255, 255, 255, 0.145);
   --primary: #1677ff;
+  --primary-light: #2d83fb;
   --link-color: #eabe9e;
 }
+
 * {
   padding: 0;
   margin: 0;
 }
+
 body,
 html,
 #root {
@@ -15,24 +21,28 @@ html,
     Hiragino Sans GB, Hiragino Sans GB W3, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: var(--master-text-color);
+  color: var(--text-color-1);
 }
 
 .display {
   height: auto;
 }
+
 .hidden {
   height: 0;
 }
+
 .demo-draggable-item {
   color: #fff;
   background-color: #3685f5;
   padding: 8px 18px;
   border-radius: 4px;
 }
+
 .demo-sortable-horizen {
   padding: 8px 88px;
 }
+
 .demo-sortable-grid {
   padding: 32px 40px;
   margin: 24px;

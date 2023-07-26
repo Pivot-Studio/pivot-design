@@ -12,13 +12,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 36px;
+    padding: 12px 36px;
     z-index: 100;
     background-color: #1c1721;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     .title {
-      font-size: 30px;
-      color: var(--master-text-color);
+      font-size: 24px;
+      color: var(--text-color-1);
     }
     .navigation-wrapper {
       display: flex;
@@ -29,8 +29,6 @@
         box-sizing: border-box;
         border-radius: 20px;
         text-decoration: none;
-        font-size: 18px;
-        font-weight: 600;
         color: var(--link-color);
         border: 1px solid;
         transition: 0.5s;
@@ -59,7 +57,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       display: flex;
-      color: var(--master-text-color);
+      color: var(--text-color-1);
       font-size: 82px;
       font-weight: bold;
       letter-spacing: 0.1em;
