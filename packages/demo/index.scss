@@ -1,16 +1,3 @@
-:root {
-  --pivot-blue-1: 84, 169, 255;
-
-  --text-color-1: #fff;
-  --text-color-2: rgba(249, 249, 249, 0.8);
-  --text-color-3: rgba(249, 249, 249, 0.6);
-  --fill-color-1: rgba(255, 255, 255, 0.145);
-  --primary: rgb(22, 119, 255);
-  --primary-light: rgb(46, 131, 250);
-  --bg-hover-primary: rgba(var(--pivot-blue-1), 0.2);
-  --link-color: #eabe9e;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -24,7 +11,7 @@ html,
     Hiragino Sans GB, Hiragino Sans GB W3, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: var(--text-color-1);
+  color: var(--semi-color-text-0);
 }
 
 .display {

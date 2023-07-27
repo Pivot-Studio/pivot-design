@@ -1,6 +1,5 @@
 .pivot-design-docs {
   padding: 20px;
-  background-color: rgb(20, 20, 20);
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -14,23 +13,21 @@
     display: flex;
     flex-direction: row;
     padding: 60px 0;
-    color: #fff;
 
     .demo-container {
-      background: #26212c;
+      background: var(--semi-color-bg-1);
       width: 220px;
       padding: 8px 0.6rem;
       font-size: 14px;
       .demo-item {
-        // background-color: bisque;
         padding: 0.6rem 1.2rem;
         cursor: pointer;
         &:hover {
           background: rgba(255, 255, 255, 0.1);
         }
         &.active {
-          background: var(--bg-hover-primary);
-          color: var(--primary);
+          background: var(--semi-color-primary-active);
+          color: var(--semi-color-link);
           font-size: 15px;
         }
       }
@@ -38,20 +35,20 @@
     .demo-component {
       margin: 0;
       padding: 48px 20px 0 48px;
-      background-color: rgb(20, 20, 20);
+      background-color: var(--semi-color-bg-0);
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       box-shadow: 0 8px 24px #0000000d;
       flex: 1;
     }
     .demo-component-catalogue {
-      background-color: rgb(20, 20, 20);
+      background-color: var(--semi-color-bg-0);
     }
   }
 }
 
 #nice {
-  color: var(--text-color-3);
+  color: var(--semi-color-text-2);
 
   word-break: break-all;
 }
@@ -61,7 +58,7 @@
 }
 /* 一级标题 */
 #nice h1 {
-  color: var(--text-color-1);
+  color: var(--semi-color-text-0);
   padding-bottom: 60px;
 }
 /* 一级标题修饰 请参考有实例的主题 */
@@ -75,7 +72,7 @@
   padding: 0 16px;
   font-weight: 400;
   font-size: 20px;
-  color: var(--text-color-2);
+  color: var(--semi-color-text-1);
   &::before {
     content: '';
     position: absolute;
@@ -83,7 +80,7 @@
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: var(--primary);
+    background-color: var(--semi-color-primary);
   }
 }
 
@@ -100,7 +97,7 @@
     top: 0;
     width: 3px;
     height: 100%;
-    background-color: var(--primary);
+    background-color: var(--semi-color-primary);
   }
 }
 /* 无序列表整体样式
@@ -110,7 +107,7 @@
   margin: 20px 1rem;
 }
 #nice ul li::marker {
-  color: rgb(239, 112, 96);
+  color: var(--semi-color-primary);
 }
 #nice ul li {
   text-indent: 0.5rem;
@@ -130,7 +127,7 @@
  * 背景色 background: gray;
  */
 #nice .multiquote-1 {
-  border-left-color: rgb(239, 112, 96);
+  border-left-color: var(--semi-brand-4);
   background: #fff9f9;
 }
 /* 引用文字 */
@@ -140,8 +137,8 @@
  * border-bottom: 1px solid #009688;
  */
 #nice a {
-  color: rgb(239, 112, 96);
-  border-bottom: 1px solid rgb(239, 112, 96);
+  color: var(--semi-brand-4);
+  border-bottom: 1px solid var(--semi-brand-4);
 }
 /* 加粗 */
 #nice strong {
@@ -175,8 +172,8 @@
 #nice p code,
 #nice li code {
   padding: 1px 2px;
-  background: var(--fill-color-1);
-  color: var(--primary);
+  background: var(--semi-color-fill-1);
+  color: var(--semi-color-secondary);
 }
 /* 非微信代码块
  * 代码块不换行 display: -webkit-box !important;
@@ -194,12 +191,9 @@
 #nice table tr td {
 }
 /* 脚注文字 */
-#nice .footnote-word {
-  color: #ff3502;
-}
 /* 脚注上标 */
 #nice .footnote-ref {
-  color: rgb(239, 112, 96);
+  color: var(--semi-brand-4);
 }
 /* "参考资料"四个字 
  * 内容 content: "参考资料";

@@ -1,4 +1,3 @@
-import './theme/common.scss';
 import './theme/global.scss';
 import Button from './components/Button';
 export {

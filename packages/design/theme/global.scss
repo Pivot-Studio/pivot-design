@@ -1,4 +1,7 @@
-body[pivot-theme='light'],body .semi-always-light {
+@import './common.scss';
+
+body[pivot-theme='light'],
+body .semi-always-light {
   --semi-color-bg-0: rgba(var(--semi-white), 1);
   --semi-color-bg-1: rgba(var(--semi-white), 1);
   --semi-color-bg-2: rgba(var(--semi-white), 1);
@@ -90,6 +93,7 @@ body[pivot-theme='light'],body .semi-always-light {
   --semi-border-radius-medium: 6px;
   --semi-border-radius-extra-small: 3px;
 }
+
 body[pivot-theme='dark'],
 body .semi-always-dark {
   --semi-color-bg-0: rgba(22, 22, 26, 1);
@@ -108,6 +112,8 @@ body .semi-always-dark {
   --semi-color-text-1: rgba(var(--semi-grey-9), 0.8);
   --semi-color-text-2: rgba(var(--semi-grey-9), 0.6);
   --semi-color-text-3: rgba(var(--semi-grey-9), 0.35);
+  --semi-color-text-4: rgba(var(--semi-grey-3), 1);
+
   --semi-color-white: rgba(228, 231, 245, 1);
   --semi-color-border: rgba(var(--semi-white), 0.08);
   --semi-color-danger: rgba(var(--semi-red-5), 1);
@@ -131,14 +137,14 @@ body .semi-always-dark {
   --semi-color-danger-active: rgba(var(--semi-red-7), 1);
   --semi-color-disabled-bg: rgba(var(--semi-grey-1), 1);
   --semi-color-default-hover: rgba(var(--semi-grey-1), 1);
-  --semi-color-primary-hover: rgba(var(--semi-brand-6), 1);
+  --semi-color-primary-hover: rgba(var(--semi-brand-6), 0.2);
   --semi-color-success-hover: rgba(var(--semi-green-6), 1);
   --semi-color-warning-hover: rgba(var(--semi-orange-6), 1);
   --semi-color-default-active: rgba(var(--semi-grey-2), 1);
   --semi-color-disabled-fill: rgba(var(--semi-grey-8), 0.04);
   --semi-color-disabled-text: rgba(var(--semi-grey-9), 0.35);
   --semi-color-highlight-bg: rgba(var(--semi-yellow-2), 1);
-  --semi-color-primary-active: rgba(var(--semi-brand-7), 1);
+  --semi-color-primary-active: rgba(var(--semi-brand-6), 0.1);
   --semi-color-success-active: rgba(var(--semi-green-7), 1);
   --semi-color-warning-active: rgba(var(--semi-orange-7), 1);
   --semi-color-tertiary-hover: rgba(var(--semi-grey-6), 1);
@@ -183,6 +189,3 @@ body .semi-always-dark {
   --semi-border-radius-medium: 6px;
   --semi-border-radius-extra-small: 3px;
 }
-
-
-
