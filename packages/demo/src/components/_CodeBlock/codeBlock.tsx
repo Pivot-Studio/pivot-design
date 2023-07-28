@@ -1,8 +1,11 @@
 import Prism from 'prismjs';
-import React, { useRef, useState, useEffect, TransitionEventHandler } from 'react';
+import CodeExpendIcon from '../../images/codeExpend';
+import CodeUnexpendIcon from '../../images/codeUnexpand';
 import './index.scss';
+import React, { useRef, useState, useEffect, TransitionEventHandler, CSSProperties } from 'react';
 interface ICodeProps {
   children: React.ReactNode;
+  style?: CSSProperties;
   code: string;
   /**
    * @example 1-2, 5, 9-20
@@ -10,10 +13,10 @@ interface ICodeProps {
   line?: string;
 }
 const CodeBlock: React.FC<ICodeProps> = (props) => {
-  const { code, children, line } = props;
-  const [expand, setExpand] = useState(false);
+  const { code, children, line, style } = props;
+  const [expand, setExpand] = useState(true);
   // 使用max-height实现不确定数值的transition
-  const [codeDisplay, setCodeDisplay] = useState(false);
+  const [codeDisplay, setCodeDisplay] = useState(true);
   const codeRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!codeRef.current) {
@@ -28,7 +31,9 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
   };
   return (
     <div className="pivot-code-box">
-      <div className="pivot-code-box-demo">{children}</div>
+      <div className="pivot-code-box-demo" style={style}>
+        {children}
+      </div>
 
       <div className="pivot-code-box-actions">
         {expand ? (
@@ -39,7 +44,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
               setCodeDisplay(false);
             }}
           >
-            <img src="https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg" />
+            <CodeUnexpendIcon />
           </div>
         ) : (
           <div
@@ -49,7 +54,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
               setCodeDisplay(true);
             }}
           >
-            <img src="https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg" />
+            <CodeExpendIcon />
           </div>
         )}
       </div>

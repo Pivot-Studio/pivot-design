@@ -1,4 +1,4 @@
-import { getWindow } from '../getWindow';
+import { getWindow } from '../../Draggable/utils/getWindow';
 
 import { isWindow } from './isWindow';
 

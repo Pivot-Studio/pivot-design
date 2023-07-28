@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
-import { hasViewportRelativeCoordinates } from './hasViewportRelativeCoordinates';
+import { hasViewportRelativeCoordinates } from '../../utils/hasViewportRelativeCoordinates';
 import { isTouchEvent } from './isTouchEvent';
-import { Coordinate } from './types';
+import { Coordinate } from '../../utils/types';
 
 /**
  * Returns the normalized x and y coordinates for mouse and touch events.

@@ -1,9 +1,9 @@
 .pivot-design-docs {
   padding: 20px;
-  background-color: #f7f9fb;
   min-height: 100%;
   display: flex;
   flex-direction: column;
+
   &-title {
     .title {
       font-size: 30px;
@@ -12,42 +12,209 @@
   &-content {
     display: flex;
     flex-direction: row;
-    padding: 12px 0;
-    margin-top: 50px;
-    .demo-container {
-      width: 10%;
-      min-width: 100px;
-      height: 100%;
-      padding-top: 8px;
-      padding-right: 20px;
-      margin-left: 5px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      position: sticky;
-      top: 80px;
-      .demo-item {
-        // background-color: bisque;
-        border: 1px solid rgba(0, 0, 0, 0.056);
-        padding: 0.1rem 0;
-        width: 100%;
-        text-align: center;
-        cursor: pointer;
+    padding: 60px 0;
 
+    .demo-container {
+      background: var(--semi-color-bg-1);
+      width: 220px;
+      padding: 8px 0.6rem;
+      font-size: 14px;
+      .demo-item {
+        padding: 0.6rem 1.2rem;
+        cursor: pointer;
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
         &.active {
-          color: #1677ff;
-          font-weight: 500;
-          font-size: 18px;
+          background: var(--semi-color-primary-active);
+          color: var(--semi-color-link);
+          font-size: 15px;
         }
       }
     }
     .demo-component {
-      padding: 48px 48px 0;
-      background-color: #fff;
+      margin: 0;
+      padding: 48px 20px 0 48px;
+      background-color: var(--semi-color-bg-0);
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       box-shadow: 0 8px 24px #0000000d;
       flex: 1;
     }
+    .demo-component-catalogue {
+      background-color: var(--semi-color-bg-0);
+    }
   }
+}
+
+#nice {
+  color: var(--semi-color-text-2);
+
+  word-break: break-all;
+}
+#nice p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+/* 一级标题 */
+#nice h1 {
+  color: var(--semi-color-text-0);
+  padding-bottom: 60px;
+}
+/* 一级标题修饰 请参考有实例的主题 */
+#nice h1:after {
+}
+/* 二级标题 */
+
+#nice h2 {
+  position: relative;
+  margin: 40px 0;
+  padding: 0 16px;
+  font-weight: 400;
+  font-size: 20px;
+  color: var(--semi-color-text-1);
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--semi-color-primary);
+  }
+}
+
+#nice h3 {
+  position: relative;
+  margin: 32px 0;
+  margin-left: 0.8em;
+  padding: 0 12px;
+  font-size: 18px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background-color: var(--semi-color-primary);
+  }
+}
+/* 无序列表整体样式
+ * list-style-type: square|circle|disc;
+ */
+#nice ul {
+  margin: 20px 1rem;
+}
+#nice ul li::marker {
+  color: var(--semi-color-primary);
+}
+#nice ul li {
+  text-indent: 0.5rem;
+  line-height: 2;
+}
+/* 有序列表整体样式
+ * list-style-type: upper-roman|lower-greek|lower-alpha;
+ */
+#nice ol {
+}
+/* 列表内容，不要设置li
+ */
+#nice li section {
+}
+/* 引用
+ * 左边缘颜色 border-left-color: black;
+ * 背景色 background: gray;
+ */
+#nice .multiquote-1 {
+  border-left-color: var(--semi-brand-4);
+  background: #fff9f9;
+}
+/* 引用文字 */
+#nice .multiquote-1 p {
+}
+/* 链接 
+ * border-bottom: 1px solid #009688;
+ */
+#nice a {
+  color: var(--semi-brand-4);
+  border-bottom: 1px solid var(--semi-brand-4);
+}
+/* 加粗 */
+#nice strong {
+}
+/* 斜体 */
+#nice em {
+}
+/* 加粗斜体 */
+#nice em strong {
+}
+/* 删除线 */
+#nice del {
+}
+/* 分隔线
+ * 粗细、样式和颜色
+ * border-top: 1px solid #3e3e3e;
+ */
+#nice hr {
+}
+/* 图片
+ * 宽度 width: 80%;
+ * 居中 margin: 0 auto;
+ * 居左 margin: 0 0;
+ */
+#nice img {
+}
+/* 图片描述文字 */
+#nice figcaption {
+}
+/* 行内代码 */
+#nice p code,
+#nice li code {
+  padding: 1px 2px;
+  background: var(--semi-color-fill-1);
+  color: var(--semi-color-secondary);
+}
+/* 非微信代码块
+ * 代码块不换行 display: -webkit-box !important;
+ * 代码块换行 display: block;
+ */
+#nice pre code {
+}
+/*
+ * 表格内的单元格
+ * 字体大小 font-size: 16px;
+ * 边框 border: 1px solid #ccc;
+ * 内边距 padding: 5px 10px;
+ */
+#nice table tr th,
+#nice table tr td {
+}
+/* 脚注文字 */
+/* 脚注上标 */
+#nice .footnote-ref {
+  color: var(--semi-brand-4);
+}
+/* "参考资料"四个字 
+ * 内容 content: "参考资料";
+ */
+#nice .footnotes-sep:before {
+}
+/* 参考资料编号 */
+#nice .footnote-num {
+}
+/* 参考资料文字 */
+#nice .footnote-item p {
+}
+/* 参考资料解释 */
+#nice .footnote-item p em {
+}
+/* 行间公式
+ * 最大宽度 max-width: 300% !important;
+ */
+#nice .block-equation svg {
+}
+/* 行内公式
+ */
+#nice .inline-equation svg {
 }

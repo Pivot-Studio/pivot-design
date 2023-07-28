@@ -16,5 +16,9 @@ export const defaultDndContext = {
   activeRect: null,
   activator: null,
   collisions: null,
+  droppableRects: [],
+  overNodeRef: null,
+  hasDragOverlay: false,
+  container: '',
 };
 export const Context = createContext<DndContextDescriptor>(defaultDndContext);

@@ -5,7 +5,7 @@
   "editor.formatOnSave": true, // optional
   "editor.formatOnSaveMode": "file",
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -17,5 +17,5 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "svg.preview.background": "white" // required to format on save
+  "svg.preview.background": "black" // required to format on save
 }

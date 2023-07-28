@@ -2,21 +2,26 @@ import { MutableRefObject } from 'react';
 
 export type UniqueIdentifier = number | string;
 
+type AnyData = Record<string, any>;
+
+export type Data<T = AnyData> = T;
+
+export type DataRef<T = AnyData> = MutableRefObject<Data<T> | undefined>;
+
 export interface Coordinate {
   x: number;
   y: number;
 }
 
-export interface DragNode extends HTMLElement {
-  dragitemid: UniqueIdentifier;
-}
-
 export type DraggableNode = {
   id: UniqueIdentifier;
-  index: number;
-  node: MutableRefObject<DragNode | undefined>;
+  // custom data：
+  // like Droppable: data = { type:string; }
+  // like Sortable: data = { sortable: { containerId, index, items }}
+  data: Data;
+  node: MutableRefObject<HTMLElement | undefined>;
   // node position information
-  clientRect?: DOMRect;
+  clientRect?: MutableRefObject<DOMRect | undefined>;
   transform?: Coordinate;
   transition?: boolean;
 };

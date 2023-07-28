@@ -1,4 +1,4 @@
-@import '../common.scss';
+@import '../constants.scss';
 $cardmin: calc(var(--card-minLength, 3) * 20px);
 $cardmax: calc(var(--card-maxLength, 100%) * 20px);
 .#{$prefix}-card {
