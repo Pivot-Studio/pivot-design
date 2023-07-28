@@ -1,12 +1,8 @@
-:root {
-  --master-text-color: #fff;
-  --primary: #1677ff;
-  --link-color: #eabe9e;
-}
 * {
   padding: 0;
   margin: 0;
 }
+
 body,
 html,
 #root {
@@ -15,25 +11,16 @@ html,
     Hiragino Sans GB, Hiragino Sans GB W3, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: var(--master-text-color);
+  color: var(--semi-color-text-0);
 }
 
 .display {
   height: auto;
 }
+
 .hidden {
   height: 0;
 }
-.demo-draggable-item {
-  color: #fff;
-  background-color: #3685f5;
-  padding: 8px 18px;
-  border-radius: 4px;
-}
-.demo-sortable-horizen {
-  padding: 8px 88px;
-}
-.demo-sortable-grid {
-  padding: 32px 40px;
-  margin: 24px;
-}
+
+
+

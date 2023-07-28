@@ -13,7 +13,7 @@ import Draggable from '@/examples/Draggable/Draggable';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 
 function Index() {
-  const [select, setSelect] = useState('Input');
+  const [select, setSelect] = useState('Draggable');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -54,6 +54,7 @@ function Index() {
         {select === 'Draggable' ? <Draggable /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
       </div>
+      <div className="demo-component-catalogue" style={{ width: '200px' }}>1</div>
     </div>
   );
 }

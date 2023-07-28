@@ -1,13 +1,9 @@
 .pivot-code-box {
   position: relative;
-  display: inline-block;
-  width: 100%;
-  margin: 16px 0;
+  margin: 30px 0;
   overflow: hidden;
   border: 1px solid rgba(243, 242, 242, 0.1);
   border-radius: 6px;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
   &-actions {
     display: flex;
     flex-direction: row-reverse;
@@ -30,11 +26,9 @@
   }
 
   .line-numbers {
-    //width: 100%;
     .code-toolbar {
       .data-prismjs-copy {
-        //width: 70vw;
-        //width: 100%;
+        font-size: 12px;
         overflow: auto;
         margin: 0;
       }

@@ -1,5 +1,6 @@
 import { DndContext, DraggableItem, Droppable } from 'pivot-design';
 import React, { useState } from 'react';
+import './Basic.scss';
 const Basic: React.FC = () => {
   const [parent, setParent] = useState('');
   const onDragEnd = ({ id, isDrop }) => {
