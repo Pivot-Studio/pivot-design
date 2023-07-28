@@ -9,7 +9,7 @@ import SkeletonMdx from '../../components/Skeleton/index.mdx';
 import PopoverMdx from '../../components/Popover/index.mdx';
 import './index.scss';
 
-import Draggable from '@/examples/Draggable/Draggable';
+import DraggableMdx from '../../components/Draggable/index.mdx';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 
 function Index() {
@@ -18,25 +18,25 @@ function Index() {
     return (
       <div className="demo-container">
         <div className={`demo-item ${select === 'Button' ? 'active' : ''}`} onClick={() => setSelect('Button')}>
-          按钮
+          Button 按钮
         </div>
         <div className={`demo-item ${select === 'Card' ? 'active' : ''}`} onClick={() => setSelect('Card')}>
-          卡片
+          Card 卡片
         </div>
         <div className={`demo-item ${select === 'Draggable' ? 'active' : ''}`} onClick={() => setSelect('Draggable')}>
-          拖拽列表
+          Draggable 拖拽列表
         </div>
         <div className={`demo-item ${select === 'Skeleton' ? 'active' : ''}`} onClick={() => setSelect('Skeleton')}>
-          骨架屏
+          Skeleton 骨架屏
         </div>
         <div className={`demo-item ${select === 'Icon' ? 'active' : ''}`} onClick={() => setSelect('Icon')}>
-          图标
+          Icon 图标
         </div>
         <div className={`demo-item ${select === 'Input' ? 'active' : ''}`} onClick={() => setSelect('Input')}>
-          输入框
+          Input 输入框
         </div>
         <div className={`demo-item ${select === 'Popover' ? 'active' : ''}`} onClick={() => setSelect('Popover')}>
-          气泡
+          Popover 气泡
         </div>
       </div>
     );
@@ -51,10 +51,18 @@ function Index() {
         {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
         {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
         {select === 'Popover' ? <PopoverMdx components={{ Popover, CodeBlock }} /> : null}
-        {select === 'Draggable' ? <Draggable /> : null}
+        {select === 'Draggable' ? (
+          <DraggableMdx
+            components={{
+              CodeBlock,
+            }}
+          />
+        ) : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
       </div>
-      <div className="demo-component-catalogue" style={{ width: '200px' }}>1</div>
+      <div className="demo-component-catalogue" style={{ width: '200px' }}>
+        1
+      </div>
     </div>
   );
 }
