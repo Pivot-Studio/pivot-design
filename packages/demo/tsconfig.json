@@ -4,7 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "target": "ESNext",
+    "noEmitOnError": false
   },
   "exclude": ["loaders"]
 }

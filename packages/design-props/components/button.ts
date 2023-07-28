@@ -12,7 +12,7 @@ interface ButtonCssTokens {
    * @description 按钮禁用时背景颜色
    * @default --pivot-button-disabled-background-color
    */
-  '--button-disabled-background-color'?: string;
+  '--button-disabled-background-color'?: string;``
 }
 export interface ButtonProps extends PivotDesignProps {
   /**
@@ -62,11 +62,11 @@ export interface ButtonProps extends PivotDesignProps {
    * @description 按钮是否防抖，可选择是否立即执行
    * @default 0
    */
-  debounce?: number | { delay: number; immediate: boolean };
+  debounce?: number | { delay: number, immediate: boolean };
   /**
    * @version 1.0.0
    * @description 按钮是否节流
    * @default false
    */
-  throttle?: number | { delay: number; immediate: boolean };
+  throttle?: number | { delay: number, immediate: boolean };
 }
