@@ -1,15 +1,15 @@
 import { Modal, Button } from 'pivot-design';
-import React, { useState } from 'react';
-import Actions from '../../Card/svg/index.tsx';
-//import More from "./svg/tab.tsx"
+import React, { useState, useEffect } from 'react';
 import { DndContext, DraggableItem } from 'pivot-design';
 
 const App: React.FC = () => {
-  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 350 });
 
   const [open, useOpen] = useState(false);
-
-  const onDragEnd = ({ delta }: { delta: { x: number, y: number }, event: Event }) => {
+  useEffect(() => {
+    setCoordinates({ x: 0, y: 350 });
+  }, [open]);
+  const onDragEnd = ({ delta }: { delta: { x: number; y: number }; event: Event }) => {
     setCoordinates(({ x, y }) => {
       return {
         x: x + delta.x,
@@ -34,11 +34,10 @@ const App: React.FC = () => {
         open={open}
         ModalOK={ModalOK}
         ModalCancel={ModalCancel}
-        isDragge={true}
         ModalRender={(modal) => (
           <>
             <DndContext onDragEnd={onDragEnd}>
-              <DraggableItem className="demo-draggable-item" left={coordinates.x} top={coordinates.y}>
+              <DraggableItem left={coordinates.x} top={coordinates.y}>
                 {modal}
               </DraggableItem>
             </DndContext>

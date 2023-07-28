@@ -1,8 +1,7 @@
 import React from 'react';
 import { ModalProps } from 'pivot-design-props';
-import Button from '../Button';
-import { prefix } from '../constants';
-import useDrag from './hooks/useDrag';
+import Button from '../../Button';
+import { prefix } from '../../constants';
 import './modalcard.scss';
 import { Close } from 'pivot-design-icon';
 import classnames from 'classnames';
@@ -11,7 +10,6 @@ const ModalCard: React.FC<ModalProps> = (props) => {
     title,
     content,
     style,
-    isDragge = false,
     className,
     open,
     footer,
@@ -32,13 +30,8 @@ const ModalCard: React.FC<ModalProps> = (props) => {
     const { ModalOK } = props;
     ModalOK?.(e);
   }; // useDisplay(open);
-  const ModalRef = useDrag({ open, maring: [10, 10, 10, 10], isDragge });
   return (
-    <div
-      className={classnames(`${prefix}-modal-card`, className)}
-      style={{ ...style, ...positionStyle }}
-      ref={ModalRef}
-    >
+    <div className={classnames(`${prefix}-modal-card`, className)} style={{ ...style, ...positionStyle }}>
       {isClose && (
         <div className={`${prefix}-modal-cancel`} onClick={handleCancel}>
           {closeIcon === undefined ? <Close /> : closeIcon}

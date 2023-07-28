@@ -16,12 +16,6 @@ export interface ModalProps extends PivotDesignProps {
   style?: React.CSSProperties & ModalCssTokens;
   /**
    * @version 1.0.0
-   * @description 是否可拖动
-   * @default false
-   */
-  isDragge?: boolean;
-  /**
-   * @version 1.0.0
    * @description 自定义蒙层
    * @default undefined
    */

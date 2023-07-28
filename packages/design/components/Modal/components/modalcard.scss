@@ -1,5 +1,7 @@
-@import '../common.scss';
+@import '../../constants.scss';
+@import '../../common.scss';
 .#{$prefix}-modal-card {
+  color: #000000;
   padding: 15px;
   position: absolute;
   left: 50%;
