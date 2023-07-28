@@ -27,6 +27,8 @@ Pivot-Studio 前端组件库
 
 - props：所有的 props 均定义在`design-prop`中。每一个组件的 props 均要继承`PivotDesignProps`，**名字规范格式要求：「组件名」+ `Props`**，每一个组件若有自定义 css 变量，**名字规范格式要求：「组件名」+ `CssTokens`**
 
+- 基础色值：本项目利用了 Semi 的 DSM，定制了一套色值。设计系统连接如下：https://semi.design/dsm_store/theme?dsmID=10493
+
 - css 变量：我们默认的 css 变量放在`design/components/common.scss`里，**命名规范：「--pivot-componentName-property」**，用法如下：
 
 ```css
