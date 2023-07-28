@@ -6,15 +6,14 @@ import IconMdx from '../../components/Icon/index.mdx';
 import InputMdx from '../../components/Input/index.mdx';
 import CardMdx from '../../components/Card/index.mdx';
 import SkeletonMdx from '../../components/Skeleton/index.mdx';
-import PopoverMdx from '@/components/Popover/index.mdx';
+import PopoverMdx from '../../components/Popover/index.mdx';
+import './index.scss';
 
 import Draggable from '@/examples/Draggable/Draggable';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 
-import './index.scss';
-
 function Index() {
-  const [select, setSelect] = useState('Input');
+  const [select, setSelect] = useState('Draggable');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -46,7 +45,7 @@ function Index() {
   return (
     <div className="pivot-design-docs-content">
       {demoSelect()}
-      <div className="demo-component">
+      <div className="demo-component" id="nice">
         {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
         {select === 'Icon' ? <IconMdx components={{ Icon, CodeBlock }} /> : null}
         {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
@@ -55,6 +54,7 @@ function Index() {
         {select === 'Draggable' ? <Draggable /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
       </div>
+      <div className="demo-component-catalogue" style={{ width: '200px' }}>1</div>
     </div>
   );
 }

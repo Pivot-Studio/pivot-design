@@ -22,9 +22,7 @@ const Home: React.FC = () => {
   return (
     <div className="pivot-design-home">
       <div className="pivot-design-home-title">
-        <div className="title">
-          <Logo />
-        </div>
+        <div className="title">Pivot Design</div>
         <div className="navigation-wrapper">
           {navigatorList.map((nav) => (
             <Link to={nav.path} className="navigator">
