@@ -1,0 +1,58 @@
+@import '../common.scss';
+.#{$prefix}-modal-card {
+  padding: 15px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+ // bottom: 0;
+  //right: 0;
+ // margin: auto;
+  height: auto;
+  width: 520px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background: white;
+  .#{$prefix}-modal-cancel {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   z-index: 9999;
+   
+  }
+  .#{$prefix}-modal-title {
+    margin-bottom: 15px;
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  .#{$prefix}-modal-footer {
+    position: relative;
+    margin-top: 15px;
+    .#{$prefix}-modal-col-footer{
+      // position: absolute;
+          padding-left: 50%;
+          transform: translate(-20%, 0);
+    }
+    .#{$prefix}-modal-row-footer {
+      display:flex;
+      justify-content:flex-end;
+      flex-wrap: nowrap;
+    
+    }
+  }
+  .#{$prefix}-modal-content {
+   // text-align: center;
+    white-space: nowrap;
+    // text-overflow: ellipsis;
+    white-space: pre-wrap;
+    word-break: break-all;
+    overflow: hidden;
+  }
+  .#{$prefix}-modal-cancel {
+    cursor: pointer;
+  }
+ }

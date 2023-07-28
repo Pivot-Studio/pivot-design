@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
-import { ModalProps, ButtonProps } from 'pivot-design-props';
-import Button from '../Button';
+import React from 'react';
+import { ModalProps } from 'pivot-design-props';
+//import Button from '../Button';
 import { prefix } from '../constants';
-import useDrag from './hooks/useDrag';
+//import useDrag from './hooks/useDrag';
 import './index.scss';
+//import { Close } from 'pivot-design-icon';
 import classnames from 'classnames';
+import ModalCard from './modalcard';
 const Modal: React.FC<ModalProps> = (props) => {
   const {
     title,
@@ -15,60 +17,71 @@ const Modal: React.FC<ModalProps> = (props) => {
     className,
     open,
     footer,
-    closed = false,
+    isClose = true,
     children,
-    postion,
+    position,
     isMask = true,
     closeIcon,
     OkButtonProps,
     CancelButtonProps,
-    footerType = true,
+    footerButtonDirection = 'row',
+    ModalCancel,
+    ModalOK,
+    ModalRender,
   } = props;
-  const getButtonDisabled = (ButtonProps: ButtonProps | undefined) => {
-    if (ButtonProps) {
-      const { disabled } = ButtonProps;
-      if (disabled) {
-        return true;
-      }
-    }
-    return false;
-  };
-  //const {} = CancelButtonProps;
-  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (getButtonDisabled(CancelButtonProps)) {
-      return;
-    }
-    const { ModalCancel } = props;
-    ModalCancel?.(e);
-  };
-  const postionStyle = { left: postion?.x, top: postion?.y };
-  const handleOk = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (getButtonDisabled(OkButtonProps)) {
-      return;
-    }
-    const { ModalOK } = props;
-    ModalOK?.(e);
-  }; // useDisplay(open);
-  const ModalRef = useDrag({ open, maring: [10, 10, 10, 10], isDragge });
   return (
     <>
       {open && (
         <div className={classnames(`${prefix}-modal`, { [`${prefix}-modal-mask`]: isMask })} style={maskstyle}>
-          <div
+          {ModalRender ? (
+            ModalRender(
+              <ModalCard
+                title={title}
+                open={open}
+                style={style}
+                footer={footer}
+                isClose={isClose}
+                position={position}
+                closeIcon={closeIcon}
+                OkButtonProps={OkButtonProps}
+                CancelButtonProps={CancelButtonProps}
+                className={className}
+                content={content}
+                footerButtonDirection={footerButtonDirection}
+                ModalCancel={ModalCancel}
+                ModalOK={ModalOK}
+              >
+                {children}
+              </ModalCard>
+            )
+          ) : (
+            <ModalCard
+              title={title}
+              open={open}
+              style={style}
+              footer={footer}
+              isClose={isClose}
+              position={position}
+              closeIcon={closeIcon}
+              OkButtonProps={OkButtonProps}
+              CancelButtonProps={CancelButtonProps}
+              className={className}
+              content={content}
+              footerButtonDirection={footerButtonDirection}
+              ModalCancel={ModalCancel}
+              ModalOK={ModalOK}
+            >
+              {children}
+            </ModalCard>
+          )}
+          {/* <div
             className={classnames(`${prefix}-modal-card`, className)}
             style={{ ...style, ...postionStyle }}
             ref={ModalRef}
           >
-            {!closed && (
+            {isClose && (
               <div className={`${prefix}-modal-cancel`} onClick={handleCancel}>
-                {closeIcon === undefined ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20" height="20" viewBox="0 0 20 20">
-                    <title>close</title>
-                    <path d="M10 8.586l-7.071-7.071-1.414 1.414 7.071 7.071-7.071 7.071 1.414 1.414 7.071-7.071 7.071 7.071 1.414-1.414-7.071-7.071 7.071-7.071-1.414-1.414-7.071 7.071z" />
-                  </svg>
-                ) : (
-                  closeIcon
-                )}
+                {closeIcon === undefined ? <Close /> : closeIcon}
               </div>
             )}
             <div className={`${prefix}-modal-title`}>{title}</div>
@@ -78,8 +91,8 @@ const Modal: React.FC<ModalProps> = (props) => {
               {footer === undefined ? (
                 <div
                   className={classnames({
-                    [`${prefix}-modal-col-footer`]: footerType,
-                    [`${prefix}-modal-row-footer`]: !footerType,
+                    [`${prefix}-modal-col-footer`]: footerButtonDirection == 'col',
+                    [`${prefix}-modal-row-footer`]: footerButtonDirection == 'row',
                   })}
                 >
                   <Button size="small" onClick={handleOk} {...OkButtonProps}>
@@ -94,7 +107,7 @@ const Modal: React.FC<ModalProps> = (props) => {
                 <div>{footer}</div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </>

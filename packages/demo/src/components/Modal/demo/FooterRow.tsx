@@ -19,12 +19,12 @@ const App: React.FC = () => {
         open={open}
         ModalOK={ModalOK}
         ModalCancel={ModalCancel}
-        footerType={false}
+        footerButtonDirection={'col'}
         CancelButtonProps={{ disabled: true }}
       >
         <p>h1这是内容</p>
       </Modal>
-      <Button onClick={onchange}>横版</Button>
+      <Button onClick={onchange}>竖版</Button>
     </>
   );
 };

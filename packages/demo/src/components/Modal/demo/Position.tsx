@@ -19,7 +19,7 @@ const App: React.FC = () => {
         open={open}
         ModalOK={ModalOK}
         ModalCancel={ModalCancel}
-        postion={{ x: 600, y: 400 }}
+        position={{ x: 600, y: 400 }}
       >
         <p>h1这是内容</p>
       </Modal>

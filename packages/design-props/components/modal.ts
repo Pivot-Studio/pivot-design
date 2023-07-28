@@ -70,10 +70,10 @@ export interface ModalProps extends PivotDesignProps {
   footer?: null | React.ReactNode;
   /**
    * @version 1.0.0
-   * @description 底部样式
-   * @default true
+   * @description 底部按钮排列方向
+   * @default 'col'
    */
-  footerType?: boolean;
+  footerButtonDirection?: 'col' | 'row';
   /**
    * @version 1.0.0
    * @description 内容
@@ -82,16 +82,16 @@ export interface ModalProps extends PivotDesignProps {
   children?: React.ReactNode;
   /**
    * @version 1.0.0
-   * @description 对话框是否开启
-   * @default  undefined
+   * @description 是否有关闭图标
+   * @default  false
    */
-  closed?: null | React.ReactNode;
+  isClose?: boolean;
   /**
    * @version 1.0.0
    * @description 对话框位置
    * @default {x: 0, y: 0}
    */
-  postion?: postion;
+  position?: postion;
   /**
    * @version 1.0.0
    * @description 关闭图标
@@ -116,4 +116,10 @@ export interface ModalProps extends PivotDesignProps {
    * @default undefined
    */
   OkButtonProps?: ButtonProps;
+  /**
+   * @version 1.0.0
+   * @description 自定义对话框
+   * @default undefined
+   */
+  ModalRender?: (node: React.ReactNode) => React.ReactNode;
 }

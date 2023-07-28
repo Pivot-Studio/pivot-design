@@ -40,7 +40,7 @@ const App: React.FC = () => {
         open={openTwo}
         ModalOK={ModalOKTwo}
         ModalCancel={ModalCancelTwo}
-        maskstyle={{ backgroundColor: 'pink' }}
+        maskstyle={{ backgroundImage: 'linear-gradient(-90deg, #596164 1%, #868F96 99%)' }}
       >
         <p>h1这是内容</p>
       </Modal>
