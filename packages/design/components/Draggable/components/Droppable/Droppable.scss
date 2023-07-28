@@ -2,10 +2,8 @@
 
 .#{$prefix}-droppable {
   padding: 60px 24px;
-  border: 2px solid transparent;
-  box-shadow: inset rgba(201, 211, 219, 0.5) 0 0 0 2px, rgba(255, 255, 255, 0) 0 0 0 1px,
-    rgba(201, 211, 219, 0.25) 20px 14px 24px;
+  border: 2px solid var(--semi-color-tertiary);
 }
 .__#{$prefix}_overing {
-  border-color: var(--Gray-80);
+  background-color: var(--semi-color-tertiary-hover);
 }
