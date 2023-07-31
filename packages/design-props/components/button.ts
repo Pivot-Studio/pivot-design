@@ -12,7 +12,7 @@ interface ButtonCssTokens {
    * @description 按钮禁用时背景颜色
    * @default --pivot-button-disabled-background-color
    */
-  '--button-disabled-background-color'?: string;``
+  '--button-disabled-background-color'?: string;
 }
 export interface ButtonProps extends PivotDesignProps {
   /**
