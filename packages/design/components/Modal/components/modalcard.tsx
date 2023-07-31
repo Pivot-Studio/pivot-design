@@ -11,24 +11,23 @@ const ModalCard: React.FC<ModalProps> = (props) => {
     content,
     style,
     className,
-    open,
     footer,
     isClose = true,
     children,
     position,
     closeIcon,
     OkButtonProps,
-    CancelButtonProps,
+    cancelButtonProps,
     footerButtonDirection = 'row',
   } = props;
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { ModalCancel } = props;
-    ModalCancel?.(e);
+    const { modalCancel } = props;
+    modalCancel?.(e);
   };
   const positionStyle = { left: position?.x, top: position?.y };
   const handleOk = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { ModalOK } = props;
-    ModalOK?.(e);
+    const { modalOK } = props;
+    modalOK?.(e);
   }; // useDisplay(open);
   return (
     <div className={classnames(`${prefix}-modal-card`, className)} style={{ ...style, ...positionStyle }}>
@@ -52,7 +51,7 @@ const ModalCard: React.FC<ModalProps> = (props) => {
               确定
             </Button>
 
-            <Button size="small" onClick={handleCancel} {...CancelButtonProps}>
+            <Button size="small" onClick={handleCancel} {...cancelButtonProps}>
               取消
             </Button>
           </div>

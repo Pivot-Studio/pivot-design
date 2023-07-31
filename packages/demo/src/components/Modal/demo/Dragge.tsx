@@ -5,7 +5,7 @@ import { DndContext, DraggableItem } from 'pivot-design';
 const App: React.FC = () => {
   const [coordinates, setCoordinates] = useState({ x: 0, y: 350 });
 
-  const [open, useOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     setCoordinates({ x: 0, y: 350 });
   }, [open]);
@@ -18,13 +18,13 @@ const App: React.FC = () => {
     });
   };
   const onchange = () => {
-    useOpen(true);
+    setOpen(true);
   };
   const ModalOK = () => {
-    useOpen(false);
+    setOpen(false);
   };
   const ModalCancel = () => {
-    useOpen(false);
+    setOpen(false);
   };
   return (
     <>
@@ -32,9 +32,9 @@ const App: React.FC = () => {
         title={<div>这是一个标题</div>}
         content="Hello world1111111"
         open={open}
-        ModalOK={ModalOK}
-        ModalCancel={ModalCancel}
-        ModalRender={(modal) => (
+        modalOK={ModalOK}
+        modalCancel={ModalCancel}
+        modalRender={(modal) => (
           <>
             <DndContext onDragEnd={onDragEnd}>
               <DraggableItem left={coordinates.x} top={coordinates.y}>

@@ -1,15 +1,15 @@
 import { Button, Modal } from 'pivot-design';
 import React, { useState } from 'react';
 const App: React.FC = () => {
-  const [open, useOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const onchange = () => {
-    useOpen(true);
+    setOpen(true);
   };
   const ModalOK = () => {
-    useOpen(false);
+    setOpen(false);
   };
   const ModalCancel = () => {
-    useOpen(false);
+    setOpen(false);
   };
   return (
     <>
@@ -17,8 +17,8 @@ const App: React.FC = () => {
         title="这是"
         content="Hello world"
         open={open}
-        ModalOK={ModalOK}
-        ModalCancel={ModalCancel}
+        modalOK={ModalOK}
+        modalCancel={ModalCancel}
         position={{ x: 600, y: 400 }}
       >
         <p>h1这是内容</p>

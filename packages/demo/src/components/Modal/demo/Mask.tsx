@@ -1,25 +1,25 @@
 import { Button, Modal } from 'pivot-design';
 import React, { useState } from 'react';
 const App: React.FC = () => {
-  const [openOne, useOpenOne] = useState(false);
+  const [openOne, setOpenOne] = useState(false);
   const onchangeOne = () => {
-    useOpenOne(true);
+    setOpenOne(true);
   };
   const ModalOKOne = () => {
-    useOpenOne(false);
+    setOpenOne(false);
   };
   const ModalCancelOne = () => {
-    useOpenOne(false);
+    setOpenOne(false);
   };
-  const [openTwo, useOpenTwo] = useState(false);
+  const [openTwo, setOpenTwo] = useState(false);
   const onchangeTwo = () => {
-    useOpenTwo(true);
+    setOpenTwo(true);
   };
   const ModalOKTwo = () => {
-    useOpenTwo(false);
+    setOpenTwo(false);
   };
   const ModalCancelTwo = () => {
-    useOpenTwo(false);
+    setOpenTwo(false);
   };
   return (
     <>
@@ -27,8 +27,8 @@ const App: React.FC = () => {
         title="这是"
         content="Hello world"
         open={openOne}
-        ModalOK={ModalOKOne}
-        ModalCancel={ModalCancelOne}
+        modalOK={ModalOKOne}
+        modalCancel={ModalCancelOne}
         isMask={false}
       >
         <p>h1这是内容</p>
@@ -38,8 +38,8 @@ const App: React.FC = () => {
         title="这是"
         content="Hello world"
         open={openTwo}
-        ModalOK={ModalOKTwo}
-        ModalCancel={ModalCancelTwo}
+        modalOK={ModalOKTwo}
+        modalCancel={ModalCancelTwo}
         maskstyle={{ backgroundImage: 'linear-gradient(-90deg, #596164 1%, #868F96 99%)' }}
       >
         <p>h1这是内容</p>

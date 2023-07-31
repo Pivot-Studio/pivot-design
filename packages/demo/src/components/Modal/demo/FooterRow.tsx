@@ -1,15 +1,15 @@
 import { Button, Modal } from 'pivot-design';
 import React, { useState } from 'react';
 const App: React.FC = () => {
-  const [open, useOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const onchange = () => {
-    useOpen(true);
+    setOpen(true);
   };
   const ModalOK = () => {
-    useOpen(false);
+    setOpen(false);
   };
   const ModalCancel = () => {
-    useOpen(false);
+    setOpen(false);
   };
   return (
     <>

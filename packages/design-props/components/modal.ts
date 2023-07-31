@@ -43,13 +43,13 @@ export interface ModalProps extends PivotDesignProps {
    * @description 确定函数
    * @default undefined
    */
-  ModalOK?: Function;
+  modalOK?: Function;
   /**
    * @version 1.0.0
    * @description 取消函数
    * @default undefined
    */
-  ModalCancel?: Function;
+  modalCancel?: Function;
   /**
    * @version 1.0.0
    * @description 对话框是否开启
@@ -103,7 +103,7 @@ export interface ModalProps extends PivotDesignProps {
    * @description 取消按钮参数
    * @default undefined
    */
-  CancelButtonProps?: ButtonProps;
+  cancelButtonProps?: ButtonProps;
   /**
    * @version 1.0.0
    * @description 确定按钮参数
@@ -115,5 +115,5 @@ export interface ModalProps extends PivotDesignProps {
    * @description 自定义对话框
    * @default undefined
    */
-  ModalRender?: (node: React.ReactNode) => React.ReactNode;
+  modalRender?: (node: React.ReactNode) => React.ReactNode;
 }
