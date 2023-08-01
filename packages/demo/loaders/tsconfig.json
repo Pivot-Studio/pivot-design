@@ -5,6 +5,7 @@
       "@/*": ["src/*"],
     },
     "target": "ESNext",
+    "module": "CommonJS",
     "noEmitOnError": false,
     "allowSyntheticDefaultImports": true
   },

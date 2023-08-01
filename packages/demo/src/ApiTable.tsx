@@ -1,5 +1,6 @@
 import { Params } from '../loaders/api/type';
 import React from 'react';
+import './index.scss';
 
 interface ITableProps {
   name: string;
@@ -8,6 +9,7 @@ interface ITableProps {
 
 const ApiTable: React.FC<ITableProps> = ({ name, params }) => {
   // console.log(params, name);
+  console.log('params', params);
   return (
     <>
       <h1>{name}</h1>

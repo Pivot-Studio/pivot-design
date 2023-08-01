@@ -53,8 +53,9 @@ function getProps(path: string) {
       path.traverse({
         TSPropertySignature: (p) => {
           if (p.parentKey === 'members') return;
-          const key = p.get('key').toString();
-          const value = p.get('typeAnnotation').toString();
+          //  "'--button-background-color'"的特殊处理
+          const key = p.get('key').toString().replaceAll(/['"]/g, '');
+          const value = p.get('typeAnnotation').toString().slice(1);
           const optional = p.get('optional').node;
           const commentStr = p.get('leadingComments').length > 0 && p.get('leadingComments')[0].node.value;
           const comments = parseComment(commentStr);
@@ -73,7 +74,8 @@ function getPropsNode(props: ParamsMap) {
   let node = '';
   for (const key of props.keys()) {
     const val = props.get(key);
-    node += `<Props name=${key} props=${val}></Props>`;
+    node += `export const ${key}Props = ${JSON.stringify(val)}\n
+    <ApiTable name='${key}' params={${key}Props}></ApiTable>\n`;
   }
   return node;
 }
@@ -85,12 +87,8 @@ function loader(source: string) {
 
   const matchValArr = sourceCode.matchAll(apiBlockReg);
   const arr = Array.from(matchValArr);
-  console.log('arr', '\n\n\n\n');
-  console.dir(arr);
   if (arr.length) {
-    console.log(matchValArr);
-    for (let matchVal of matchValArr) {
-      console.log('matchVal', matchVal);
+    for (let matchVal of arr) {
       let [initialVal, , pathVal] = matchVal;
       pathVal = join(curDir, '../../../design-props', pathVal);
       const props = getProps(pathVal);
@@ -98,8 +96,7 @@ function loader(source: string) {
       sourceCode = sourceCode.replace(initialVal, propsNode);
     }
     // 添加ApiTable的import\
-    sourceCode = 'import Api from "@/ApiTable.tsx"\n' + sourceCode;
-    console.log(sourceCode);
+    sourceCode = 'import ApiTable from "../../ApiTable.tsx"\n' + sourceCode;
   }
 
   return sourceCode;
