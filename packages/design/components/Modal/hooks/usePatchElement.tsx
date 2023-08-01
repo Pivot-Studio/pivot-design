@@ -5,9 +5,6 @@ export default function usePatchElement(): [React.ReactElement[], (element: Reac
 
   const patchElement = React.useCallback((element: React.ReactElement) => {
     setElements(() => [element]);
-    return () => {
-      setElements([element]);
-    };
   }, []);
 
   return [elements, patchElement];
