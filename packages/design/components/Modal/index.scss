@@ -1,11 +1,9 @@
 @import '../constants.scss';
 @import '../common.scss';
 .#{$prefix}-modal {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
  position: fixed;
  width: 100%;
+ height: 100%;
  top: 0;
  bottom: 0;
  z-index: 999;

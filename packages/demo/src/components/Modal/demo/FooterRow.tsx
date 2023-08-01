@@ -17,10 +17,10 @@ const App: React.FC = () => {
         title="这是"
         content="Hello world"
         open={open}
-        ModalOK={ModalOK}
-        ModalCancel={ModalCancel}
+        modalOK={ModalOK}
+        modalCancel={ModalCancel}
         footerButtonDirection={'col'}
-        CancelButtonProps={{ disabled: true }}
+        cancelButtonProps={{ disabled: true }}
       >
         <p>h1这是内容</p>
       </Modal>

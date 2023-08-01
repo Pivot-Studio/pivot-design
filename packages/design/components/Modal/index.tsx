@@ -4,15 +4,15 @@ import { prefix } from '../constants';
 import './index.scss';
 import classnames from 'classnames';
 import ModalCard from './components/modalcard';
-import useModal from './useModal';
+import useModal from './hooks/useModal';
 const Modal: React.FC<ModalProps> = (props) => {
-  const { maskstyle, open, children, isMask = true, ModalRender } = props;
+  const { maskstyle, open = false, children, isMask = true, modalRender } = props;
   return (
     <>
       {open && (
         <div className={classnames(`${prefix}-modal`, { [`${prefix}-modal-mask`]: isMask })} style={maskstyle}>
-          {ModalRender ? (
-            ModalRender(<ModalCard {...props}>{children}</ModalCard>)
+          {modalRender ? (
+            modalRender(<ModalCard {...props}>{children}</ModalCard>)
           ) : (
             <ModalCard {...props}>{children}</ModalCard>
           )}

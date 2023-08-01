@@ -33,12 +33,15 @@ const ModalCard: React.FC<ModalProps> = (props) => {
     <div className={classnames(`${prefix}-modal-card`, className)} style={{ ...style, ...positionStyle }}>
       {isClose && (
         <div className={`${prefix}-modal-cancel`} onClick={handleCancel}>
-          {closeIcon === undefined ? <Close /> : closeIcon}
+          {closeIcon === undefined ? <Close theme="secondary" /> : closeIcon}
         </div>
       )}
       <div className={`${prefix}-modal-title`}>{title}</div>
-      <div className={`${prefix}-modal-content`}>{content}</div>
-      {children}
+      <div className={`${prefix}-modal-content`}>
+        {content}
+        {children}
+      </div>
+
       <div className={`${prefix}-modal-footer`}>
         {footer === undefined ? (
           <div
@@ -47,7 +50,7 @@ const ModalCard: React.FC<ModalProps> = (props) => {
               [`${prefix}-modal-row-footer`]: footerButtonDirection == 'row',
             })}
           >
-            <Button size="small" onClick={handleOk} {...OkButtonProps}>
+            <Button size="small" type="primary" onClick={handleOk} {...OkButtonProps}>
               确定
             </Button>
 

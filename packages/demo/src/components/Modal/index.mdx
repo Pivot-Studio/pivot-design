@@ -1,26 +1,33 @@
 # Modal
 
-<div className="title">普通样式</div>
+## 普通样式
+一个基本的对话框
 <CodeBlock line={'5-7'}>
 <Common/>
 </CodeBlock>
-<div className="title">自定义底部样式</div>
+## 自定义底部样式
+更复杂的例子，自定义了页脚的按钮，也可以通过Buttonprops改变页脚样式
+不需要默认确定取消按钮时，你可以把 footer 设为 null。
 <CodeBlock line={'7-11'}>
 <FooterRow/>
 </CodeBlock>
-<div className="title">自定义位置</div>
+## 自定义位置
+通过传递position属性，改变对话框的初始位置
 <CodeBlock line={'7-11'}>
 <Position/>
 </CodeBlock>
-<div className="title">可拖动</div>
+## 可拖动
+通过DndContext, DraggableItem实现对话框拖拽
 <CodeBlock line={'7-11'}>
 <Dragge/>
 </CodeBlock>
-<div className="title">自定义蒙层</div>
+## 自定义蒙层
+更改蒙层样式和是否开启蒙层
 <CodeBlock line={'7-11'}>
 <Mask/>
 </CodeBlock>
-<div className="title">自定义蒙层</div>
+## 使用Hooks获取上下文
+通过useModal 创建支持读取 context 的 contextHolder
 <CodeBlock line={'7-11'}>
 <UseModal/>
 </CodeBlock>

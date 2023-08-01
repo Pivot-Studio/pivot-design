@@ -55,7 +55,7 @@ export interface ModalProps extends PivotDesignProps {
    * @description 对话框是否开启
    * @default false
    */
-  open: boolean;
+  open?: boolean;
   /**
    * @version 1.0.0
    * @description 底部内容
