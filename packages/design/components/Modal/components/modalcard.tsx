@@ -19,20 +19,16 @@ const ModalCard: React.FC<ModalProps> = (props) => {
     OkButtonProps,
     cancelButtonProps,
     footerButtonDirection = 'row',
+    modalOK,
+    modalCancel,
   } = props;
-  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { modalCancel } = props;
-    modalCancel?.(e);
-  };
+
   const positionStyle = { left: position?.x, top: position?.y };
-  const handleOk = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { modalOK } = props;
-    modalOK?.(e);
-  }; // useDisplay(open);
+
   return (
     <div className={classnames(`${prefix}-modal-card`, className)} style={{ ...style, ...positionStyle }}>
       {isClose && (
-        <div className={`${prefix}-modal-cancel`} onClick={handleCancel}>
+        <div className={`${prefix}-modal-cancel`} onClick={modalCancel}>
           {closeIcon === undefined ? <Close theme="secondary" /> : closeIcon}
         </div>
       )}
@@ -50,11 +46,11 @@ const ModalCard: React.FC<ModalProps> = (props) => {
               [`${prefix}-modal-row-footer`]: footerButtonDirection == 'row',
             })}
           >
-            <Button size="small" type="primary" onClick={handleOk} {...OkButtonProps}>
+            <Button size="small" type="primary" onClick={modalOK} {...OkButtonProps}>
               确定
             </Button>
 
-            <Button size="small" onClick={handleCancel} {...cancelButtonProps}>
+            <Button size="small" onClick={modalCancel} {...cancelButtonProps}>
               取消
             </Button>
           </div>
