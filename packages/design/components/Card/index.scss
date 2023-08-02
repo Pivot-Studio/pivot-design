@@ -1,6 +1,7 @@
 @import '../constants.scss';
-$cardmin: calc(var(--card-minLength, 3) * 20px);
-$cardmax: calc(var(--card-maxLength, 100%) * 20px);
+@import '../common.scss';
+$cardmin: calc(var(--card-minLength, 3) * 1.8rem);
+$cardmax: calc(var(--card-maxLength, 100%) * 1.8rem);
 .#{$prefix}-card {
   position: relative;
 
@@ -44,8 +45,8 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
         min-width: 26px;
         height: 13px;
         font-weight: 400;
-        font-size: 13px;
-        line-height: 13px;
+        font-size: 16px;
+        line-height: 1rem;
         text-align: left;
         color: #000000;
       }
@@ -87,6 +88,7 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
   .#{$prefix}-card-body {
     padding-top: 5px;
     width: 100%;
+    color: $pivot-black;
     font-size: 14px;
     line-height: 21px;
     font-style: normal;
@@ -97,8 +99,9 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
       display: flex;
       // width: 200px;
       .#{$prefix}-card-body-text {
+        font-size: 14px;
         overflow: hidden;
-        line-height: 20px;
+        line-height: 1.8rem;
         max-height: $cardmin;
         text-align: justify;
         position: relative;
@@ -124,6 +127,7 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
         align-items: center;
 
         div {
+          color:$pivot-black;;
           border: 1px solid #f9e8bd;
           border-radius: 8px;
           padding: 0 15px;
