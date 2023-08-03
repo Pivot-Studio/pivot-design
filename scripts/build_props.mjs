@@ -14,9 +14,11 @@ const ConpopnentDocsPath = resolve(
   __dirname,
   "../packages/demo/src/components"
 );
+
 const firstUpper = ([letter, ...rest]) => letter.toUpperCase() + rest.join("");
 const COMMENT_REG = /\@(\w+)\s+([\S^\\]+)/g;
 const inherit = [];
+
 function parseComment(comment) {
   if (!comment) return {}
   const r = {};
@@ -26,6 +28,7 @@ function parseComment(comment) {
   }
   return r;
 }
+
 function h(componentMdxPath, component) {
   const sourceCode = readFileSync(componentMdxPath, { encoding: "utf-8" });
   const ast = parse(sourceCode, {
@@ -113,7 +116,7 @@ const generatorPropsPlugin = declare((api, options, dirname) => {
       if (options.name === 'index') return
       console.log(file.docs);
       // todo:create md table 使用自己的自定义组件吧
-      generatePropsMd(options.name,file.docs)
+      generatePropsMd(options.name, file.docs)
     },
   };
 });

@@ -5,7 +5,6 @@ interface ITableProps {
 }
 const Table: React.FC<ITableProps> = (props) => {
   const { params, name } = props;
-  // console.log(params, name);
   return (
     <table className="pivot-props-table">
       <thead>
