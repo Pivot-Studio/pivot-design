@@ -1,36 +1,68 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { DragActionEnum } from '../context/types';
-import { DragNode, UniqueIdentifier } from '../types';
+import { Data, UniqueIdentifier } from '../types';
 import { useSyntheticListeners } from './useSyntheticListeners';
-import useDndContext from './useDndContext';
+import useDndContext from '../context/useDndContext';
 import { setTransform } from '../utils';
 
 interface UseDraggableProps {
   id: UniqueIdentifier;
-  index: number;
+  data?: Data;
 }
 
-export const useDraggable = ({ id, index }: UseDraggableProps) => {
-  const { activeId, transform, dispatch, activeRect, activator, manager } = useDndContext();
-  const isDragging = activeId == id;
-  const node = manager.getActiveNode(id);
-  const nodeTransform = node?.transform;
-  const transition = node?.transition;
-  const dragNode = useRef<DragNode>();
+export const useDraggable = ({ id, data: customData }: UseDraggableProps) => {
+  const { activeId, transform, dispatch, activator, manager, hasDragOverlay } = useDndContext();
+  const rect = useRef<DOMRect>();
+  const isActive = activeId == id;
+
+  const dragNode = useRef<HTMLElement>();
   const listener = useSyntheticListeners(activator, id);
-  const setDragNodeRef = useCallback((currentNode: HTMLElement | null) => {
-    dragNode.current = currentNode as DragNode;
+
+  const setDragNodeRef = useCallback((currentNode: HTMLElement) => {
+    dragNode.current = currentNode;
+    if (currentNode) {
+      rect.current = currentNode.getBoundingClientRect(); // initialize draggables position
+    }
   }, []);
 
-  const attributes = { ...setTransform(nodeTransform), transition: transition ? '300ms' : '' };
-  // TODO: 导致更新两次
+  const data = useMemo(() => {
+    return { id, ...customData };
+  }, [customData, id]);
+
+  const attributes = {
+    // When there is no dragOverlay, the dragging element is setting `transform`
+    ...(isActive && !hasDragOverlay ? setTransform(transform) : {}),
+  };
+
   useEffect(() => {
     dispatch({
       type: DragActionEnum.PUSH_NODE,
-      payload: { id, index, node: dragNode },
+      payload: {
+        node: {
+          id,
+          node: dragNode,
+          data,
+          clientRect: rect,
+        },
+        type: 'draggables',
+      },
     });
-    // manager.push({ id, index, node: dragNode });
-  }, [dispatch, id, index, manager]);
 
-  return { isDragging, dragNode, transform, attributes, activeRect, listener, setDragNode: setDragNodeRef };
+    return () => {
+      dispatch({
+        type: DragActionEnum.REMOVE_NODE,
+        payload: { id, type: 'draggables' },
+      });
+    };
+  }, [dispatch, id, manager, dragNode, data]);
+
+  return {
+    hasDragOverlay,
+    isActive,
+    dragNode,
+    transform,
+    attributes,
+    listener,
+    setDragNode: setDragNodeRef,
+  };
 };

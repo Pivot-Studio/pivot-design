@@ -1,0 +1,9 @@
+@import '../../../constants.scss';
+
+.#{$prefix}-droppable {
+  padding: 60px 24px;
+  border: 2px solid var(--semi-color-tertiary);
+}
+.__#{$prefix}_overing {
+  background-color: var(--semi-color-tertiary-hover);
+}

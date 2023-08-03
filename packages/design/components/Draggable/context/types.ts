@@ -1,11 +1,15 @@
-import { Dispatch, MutableRefObject } from 'react';
-import { Coordinate, DraggableNode, UniqueIdentifier } from '../types';
+import { Dispatch, ElementType, MutableRefObject, ReactNode } from 'react';
+import { DragEndEvent, DragMoveEvent, DragStartEvent } from '../sensors/events';
+import { Sensor } from '../sensors/mouse/types';
+import { Coordinate, Data, DraggableNode, UniqueIdentifier } from '../types';
 import Manager from './manager';
 
 export enum DragActionEnum {
   ACTIVATED,
+  SET_CONTAINER,
   INACTIVATED,
   PUSH_NODE,
+  REMOVE_NODE,
   TRANSFORM,
 }
 export interface Activator {
@@ -13,11 +17,16 @@ export interface Activator {
   handler: (event: Event, id: UniqueIdentifier) => void;
 }
 
+export type DroppableRectMap = Map<string | number, { clientRect: DOMRect; id: UniqueIdentifier }[]>;
 export interface State {
   /**
    * 每个子组件是否处于拖拽状态
    */
   activeId: UniqueIdentifier;
+  /**
+   * 拖拽组件处于的容器Id
+   */
+  container: UniqueIdentifier;
   /**
    * 拖拽元素记录中心
    */
@@ -34,32 +43,48 @@ export interface State {
 
 export type ActionType =
   | {
+      type: DragActionEnum.SET_CONTAINER;
+      payload: {
+        container: UniqueIdentifier;
+      };
+    }
+  | {
       type: DragActionEnum.ACTIVATED;
-      payload: UniqueIdentifier;
+      payload: {
+        activeId: UniqueIdentifier;
+      };
     }
   | {
       type: DragActionEnum.INACTIVATED;
     }
   | {
       type: DragActionEnum.PUSH_NODE;
-      payload: DraggableNode;
+      payload: { node: DraggableNode; type: 'draggables' | 'droppables' };
+    }
+  | {
+      type: DragActionEnum.REMOVE_NODE;
+      payload: { id: UniqueIdentifier; type: 'draggables' | 'droppables' };
     }
   | {
       type: DragActionEnum.TRANSFORM;
-      payload: Coordinate;
+      payload: {
+        transform: Coordinate;
+      };
     };
 
 export interface DndContextDescriptor extends State {
+  droppableRects: DroppableRectMap;
+  updateDroppableRects: () => void;
   dispatch: Dispatch<ActionType>;
-  activeRect: MutableRefObject<{
-    initOffset: Coordinate | null;
-    marginRect: {
-      left: number;
-      right: number;
-      top: number;
-      bottom: number;
-    } | null;
-    clientRect: DOMRect | null;
-  }> | null;
-  sortable?: boolean;
+  overNodeRef: MutableRefObject<Data | undefined>;
+  hasDragOverlay: boolean;
+}
+
+export interface DndContextProps {
+  children: ReactNode;
+  DragOverlay?: ElementType;
+  sensor?: Sensor;
+  onDragStart?: (event: DragStartEvent) => void;
+  onDragMove?: (event: DragMoveEvent) => void;
+  onDragEnd?: (event: DragEndEvent) => void;
 }

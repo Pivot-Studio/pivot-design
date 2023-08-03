@@ -1,0 +1,37 @@
+.pivot-code-box {
+  position: relative;
+  margin: 30px 0;
+  overflow: hidden;
+  border: 1px solid rgba(243, 242, 242, 0.1);
+  border-radius: 6px;
+  &-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 4px 8px;
+    .pivot-code-box-icon {
+      cursor: pointer;
+    }
+  }
+  &-demo {
+    padding: 60px 30px;
+    display: flex;
+    border: 1px solid rgba(243, 242, 242, 0.1);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    > :not(.PIVOT-draggable-item) {
+      margin: 0 24px;
+    }
+  }
+
+  .line-numbers {
+    .code-toolbar {
+      .data-prismjs-copy {
+        font-size: 12px;
+        overflow: auto;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+@import '../constants.scss';
+$cardmin: calc(var(--card-minLength, 3) * 20px);
+$cardmax: calc(var(--card-maxLength, 100%) * 20px);
+.#{$prefix}-card {
+  position: relative;
+
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin: 0;
+  padding: 10px;
+  padding-left: 23px;
+  padding-right: 24px;
+  padding-bottom: 8px;
+  background-color: var(--card-background-color, var(--pivot-card-background-color));
+  &-borderadius {
+    border-radius: 10px;
+  }
+
+  .#{$prefix}-head {
+    display: flex;
+
+    width: 100%;
+    min-height: 33px;
+    .#{$prefix}-head-wrapper {
+      display: flex;
+      position: relative;
+      width: 100%;
+      .#{$prefix}-head-avatar {
+        // width: 35px;
+        //height: 35px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 11px;
+        img {
+          position: relative;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+      .#{$prefix}-head-title {
+        min-width: 26px;
+        height: 13px;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 13px;
+        text-align: left;
+        color: #000000;
+      }
+
+      .#{$prefix}-head-extra {
+        position: absolute;
+        padding: 5px, 8px, 5px, 5px;
+        font-size: 12px;
+        line-height: 18px;
+        text-align: right;
+        top: 0;
+        right: 0;
+        float: right;
+      }
+
+      .#{$prefix}-head-time {
+        margin-top: 3px;
+        width: 106px;
+        height: 17px;
+        font-size: 11px;
+        line-height: 17px;
+        text-align: left;
+        color: #cbcbcb;
+        vertical-align: center;
+      }
+    }
+  }
+  &-border {
+    border: 1px solid #cbcbcb;
+  }
+  &-normal {
+    width: 375px;
+  }
+
+  &-small {
+    width: 316px;
+  }
+
+  .#{$prefix}-card-body {
+    padding-top: 5px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 21px;
+    font-style: normal;
+    text-align: left;
+    vertical-align: top;
+    margin-bottom: 3px;
+    .#{$prefix}-card-body-content {
+      display: flex;
+      // width: 200px;
+      .#{$prefix}-card-body-text {
+        overflow: hidden;
+        line-height: 20px;
+        max-height: $cardmin;
+        text-align: justify;
+        position: relative;
+        &::before {
+          content: '';
+          float: right;
+          width: 0;
+          height: 100%;
+          margin-bottom: -20px;
+          &::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: #fff;
+          }
+        }
+      }
+      .#{$prefix}-card-body-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        div {
+          border: 1px solid #f9e8bd;
+          border-radius: 8px;
+          padding: 0 15px;
+          font-size: 14px;
+          margin: 10px;
+        }
+      }
+      .#{$prefix}-card-body-btn {
+        float: right;
+        clear: both;
+        height: 20px;
+        line-height: 18px;
+        margin-left: 20px;
+        position: relative;
+        color: #025cdc;
+        cursor: pointer;
+        &::before {
+          content: '...';
+          position: absolute;
+          left: -10px;
+          color: #333;
+          transform: translateX(-100%);
+        }
+        &:after {
+          content: '展开';
+        }
+      }
+      .#{$prefix}-card-body-exp {
+        display: none;
+      }
+      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text {
+        max-height: $cardmax;
+      }
+      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-btn::after .#{$prefix}-card-body-text::after {
+        visibility: hidden;
+      }
+      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text .#{$prefix}-card-body-btn::before {
+        visibility: hidden;
+      }
+      .#{$prefix}-card-body-exp:checked + .#{$prefix}-card-body-text .#{$prefix}-card-body-btn::after {
+        content: '收起';
+      }
+    }
+  }
+
+  .#{$prefix}-card-actions {
+    width: 100%;
+
+    font-size: 11px;
+    line-height: 17px;
+
+    vertical-align: center;
+    color: #b1b1b1;
+  }
+}

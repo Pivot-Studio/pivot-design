@@ -1,7 +1,21 @@
+import './theme/global.scss';
 import Button from './components/Button';
-export { DraggableItem, DndContext, Sortable, useDraggable } from './components/Draggable';
-export * from './components/hooks';
-export { Button };
+export {
+  DraggableItem,
+  SortableItem,
+  DndContext,
+  useDraggable,
+  useDroppable,
+  useSortable,
+  Droppable,
+  SortableContext,
+} from './components/Draggable';
+import Icon from './components/Icon';
+import Input from './components/Input';
+import Card from './components/Card';
+import Skeleton from './components/Skeleton';
+import Popover from './components/Popover/';
+export { Button, Icon, Input, Card, Skeleton, Popover };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();
@@ -10,4 +24,4 @@ export const arrayMove = (array: any[], from: number, to: number) => {
 };
 
 // 引用默认主题色
-document.body.setAttribute('pivot-theme', 'light');
+document.body.setAttribute('pivot-theme', 'dark');

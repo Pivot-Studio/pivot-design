@@ -1,14 +1,27 @@
-import { Coordinate } from '../types';
+import { SortableData } from '../Sortable/strategies/types';
+import { Coordinate, Data, UniqueIdentifier } from '../types';
 
 export interface DragEvent {
-  activeEvent: Event;
+  nativeEvent: Event;
   delta: Coordinate;
 }
 export interface internalDragEndEvent extends DragEvent {
   id: number | string;
 }
+
+export interface DragStartEvent {
+  id: number | string;
+  nativeEvent: Event;
+}
+export interface DragMoveEvent extends DragEvent {
+  id: UniqueIdentifier;
+  container: number | string;
+  active: Data;
+  over: Data;
+}
 export interface DragEndEvent extends DragEvent {
   id: number | string;
-  newIndex: number;
-  oldIndex: number;
+  active: Data<SortableData['sortable']>;
+  over: Data<SortableData['sortable']>;
+  isDrop: boolean;
 }

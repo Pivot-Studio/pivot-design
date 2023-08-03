@@ -1,5 +1,9 @@
-import DraggableItem from './DraggableItem';
+import DraggableItem from './components/Draggable/DraggableItem';
+import SortableItem from './Sortable/SortableItem';
+export { Droppable } from './components/Droppable/Droppable';
 export { DndContext } from './context/DndContext';
 export { useDraggable } from './hooks/useDraggable';
-export { Sortable } from './presets/Sortable';
-export { DraggableItem };
+export { useDroppable } from './hooks/useDroppable';
+export { useSortable } from './Sortable/useSortable';
+export { SortableContext } from './Sortable/context/SortableContext';
+export { DraggableItem, SortableItem };

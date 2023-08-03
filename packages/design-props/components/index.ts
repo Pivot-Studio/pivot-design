@@ -1,5 +1,4 @@
 import React from 'react';
-
 export interface PivotDesignProps {
   /**
    * @version 1.0.0

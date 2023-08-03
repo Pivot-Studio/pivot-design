@@ -1,0 +1,5 @@
+{
+  "singleQuote": true,
+  "parser": "babel",
+  "printWidth": 120
+}

@@ -4,7 +4,7 @@
     "import/resolver": {
       "alias": {
         "map": [["@", "./packages/demo/src"]], // 相对于项目根目录
-        "extensions": [".tsx"]
+        "extensions": [".tsx", ".ts"]
       }
     }
   }

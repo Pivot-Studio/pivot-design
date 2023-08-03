@@ -1,0 +1,128 @@
+.pivot-design-home {
+  position: relative;
+  min-height: 300%;
+  background: linear-gradient(60deg, var(--semi-color-bg-0) 0%, var(--semi-color-black) 100%);
+  background-attachment: fixed;
+  .pivot-design-home-title {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 36px;
+    z-index: 100;
+    background-color: var(--semi-color-nav-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .title {
+      font-size: 24px;
+      color: var(--semi-color-text-0);
+    }
+    .navigation-wrapper {
+      display: flex;
+      .navigator {
+        margin: 0 20px;
+        padding: 4px 24px;
+        border: 1px solid transparent;
+        box-sizing: border-box;
+        border-radius: 20px;
+        text-decoration: none;
+        color: var(--semi-color-link);
+        border: 1px solid;
+        transition: 0.5s;
+        &:hover {
+          border-color: adjust-hue(rgba(11, 103, 217, 1), -16deg);
+          box-shadow: inset 0 0 0 2em adjust-hue(rgba(11, 103, 217, 1), -16deg);
+          color: var(--semi-color-black);
+        }
+      }
+    }
+  }
+  .background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .big-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      color: var(--semi-color-text-0);
+      font-size: 82px;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      span {
+        text-shadow: 1px 1px rgba(115, 109, 85, 0.02), 2px 2px rgba(115, 109, 85, 0.02),
+          3px 3px rgba(115, 109, 85, 0.02), 4px 4px rgba(115, 109, 85, 0.02), 0.125rem 0.125rem rgba(115, 109, 85, 0.02),
+          6px 6px rgba(115, 109, 85, 0.02), 7px 7px rgba(115, 109, 85, 0.02), 8px 8px rgba(115, 109, 85, 0.02),
+          9px 9px rgba(115, 109, 85, 0.02), 0.3125rem 0.3125rem rgba(115, 109, 85, 0.02),
+          11px 11px rgba(115, 109, 85, 0.02), 12px 12px rgba(115, 109, 85, 0.02), 13px 13px rgba(115, 109, 85, 0.02),
+          14px 14px rgba(115, 109, 85, 0.02), 0.625rem 0.625rem rgba(115, 109, 85, 0.02),
+          16px 16px rgba(115, 109, 85, 0.02), 17px 17px rgba(115, 109, 85, 0.02), 18px 18px rgba(115, 109, 85, 0.02),
+          19px 19px rgba(115, 109, 85, 0.02), 1.25rem 1.25rem rgba(115, 109, 85, 0.02);
+      }
+    }
+    .layer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+      &.left_birds,
+      &.right_birds {
+        opacity: 0;
+
+        background-repeat: no-repeat;
+        background-size: 500px;
+      }
+      &.left_birds {
+        background-position: 40% center;
+        background-image: url(../../images/left_bird.svg);
+      }
+      &.right_birds {
+        background-position: 60% center;
+        background-image: url(../../images/right_birds.svg);
+      }
+      &.bats {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+      &.mountain0,
+      &.mountain1 {
+        top: auto;
+        bottom: -10px;
+      }
+      &.mountain2 {
+        top: auto;
+        bottom: 0vw;
+      }
+      @for $i from 0 through 3 {
+        &.mountain#{$i} {
+          z-index: calc(10 - $i);
+        }
+      }
+    }
+    .pivot-design-description {
+      color: var(--master-bg-color);
+      transform: scale(0.4);
+      opacity: 0;
+      &-header {
+        width: 100%;
+        text-align: center;
+        font-size: 54px;
+      }
+    }
+  }
+}
