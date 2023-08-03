@@ -29,22 +29,22 @@ html,
   font-size: 18px;
   th,
   td {
-    padding: 20px 0;
+    padding: 18px 0;
     text-align: center;
   }
   th {
-    background-color: #f2f2f2;
+    background-color: var(--semi-color-bg-0);
     font-weight: bold;
     width: auto;
-    border: 1px solid #ddd;
+    border: 2px solid var(--semi-color-border);
   }
 
   td {
     width: auto;
-    border: 1px solid #ddd;
+    border: 2px solid var(--semi-color-border);
   }
 
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
+  tr {
+    background-color: var(--semi-color-bg-0);
   }
 }
