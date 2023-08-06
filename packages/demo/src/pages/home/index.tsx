@@ -36,7 +36,7 @@ const Home: React.FC = () => {
         <div className="navigation-wrapper">
           <div onClick={toggleTheme}>切换主题</div>
           {navigatorList.map((nav) => (
-            <Link to={nav.path} className="navigator">
+            <Link to={nav.path} className="navigator" key={nav.text}>
               {nav.text}
             </Link>
           ))}

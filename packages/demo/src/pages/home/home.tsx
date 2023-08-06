@@ -155,13 +155,13 @@ const Home: React.FC = () => {
 
       <div className="big-title">
         {'Pivot'.split('').map((letter, index) => (
-          <span id={`title_letter_${index}`} className={`title_letter_${index}`}>
+          <span key={`title_letter_${index}`} id={`title_letter_${index}`} className={`title_letter_${index}`}>
             {letter}
           </span>
         ))}
         <span id="title_5">&nbsp;</span>
         {'Design'.split('').map((letter, index) => (
-          <span id={`title_letter_${index + 6}`} className={`title_letter_${index + 6}`}>
+          <span key={`title_letter_${index}`} id={`title_letter_${index + 6}`} className={`title_letter_${index + 6}`}>
             {letter}
           </span>
         ))}
