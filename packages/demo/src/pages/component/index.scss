@@ -15,8 +15,8 @@
     padding: 60px 0;
 
     .demo-container {
+      min-width: 240px;
       background: var(--semi-color-bg-1);
-      width: 220px;
       padding: 8px 0.6rem;
       font-size: 14px;
       .demo-item {
@@ -33,40 +33,56 @@
       }
     }
     .demo-component {
-      margin: 0;
-      padding: 48px 20px 0 48px;
+      flex: 1;
+      padding: 48px;
       background-color: var(--semi-color-bg-0);
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       box-shadow: 0 8px 24px #0000000d;
-      flex: 1;
+      margin: 0;
+      margin-right: 12vw;
     }
     .demo-component-catalogue {
-      background-color: var(--semi-color-bg-0);
+      .catalog_content {
+        position: fixed;
+        top: 14vh;
+        right: 24px;
+        max-width: 120px;
+        color: var(--semi-color-text-1);
+        .catalog_h2 {
+          font-size: 13px;
+          padding: 6px 0;
+        }
+        .catalog_h3 {
+          font-size: 12px;
+          text-indent: 1em;
+          padding: 6px 0;
+        }
+      }
     }
   }
 }
 
-#nice {
+#nice.demo-component {
   color: var(--semi-color-text-2);
 
   word-break: break-all;
 }
-#nice p {
+#nice.demo-component p {
   font-size: 16px;
   line-height: 1.8;
 }
 /* 一级标题 */
-#nice h1 {
+#nice.demo-component h1 {
   color: var(--semi-color-text-0);
   padding-bottom: 60px;
 }
 /* 一级标题修饰 请参考有实例的主题 */
-#nice h1:after {
+#nice.demo-component h1:after {
 }
 /* 二级标题 */
 
-#nice h2 {
+#nice.demo-component h2 {
   position: relative;
   margin: 40px 0;
   padding: 0 16px;
@@ -84,7 +100,7 @@
   }
 }
 
-#nice h3 {
+#nice.demo-component h3 {
   position: relative;
   margin: 32px 0;
   margin-left: 0.8em;
@@ -103,74 +119,74 @@
 /* 无序列表整体样式
  * list-style-type: square|circle|disc;
  */
-#nice ul {
+#nice.demo-component ul {
   margin: 20px 1rem;
 }
-#nice ul li::marker {
+#nice.demo-component ul li::marker {
   color: var(--semi-color-primary);
 }
-#nice ul li {
+#nice.demo-component ul li {
   text-indent: 0.5rem;
   line-height: 2;
 }
 /* 有序列表整体样式
  * list-style-type: upper-roman|lower-greek|lower-alpha;
  */
-#nice ol {
+#nice.demo-component ol {
 }
 /* 列表内容，不要设置li
  */
-#nice li section {
+#nice.demo-component li section {
 }
 /* 引用
  * 左边缘颜色 border-left-color: black;
  * 背景色 background: gray;
  */
-#nice .multiquote-1 {
+#nice.demo-component .multiquote-1 {
   border-left-color: var(--semi-brand-4);
   background: #fff9f9;
 }
 /* 引用文字 */
-#nice .multiquote-1 p {
+#nice.demo-component .multiquote-1 p {
 }
 /* 链接 
  * border-bottom: 1px solid #009688;
  */
-#nice a {
+#nice.demo-component a {
   color: var(--semi-brand-4);
   border-bottom: 1px solid var(--semi-brand-4);
 }
 /* 加粗 */
-#nice strong {
+#nice.demo-component strong {
 }
 /* 斜体 */
-#nice em {
+#nice.demo-component em {
 }
 /* 加粗斜体 */
-#nice em strong {
+#nice.demo-component em strong {
 }
 /* 删除线 */
-#nice del {
+#nice.demo-component del {
 }
 /* 分隔线
  * 粗细、样式和颜色
  * border-top: 1px solid #3e3e3e;
  */
-#nice hr {
+#nice.demo-component hr {
 }
 /* 图片
  * 宽度 width: 80%;
  * 居中 margin: 0 auto;
  * 居左 margin: 0 0;
  */
-#nice img {
+#nice.demo-component img {
 }
 /* 图片描述文字 */
-#nice figcaption {
+#nice.demo-component figcaption {
 }
 /* 行内代码 */
-#nice p code,
-#nice li code {
+#nice.demo-component p code,
+#nice.demo-component li code {
   padding: 1px 2px;
   background: var(--semi-color-fill-1);
   color: var(--semi-color-secondary);
@@ -179,7 +195,7 @@
  * 代码块不换行 display: -webkit-box !important;
  * 代码块换行 display: block;
  */
-#nice pre code {
+#nice.demo-component pre code {
 }
 /*
  * 表格内的单元格
@@ -187,34 +203,34 @@
  * 边框 border: 1px solid #ccc;
  * 内边距 padding: 5px 10px;
  */
-#nice table tr th,
-#nice table tr td {
+#nice.demo-component table tr th,
+#nice.demo-component table tr td {
 }
 /* 脚注文字 */
 /* 脚注上标 */
-#nice .footnote-ref {
+#nice.demo-component .footnote-ref {
   color: var(--semi-brand-4);
 }
 /* "参考资料"四个字 
  * 内容 content: "参考资料";
  */
-#nice .footnotes-sep:before {
+#nice.demo-component .footnotes-sep:before {
 }
 /* 参考资料编号 */
-#nice .footnote-num {
+#nice.demo-component .footnote-num {
 }
 /* 参考资料文字 */
-#nice .footnote-item p {
+#nice.demo-component .footnote-item p {
 }
 /* 参考资料解释 */
-#nice .footnote-item p em {
+#nice.demo-component .footnote-item p em {
 }
 /* 行间公式
  * 最大宽度 max-width: 300% !important;
  */
-#nice .block-equation svg {
+#nice.demo-component .block-equation svg {
 }
 /* 行内公式
  */
-#nice .inline-equation svg {
+#nice.demo-component .inline-equation svg {
 }

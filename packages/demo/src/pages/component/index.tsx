@@ -8,11 +8,16 @@ import CardMdx from '../../components/Card/index.mdx';
 import SkeletonMdx from '../../components/Skeleton/index.mdx';
 import PopoverMdx from '../../components/Popover/index.mdx';
 import TransitionMdx from '../../components/Transition/index.mdx';
-
-import './index.scss';
-
 import DraggableMdx from '../../components/Draggable/index.mdx';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
+import { list as DraggableList } from '../../components/Draggable/.catalog';
+import { list as ButtonList } from '../../components/Button/.catalog';
+import { list as InputList } from '../../components/Input/.catalog';
+import { list as PopoverList } from '../../components/Popover/.catalog';
+import { list as SkeletonList } from '../../components/Skeleton/.catalog';
+import { list as IconList } from '../../components/Icon/.catalog';
+import { list as CardList } from '../../components/Card/.catalog';
+import './index.scss';
 
 function Index() {
   const [select, setSelect] = useState('Transition');
@@ -41,8 +46,24 @@ function Index() {
           Popover 气泡
         </div>
         <div className={`demo-item ${select === 'Transition' ? 'active' : ''}`} onClick={() => setSelect('Transition')}>
-          元素动画
+          Transition 元素动画
         </div>
+      </div>
+    );
+  };
+  const renderCatalog = (list) => {
+    return (
+      <div className="catalog_content">
+        {list.map((item) => {
+          return (
+            <>
+              <div className="catalog_h2">{item.h2}</div>
+              {item.h3.map((i) => {
+                return <div className="catalog_h3">{i}</div>;
+              })}
+            </>
+          );
+        })}
       </div>
     );
   };
@@ -66,7 +87,15 @@ function Index() {
         {select === 'Transition' ? <TransitionMdx components={{ Transition, CodeBlock }} /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
       </div>
-      <div className="demo-component-catalogue" style={{ width: '200px' }}></div>
+      <div className="demo-component-catalogue">
+        {select === 'Draggable' && renderCatalog(DraggableList)}
+        {select === 'Button' && renderCatalog(ButtonList)}
+        {select === 'Card' && renderCatalog(CardList)}
+        {select === 'Skeleton' && renderCatalog(SkeletonList)}
+        {select === 'Popover' && renderCatalog(PopoverList)}
+        {select === 'Input' && renderCatalog(InputList)}
+        {select === 'Icon' && renderCatalog(IconList)}
+      </div>
     </div>
   );
 }
