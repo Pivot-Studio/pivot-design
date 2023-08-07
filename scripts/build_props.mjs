@@ -3,17 +3,9 @@ import { resolve, extname } from "path";
 import { transformFromAstSync } from "@babel/core";
 import { declare } from "@babel/helper-plugin-utils";
 import { parse } from "@babel/parser";
-import dirname from "es-dirname";
+import { ComponentsPath, ConpopnentDocsPath } from "./env.mjs";
 
-const __dirname = dirname();
-const ComponentsPath = resolve(
-  __dirname,
-  "../packages/design-props/components"
-);
-const ConpopnentDocsPath = resolve(
-  __dirname,
-  "../packages/demo/src/components"
-);
+
 
 const firstUpper = ([letter, ...rest]) => letter.toUpperCase() + rest.join("");
 const COMMENT_REG = /\@(\w+)\s+([\S^\\]+)/g;
