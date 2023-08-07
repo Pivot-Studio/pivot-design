@@ -68,7 +68,7 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
         font-size: 11px;
         line-height: 17px;
         text-align: left;
-        color: #cbcbcb;
+        color: #333333;
         vertical-align: center;
       }
     }
@@ -102,6 +102,7 @@ $cardmax: calc(var(--card-maxLength, 100%) * 20px);
         max-height: $cardmin;
         text-align: justify;
         position: relative;
+        color: #222222;
         &::before {
           content: '';
           float: right;

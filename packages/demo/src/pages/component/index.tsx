@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Button, Icon, Input, Skeleton, Card, Popover } from 'pivot-design';
+import { Button, Icon, Input, Skeleton, Card, Popover, Transition } from 'pivot-design';
+// import router from '@/routers';
 import ButtonMdx from '../../components/Button/index.mdx';
 import IconMdx from '../../components/Icon/index.mdx';
 import InputMdx from '../../components/Input/index.mdx';
 import CardMdx from '../../components/Card/index.mdx';
 import SkeletonMdx from '../../components/Skeleton/index.mdx';
 import PopoverMdx from '../../components/Popover/index.mdx';
+import TransitionMdx from '../../components/Transition/index.mdx';
 import DraggableMdx from '../../components/Draggable/index.mdx';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 import { list as DraggableList } from '../../components/Draggable/.catalog';
@@ -18,7 +20,7 @@ import { list as CardList } from '../../components/Card/.catalog';
 import './index.scss';
 
 function Index() {
-  const [select, setSelect] = useState('Draggable');
+  const [select, setSelect] = useState('Transition');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -42,6 +44,9 @@ function Index() {
         </div>
         <div className={`demo-item ${select === 'Popover' ? 'active' : ''}`} onClick={() => setSelect('Popover')}>
           Popover 气泡
+        </div>
+        <div className={`demo-item ${select === 'Transition' ? 'active' : ''}`} onClick={() => setSelect('Transition')}>
+          Transition 元素动画
         </div>
       </div>
     );
@@ -79,6 +84,7 @@ function Index() {
             }}
           />
         ) : null}
+        {select === 'Transition' ? <TransitionMdx components={{ Transition, CodeBlock }} /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
       </div>
       <div className="demo-component-catalogue">
