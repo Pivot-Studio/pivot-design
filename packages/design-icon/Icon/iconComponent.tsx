@@ -13,7 +13,6 @@ const Icon: React.FC<IconProps> = (props) => {
     [`${prefix}-icon-${theme}`]: theme,
     [`${prefix}-icon-rotate`]: rotate,
   });
-  console.log(Icons, iconName, 'name');
 
   return (
     <>

@@ -1,70 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useUnmountedRef from '../utils/useUnmountedRef';
 import usePrevious from '../utils/usePrevious';
-const TransitionGroupContext = React.createContext(null);
-
-export type timeoutType = number | { enter?: number; exit?: number; appear?: number };
-
-export interface TransitionPropTypes {
-  /**
-   * 用来控制进场、出场状态切换
-   * 默认为 false
-   */
-  in?: boolean;
-  /**
-   *  子组件，是一个函数或者ReactNode，
-   *  如果为函数时其接受参数为刚刚介绍到的entering、entered 、exiting、exited 四个状态值
-   */
-  children?: React.ReactNode | ((status: string) => React.ReactNode);
-  /**
-   * 动画执行时间
-   */
-  timeout: timeoutType;
-  /**
-   * 首次挂载是是否展示动画
-   */
-  appear?: boolean;
-  /**
-   * 是否展示进场动画
-   */
-  enterAnimation?: boolean;
-  /**
-   * 是否展示出场动画
-   */
-  exitAnimation?: boolean;
-  /**
-   * exit状态时是否卸载组件
-   */
-  unmountOnExit?: boolean;
-  /**
-   * 初始化时是否卸载组件
-   */
-  mountOnEnter?: boolean;
-  /**
-   * 进场动画执行前调用
-   */
-  onEnter?: (node?: Element, isAppearing?: boolean) => void;
-  /**
-   * 进场动画执行中调用
-   */
-  onEntering?: (node?: Element, isAppearing?: boolean) => void;
-  /**
-   *    进场动画执行完毕调用
-   */
-  onEntered?: (node?: Element, isAppearing?: boolean) => void;
-  /**
-   *    退场动画开始执行时调用
-   */
-  onExit?: (node?: Element) => void;
-  /**
-   *    退场动画执行中时调用
-   */
-  onExiting?: (node?: Element) => void;
-  /**
-   *    退场动画执行完毕调用
-   */
-  onExited?: (node?: Element) => void;
-}
+import { getFormateTimeouts } from './initTimeouts';
+import { TransitionPropTypes } from 'pivot-design-props';
 
 export enum StatusEnum {
   UNMOUNTED = 'unmounted',
@@ -94,8 +32,6 @@ const Transition: React.FC<TransitionPropTypes> = ({
   // 获取上下文
   const initialStatus = useRef<StatusEnum | null>(null); // 初始状态
   const appearStatus = useRef<StatusEnum | null>(null); // 初始状态
-
-  // const { initialStatus, appearStatus } = getInitStatus(_in, appear);
 
   const [status, setStatus] = useState<StatusEnum | null>(initStatus()); // 设置初始化状态
 
@@ -128,9 +64,9 @@ const Transition: React.FC<TransitionPropTypes> = ({
     }
 
     if (status === StatusEnum.UNMOUNTED) {
-      if (_in) {
-        setStatus(StatusEnum.EXITED); // 从卸载 unmounted 转为 exits
-      }
+      if (!_in) return;
+
+      setStatus(StatusEnum.EXITED); // 从卸载 unmounted 转为 exits
       return;
     }
 
@@ -162,7 +98,8 @@ const Transition: React.FC<TransitionPropTypes> = ({
       }
     }
     inRef.current = _in;
-    updateStatus(nextStatus); // 更新status状态，若为null可能是要卸载
+    updateStatus(nextStatus); // 更新status状态
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_in, status]);
 
   function initStatus(): StatusEnum | null {
@@ -189,17 +126,6 @@ const Transition: React.FC<TransitionPropTypes> = ({
     return _initialStatus;
   }
 
-  /** 更新 Status 和动画 */
-  const updateStatus = (nextStatus: StatusEnum | null, isMounting = false) => {
-    if (nextStatus !== null) {
-      if (nextStatus === StatusEnum.ENTERING) {
-        performEnter(isMounting); // 执行进场
-      } else if (nextStatus === StatusEnum.EXITING) {
-        performExit(); // 执行退场
-      }
-    }
-  };
-
   /** 设置status并执行回调，确保在组件卸载后或组件状态变更后不会执行回调 */
   const safeSetStatus = (newStatus: StatusEnum | null, callback?: { (): void }) => {
     nextStatusRef.current = newStatus; // 先预设下一个状态，保证每次执行的callback都是最新的
@@ -211,8 +137,18 @@ const Transition: React.FC<TransitionPropTypes> = ({
     }
   };
 
+  /** 在指定时间后执行callback */
+  const onTransitionEnd = async (timeout: number | null, nextStatus: StatusEnum | null, callback: any) => {
+    if (timeout !== null && !unmountedRef.current) {
+      setTimeout(() => {
+        if (nextStatus && nextStatus !== nextStatusRef.current) return; // 如果状态已经改变，不执行callback
+        callback();
+      }, timeout);
+    }
+  };
+
   /** 进场动画 isMounting表示是否为首次挂载 */
-  const performEnter = (isMounting = false) => {
+  const performEnter = async (isMounting = false) => {
     const enterTimeout = isMounting && appear ? timeouts.appear : timeouts.enter;
 
     onEnter?.();
@@ -225,16 +161,20 @@ const Transition: React.FC<TransitionPropTypes> = ({
       return;
     }
 
-    // 先更新状态为ENTERING，然后在指定时间后更新状态为 StatusEnum.ENTERED
-    safeSetStatus(StatusEnum.ENTERING, () => {
-      onEntering?.();
-      onTransitionEnd(enterTimeout, StatusEnum.ENTERING, () => {
-        safeSetStatus(StatusEnum.ENTERED, () => {
-          onEntered?.();
-          if (isMounting) isMountingRef.current = false;
+    // 需要先保持一段时间的 exit, 不然无法展示从卸载到出现的动画
+    setTimeout(() => {
+      // 先更新状态为ENTERING，然后在指定时间后更新状态为 StatusEnum.ENTERED
+      safeSetStatus(StatusEnum.ENTERING, () => {
+        onEntering?.();
+
+        onTransitionEnd(enterTimeout, StatusEnum.ENTERING, () => {
+          safeSetStatus(StatusEnum.ENTERED, () => {
+            onEntered?.();
+            if (isMounting) isMountingRef.current = false;
+          });
         });
       });
-    });
+    }, 10);
   };
 
   /** 执行退场相关操作 */
@@ -245,7 +185,6 @@ const Transition: React.FC<TransitionPropTypes> = ({
       // 不执行出场动画，直接跳转到exited状态
       safeSetStatus(StatusEnum.EXITED, () => {
         onExited?.();
-        if (unmountOnExit) updateStatus(null); // 卸载组件
       });
       return;
     }
@@ -256,34 +195,21 @@ const Transition: React.FC<TransitionPropTypes> = ({
       onTransitionEnd(timeouts.exit, StatusEnum.EXITING, () => {
         safeSetStatus(StatusEnum.EXITED, () => {
           onExited?.();
-          if (unmountOnExit) updateStatus(null); // 卸载组件
         });
       });
     });
   };
 
-  /** 在指定时间后执行callback */
-  const onTransitionEnd = (timeout: number | null, nextStatus: StatusEnum, callback: any) => {
-    if (timeout !== null && !unmountedRef.current) {
-      setTimeout(() => {
-        if (nextStatus !== nextStatusRef.current) return; // 如果状态已经改变，不执行callback
-        callback();
-      }, timeout);
+  /** 更新 Status 和动画 */
+  const updateStatus = (nextStatus: StatusEnum | null, isMounting = false) => {
+    if (nextStatus !== null) {
+      if (nextStatus === StatusEnum.ENTERING) {
+        performEnter(isMounting); // 执行进场
+      } else if (nextStatus === StatusEnum.EXITING) {
+        performExit(); // 执行退场
+      }
     }
   };
-
-  /** 统一转化timeout格式 */
-  function getFormateTimeouts(timeout: timeoutType | null) {
-    let exit, enter, appear;
-    exit = enter = appear = timeout;
-
-    if (timeout != null && typeof timeout !== 'number') {
-      exit = timeout?.exit;
-      enter = timeout?.enter;
-      appear = timeout?.appear !== undefined ? timeout?.appear : enter;
-    }
-    return { exit, enter, appear } as { enter: number; exit: number; appear: number };
-  }
 
   // 卸载状态
   if (status === StatusEnum.UNMOUNTED) {
@@ -291,11 +217,11 @@ const Transition: React.FC<TransitionPropTypes> = ({
   }
 
   return (
-    <TransitionGroupContext.Provider value={null}>
+    <>
       {typeof children === 'function'
         ? children(status as StatusEnum)
         : React.cloneElement(React.Children.only(children) as React.ReactElement, childProps)}
-    </TransitionGroupContext.Provider>
+    </>
   );
 };
 

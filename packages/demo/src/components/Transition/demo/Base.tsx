@@ -5,27 +5,7 @@ import './index.scss';
 
 const App: React.FC = () => {
   const [inProp, setInProp] = useState(true); // 用来控制子组件的挂载、卸载
-
-  const onEnter = () => {
-    console.log('onEnter');
-  };
-  const onEntering = () => {
-    console.log('onEntering');
-  };
-  const onExit = () => {
-    console.log('onExit');
-  };
-  const onExited = () => {
-    console.log('onExited');
-  };
-  const onEntered = () => {
-    console.log('onEntered');
-  };
-  const onExiting = () => {
-    console.log('onExiting');
-  };
-
-  const duration = 1000;
+  const duration = 3000;
   const defaultStyle = {
     transition: `opacity ${duration}ms`,
     opacity: 0,
@@ -40,21 +20,7 @@ const App: React.FC = () => {
 
   return (
     <div style={{ color: 'black' }}>
-      <Transition
-        in={inProp}
-        timeout={{ enter: 1000, exit: 1000, appear: 1000 }}
-        appear={true}
-        onEnter={onEnter}
-        onEntering={onEntering}
-        onExit={onExit}
-        onEntered={onEntered}
-        onExited={onExited}
-        onExiting={onExiting}
-        enterAnimation={true}
-        exitAnimation={true}
-        unmountOnExit={false}
-        mountOnEnter={false}
-      >
+      <Transition in={inProp} timeout={{ enter: 3000, exit: 3000, appear: 3000 }} appear={true}>
         {(state: any) => {
           return (
             <div
