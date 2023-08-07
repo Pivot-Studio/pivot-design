@@ -66,9 +66,7 @@ function Index() {
         {select === 'Transition' ? <TransitionMdx components={{ Transition, CodeBlock }} /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
       </div>
-      <div className="demo-component-catalogue" style={{ width: '200px' }}>
-        1
-      </div>
+      <div className="demo-component-catalogue" style={{ width: '200px' }}></div>
     </div>
   );
 }

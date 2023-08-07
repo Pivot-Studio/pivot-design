@@ -1,6 +1,5 @@
 import { Transition } from 'pivot-design';
 import React, { useState } from 'react';
-
 import './index.scss';
 
 const App: React.FC = () => {
@@ -10,17 +9,24 @@ const App: React.FC = () => {
     transition: `opacity ${duration}ms`,
     opacity: 0,
   };
-
   const transitionStyles = {
     entering: { opacity: 1 },
     entered: { opacity: 1 },
     exiting: { opacity: 0 },
     exited: { opacity: 0 },
   };
-
   return (
     <div style={{ color: 'black' }}>
-      <Transition in={inProp} timeout={duration} unmountOnExit={true} mountOnEnter={true}>
+      <Transition
+        in={inProp}
+        timeout={duration}
+        onEnter={() => console.log('onEnter')}
+        onEntering={() => console.log('onEntering')}
+        onExit={() => console.log('onExit')}
+        onEntered={() => console.log('onEntered')}
+        onExited={() => console.log('onExited')}
+        onExiting={() => console.log('onExiting')}
+      >
         {(state: any) => {
           return (
             <div
@@ -30,7 +36,7 @@ const App: React.FC = () => {
               }}
               className="show-box"
             >
-              <p>消失自动卸载的标题</p>
+              <p>控制台查看回调函数</p>
             </div>
           );
         }}

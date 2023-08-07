@@ -4,23 +4,20 @@ import React, { useState } from 'react';
 import './index.scss';
 
 const App: React.FC = () => {
-  const [inProp, setInProp] = useState(false); // 用来控制子组件的挂载、卸载
+  const [inProp, setInProp] = useState(true); // 用来控制子组件的挂载、卸载
   const duration = 1000;
   const defaultStyle = {
-    transition: `opacity ${duration}ms`,
     opacity: 0,
   };
-
   const transitionStyles = {
     entering: { opacity: 1 },
     entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
+    exiting: { opacity: 0, transition: `opacity ${duration}ms` },
+    exited: { opacity: 0, transition: `opacity ${duration}ms` },
   };
-
   return (
     <div style={{ color: 'black' }}>
-      <Transition in={inProp} timeout={duration} unmountOnExit={true} mountOnEnter={true}>
+      <Transition in={inProp} timeout={duration} enterAnimation={false}>
         {(state: any) => {
           return (
             <div
@@ -30,7 +27,7 @@ const App: React.FC = () => {
               }}
               className="show-box"
             >
-              <p>消失自动卸载的标题</p>
+              <p>没有进场动画但有出场动画</p>
             </div>
           );
         }}
