@@ -5,4 +5,4 @@ export * from './components/input';
 export * from './components/card';
 export * from './components/skeleton';
 export * from './components/popover';
-export * from './components/transtion';
+export * from './components/transition';

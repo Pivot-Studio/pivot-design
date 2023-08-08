@@ -17,6 +17,7 @@ import { list as PopoverList } from '../../components/Popover/.catalog';
 import { list as SkeletonList } from '../../components/Skeleton/.catalog';
 import { list as IconList } from '../../components/Icon/.catalog';
 import { list as CardList } from '../../components/Card/.catalog';
+import { list as TransitionList } from '../../components/Transition/.catalog';
 import './index.scss';
 
 function Index() {
@@ -95,6 +96,7 @@ function Index() {
         {select === 'Popover' && renderCatalog(PopoverList)}
         {select === 'Input' && renderCatalog(InputList)}
         {select === 'Icon' && renderCatalog(IconList)}
+        {select === 'Transition' && renderCatalog(TransitionList)}
       </div>
     </div>
   );
