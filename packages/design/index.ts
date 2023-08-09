@@ -16,8 +16,9 @@ import Card from './components/Card';
 import Skeleton from './components/Skeleton';
 import Popover from './components/Popover/';
 import Transition from './components/Transition';
+import Switch from './components/Switch';
 
-export { Button, Icon, Input, Card, Skeleton, Popover, Transition };
+export { Button, Icon, Input, Card, Skeleton, Popover, Transition, Switch };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();
