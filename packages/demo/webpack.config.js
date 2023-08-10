@@ -66,6 +66,9 @@ module.exports = {
             },
           },
           {
+            loader: path.resolve(__dirname, 'loaders/api/index.js'),
+          },
+          {
             loader: path.resolve(__dirname, 'loaders/index.js'),
           },
         ],

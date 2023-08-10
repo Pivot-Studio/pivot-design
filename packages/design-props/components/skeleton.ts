@@ -51,7 +51,7 @@ interface CardCssTokens {
   /**
    * @version 1.0.0
    * @description 背景颜色
-   *@default --pivot-Skeleton-background-color
+   * @default --pivot-Skeleton-background-color
    */
   '--skeleton-background-color'?: string;
   /**

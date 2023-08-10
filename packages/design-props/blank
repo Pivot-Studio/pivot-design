@@ -1,0 +1,1877 @@
+[
+  Node {
+    type: 'ImportDeclaration',
+    start: 0,
+    end: 26,
+    loc: SourceLocation {
+      start: Position { line: 1, column: 0, index: 0 },
+      end: Position { line: 1, column: 26, index: 26 },
+      filename: undefined,
+      identifierName: undefined
+    },
+    importKind: 'value',
+    specifiers: [
+      Node {
+        type: 'ImportDefaultSpecifier',
+        start: 7,
+        end: 12,
+        loc: SourceLocation {
+          start: Position { line: 1, column: 7, index: 7 },
+          end: Position { line: 1, column: 12, index: 12 },
+          filename: undefined,
+          identifierName: undefined
+        },
+        local: Node {
+          type: 'Identifier',
+          start: 7,
+          end: 12,
+          loc: SourceLocation {
+            start: Position { line: 1, column: 7, index: 7 },
+            end: Position { line: 1, column: 12, index: 12 },
+            filename: undefined,
+            identifierName: 'React'
+          },
+          name: 'React'
+        }
+      }
+    ],
+    source: Node {
+      type: 'StringLiteral',
+      start: 18,
+      end: 25,
+      loc: SourceLocation {
+        start: Position { line: 1, column: 18, index: 18 },
+        end: Position { line: 1, column: 25, index: 25 },
+        filename: undefined,
+        identifierName: undefined
+      },
+      extra: { rawValue: 'react', raw: "'react'" },
+      value: 'react'
+    }
+  },
+  Node {
+    type: 'ImportDeclaration',
+    start: 27,
+    end: 65,
+    loc: SourceLocation {
+      start: Position { line: 2, column: 0, index: 27 },
+      end: Position { line: 2, column: 38, index: 65 },
+      filename: undefined,
+      identifierName: undefined
+    },
+    importKind: 'value',
+    specifiers: [
+      Node {
+        type: 'ImportSpecifier',
+        start: 36,
+        end: 52,
+        loc: SourceLocation {
+          start: Position { line: 2, column: 9, index: 36 },
+          end: Position { line: 2, column: 25, index: 52 },
+          filename: undefined,
+          identifierName: undefined
+        },
+        imported: Node {
+          type: 'Identifier',
+          start: 36,
+          end: 52,
+          loc: SourceLocation {
+            start: Position { line: 2, column: 9, index: 36 },
+            end: Position { line: 2, column: 25, index: 52 },
+            filename: undefined,
+            identifierName: 'PivotDesignProps'
+          },
+          name: 'PivotDesignProps'
+        },
+        importKind: 'value',
+        local: Node {
+          type: 'Identifier',
+          start: 36,
+          end: 52,
+          loc: SourceLocation {
+            start: Position { line: 2, column: 9, index: 36 },
+            end: Position { line: 2, column: 25, index: 52 },
+            filename: undefined,
+            identifierName: 'PivotDesignProps'
+          },
+          range: undefined,
+          extra: undefined,
+          name: 'PivotDesignProps'
+        }
+      }
+    ],
+    source: Node {
+      type: 'StringLiteral',
+      start: 60,
+      end: 64,
+      loc: SourceLocation {
+        start: Position { line: 2, column: 33, index: 60 },
+        end: Position { line: 2, column: 37, index: 64 },
+        filename: undefined,
+        identifierName: undefined
+      },
+      extra: { rawValue: './', raw: "'./'" },
+      value: './'
+    }
+  },
+  Node {
+    type: 'TSInterfaceDeclaration',
+    start: 66,
+    end: 402,
+    loc: SourceLocation {
+      start: Position { line: 3, column: 0, index: 66 },
+      end: Position { line: 16, column: 1, index: 402 },
+      filename: undefined,
+      identifierName: undefined
+    },
+    id: Node {
+      type: 'Identifier',
+      start: 76,
+      end: 91,
+      loc: SourceLocation {
+        start: Position { line: 3, column: 10, index: 76 },
+        end: Position { line: 3, column: 25, index: 91 },
+        filename: undefined,
+        identifierName: 'ButtonCssTokens'
+      },
+      name: 'ButtonCssTokens'
+    },
+    typeParameters: undefined,
+    body: Node {
+      type: 'TSInterfaceBody',
+      start: 92,
+      end: 402,
+      loc: SourceLocation {
+        start: Position { line: 3, column: 26, index: 92 },
+        end: Position { line: 16, column: 1, index: 402 },
+        filename: undefined,
+        identifierName: undefined
+      },
+      body: [
+        Node {
+          type: 'TSPropertySignature',
+          start: 199,
+          end: 236,
+          loc: SourceLocation {
+            start: Position { line: 9, column: 2, index: 199 },
+            end: Position { line: 9, column: 39, index: 236 },
+            filename: undefined,
+            identifierName: undefined
+          },
+          key: Node {
+            type: 'StringLiteral',
+            start: 199,
+            end: 226,
+            loc: SourceLocation {
+              start: Position { line: 9, column: 2, index: 199 },
+              end: Position { line: 9, column: 29, index: 226 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            extra: {
+              rawValue: '--button-background-color',
+              raw: "'--button-background-color'"
+            },
+            value: '--button-background-color'
+          },
+          computed: false,
+          optional: true,
+          typeAnnotation: Node {
+            type: 'TSTypeAnnotation',
+            start: 227,
+            end: 235,
+            loc: SourceLocation {
+              start: Position { line: 9, column: 30, index: 227 },
+              end: Position { line: 9, column: 38, index: 235 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            typeAnnotation: Node {
+              type: 'TSStringKeyword',
+              start: 229,
+              end: 235,
+              loc: SourceLocation {
+                start: Position { line: 9, column: 32, index: 229 },
+                end: Position { line: 9, column: 38, index: 235 },
+                filename: undefined,
+                identifierName: undefined
+              }
+            }
+          },
+          trailingComments: [
+            {
+              type: 'CommentBlock',
+              value: '*\n' +
+                '   * @version 1.0.0\n' +
+                '   * @description 按钮禁用时背景颜色\n' +
+                '   * @default --pivot-button-disabled-background-color\n' +
+                '   ',
+              start: 239,
+              end: 351,
+              loc: SourceLocation {
+                start: Position { line: 10, column: 2, index: 239 },
+                end: Position { line: 14, column: 5, index: 351 },
+                filename: undefined,
+                identifierName: undefined
+              }
+            }
+          ],
+          leadingComments: [
+            {
+              type: 'CommentBlock',
+              value: '*\n' +
+                '   * @version 1.0.0\n' +
+                '   * @description 按钮背景颜色\n' +
+                '   * @default --pivot-button-background-color\n' +
+                '   ',
+              start: 96,
+              end: 196,
+              loc: SourceLocation {
+                start: Position { line: 4, column: 2, index: 96 },
+                end: Position { line: 8, column: 5, index: 196 },
+                filename: undefined,
+                identifierName: undefined
+              }
+            }
+          ]
+        },
+        Node {
+          type: 'TSPropertySignature',
+          start: 354,
+          end: 400,
+          loc: SourceLocation {
+            start: Position { line: 15, column: 2, index: 354 },
+            end: Position { line: 15, column: 48, index: 400 },
+            filename: undefined,
+            identifierName: undefined
+          },
+          key: Node {
+            type: 'StringLiteral',
+            start: 354,
+            end: 390,
+            loc: SourceLocation {
+              start: Position { line: 15, column: 2, index: 354 },
+              end: Position { line: 15, column: 38, index: 390 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            extra: {
+              rawValue: '--button-disabled-background-color',
+              raw: "'--button-disabled-background-color'"
+            },
+            value: '--button-disabled-background-color'
+          },
+          computed: false,
+          optional: true,
+          typeAnnotation: Node {
+            type: 'TSTypeAnnotation',
+            start: 391,
+            end: 399,
+            loc: SourceLocation {
+              start: Position { line: 15, column: 39, index: 391 },
+              end: Position { line: 15, column: 47, index: 399 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            typeAnnotation: Node {
+              type: 'TSStringKeyword',
+              start: 393,
+              end: 399,
+              loc: SourceLocation {
+                start: Position { line: 15, column: 41, index: 393 },
+                end: Position { line: 15, column: 47, index: 399 },
+                filename: undefined,
+                identifierName: undefined
+              }
+            }
+          },
+          leadingComments: [
+            {
+              type: 'CommentBlock',
+              value: '*\n' +
+                '   * @version 1.0.0\n' +
+                '   * @description 按钮禁用时背景颜色\n' +
+                '   * @default --pivot-button-disabled-background-color\n' +
+                '   ',
+              start: 239,
+              end: 351,
+              loc: SourceLocation {
+                start: Position { line: 10, column: 2, index: 239 },
+                end: Position { line: 14, column: 5, index: 351 },
+                filename: undefined,
+                identifierName: undefined
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  Node {
+    type: 'ExportNamedDeclaration',
+    start: 403,
+    end: 1564,
+    loc: SourceLocation {
+      start: Position { line: 17, column: 0, index: 403 },
+      end: Position { line: 72, column: 1, index: 1564 },
+      filename: undefined,
+      identifierName: undefined
+    },
+    exportKind: 'type',
+    specifiers: [],
+    source: null,
+    declaration: Node {
+      type: 'TSInterfaceDeclaration',
+      start: 410,
+      end: 1564,
+      loc: SourceLocation {
+        start: Position { line: 17, column: 7, index: 410 },
+        end: Position { line: 72, column: 1, index: 1564 },
+        filename: undefined,
+        identifierName: undefined
+      },
+      id: Node {
+        type: 'Identifier',
+        start: 420,
+        end: 431,
+        loc: SourceLocation {
+          start: Position { line: 17, column: 17, index: 420 },
+          end: Position { line: 17, column: 28, index: 431 },
+          filename: undefined,
+          identifierName: 'ButtonProps'
+        },
+        name: 'ButtonProps'
+      },
+      typeParameters: undefined,
+      extends: [
+        Node {
+          type: 'TSExpressionWithTypeArguments',
+          start: 440,
+          end: 456,
+          loc: SourceLocation {
+            start: Position { line: 17, column: 37, index: 440 },
+            end: Position { line: 17, column: 53, index: 456 },
+            filename: undefined,
+            identifierName: undefined
+          },
+          expression: Node {
+            type: 'Identifier',
+            start: 440,
+            end: 456,
+            loc: SourceLocation {
+              start: Position { line: 17, column: 37, index: 440 },
+              end: Position { line: 17, column: 53, index: 456 },
+              filename: undefined,
+              identifierName: 'PivotDesignProps'
+            },
+            name: 'PivotDesignProps'
+          }
+        }
+      ],
+      body: Node {
+        type: 'TSInterfaceBody',
+        start: 457,
+        end: 1564,
+        loc: SourceLocation {
+          start: Position { line: 17, column: 54, index: 457 },
+          end: Position { line: 72, column: 1, index: 1564 },
+          filename: undefined,
+          identifierName: undefined
+        },
+        body: [
+          Node {
+            type: 'TSPropertySignature',
+            start: 542,
+            end: 569,
+            loc: SourceLocation {
+              start: Position { line: 23, column: 2, index: 542 },
+              end: Position { line: 23, column: 29, index: 569 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 542,
+              end: 550,
+              loc: SourceLocation {
+                start: Position { line: 23, column: 2, index: 542 },
+                end: Position { line: 23, column: 10, index: 550 },
+                filename: undefined,
+                identifierName: 'children'
+              },
+              name: 'children'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 551,
+              end: 568,
+              loc: SourceLocation {
+                start: Position { line: 23, column: 11, index: 551 },
+                end: Position { line: 23, column: 28, index: 568 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSTypeReference',
+                start: 553,
+                end: 568,
+                loc: SourceLocation {
+                  start: Position { line: 23, column: 13, index: 553 },
+                  end: Position { line: 23, column: 28, index: 568 },
+                  filename: undefined,
+                  identifierName: undefined
+                },
+                typeName: Node {
+                  type: 'TSQualifiedName',
+                  start: 553,
+                  end: 568,
+                  loc: SourceLocation {
+                    start: Position { line: 23, column: 13, index: 553 },
+                    end: Position { line: 23, column: 28, index: 568 },
+                    filename: undefined,
+                    identifierName: undefined
+                  },
+                  left: Node {
+                    type: 'Identifier',
+                    start: 553,
+                    end: 558,
+                    loc: SourceLocation {
+                      start: Position { line: 23, column: 13, index: 553 },
+                      end: Position { line: 23, column: 18, index: 558 },
+                      filename: undefined,
+                      identifierName: 'React'
+                    },
+                    name: 'React'
+                  },
+                  right: Node {
+                    type: 'Identifier',
+                    start: 559,
+                    end: 568,
+                    loc: SourceLocation {
+                      start: Position { line: 23, column: 19, index: 559 },
+                      end: Position { line: 23, column: 28, index: 568 },
+                      filename: undefined,
+                      identifierName: 'ReactNode'
+                    },
+                    name: 'ReactNode'
+                  }
+                }
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 自定义样式\n' +
+                  '   * @default undefined\n' +
+                  '   ',
+                start: 572,
+                end: 649,
+                loc: SourceLocation {
+                  start: Position { line: 24, column: 2, index: 572 },
+                  end: Position { line: 28, column: 5, index: 649 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮默认插槽\n' +
+                  '   * @default undefined\n' +
+                  '   ',
+                start: 461,
+                end: 539,
+                loc: SourceLocation {
+                  start: Position { line: 18, column: 2, index: 461 },
+                  end: Position { line: 22, column: 5, index: 539 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 652,
+            end: 698,
+            loc: SourceLocation {
+              start: Position { line: 29, column: 2, index: 652 },
+              end: Position { line: 29, column: 48, index: 698 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 652,
+              end: 657,
+              loc: SourceLocation {
+                start: Position { line: 29, column: 2, index: 652 },
+                end: Position { line: 29, column: 7, index: 657 },
+                filename: undefined,
+                identifierName: 'style'
+              },
+              name: 'style'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 658,
+              end: 697,
+              loc: SourceLocation {
+                start: Position { line: 29, column: 8, index: 658 },
+                end: Position { line: 29, column: 47, index: 697 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSIntersectionType',
+                start: 660,
+                end: 697,
+                loc: SourceLocation {
+                  start: Position { line: 29, column: 10, index: 660 },
+                  end: Position { line: 29, column: 47, index: 697 },
+                  filename: undefined,
+                  identifierName: undefined
+                },
+                types: [
+                  Node {
+                    type: 'TSTypeReference',
+                    start: 660,
+                    end: 679,
+                    loc: SourceLocation {
+                      start: Position { line: 29, column: 10, index: 660 },
+                      end: Position { line: 29, column: 29, index: 679 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    typeName: Node {
+                      type: 'TSQualifiedName',
+                      start: 660,
+                      end: 679,
+                      loc: SourceLocation {
+                        start: Position { line: 29, column: 10, index: 660 },
+                        end: Position { line: 29, column: 29, index: 679 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      left: Node {
+                        type: 'Identifier',
+                        start: 660,
+                        end: 665,
+                        loc: SourceLocation {
+                          start: Position { line: 29, column: 10, index: 660 },
+                          end: Position { line: 29, column: 15, index: 665 },
+                          filename: undefined,
+                          identifierName: 'React'
+                        },
+                        name: 'React'
+                      },
+                      right: Node {
+                        type: 'Identifier',
+                        start: 666,
+                        end: 679,
+                        loc: SourceLocation {
+                          start: Position { line: 29, column: 16, index: 666 },
+                          end: Position { line: 29, column: 29, index: 679 },
+                          filename: undefined,
+                          identifierName: 'CSSProperties'
+                        },
+                        name: 'CSSProperties'
+                      }
+                    }
+                  },
+                  Node {
+                    type: 'TSTypeReference',
+                    start: 682,
+                    end: 697,
+                    loc: SourceLocation {
+                      start: Position { line: 29, column: 32, index: 682 },
+                      end: Position { line: 29, column: 47, index: 697 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    typeName: Node {
+                      type: 'Identifier',
+                      start: 682,
+                      end: 697,
+                      loc: SourceLocation {
+                        start: Position { line: 29, column: 32, index: 682 },
+                        end: Position { line: 29, column: 47, index: 697 },
+                        filename: undefined,
+                        identifierName: 'ButtonCssTokens'
+                      },
+                      name: 'ButtonCssTokens'
+                    }
+                  }
+                ]
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 点击事件\n' +
+                  '   * @default undefined\n' +
+                  '   ',
+                start: 701,
+                end: 777,
+                loc: SourceLocation {
+                  start: Position { line: 30, column: 2, index: 701 },
+                  end: Position { line: 34, column: 5, index: 777 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 自定义样式\n' +
+                  '   * @default undefined\n' +
+                  '   ',
+                start: 572,
+                end: 649,
+                loc: SourceLocation {
+                  start: Position { line: 24, column: 2, index: 572 },
+                  end: Position { line: 28, column: 5, index: 649 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 780,
+            end: 833,
+            loc: SourceLocation {
+              start: Position { line: 35, column: 2, index: 780 },
+              end: Position { line: 35, column: 55, index: 833 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 780,
+              end: 787,
+              loc: SourceLocation {
+                start: Position { line: 35, column: 2, index: 780 },
+                end: Position { line: 35, column: 9, index: 787 },
+                filename: undefined,
+                identifierName: 'onClick'
+              },
+              name: 'onClick'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 788,
+              end: 832,
+              loc: SourceLocation {
+                start: Position { line: 35, column: 10, index: 788 },
+                end: Position { line: 35, column: 54, index: 832 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSTypeReference',
+                start: 790,
+                end: 832,
+                loc: SourceLocation {
+                  start: Position { line: 35, column: 12, index: 790 },
+                  end: Position { line: 35, column: 54, index: 832 },
+                  filename: undefined,
+                  identifierName: undefined
+                },
+                typeName: Node {
+                  type: 'TSQualifiedName',
+                  start: 790,
+                  end: 813,
+                  loc: SourceLocation {
+                    start: Position { line: 35, column: 12, index: 790 },
+                    end: Position { line: 35, column: 35, index: 813 },
+                    filename: undefined,
+                    identifierName: undefined
+                  },
+                  left: Node {
+                    type: 'Identifier',
+                    start: 790,
+                    end: 795,
+                    loc: SourceLocation {
+                      start: Position { line: 35, column: 12, index: 790 },
+                      end: Position { line: 35, column: 17, index: 795 },
+                      filename: undefined,
+                      identifierName: 'React'
+                    },
+                    name: 'React'
+                  },
+                  right: Node {
+                    type: 'Identifier',
+                    start: 796,
+                    end: 813,
+                    loc: SourceLocation {
+                      start: Position { line: 35, column: 18, index: 796 },
+                      end: Position { line: 35, column: 35, index: 813 },
+                      filename: undefined,
+                      identifierName: 'MouseEventHandler'
+                    },
+                    name: 'MouseEventHandler'
+                  }
+                },
+                typeParameters: Node {
+                  type: 'TSTypeParameterInstantiation',
+                  start: 813,
+                  end: 832,
+                  loc: SourceLocation {
+                    start: Position { line: 35, column: 35, index: 813 },
+                    end: Position { line: 35, column: 54, index: 832 },
+                    filename: undefined,
+                    identifierName: undefined
+                  },
+                  params: [
+                    Node {
+                      type: 'TSTypeReference',
+                      start: 814,
+                      end: 831,
+                      loc: SourceLocation {
+                        start: Position { line: 35, column: 36, index: 814 },
+                        end: Position { line: 35, column: 53, index: 831 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      typeName: Node {
+                        type: 'Identifier',
+                        start: 814,
+                        end: 831,
+                        loc: SourceLocation {
+                          start: Position { line: 35, column: 36, index: 814 },
+                          end: Position { line: 35, column: 53, index: 831 },
+                          filename: undefined,
+                          identifierName: 'HTMLButtonElement'
+                        },
+                        name: 'HTMLButtonElement'
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮类型\n' +
+                  "   * @default 'default'\n" +
+                  '   ',
+                start: 836,
+                end: 912,
+                loc: SourceLocation {
+                  start: Position { line: 36, column: 2, index: 836 },
+                  end: Position { line: 40, column: 5, index: 912 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 点击事件\n' +
+                  '   * @default undefined\n' +
+                  '   ',
+                start: 701,
+                end: 777,
+                loc: SourceLocation {
+                  start: Position { line: 30, column: 2, index: 701 },
+                  end: Position { line: 34, column: 5, index: 777 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 915,
+            end: 962,
+            loc: SourceLocation {
+              start: Position { line: 41, column: 2, index: 915 },
+              end: Position { line: 41, column: 49, index: 962 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 915,
+              end: 919,
+              loc: SourceLocation {
+                start: Position { line: 41, column: 2, index: 915 },
+                end: Position { line: 41, column: 6, index: 919 },
+                filename: undefined,
+                identifierName: 'type'
+              },
+              name: 'type'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 920,
+              end: 961,
+              loc: SourceLocation {
+                start: Position { line: 41, column: 7, index: 920 },
+                end: Position { line: 41, column: 48, index: 961 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSUnionType',
+                start: 922,
+                end: 961,
+                loc: SourceLocation {
+                  start: Position { line: 41, column: 9, index: 922 },
+                  end: Position { line: 41, column: 48, index: 961 },
+                  filename: undefined,
+                  identifierName: undefined
+                },
+                types: [
+                  Node {
+                    type: 'TSLiteralType',
+                    start: 922,
+                    end: 931,
+                    loc: SourceLocation {
+                      start: Position { line: 41, column: 9, index: 922 },
+                      end: Position { line: 41, column: 18, index: 931 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    literal: Node {
+                      type: 'StringLiteral',
+                      start: 922,
+                      end: 931,
+                      loc: SourceLocation {
+                        start: Position { line: 41, column: 9, index: 922 },
+                        end: Position { line: 41, column: 18, index: 931 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      extra: { rawValue: 'primary', raw: "'primary'" },
+                      value: 'primary'
+                    }
+                  },
+                  Node {
+                    type: 'TSLiteralType',
+                    start: 934,
+                    end: 943,
+                    loc: SourceLocation {
+                      start: Position { line: 41, column: 21, index: 934 },
+                      end: Position { line: 41, column: 30, index: 943 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    literal: Node {
+                      type: 'StringLiteral',
+                      start: 934,
+                      end: 943,
+                      loc: SourceLocation {
+                        start: Position { line: 41, column: 21, index: 934 },
+                        end: Position { line: 41, column: 30, index: 943 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      extra: { rawValue: 'default', raw: "'default'" },
+                      value: 'default'
+                    }
+                  },
+                  Node {
+                    type: 'TSLiteralType',
+                    start: 946,
+                    end: 952,
+                    loc: SourceLocation {
+                      start: Position { line: 41, column: 33, index: 946 },
+                      end: Position { line: 41, column: 39, index: 952 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    literal: Node {
+                      type: 'StringLiteral',
+                      start: 946,
+                      end: 952,
+                      loc: SourceLocation {
+                        start: Position { line: 41, column: 33, index: 946 },
+                        end: Position { line: 41, column: 39, index: 952 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      extra: { rawValue: 'text', raw: "'text'" },
+                      value: 'text'
+                    }
+                  },
+                  Node {
+                    type: 'TSLiteralType',
+                    start: 955,
+                    end: 961,
+                    loc: SourceLocation {
+                      start: Position { line: 41, column: 42, index: 955 },
+                      end: Position { line: 41, column: 48, index: 961 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    literal: Node {
+                      type: 'StringLiteral',
+                      start: 955,
+                      end: 961,
+                      loc: SourceLocation {
+                        start: Position { line: 41, column: 42, index: 955 },
+                        end: Position { line: 41, column: 48, index: 961 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      extra: { rawValue: 'link', raw: "'link'" },
+                      value: 'link'
+                    }
+                  }
+                ]
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否禁用\n' +
+                  "   * @default 'middle'\n" +
+                  '   ',
+                start: 965,
+                end: 1042,
+                loc: SourceLocation {
+                  start: Position { line: 42, column: 2, index: 965 },
+                  end: Position { line: 46, column: 5, index: 1042 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮类型\n' +
+                  "   * @default 'default'\n" +
+                  '   ',
+                start: 836,
+                end: 912,
+                loc: SourceLocation {
+                  start: Position { line: 36, column: 2, index: 836 },
+                  end: Position { line: 40, column: 5, index: 912 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 1045,
+            end: 1081,
+            loc: SourceLocation {
+              start: Position { line: 47, column: 2, index: 1045 },
+              end: Position { line: 47, column: 38, index: 1081 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 1045,
+              end: 1049,
+              loc: SourceLocation {
+                start: Position { line: 47, column: 2, index: 1045 },
+                end: Position { line: 47, column: 6, index: 1049 },
+                filename: undefined,
+                identifierName: 'size'
+              },
+              name: 'size'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 1050,
+              end: 1080,
+              loc: SourceLocation {
+                start: Position { line: 47, column: 7, index: 1050 },
+                end: Position { line: 47, column: 37, index: 1080 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSUnionType',
+                start: 1052,
+                end: 1080,
+                loc: SourceLocation {
+                  start: Position { line: 47, column: 9, index: 1052 },
+                  end: Position { line: 47, column: 37, index: 1080 },
+                  filename: undefined,
+                  identifierName: undefined
+                },
+                types: [
+                  Node {
+                    type: 'TSLiteralType',
+                    start: 1052,
+                    end: 1059,
+                    loc: SourceLocation {
+                      start: Position { line: 47, column: 9, index: 1052 },
+                      end: Position { line: 47, column: 16, index: 1059 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    literal: Node {
+                      type: 'StringLiteral',
+                      start: 1052,
+                      end: 1059,
+                      loc: SourceLocation {
+                        start: Position { line: 47, column: 9, index: 1052 },
+                        end: Position { line: 47, column: 16, index: 1059 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      extra: { rawValue: 'small', raw: "'small'" },
+                      value: 'small'
+                    }
+                  },
+                  Node {
+                    type: 'TSLiteralType',
+                    start: 1062,
+                    end: 1070,
+                    loc: SourceLocation {
+                      start: Position { line: 47, column: 19, index: 1062 },
+                      end: Position { line: 47, column: 27, index: 1070 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    literal: Node {
+                      type: 'StringLiteral',
+                      start: 1062,
+                      end: 1070,
+                      loc: SourceLocation {
+                        start: Position { line: 47, column: 19, index: 1062 },
+                        end: Position { line: 47, column: 27, index: 1070 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      extra: { rawValue: 'middle', raw: "'middle'" },
+                      value: 'middle'
+                    }
+                  },
+                  Node {
+                    type: 'TSLiteralType',
+                    start: 1073,
+                    end: 1080,
+                    loc: SourceLocation {
+                      start: Position { line: 47, column: 30, index: 1073 },
+                      end: Position { line: 47, column: 37, index: 1080 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    literal: Node {
+                      type: 'StringLiteral',
+                      start: 1073,
+                      end: 1080,
+                      loc: SourceLocation {
+                        start: Position { line: 47, column: 30, index: 1073 },
+                        end: Position { line: 47, column: 37, index: 1080 },
+                        filename: undefined,
+                        identifierName: undefined
+                      },
+                      extra: { rawValue: 'large', raw: "'large'" },
+                      value: 'large'
+                    }
+                  }
+                ]
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮尺寸\n' +
+                  '   * @default false\n' +
+                  '   ',
+                start: 1084,
+                end: 1156,
+                loc: SourceLocation {
+                  start: Position { line: 48, column: 2, index: 1084 },
+                  end: Position { line: 52, column: 5, index: 1156 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否禁用\n' +
+                  "   * @default 'middle'\n" +
+                  '   ',
+                start: 965,
+                end: 1042,
+                loc: SourceLocation {
+                  start: Position { line: 42, column: 2, index: 965 },
+                  end: Position { line: 46, column: 5, index: 1042 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 1159,
+            end: 1178,
+            loc: SourceLocation {
+              start: Position { line: 53, column: 2, index: 1159 },
+              end: Position { line: 53, column: 21, index: 1178 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 1159,
+              end: 1167,
+              loc: SourceLocation {
+                start: Position { line: 53, column: 2, index: 1159 },
+                end: Position { line: 53, column: 10, index: 1167 },
+                filename: undefined,
+                identifierName: 'disabled'
+              },
+              name: 'disabled'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 1168,
+              end: 1177,
+              loc: SourceLocation {
+                start: Position { line: 53, column: 11, index: 1168 },
+                end: Position { line: 53, column: 20, index: 1177 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSBooleanKeyword',
+                start: 1170,
+                end: 1177,
+                loc: SourceLocation {
+                  start: Position { line: 53, column: 13, index: 1170 },
+                  end: Position { line: 53, column: 20, index: 1177 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否正在加载状态\n' +
+                  '   * @default false\n' +
+                  '   ',
+                start: 1181,
+                end: 1259,
+                loc: SourceLocation {
+                  start: Position { line: 54, column: 2, index: 1181 },
+                  end: Position { line: 58, column: 5, index: 1259 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮尺寸\n' +
+                  '   * @default false\n' +
+                  '   ',
+                start: 1084,
+                end: 1156,
+                loc: SourceLocation {
+                  start: Position { line: 48, column: 2, index: 1084 },
+                  end: Position { line: 52, column: 5, index: 1156 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 1262,
+            end: 1280,
+            loc: SourceLocation {
+              start: Position { line: 59, column: 2, index: 1262 },
+              end: Position { line: 59, column: 20, index: 1280 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 1262,
+              end: 1269,
+              loc: SourceLocation {
+                start: Position { line: 59, column: 2, index: 1262 },
+                end: Position { line: 59, column: 9, index: 1269 },
+                filename: undefined,
+                identifierName: 'loading'
+              },
+              name: 'loading'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 1270,
+              end: 1279,
+              loc: SourceLocation {
+                start: Position { line: 59, column: 10, index: 1270 },
+                end: Position { line: 59, column: 19, index: 1279 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSBooleanKeyword',
+                start: 1272,
+                end: 1279,
+                loc: SourceLocation {
+                  start: Position { line: 59, column: 12, index: 1272 },
+                  end: Position { line: 59, column: 19, index: 1279 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否防抖，可选择是否立即执行\n' +
+                  '   * @default 0\n' +
+                  '   ',
+                start: 1283,
+                end: 1363,
+                loc: SourceLocation {
+                  start: Position { line: 60, column: 2, index: 1283 },
+                  end: Position { line: 64, column: 5, index: 1363 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否正在加载状态\n' +
+                  '   * @default false\n' +
+                  '   ',
+                start: 1181,
+                end: 1259,
+                loc: SourceLocation {
+                  start: Position { line: 54, column: 2, index: 1181 },
+                  end: Position { line: 58, column: 5, index: 1259 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 1366,
+            end: 1424,
+            loc: SourceLocation {
+              start: Position { line: 65, column: 2, index: 1366 },
+              end: Position { line: 65, column: 60, index: 1424 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 1366,
+              end: 1374,
+              loc: SourceLocation {
+                start: Position { line: 65, column: 2, index: 1366 },
+                end: Position { line: 65, column: 10, index: 1374 },
+                filename: undefined,
+                identifierName: 'debounce'
+              },
+              name: 'debounce'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 1375,
+              end: 1423,
+              loc: SourceLocation {
+                start: Position { line: 65, column: 11, index: 1375 },
+                end: Position { line: 65, column: 59, index: 1423 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSUnionType',
+                start: 1377,
+                end: 1423,
+                loc: SourceLocation {
+                  start: Position { line: 65, column: 13, index: 1377 },
+                  end: Position { line: 65, column: 59, index: 1423 },
+                  filename: undefined,
+                  identifierName: undefined
+                },
+                types: [
+                  Node {
+                    type: 'TSNumberKeyword',
+                    start: 1377,
+                    end: 1383,
+                    loc: SourceLocation {
+                      start: Position { line: 65, column: 13, index: 1377 },
+                      end: Position { line: 65, column: 19, index: 1383 },
+                      filename: undefined,
+                      identifierName: undefined
+                    }
+                  },
+                  Node {
+                    type: 'TSTypeLiteral',
+                    start: 1386,
+                    end: 1423,
+                    loc: SourceLocation {
+                      start: Position { line: 65, column: 22, index: 1386 },
+                      end: Position { line: 65, column: 59, index: 1423 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    members: [
+                      Node {
+                        type: 'TSPropertySignature',
+                        start: 1388,
+                        end: 1402,
+                        loc: SourceLocation {
+                          start: Position {
+                            line: 65,
+                            column: 24,
+                            index: 1388
+                          },
+                          end: Position {
+                            line: 65,
+                            column: 38,
+                            index: 1402
+                          },
+                          filename: undefined,
+                          identifierName: undefined
+                        },
+                        key: Node {
+                          type: 'Identifier',
+                          start: 1388,
+                          end: 1393,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 65,
+                              column: 24,
+                              index: 1388
+                            },
+                            end: Position {
+                              line: 65,
+                              column: 29,
+                              index: 1393
+                            },
+                            filename: undefined,
+                            identifierName: 'delay'
+                          },
+                          name: 'delay'
+                        },
+                        computed: false,
+                        typeAnnotation: Node {
+                          type: 'TSTypeAnnotation',
+                          start: 1393,
+                          end: 1401,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 65,
+                              column: 29,
+                              index: 1393
+                            },
+                            end: Position {
+                              line: 65,
+                              column: 37,
+                              index: 1401
+                            },
+                            filename: undefined,
+                            identifierName: undefined
+                          },
+                          typeAnnotation: Node {
+                            type: 'TSNumberKeyword',
+                            start: 1395,
+                            end: 1401,
+                            loc: SourceLocation {
+                              start: Position {
+                                line: 65,
+                                column: 31,
+                                index: 1395
+                              },
+                              end: Position {
+                                line: 65,
+                                column: 37,
+                                index: 1401
+                              },
+                              filename: undefined,
+                              identifierName: undefined
+                            }
+                          }
+                        }
+                      },
+                      Node {
+                        type: 'TSPropertySignature',
+                        start: 1403,
+                        end: 1421,
+                        loc: SourceLocation {
+                          start: Position {
+                            line: 65,
+                            column: 39,
+                            index: 1403
+                          },
+                          end: Position {
+                            line: 65,
+                            column: 57,
+                            index: 1421
+                          },
+                          filename: undefined,
+                          identifierName: undefined
+                        },
+                        key: Node {
+                          type: 'Identifier',
+                          start: 1403,
+                          end: 1412,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 65,
+                              column: 39,
+                              index: 1403
+                            },
+                            end: Position {
+                              line: 65,
+                              column: 48,
+                              index: 1412
+                            },
+                            filename: undefined,
+                            identifierName: 'immediate'
+                          },
+                          name: 'immediate'
+                        },
+                        computed: false,
+                        typeAnnotation: Node {
+                          type: 'TSTypeAnnotation',
+                          start: 1412,
+                          end: 1421,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 65,
+                              column: 48,
+                              index: 1412
+                            },
+                            end: Position {
+                              line: 65,
+                              column: 57,
+                              index: 1421
+                            },
+                            filename: undefined,
+                            identifierName: undefined
+                          },
+                          typeAnnotation: Node {
+                            type: 'TSBooleanKeyword',
+                            start: 1414,
+                            end: 1421,
+                            loc: SourceLocation {
+                              start: Position {
+                                line: 65,
+                                column: 50,
+                                index: 1414
+                              },
+                              end: Position {
+                                line: 65,
+                                column: 57,
+                                index: 1421
+                              },
+                              filename: undefined,
+                              identifierName: undefined
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            trailingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否节流\n' +
+                  '   * @default false\n' +
+                  '   ',
+                start: 1427,
+                end: 1501,
+                loc: SourceLocation {
+                  start: Position { line: 66, column: 2, index: 1427 },
+                  end: Position { line: 70, column: 5, index: 1501 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ],
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否防抖，可选择是否立即执行\n' +
+                  '   * @default 0\n' +
+                  '   ',
+                start: 1283,
+                end: 1363,
+                loc: SourceLocation {
+                  start: Position { line: 60, column: 2, index: 1283 },
+                  end: Position { line: 64, column: 5, index: 1363 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          },
+          Node {
+            type: 'TSPropertySignature',
+            start: 1504,
+            end: 1562,
+            loc: SourceLocation {
+              start: Position { line: 71, column: 2, index: 1504 },
+              end: Position { line: 71, column: 60, index: 1562 },
+              filename: undefined,
+              identifierName: undefined
+            },
+            key: Node {
+              type: 'Identifier',
+              start: 1504,
+              end: 1512,
+              loc: SourceLocation {
+                start: Position { line: 71, column: 2, index: 1504 },
+                end: Position { line: 71, column: 10, index: 1512 },
+                filename: undefined,
+                identifierName: 'throttle'
+              },
+              name: 'throttle'
+            },
+            computed: false,
+            optional: true,
+            typeAnnotation: Node {
+              type: 'TSTypeAnnotation',
+              start: 1513,
+              end: 1561,
+              loc: SourceLocation {
+                start: Position { line: 71, column: 11, index: 1513 },
+                end: Position { line: 71, column: 59, index: 1561 },
+                filename: undefined,
+                identifierName: undefined
+              },
+              typeAnnotation: Node {
+                type: 'TSUnionType',
+                start: 1515,
+                end: 1561,
+                loc: SourceLocation {
+                  start: Position { line: 71, column: 13, index: 1515 },
+                  end: Position { line: 71, column: 59, index: 1561 },
+                  filename: undefined,
+                  identifierName: undefined
+                },
+                types: [
+                  Node {
+                    type: 'TSNumberKeyword',
+                    start: 1515,
+                    end: 1521,
+                    loc: SourceLocation {
+                      start: Position { line: 71, column: 13, index: 1515 },
+                      end: Position { line: 71, column: 19, index: 1521 },
+                      filename: undefined,
+                      identifierName: undefined
+                    }
+                  },
+                  Node {
+                    type: 'TSTypeLiteral',
+                    start: 1524,
+                    end: 1561,
+                    loc: SourceLocation {
+                      start: Position { line: 71, column: 22, index: 1524 },
+                      end: Position { line: 71, column: 59, index: 1561 },
+                      filename: undefined,
+                      identifierName: undefined
+                    },
+                    members: [
+                      Node {
+                        type: 'TSPropertySignature',
+                        start: 1526,
+                        end: 1540,
+                        loc: SourceLocation {
+                          start: Position {
+                            line: 71,
+                            column: 24,
+                            index: 1526
+                          },
+                          end: Position {
+                            line: 71,
+                            column: 38,
+                            index: 1540
+                          },
+                          filename: undefined,
+                          identifierName: undefined
+                        },
+                        key: Node {
+                          type: 'Identifier',
+                          start: 1526,
+                          end: 1531,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 71,
+                              column: 24,
+                              index: 1526
+                            },
+                            end: Position {
+                              line: 71,
+                              column: 29,
+                              index: 1531
+                            },
+                            filename: undefined,
+                            identifierName: 'delay'
+                          },
+                          name: 'delay'
+                        },
+                        computed: false,
+                        typeAnnotation: Node {
+                          type: 'TSTypeAnnotation',
+                          start: 1531,
+                          end: 1539,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 71,
+                              column: 29,
+                              index: 1531
+                            },
+                            end: Position {
+                              line: 71,
+                              column: 37,
+                              index: 1539
+                            },
+                            filename: undefined,
+                            identifierName: undefined
+                          },
+                          typeAnnotation: Node {
+                            type: 'TSNumberKeyword',
+                            start: 1533,
+                            end: 1539,
+                            loc: SourceLocation {
+                              start: Position {
+                                line: 71,
+                                column: 31,
+                                index: 1533
+                              },
+                              end: Position {
+                                line: 71,
+                                column: 37,
+                                index: 1539
+                              },
+                              filename: undefined,
+                              identifierName: undefined
+                            }
+                          }
+                        }
+                      },
+                      Node {
+                        type: 'TSPropertySignature',
+                        start: 1541,
+                        end: 1559,
+                        loc: SourceLocation {
+                          start: Position {
+                            line: 71,
+                            column: 39,
+                            index: 1541
+                          },
+                          end: Position {
+                            line: 71,
+                            column: 57,
+                            index: 1559
+                          },
+                          filename: undefined,
+                          identifierName: undefined
+                        },
+                        key: Node {
+                          type: 'Identifier',
+                          start: 1541,
+                          end: 1550,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 71,
+                              column: 39,
+                              index: 1541
+                            },
+                            end: Position {
+                              line: 71,
+                              column: 48,
+                              index: 1550
+                            },
+                            filename: undefined,
+                            identifierName: 'immediate'
+                          },
+                          name: 'immediate'
+                        },
+                        computed: false,
+                        typeAnnotation: Node {
+                          type: 'TSTypeAnnotation',
+                          start: 1550,
+                          end: 1559,
+                          loc: SourceLocation {
+                            start: Position {
+                              line: 71,
+                              column: 48,
+                              index: 1550
+                            },
+                            end: Position {
+                              line: 71,
+                              column: 57,
+                              index: 1559
+                            },
+                            filename: undefined,
+                            identifierName: undefined
+                          },
+                          typeAnnotation: Node {
+                            type: 'TSBooleanKeyword',
+                            start: 1552,
+                            end: 1559,
+                            loc: SourceLocation {
+                              start: Position {
+                                line: 71,
+                                column: 50,
+                                index: 1552
+                              },
+                              end: Position {
+                                line: 71,
+                                column: 57,
+                                index: 1559
+                              },
+                              filename: undefined,
+                              identifierName: undefined
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            leadingComments: [
+              {
+                type: 'CommentBlock',
+                value: '*\n' +
+                  '   * @version 1.0.0\n' +
+                  '   * @description 按钮是否节流\n' +
+                  '   * @default false\n' +
+                  '   ',
+                start: 1427,
+                end: 1501,
+                loc: SourceLocation {
+                  start: Position { line: 66, column: 2, index: 1427 },
+                  end: Position { line: 70, column: 5, index: 1501 },
+                  filename: undefined,
+                  identifierName: undefined
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]
+[
+  {
+    key: "'--button-background-color'",
+    value: ': string',
+    optional: true
+  },
+  {
+    key: "'--button-disabled-background-color'",
+    value: ': string',
+    optional: true
+  },
+  { key: 'children', value: ': React.ReactNode', optional: true },
+  {
+    key: 'style',
+    value: ': React.CSSProperties & ButtonCssTokens',
+    optional: true
+  },
+  {
+    key: 'onClick',
+    value: ': React.MouseEventHandler<HTMLButtonElement>',
+    optional: true
+  },
+  {
+    key: 'type',
+    value: ": 'primary' | 'default' | 'text' | 'link'",
+    optional: true
+  },
+  {
+    key: 'size',
+    value: ": 'small' | 'middle' | 'large'",
+    optional: true
+  },
+  { key: 'disabled', value: ': boolean', optional: true },
+  { key: 'loading', value: ': boolean', optional: true },
+  {
+    key: 'debounce',
+    value: ': number | {\n  delay: number;\n  immediate: boolean;\n}',
+    optional: true
+  },
+  { key: 'delay', value: ': number', optional: undefined },
+  { key: 'immediate', value: ': boolean', optional: undefined },
+  {
+    key: 'throttle',
+    value: ': number | {\n  delay: number;\n  immediate: boolean;\n}',
+    optional: true
+  },
+  { key: 'delay', value: ': number', optional: undefined },
+  { key: 'immediate', value: ': boolean', optional: undefined }
+]
