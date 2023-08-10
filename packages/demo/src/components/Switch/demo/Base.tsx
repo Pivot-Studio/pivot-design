@@ -1,7 +1,12 @@
 import { Switch } from 'pivot-design';
-import React, { useState } from 'react';
+import React from 'react';
 
 const App: React.FC = () => {
-  return <Switch />;
+  return (
+    <>
+      <Switch />
+      <Switch defaultValue={true} />
+    </>
+  );
 };
 export default App;
