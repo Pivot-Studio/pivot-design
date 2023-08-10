@@ -1,9 +1,18 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import router from '@/routers';
 import './index.scss';
 
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import router, { ExtraRoute } from '@/routers';
+import { list as DraggableList } from '../../components/Draggable/.catalog';
+import { list as ButtonList } from '../../components/Button/.catalog';
+import { list as InputList } from '../../components/Input/.catalog';
+import { list as PopoverList } from '../../components/Popover/.catalog';
+import { list as SkeletonList } from '../../components/Skeleton/.catalog';
+import { list as IconList } from '../../components/Icon/.catalog';
+import { list as CardList } from '../../components/Card/.catalog';
+import { list as TransitionList } from '../../components/Transition/.catalog';
+import { MDXProvider } from '@mdx-js/react';
 
 function getRouterConfig(router: ExtraRoute[], targetPath: string) {
   let res: ExtraRoute = { path: '/' };
@@ -58,11 +67,32 @@ function Index() {
     );
   };
 
+  const components = {};
+  // 标题元素加个id便于做锚点
+  [1, 2, 3, 4, 5, 6].forEach((item) => {
+    const tag = `h${item}`;
+    components[tag] = ({ children }: { children: string }) => {
+      return React.createElement(tag, { id: children }, children);
+    };
+  });
+
   return (
     <div className="pivot-design-docs-content">
       {demoSelect()}
       <div className="demo-component" id="nice">
-        <Outlet />
+        <MDXProvider components={components}>
+          <Outlet />
+        </MDXProvider>
+      </div>
+      <div className="demo-component-catalogue">
+        {select === 'draggable' && renderCatalog(DraggableList)}
+        {select === 'button' && renderCatalog(ButtonList)}
+        {select === 'card' && renderCatalog(CardList)}
+        {select === 'skeleton' && renderCatalog(SkeletonList)}
+        {select === 'popover' && renderCatalog(PopoverList)}
+        {select === 'input' && renderCatalog(InputList)}
+        {select === 'icon' && renderCatalog(IconList)}
+        {select === 'transition' && renderCatalog(TransitionList)}
       </div>
     </div>
   );

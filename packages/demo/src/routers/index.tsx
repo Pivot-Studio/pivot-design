@@ -45,7 +45,7 @@ const router: ExtraRoute[] = [
           },
           {
             path: 'draggable',
-            element: <Draggable />,
+            element: <DraggableMdx components={{ CodeBlock }} />,
             name: '拖拽列表',
           },
           {

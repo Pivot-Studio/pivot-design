@@ -12,10 +12,10 @@ const App = () => {
 function useScrollToHash() {
   const { hash } = useLocation();
   useEffect(() => {
+    const decodeHash = decodeURIComponent(hash);
     if (hash && hash.length) {
-      const element = document.querySelector(`${hash}`);
+      const element = document.querySelector(`${decodeHash}`);
       if (element) {
-        console.log(element.getBoundingClientRect());
         window.scrollTo({ top: element.getBoundingClientRect().top - 70, behavior: 'smooth' });
       }
     }
@@ -23,7 +23,11 @@ function useScrollToHash() {
 }
 
 function useAutoScrollToTop() {
+  const { hash } = useLocation();
   useLayoutEffect(() => {
+    if (hash && hash.length) {
+      return;
+    }
     document.documentElement.scrollTo(0, 0);
   }, [location.pathname]);
 }
