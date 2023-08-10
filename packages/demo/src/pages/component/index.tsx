@@ -9,6 +9,7 @@ import SkeletonMdx from '../../components/Skeleton/index.mdx';
 import PopoverMdx from '../../components/Popover/index.mdx';
 import TransitionMdx from '../../components/Transition/index.mdx';
 import DraggableMdx from '../../components/Draggable/index.mdx';
+import SwitchMdx from '../../components/Switch/index.mdx';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 import { list as DraggableList } from '../../components/Draggable/.catalog';
 import { list as ButtonList } from '../../components/Button/.catalog';
@@ -21,12 +22,15 @@ import { list as TransitionList } from '../../components/Transition/.catalog';
 import './index.scss';
 
 function Index() {
-  const [select, setSelect] = useState('Transition');
+  const [select, setSelect] = useState('Switch');
   const demoSelect = () => {
     return (
       <div className="demo-container">
         <div className={`demo-item ${select === 'Button' ? 'active' : ''}`} onClick={() => setSelect('Button')}>
           Button 按钮
+        </div>
+        <div className={`demo-item ${select === 'Switch' ? 'active' : ''}`} onClick={() => setSelect('Switch')}>
+          Switch 开关
         </div>
         <div className={`demo-item ${select === 'Card' ? 'active' : ''}`} onClick={() => setSelect('Card')}>
           Card 卡片
@@ -74,6 +78,7 @@ function Index() {
       {demoSelect()}
       <div className="demo-component" id="nice">
         {select === 'Button' ? <ButtonMdx components={{ Button, CodeBlock }} /> : null}
+        {select === 'Switch' ? <SwitchMdx components={{ CodeBlock }} /> : null}
         {select === 'Icon' ? <IconMdx components={{ Icon, CodeBlock }} /> : null}
         {select === 'Input' ? <InputMdx components={{ Input, CodeBlock }} /> : null}
         {select === 'Card' ? <CardMdx components={{ Card, CodeBlock }} /> : null}
