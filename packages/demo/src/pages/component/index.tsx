@@ -41,6 +41,11 @@ function Index() {
     if (location.pathname === '/components') {
       navigate('./button');
       setSelect('button');
+    } else {
+      const componentName = location.pathname.split('/').pop();
+      if (componentName) {
+        setSelect(componentName);
+      }
     }
   }, []);
 
