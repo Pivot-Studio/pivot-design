@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+// import router from '@/routers';
 import './index.scss';
+
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import router, { ExtraRoute } from '@/routers';
-import { Outlet, useNavigate } from 'react-router-dom';
 import { list as DraggableList } from '../../components/Draggable/.catalog';
 import { list as ButtonList } from '../../components/Button/.catalog';
 import { list as InputList } from '../../components/Input/.catalog';
@@ -32,6 +34,14 @@ function getRouterConfig(router: ExtraRoute[], targetPath: string) {
 function Index() {
   const [select, setSelect] = useState('Draggable');
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === '/components') {
+      navigate('./button');
+      setSelect('button');
+    }
+  }, []);
 
   function handleClickButton(component: string) {
     setSelect(component);
@@ -63,6 +73,7 @@ function Index() {
         {componentsList.map((item) => (
           <div
             className={`demo-item ${select === item.path ? 'active' : ''}`}
+            key={item.path}
             onClick={() => handleClickButton(item.path)}
           >
             {item.name}
