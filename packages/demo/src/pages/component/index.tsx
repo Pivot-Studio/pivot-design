@@ -111,16 +111,6 @@ function Index() {
         {select === 'icon' && renderCatalog(IconList)}
         {select === 'transition' && renderCatalog(TransitionList)}
       </div>
-      <div className="demo-component-catalogue">
-        {select === 'Draggable' && renderCatalog(DraggableList)}
-        {select === 'Button' && renderCatalog(ButtonList)}
-        {select === 'Card' && renderCatalog(CardList)}
-        {select === 'Skeleton' && renderCatalog(SkeletonList)}
-        {select === 'Popover' && renderCatalog(PopoverList)}
-        {select === 'Input' && renderCatalog(InputList)}
-        {select === 'Icon' && renderCatalog(IconList)}
-        {select === 'Transition' && renderCatalog(TransitionList)}
-      </div>
     </div>
   );
 }
