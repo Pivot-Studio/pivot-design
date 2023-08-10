@@ -38,7 +38,7 @@ module.exports = function loader(source) {
   const CodeBlockReg = /<CodeBlock(.*)>([\n\r\s\S]*?)<\/CodeBlock>/g;
   const H1Reg = /# (\w+)/;
   // eslint-disable-next-line prefer-destructuring
-  const component = H1Reg.exec(sourceCode)[1];
+  const component = H1Reg.exec(sourceCode) && H1Reg.exec(sourceCode)[1];
   let m;
   let importComponentsList = '';
   while ((m = CodeBlockReg.exec(newSource))) {

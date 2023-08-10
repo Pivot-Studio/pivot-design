@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "start": "cd packages/demo && npm run start"
+    "start": "npm run build:props && npm run build:catalog && cd packages/demo && npm run start",
+    "build:props": "node ./scripts/build_props.mjs",
+    "build:catalog": "node ./scripts/build_catalog.mjs"
   },
   "workspaces": [
     "packages/*"
@@ -12,7 +14,12 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "eslint-config-psfe": "1.0.5",
-    "husky": "^8.0.2"
+    "husky": "^8.0.2",
+    "@babel/core": "^7.19.1",
+    "@babel/helper-plugin-utils": "^7.20.2",
+    "@babel/parser": "^7.21.2",
+    "babel-plugin-jsx": "^1.2.0",
+    "es-dirname": "^0.1.0"
   },
   "dependencies": {
     "core-js": "^3.25.1",

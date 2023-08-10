@@ -9,9 +9,9 @@ import InputMdx from '@/components/Input/index.mdx';
 import CardMdx from '@/components/Card/index.mdx';
 import PopoverMdx from '@/components/Popover/index.mdx';
 import SkeletonMdx from '@/components/Skeleton/index.mdx';
+import DraggableMdx from '@/components/Draggable/index.mdx';
 
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
-import Draggable from '@/examples/Draggable/Draggable';
 
 export type ExtraRoute = RouteObject & {
   name?: string;

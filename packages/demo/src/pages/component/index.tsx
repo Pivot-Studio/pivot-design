@@ -51,6 +51,23 @@ function Index() {
 
   const componentsList = getRouterConfig(router, 'components').children as ExtraRoute[];
 
+  const renderCatalog = (list) => {
+    return (
+      <div className="catalog_content">
+        {list.map((item) => {
+          return (
+            <>
+              <div className="catalog_h2">{item.h2}</div>
+              {item.h3.map((i) => {
+                return <div className="catalog_h3">{i}</div>;
+              })}
+            </>
+          );
+        })}
+      </div>
+    );
+  };
+
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -93,6 +110,16 @@ function Index() {
         {select === 'input' && renderCatalog(InputList)}
         {select === 'icon' && renderCatalog(IconList)}
         {select === 'transition' && renderCatalog(TransitionList)}
+      </div>
+      <div className="demo-component-catalogue">
+        {select === 'Draggable' && renderCatalog(DraggableList)}
+        {select === 'Button' && renderCatalog(ButtonList)}
+        {select === 'Card' && renderCatalog(CardList)}
+        {select === 'Skeleton' && renderCatalog(SkeletonList)}
+        {select === 'Popover' && renderCatalog(PopoverList)}
+        {select === 'Input' && renderCatalog(InputList)}
+        {select === 'Icon' && renderCatalog(IconList)}
+        {select === 'Transition' && renderCatalog(TransitionList)}
       </div>
     </div>
   );
