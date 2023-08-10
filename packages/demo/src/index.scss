@@ -1,0 +1,30 @@
+.pivot-props-apiTitle {
+  margin: 55px 0 30px;
+}
+
+.pivot-props-table {
+  border-collapse: collapse;
+  padding: 40px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  th,
+  td {
+    padding: 20px 0;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+    width: auto;
+    font-weight: 500;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 14px;
+  }
+
+  td {
+    width: auto;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+  }
+}

@@ -81,7 +81,7 @@ export interface CardProps extends PivotDesignProps {
    */
   avatar?: React.ReactNode;
 }
-interface CardCssTokens {
+export interface CardCssTokens {
   /**
    * @version 1.0.0
    * @description 卡片背景颜色

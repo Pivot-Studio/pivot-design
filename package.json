@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "start": "npm run build:props && npm run build:catalog && cd packages/demo && npm run start",
+    "start": "npm run build:catalog && cd packages/demo && npm run start",
+    "start:loader": "pnpm --filter demo start:loader",
     "build:props": "node ./scripts/build_props.mjs",
     "build:catalog": "node ./scripts/build_catalog.mjs"
   },

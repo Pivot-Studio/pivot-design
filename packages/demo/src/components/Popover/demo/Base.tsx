@@ -1,8 +1,7 @@
 import { Popover } from 'pivot-design';
 import React from 'react';
-
-import './index.scss';
 import { prefix } from '../../constant';
+import './index.scss';
 
 const App: React.FC = () => {
   return (

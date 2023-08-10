@@ -3,7 +3,6 @@ import React from 'react';
 import './index.scss';
 import { prefix } from '../../constant';
 
-
 const App: React.FC = () => {
   return (
     <>

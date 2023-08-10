@@ -61,7 +61,12 @@ module.exports = {
           {
             loader: '@mdx-js/loader',
             /** @type {import('@mdx-js/loader').Options} */
-            options: {},
+            options: {
+              providerImportSource: '@mdx-js/react',
+            },
+          },
+          {
+            loader: path.resolve(__dirname, 'loaders/api/index.js'),
           },
           {
             loader: path.resolve(__dirname, 'loaders/index.js'),

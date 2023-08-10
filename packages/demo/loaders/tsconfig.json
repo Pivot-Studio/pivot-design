@@ -1,12 +1,12 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
     },
     "target": "ESNext",
-    "noEmitOnError": false
+    "module": "CommonJS",
+    "noEmitOnError": false,
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": ["loaders"]
 }
