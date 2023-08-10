@@ -11,7 +11,7 @@ const ApiTable: React.FC<ITableProps> = ({ name, params }) => {
   // console.log(params, name);
   return (
     <>
-      <h3>{name}</h3>
+      <h3 className="pivot-props-apiTitle">{name}</h3>
       <table className="pivot-props-table">
         <thead>
           <tr>
@@ -26,11 +26,13 @@ const ApiTable: React.FC<ITableProps> = ({ name, params }) => {
           {params.map((param) => {
             return (
               <tr>
-                <td>{param.key}</td>
-                <td>{param.description}</td>
-                <td>{param.value}</td>
-                <td>{param.default && param.default.length && param.default !== 'undefined' ? param.default : '—'}</td>
-                <td>{param.version}</td>
+                <td style={{ width: '15%' }}>{param.key}</td>
+                <td style={{ width: '40%' }}>{param.description}</td>
+                <td style={{ width: '20%' }}>{param.value}</td>
+                <td style={{ width: '15%' }}>
+                  {param.default && param.default.length && param.default !== 'undefined' ? param.default : '—'}
+                </td>
+                <td style={{ width: '10%' }}>{param.version}</td>
               </tr>
             );
           })}
