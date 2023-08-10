@@ -57,9 +57,9 @@ module.exports = function loader(source) {
     // 如 <demo />
     const importName = isImport
       ? m[2]
-        .match(/<([\s\S]*?)\/>/g)[0]
-        .slice(1, -2)
-        .trim()
+          .match(/<([\s\S]*?)\/>/g)[0]
+          .slice(1, -2)
+          .trim()
       : null;
 
     if (isImport) {

@@ -96,7 +96,7 @@ function loader(source: string) {
       sourceCode = sourceCode.replace(initialVal, propsNode);
     }
     // 添加ApiTable的import\
-    sourceCode = 'import ApiTable from "../../ApiTable.tsx"\n' + sourceCode;
+    sourceCode = 'import ApiTable from "../../ApiTable.tsx";\n\n' + sourceCode;
   }
 
   return sourceCode;
