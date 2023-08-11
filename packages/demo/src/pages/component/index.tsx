@@ -105,7 +105,7 @@ function Index() {
         <MDXProvider components={components}>
           <Outlet />
         </MDXProvider>
-      </div>
+``      </div>
       <div className="demo-component-catalogue">
         {select === 'draggable' && renderCatalog(DraggableList)}
         {select === 'button' && renderCatalog(ButtonList)}
