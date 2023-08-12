@@ -1,9 +1,10 @@
 .pivot-code-box {
+  max-width: 900px;
   position: relative;
   margin: 30px 0;
   overflow: hidden;
   border: 1px solid rgba(243, 242, 242, 0.1);
-  border-radius: 6px;
+  border-radius: 12px;
   &-actions {
     display: flex;
     flex-direction: row-reverse;
@@ -16,11 +17,10 @@
   &-demo {
     padding: 60px 30px;
     display: flex;
-    border: 1px solid rgba(243, 242, 242, 0.1);
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
+    background-color: var(--semi-color-fill-0);
     > :not(.PIVOT-draggable-item) {
       margin: 0 24px;
     }

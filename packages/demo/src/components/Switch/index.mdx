@@ -1,0 +1,21 @@
+import Props from './props.mdx';
+
+# Switch
+
+Switch 开关是用于切换两种互斥状态的常见控件。
+
+## 基本用法
+
+你可以直接通过`<Switch />`来渲染一个开关，此时该组件是一个非受控组件，你可以通过`defaultValue`来给开关控制它的初始值。
+
+<CodeBlock>
+  <Base />
+</CodeBlock>
+
+## 受控组件
+
+你可以传入`value`、`onChange`属性来让开关变成受控组件。
+
+<CodeBlock>
+  <Controlled />
+</CodeBlock>
