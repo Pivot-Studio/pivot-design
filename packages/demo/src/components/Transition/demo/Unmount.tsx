@@ -19,7 +19,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ color: 'black' }}>
+    <div>
       <Transition in={inProp} timeout={duration} unmountOnExit={true} mountOnEnter={true}>
         {(state: any) => {
           return (

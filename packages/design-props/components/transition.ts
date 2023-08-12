@@ -6,14 +6,15 @@ export type timeoutType = number | { enter?: number, exit?: number, appear?: num
 export interface TransitionPropTypes {
   /**
    * @version 1.0.0
+   * @description 动画绑定的元素
+   */
+  nodeRef?: React.RefObject<HTMLElement | null>;
+  /**
+   * @version 1.0.0
    * @description 用来控制进场、出场状态切换
    * @default true
    */
   in?: boolean;
-  /**
-   *  子组件，是一个函数或者ReactNode，
-   *  如果为函数时其接受参数为刚刚介绍到的entering、entered 、exiting、exited 四个状态值
-   */
   /**
    * @version 1.0.0
    * @description 子组件，是一个函数或者ReactNode，如果为函数时其接受参数为entering、entered 、exiting、exited
@@ -57,37 +58,51 @@ export interface TransitionPropTypes {
   /**
    * @version 1.0.0
    * @description 进场动画执行前调用回调函数
-   * @default () => {}
    */
-  onEnter?: (node?: Element | null, isAppearing?: boolean) => void;
+  onEnter?: (node?: HTMLElement | null, isAppearing?: boolean) => void;
   /**
    * @version 1.0.0
    * @description 进场动画执行中调用
-   * @default () => {}
    */
-  onEntering?: (node?: Element | null, isAppearing?: boolean) => void;
+  onEntering?: (node?: HTMLElement | null, isAppearing?: boolean) => void;
   /**
    * @version 1.0.0
    * @description 进场动画执行完毕调用
-   * @default () => {}
    */
-  onEntered?: (node?: Element | null, isAppearing?: boolean) => void;
+  onEntered?: (node?: HTMLElement | null, isAppearing?: boolean) => void;
   /**
    * @version 1.0.0
    * @description 退场动画开始执行时调用
-   * @default () => {}
    */
-  onExit?: (node?: Element | null) => void;
+  onExit?: (node?: HTMLElement | null) => void;
   /**
    * @version 1.0.0
    * @description 退场动画执行中时调用
-   * @default () => {}
    */
-  onExiting?: (node?: Element | null) => void;
+  onExiting?: (node?: HTMLElement | null) => void;
   /**
    * @version 1.0.0
    * @description 退场动画执行完毕调用
-   * @default () => {}
    */
-  onExited?: (node?: Element | null) => void;
+  onExited?: (node?: HTMLElement | null) => void;
+}
+
+export interface CSSTransitionPropsTypes extends TransitionPropTypes {
+  /**
+   * @version 1.0.0
+   * @description class类型，可以传入对应的class类名，在元素不同阶段会自动变更
+   */
+  classNames?:
+    | string
+    | {
+        appear?: string,
+        appearActive?: string,
+        appearDone?: string,
+        enter?: string,
+        enterActive?: string,
+        enterDone?: string,
+        exit?: string,
+        exitActive?: string,
+        exitDone?: string,
+      };
 }

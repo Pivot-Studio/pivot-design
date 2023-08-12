@@ -1,92 +1,84 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { addOneClass, removeOneClass } from '../utils/domClass';
-// import Transition from './Transition';
+import { forceReflow, removeClass, addClass } from '../utils/domClass';
 import Transition from './index';
+import useStateRef from '../utils/useStateRef';
+import { CSSTransitionPropsTypes } from 'pivot-design-props';
 
-import { classNamesShape } from '../utils/PropTypes';
-
-const forceReflow = (node: any) => node.scrollTop;
-const addClassF = (node: any, classes: any) =>
-  node && classes && classes.split(' ').forEach((c: any) => addOneClass(node, c));
-const removeClass = (node: any, classes: any) =>
-  node && classes && classes.split(' ').forEach((c: any) => removeOneClass(node, c));
-
-const CSSTransition: any = (props: any) => {
-  const [appliedClasses, setAppliedClasses] = useState({
+const CSSTransition: React.FC<CSSTransitionPropsTypes> = (props) => {
+  const [, setAppliedClasses, appliedClassesRef] = useStateRef({
     appear: {},
     enter: {},
     exit: {},
   });
 
-  const onEnter = (maybeNode: any, maybeAppearing: any) => {
-    const [node, appearing] = resolveArguments(maybeNode, maybeAppearing);
+  const onEnter = (maybeNode: HTMLElement, maybeAppearing?: boolean) => {
+    const [node, appearing] = [maybeNode, maybeAppearing];
     removeClasses(node, 'exit');
-    addClass(node, appearing ? 'appear' : 'enter', 'base');
+    addClasses(node, appearing ? 'appear' : 'enter', 'base');
 
     if (props.onEnter) {
       props.onEnter(maybeNode, maybeAppearing);
     }
   };
 
-  const onEntering = (maybeNode: any, maybeAppearing: any) => {
+  const onEntering = (maybeNode: HTMLElement, maybeAppearing?: boolean) => {
     const [node, appearing] = resolveArguments(maybeNode, maybeAppearing);
     const type = appearing ? 'appear' : 'enter';
-    addClass(node, type, 'active');
+    addClasses(node, type, 'active');
 
     if (props.onEntering) {
       props.onEntering(maybeNode, maybeAppearing);
     }
   };
 
-  const onEntered = (maybeNode: any, maybeAppearing: any) => {
+  const onEntered = (maybeNode: HTMLElement, maybeAppearing: boolean) => {
     const [node, appearing] = resolveArguments(maybeNode, maybeAppearing);
     const type = appearing ? 'appear' : 'enter';
     removeClasses(node, type);
-    addClass(node, type, 'done');
+    addClasses(node, type, 'done');
 
     if (props.onEntered) {
       props.onEntered(maybeNode, maybeAppearing);
     }
   };
 
-  const onExit = (maybeNode: any) => {
+  const onExit = (maybeNode: HTMLElement) => {
     const [node] = resolveArguments(maybeNode);
     removeClasses(node, 'appear');
     removeClasses(node, 'enter');
-    addClass(node, 'exit', 'base');
+    addClasses(node, 'exit', 'base');
 
     if (props.onExit) {
       props.onExit(maybeNode);
     }
   };
 
-  const onExiting = (maybeNode: any) => {
+  const onExiting = (maybeNode: HTMLElement) => {
     const [node] = resolveArguments(maybeNode);
-    addClass(node, 'exit', 'active');
+    addClasses(node, 'exit', 'active');
 
     if (props.onExiting) {
       props.onExiting(maybeNode);
     }
   };
 
-  const onExited = (maybeNode: any) => {
+  const onExited = (maybeNode: HTMLElement) => {
     const [node] = resolveArguments(maybeNode);
     removeClasses(node, 'exit');
-    addClass(node, 'exit', 'done');
+    addClasses(node, 'exit', 'done');
 
     if (props.onExited) {
       props.onExited(maybeNode);
     }
   };
 
-  const resolveArguments = (maybeNode: any, maybeAppearing: any = null) =>
+  // 如果外层绑定了ref，就使用外层传入的nodeRef
+  const resolveArguments = (maybeNode: HTMLElement, maybeAppearing?: boolean) =>
     props.nodeRef
-      ? [props.nodeRef.current, maybeNode] // here `maybeNode` is actually `appearing`
-      : [maybeNode, maybeAppearing]; // `findDOMNode` was used
+      ? ([props.nodeRef.current, maybeNode] as unknown as [HTMLElement, boolean])
+      : ([maybeNode, maybeAppearing] as [HTMLElement, boolean]);
 
-  const getClassNames = (type: any) => {
-    const { classNames } = props;
+  const getClassNames = (type: string) => {
+    const { classNames = '' } = props;
     const isStringClassNames = typeof classNames === 'string';
     const prefix = isStringClassNames && classNames ? `${classNames}-` : '';
 
@@ -103,7 +95,8 @@ const CSSTransition: any = (props: any) => {
     };
   };
 
-  const addClass = (node: any, type: any, phase: any = '') => {
+  // 添加对应的类型
+  const addClasses = (node: HTMLElement, type: string, phase = '') => {
     let className = getClassNames(type)[`${phase}ClassName`];
     const { doneClassName } = getClassNames('enter');
 
@@ -111,31 +104,37 @@ const CSSTransition: any = (props: any) => {
       className += ` ${doneClassName}`;
     }
 
-    // This is to force a repaint,
-    // which is necessary in order to transition styles when adding a class name.
+    // 强制刷新
     if (phase === 'active') {
       if (node) forceReflow(node);
     }
 
     if (className) {
-      setAppliedClasses((prevAppliedClasses) => ({
-        ...prevAppliedClasses,
-        [type]: {
-          ...prevAppliedClasses[type],
-          [phase]: className,
-        },
-      }));
-      addClassF(node, className);
+      setAppliedClasses((prevAppliedClasses) => {
+        return {
+          ...prevAppliedClasses,
+          [type]: {
+            ...prevAppliedClasses[type],
+            [phase]: className,
+          },
+        };
+      });
+      addClass(node, className);
     }
+    //
   };
 
-  const removeClasses = (node: any, type: any) => {
-    const { base: baseClassName, active: activeClassName, done: doneClassName } = appliedClasses[type];
+  // 移除所有class
+  const removeClasses = (node: HTMLElement, type: string) => {
+    const newAppliedClasses = appliedClassesRef.current || {};
+    const { base: baseClassName, active: activeClassName, done: doneClassName } = newAppliedClasses[type];
 
-    setAppliedClasses((prevAppliedClasses) => ({
-      ...prevAppliedClasses,
-      [type]: {},
-    }));
+    setAppliedClasses((prevAppliedClasses) => {
+      return {
+        ...prevAppliedClasses,
+        [type]: {},
+      };
+    });
 
     if (baseClassName) {
       removeClass(node, baseClassName);
@@ -161,24 +160,6 @@ const CSSTransition: any = (props: any) => {
       onExited={onExited}
     />
   );
-};
-
-CSSTransition.propTypes = {
-  ...Transition.propTypes,
-
-  classNames: classNamesShape,
-
-  onEnter: PropTypes.func,
-
-  onEntering: PropTypes.func,
-
-  onEntered: PropTypes.func,
-
-  onExit: PropTypes.func,
-
-  onExiting: PropTypes.func,
-
-  onExited: PropTypes.func,
 };
 
 export default CSSTransition;

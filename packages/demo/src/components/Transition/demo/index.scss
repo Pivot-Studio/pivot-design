@@ -1,13 +1,26 @@
 @import '../../common.scss';
 
-button {
-  margin: 20px;
-  padding: 3px 15px;
-  background-color: #fff;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-}
 .show-box {
   height: 20px;
+}
+
+.css-show-box {
+  opacity: 0;
+  &-enter {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  &-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 500ms, transform 500ms;
+  }
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 500ms, transform 500ms;
+  }
 }

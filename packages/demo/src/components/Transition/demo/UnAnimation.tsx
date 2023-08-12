@@ -16,7 +16,7 @@ const App: React.FC = () => {
     exited: { opacity: 0, transition: `opacity ${duration}ms` },
   };
   return (
-    <div style={{ color: 'black' }}>
+    <div>
       <Transition in={inProp} timeout={duration} enterAnimation={false}>
         {(state: any) => {
           return (
