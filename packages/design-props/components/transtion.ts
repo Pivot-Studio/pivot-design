@@ -59,35 +59,35 @@ export interface TransitionPropTypes {
    * @description 进场动画执行前调用回调函数
    * @default () => {}
    */
-  onEnter?: (node?: Element, isAppearing?: boolean) => void;
+  onEnter?: (node?: Element | null, isAppearing?: boolean) => void;
   /**
    * @version 1.0.0
    * @description 进场动画执行中调用
    * @default () => {}
    */
-  onEntering?: (node?: Element, isAppearing?: boolean) => void;
+  onEntering?: (node?: Element | null, isAppearing?: boolean) => void;
   /**
    * @version 1.0.0
    * @description 进场动画执行完毕调用
    * @default () => {}
    */
-  onEntered?: (node?: Element, isAppearing?: boolean) => void;
+  onEntered?: (node?: Element | null, isAppearing?: boolean) => void;
   /**
    * @version 1.0.0
    * @description 退场动画开始执行时调用
    * @default () => {}
    */
-  onExit?: (node?: Element) => void;
+  onExit?: (node?: Element | null) => void;
   /**
    * @version 1.0.0
    * @description 退场动画执行中时调用
    * @default () => {}
    */
-  onExiting?: (node?: Element) => void;
+  onExiting?: (node?: Element | null) => void;
   /**
    * @version 1.0.0
    * @description 退场动画执行完毕调用
    * @default () => {}
    */
-  onExited?: (node?: Element) => void;
+  onExited?: (node?: Element | null) => void;
 }
