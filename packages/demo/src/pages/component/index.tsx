@@ -22,7 +22,7 @@ import { list as TransitionList } from '../../components/Transition/.catalog';
 import './index.scss';
 
 function Index() {
-  const [select, setSelect] = useState('Transition');
+  const [select, setSelect] = useState('Switch');
   const demoSelect = () => {
     return (
       <div className="demo-container">
