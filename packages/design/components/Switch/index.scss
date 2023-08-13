@@ -2,29 +2,22 @@
 
 .#{$prefix}-switch {
   position: relative;
-  width: 42px;
-  height: 24px;
-  border-radius: 12px;
+
   background-color: var(--semi-color-fill-2);
   transition: background 200ms ease-in;
-
   &.checked {
     background-color: var(--semi-color-success);
-    .#{$prefix}-switch-pole {
-      transform: translateX(20px);
-    }
   }
-
   &-pole {
-    position: absolute;
-    top: 2px;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    transform: translateX(2px);
     background-color: var(--semi-color-white);
     transition: transform 200ms ease-in;
+  }
+  &-text {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    transform: translateY(-50%);
+    color: var(--semi-color-white);
   }
   &-input {
     position: absolute;
@@ -34,5 +27,75 @@
     right: 0;
     opacity: 0;
     z-index: 1;
+  }
+
+  &.#{$prefix}-switch-size-normal {
+    width: 42px;
+    height: 24px;
+    border-radius: 12px;
+    .#{$prefix}-switch {
+      &-pole {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        transform: translateX(2px);
+      }
+      &-text {
+        right: 2px;
+        width: 18px;
+        font-size: 12px;
+      }
+    }
+
+    &.checked {
+      .#{$prefix}-switch {
+        &-pole {
+          transform: translateX(20px);
+        }
+        &-text {
+          left: 2px;
+          width: 18px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  &.#{$prefix}-switch-size-large {
+    width: 56px;
+    height: 32px;
+    border-radius: 16px;
+    .#{$prefix}-switch {
+      &-pole {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        transform: translateX(2px);
+      }
+      &-text {
+        right: 2px;
+        width: 26px;
+        font-size: 16px;
+      }
+    }
+
+    &.checked {
+      .#{$prefix}-switch {
+        &-pole {
+          transform: translateX(26px);
+        }
+        &-text{
+          left: 2px;
+          width: 26px;
+          font-size: 16px;
+        }
+      }
+    }
   }
 }
