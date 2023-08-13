@@ -1,10 +1,12 @@
 import { forceReflow, removeClass, addClass } from '../utils/domClass';
 import Transition from './index';
-import useStateRef from '../utils/useStateRef';
+// import useStateRef from '../utils/useStateRef';
 import { CSSTransitionPropsTypes } from 'pivot-design-props';
+import { useState } from 'react';
+import { useEvent } from '../utils/useEvent';
 
 const CSSTransition: React.FC<CSSTransitionPropsTypes> = (props) => {
-  const [, setAppliedClasses, appliedClassesRef] = useStateRef({
+  const [appliedClasses, setAppliedClasses] = useState({
     appear: {},
     enter: {},
     exit: {},
@@ -125,8 +127,8 @@ const CSSTransition: React.FC<CSSTransitionPropsTypes> = (props) => {
   };
 
   // 移除所有class
-  const removeClasses = (node: HTMLElement, type: string) => {
-    const newAppliedClasses = appliedClassesRef.current || {};
+  const removeClasses = useEvent((node: HTMLElement, type: string) => {
+    const newAppliedClasses = appliedClasses || {};
     const { base: baseClassName, active: activeClassName, done: doneClassName } = newAppliedClasses[type];
 
     setAppliedClasses((prevAppliedClasses) => {
@@ -145,7 +147,7 @@ const CSSTransition: React.FC<CSSTransitionPropsTypes> = (props) => {
     if (doneClassName) {
       removeClass(node, doneClassName);
     }
-  };
+  });
 
   const { classNames: _, ...restProps } = props;
 
