@@ -1,4 +1,4 @@
-import { Transition } from 'pivot-design';
+import { Button, Transition } from 'pivot-design';
 import React, { useState } from 'react';
 import './index.scss';
 
@@ -16,7 +16,7 @@ const App: React.FC = () => {
     exited: { opacity: 0 },
   };
   return (
-    <div style={{ color: 'black' }}>
+    <div>
       <Transition
         in={inProp}
         timeout={duration}
@@ -41,13 +41,13 @@ const App: React.FC = () => {
           );
         }}
       </Transition>
-      <button
+      <Button
         onClick={() => {
           setInProp((inProp) => !inProp);
         }}
       >
         {inProp ? '隐藏' : '展示'}
-      </button>
+      </Button>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import './index.scss';
 import useControlled from '../hooks/useControlled';
 import { ReactNode } from 'react';
 
+
 interface SwitchProps {
   value?: boolean;
   defaultValue?: boolean;

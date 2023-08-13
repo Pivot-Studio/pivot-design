@@ -14,12 +14,12 @@ export enum StatusEnum {
 
 const Transition: React.FC<TransitionPropTypes> = ({
   children,
-  onEnter = () => {},
-  onEntering = () => {},
-  onEntered = () => {},
-  onExit = () => {},
-  onExiting = () => {},
-  onExited = () => {},
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
   in: _in = true, // 获取外部传入的in，代表组件是否展示
   timeout: preTimeout,
   appear = false, // 第一次加载时，是否需要进场动画
@@ -33,16 +33,15 @@ const Transition: React.FC<TransitionPropTypes> = ({
   const initialStatus = useRef<StatusEnum | null>(null); // 初始状态
   const appearStatus = useRef<StatusEnum | null>(null); // 初始状态
 
-  const [status, setStatus] = useState<StatusEnum | null>(initStatus()); // 设置初始化状态
-
-  const unmountedRef = useUnmountedRef(); // 判断当前组件是否已被卸载
-  const inRef = useRef<boolean | null>(null); // 用于props的in
-  const isMountingRef = useRef<boolean>(false); // 用于props的in
-
+  const [status, setStatus] = useState<StatusEnum | null>(initStatus()); // 设置组件初始化状态
+  const preStatus = usePrevious(status); // status变量改变前的值
   const nextStatusRef = useRef<StatusEnum | null>(null); // 预设下一个状态，便于取消之前已失效的safeSetStatus
 
-  const preStatus = usePrevious(status);
+  const inRef = useRef<boolean | null>(null); // 用于props的in
+  const isMountingRef = useRef<boolean>(false); // 是否是初次挂载，初次挂载在in或status要特殊判断
 
+  const nodeRef = useRef<HTMLDivElement>(null); // 用于获取组件实际的dom节点
+  const unmountedRef = useUnmountedRef(); // 判断当前组件是否已被卸载
   const timeouts = getFormateTimeouts(preTimeout); // 规范化后的时间，包括进场时间、退场时间、首次挂载进场时间
 
   // 控制 Transition 的子组件在首次挂载的时候是否执行进场动画
@@ -56,7 +55,7 @@ const Transition: React.FC<TransitionPropTypes> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // in 变化时组件状态
+  // in 或 status 变化时组件状态
   useEffect(() => {
     // 初次挂载时，不执行
     if (isMountingRef.current) {
@@ -151,11 +150,13 @@ const Transition: React.FC<TransitionPropTypes> = ({
   const performEnter = async (isMounting = false) => {
     const enterTimeout = isMounting && appear ? timeouts.appear : timeouts.enter;
 
-    onEnter?.();
+    const node = nodeRef.current;
+
+    onEnter?.(node, isMounting);
     if (!enterAnimation) {
       // 不执行进场动画，直接跳转到entered状态
       safeSetStatus(StatusEnum.ENTERED, () => {
-        onEntered?.();
+        onEntered?.(node, isMounting);
         if (isMounting) isMountingRef.current = false;
       });
       return;
@@ -165,11 +166,11 @@ const Transition: React.FC<TransitionPropTypes> = ({
     setTimeout(() => {
       // 先更新状态为ENTERING，然后在指定时间后更新状态为 StatusEnum.ENTERED
       safeSetStatus(StatusEnum.ENTERING, () => {
-        onEntering?.();
+        onEntering?.(node, isMounting);
 
         onTransitionEnd(enterTimeout, StatusEnum.ENTERING, () => {
           safeSetStatus(StatusEnum.ENTERED, () => {
-            onEntered?.();
+            onEntered?.(node, isMounting);
             if (isMounting) isMountingRef.current = false;
           });
         });
@@ -179,22 +180,24 @@ const Transition: React.FC<TransitionPropTypes> = ({
 
   /** 执行退场相关操作 */
   const performExit = () => {
-    onExit?.();
+    const node = nodeRef.current;
+
+    onExit?.(node);
 
     if (!exitAnimation) {
       // 不执行出场动画，直接跳转到exited状态
       safeSetStatus(StatusEnum.EXITED, () => {
-        onExited?.();
+        onExited?.(node);
       });
       return;
     }
 
     // 先更新状态为EXITING、然后在指定时间后将状态更新为 StatusEnum.EXITED
     safeSetStatus(StatusEnum.EXITING, () => {
-      onExiting?.();
+      onExiting?.(node);
       onTransitionEnd(timeouts.exit, StatusEnum.EXITING, () => {
         safeSetStatus(StatusEnum.EXITED, () => {
-          onExited?.();
+          onExited?.(node);
         });
       });
     });
@@ -217,11 +220,13 @@ const Transition: React.FC<TransitionPropTypes> = ({
   }
 
   return (
-    <>
+    // <TransitionGroupContext.Provider value={null}>
+    <div ref={nodeRef}>
       {typeof children === 'function'
         ? children(status as StatusEnum)
         : React.cloneElement(React.Children.only(children) as React.ReactElement, childProps)}
-    </>
+    </div>
+    // </TransitionGroupContext.Provider>
   );
 };
 

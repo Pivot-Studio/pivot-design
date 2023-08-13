@@ -2,7 +2,6 @@
 
 .#{$prefix}-switch {
   position: relative;
-
   background-color: var(--semi-color-fill-2);
   transition: background 200ms ease-in;
   &.checked {
@@ -19,6 +18,7 @@
     transform: translateY(-50%);
     color: var(--semi-color-white);
   }
+
   &-input {
     position: absolute;
     left: 0;
