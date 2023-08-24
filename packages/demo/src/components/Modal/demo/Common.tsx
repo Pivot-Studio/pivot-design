@@ -5,16 +5,16 @@ const App: React.FC = () => {
   const onchange = () => {
     setOpen(true);
   };
-  const ModalOK = () => {
+  const onOk = () => {
     setOpen(false);
   };
-  const ModalCancel = () => {
+  const onCancel = () => {
     setOpen(false);
   };
   return (
     <>
-      <Modal title="这是" content="Hello world" open={open} modalOK={ModalOK} modalCancel={ModalCancel}>
-        <p>h1这是内容</p>
+      <Modal title="这是" open={open} onOk={onOk} onCancel={onCancel}>
+        h1这是内容
       </Modal>
       <Button onClick={onchange}>按钮</Button>
     </>

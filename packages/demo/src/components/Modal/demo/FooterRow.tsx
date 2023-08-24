@@ -5,10 +5,10 @@ const App: React.FC = () => {
   const onchange = () => {
     setOpen(true);
   };
-  const ModalOK = () => {
+  const onOk = () => {
     setOpen(false);
   };
-  const ModalCancel = () => {
+  const onCancel = () => {
     setOpen(false);
   };
   return (
@@ -17,8 +17,8 @@ const App: React.FC = () => {
         title="这是"
         content="Hello world"
         open={open}
-        modalOK={ModalOK}
-        modalCancel={ModalCancel}
+        onOk={onOk}
+        onCancel={onCancel}
         footerButtonDirection={'col'}
         cancelButtonProps={{ disabled: true }}
       >

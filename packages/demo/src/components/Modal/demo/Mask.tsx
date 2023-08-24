@@ -2,49 +2,41 @@ import { Button, Modal } from 'pivot-design';
 import React, { useState } from 'react';
 const App: React.FC = () => {
   const [openOne, setOpenOne] = useState(false);
+  const [openSecond, setOpenSecond] = useState(false);
   const onchangeOne = () => {
     setOpenOne(true);
   };
-  const ModalOKOne = () => {
+  const onOkOne = () => {
     setOpenOne(false);
   };
-  const ModalCancelOne = () => {
+  const onCancelOne = () => {
     setOpenOne(false);
   };
-  const [openTwo, setOpenTwo] = useState(false);
-  const onchangeTwo = () => {
-    setOpenTwo(true);
+
+  const onchangeSecond = () => {
+    setOpenSecond(true);
   };
-  const ModalOKTwo = () => {
-    setOpenTwo(false);
-  };
-  const ModalCancelTwo = () => {
-    setOpenTwo(false);
+
+  const onCancelSecond = () => {
+    setOpenSecond(false);
   };
   return (
     <>
-      <Modal
-        title="这是"
-        content="Hello world"
-        open={openOne}
-        modalOK={ModalOKOne}
-        modalCancel={ModalCancelOne}
-        isMask={false}
-      >
-        <p>h1这是内容</p>
+      <Modal title="没有蒙层的模态框" open={openOne} onOk={onOkOne} onCancel={onCancelOne} hasMask={false}>
+        没有蒙层
       </Modal>
-      <Button onClick={onchangeOne}>取消蒙层</Button>
+      <Button onClick={onchangeOne}>没有蒙层</Button>
+
       <Modal
-        title="这是"
-        content="Hello world"
-        open={openTwo}
-        modalOK={ModalOKTwo}
-        modalCancel={ModalCancelTwo}
-        maskstyle={{ backgroundImage: 'linear-gradient(-90deg, #596164 1%, #868F96 99%)' }}
+        title="点击蒙层不会消失的模态框"
+        open={openSecond}
+        onCancel={onCancelSecond}
+        maskClosable={false}
+        hasMask={true}
       >
-        <p>h1这是内容</p>
+        点击蒙层不会消失的模态框
       </Modal>
-      <Button onClick={onchangeTwo}>自定义蒙层</Button>
+      <Button onClick={onchangeSecond}>点击蒙层</Button>
     </>
   );
 };

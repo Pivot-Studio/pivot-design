@@ -15,7 +15,7 @@ import Draggable from '@/examples/Draggable/Draggable';
 import CodeBlock from '@/components/_CodeBlock/codeBlock';
 
 function Index() {
-  const [select, setSelect] = useState('Draggable');
+  const [select, setSelect] = useState('Modal');
   const demoSelect = () => {
     return (
       <div className="demo-container">

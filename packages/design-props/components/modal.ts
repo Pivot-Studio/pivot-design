@@ -31,25 +31,20 @@ export interface ModalProps extends PivotDesignProps {
    * @description 对话框标题
    * @default undefined
    */
-  title?: String | React.ReactNode;
-  /**
-   * @version 1.0.0
-   * @description 对话框内容
-   * @default undefined
-   */
-  content?: String | React.ReactNode;
+  title?: React.ReactNode;
+
   /**
    * @version 1.0.0
    * @description 确定函数
    * @default undefined
    */
-  modalOK?: (e: MouseEvent<HTMLElement>) => void;
+  onOk?: (e?: MouseEvent<HTMLElement>) => void;
   /**
    * @version 1.0.0
    * @description 取消函数
    * @default undefined
    */
-  modalCancel?: (e: MouseEvent<HTMLElement>) => void;
+  onCancel?: (e?: MouseEvent<HTMLElement>) => void;
   /**
    * @version 1.0.0
    * @description 对话框是否开启
@@ -61,7 +56,7 @@ export interface ModalProps extends PivotDesignProps {
    * @description 底部内容
    * @default undefined
    */
-  footer?: null | React.ReactNode;
+  footer?: React.ReactNode;
   /**
    * @version 1.0.0
    * @description 底部按钮排列方向
@@ -97,7 +92,13 @@ export interface ModalProps extends PivotDesignProps {
    * @description 是否开启蒙层
    * @default true
    */
-  isMask?: boolean;
+  hasMask?: boolean;
+  /**
+   * @version 1.0.0
+   * @description 点击蒙层是否关闭模态框
+   * @default true
+   */
+  maskClosable?: boolean;
   /**
    * @version 1.0.0
    * @description 取消按钮参数

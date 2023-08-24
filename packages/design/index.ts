@@ -16,10 +16,8 @@ import Card from './components/Card';
 import { Modal, useModal } from './components/Modal';
 import Skeleton from './components/Skeleton';
 import Popover from './components/Popover/';
-export * from './components/hooks';
+export * from './components/Modal';
 export { Button, Icon, Input, Card, Skeleton, Popover, Modal, useModal };
-//export { DraggableItem, DndContext, Sortable, useDraggable, Droppable } from './components/Draggable';
-//export { Button, Icon, Input, Card, Skeleton, Popover };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();

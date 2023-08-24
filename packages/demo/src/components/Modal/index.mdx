@@ -1,33 +1,45 @@
 # Modal
-一个简易的对话框组件，需要一个简洁的确认框询问用户时,支持useModal.
-## 普通样式
-一个基本的对话框
+
+模态对话框组件，用于展示需要用户确认的重要信息。
+
+## 基本用法
+
+最基本的模态对话框用法
+
 <CodeBlock line={'5-7'}>
-<Common/>
+  <Common />
 </CodeBlock>
-## 自定义底部样式
-更复杂的例子，自定义了页脚的按钮，也可以通过Buttonprops改变页脚样式
-不需要默认确定取消按钮时，你可以把 footer 设为 null。
+
+## 底部按钮组定制
+
+提供自定义底部按钮，可以通过 `OkButtonProps`，`cancelButtonProps` 控制 Button，还可以传入 `footer` 来自定义模态框的底部。
+
 <CodeBlock line={'7-11'}>
-<FooterRow/>
+  <FooterRow />
 </CodeBlock>
-## 自定义位置
-通过传递position属性，改变对话框的初始位置
+
+## 弹窗出现位置
+
+通过 `position` 属性，从而改变模态框的出现位置。
+
 <CodeBlock line={'7-11'}>
-<Position/>
+  <Position />
 </CodeBlock>
-## 可拖动
-通过DndContext, DraggableItem实现对话框拖拽
+
+## 蒙层动作自定义
+
+你可以通过给 `hasMask` 传入 `false` 来关闭模态框的蒙层。
+
 <CodeBlock line={'7-11'}>
-<Dragge/>
+  <Mask />
 </CodeBlock>
-## 自定义蒙层
-更改蒙层样式和是否开启蒙层
+
+{/* ## 使用 Hooks 获取上下文 */}
+
+{/* 通过 useModal 创建支持读取 context 的 contextHolder */}
+
+{/* 
 <CodeBlock line={'7-11'}>
-<Mask/>
-</CodeBlock>
-## 使用Hooks获取上下文
-通过useModal 创建支持读取 context 的 contextHolder
-<CodeBlock line={'7-11'}>
-<UseModal/>
-</CodeBlock>
+  <UseModal />
+</CodeBlock> 
+*/}

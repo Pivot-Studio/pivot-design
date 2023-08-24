@@ -8,7 +8,6 @@ import classnames from 'classnames';
 const ModalCard: React.FC<ModalProps> = (props) => {
   const {
     title,
-    content,
     style,
     className,
     footer,
@@ -19,24 +18,23 @@ const ModalCard: React.FC<ModalProps> = (props) => {
     OkButtonProps,
     cancelButtonProps,
     footerButtonDirection = 'row',
-    modalOK,
-    modalCancel,
+    onOk,
+    onCancel,
   } = props;
 
   const positionStyle = { left: position?.x, top: position?.y };
 
   return (
     <div className={classnames(`${prefix}-modal-card`, className)} style={{ ...style, ...positionStyle }}>
-      {isClose && (
-        <div className={`${prefix}-modal-cancel`} onClick={modalCancel}>
-          {closeIcon === undefined ? <Close theme="secondary" /> : closeIcon}
-        </div>
-      )}
-      <div className={`${prefix}-modal-title`}>{title}</div>
-      <div className={`${prefix}-modal-content`}>
-        {content}
-        {children}
+      <div className={`${prefix}-modal-title`}>
+        {title}
+        {isClose && (
+          <div className={`${prefix}-modal-cancel`} onClick={onCancel}>
+            {closeIcon === undefined ? <Close theme="secondary" /> : closeIcon}
+          </div>
+        )}
       </div>
+      <div className={`${prefix}-modal-content`}>{children}</div>
 
       <div className={`${prefix}-modal-footer`}>
         {footer === undefined ? (
@@ -46,11 +44,11 @@ const ModalCard: React.FC<ModalProps> = (props) => {
               [`${prefix}-modal-row-footer`]: footerButtonDirection == 'row',
             })}
           >
-            <Button size="small" type="primary" onClick={modalOK} {...OkButtonProps}>
+            <Button type="primary" onClick={onOk} {...OkButtonProps}>
               确定
             </Button>
 
-            <Button size="small" onClick={modalCancel} {...cancelButtonProps}>
+            <Button onClick={onCancel} {...cancelButtonProps}>
               取消
             </Button>
           </div>
