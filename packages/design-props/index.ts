@@ -6,3 +6,4 @@ export * from './components/card';
 export * from './components/skeleton';
 export * from './components/popover';
 export * from './components/modal';
+export * from './components/transition';

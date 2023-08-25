@@ -7,7 +7,7 @@ import { Context } from './context';
 import { initialState, reducer } from './reducer';
 import { Activator, DragActionEnum, DndContextDescriptor } from './types';
 import { Coordinate, Data } from '../types';
-import { useEvent } from '../hooks/useEvent';
+import { useEvent } from '../../utils/useEvent';
 import { useMeasureDroppableContainer } from '../hooks/useMeasureDroppableContainer';
 
 const defaultSensor = MouseSensor;

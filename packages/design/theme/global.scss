@@ -26,6 +26,8 @@ body .semi-always-light {
   --semi-color-info-hover: rgba(var(--semi-blue-6), 1);
   --semi-color-link-hover: rgba(var(--semi-blue-6), 1);
   --semi-color-primary: rgba(var(--semi-brand-5), 1);
+  --semi-color-primary-dark: rgba(var(--semi-brand-0), 1);
+
   --semi-color-success: rgba(var(--semi-green-5), 1);
   --semi-color-warning: rgba(var(--semi-orange-5), 1);
   --semi-color-info-active: rgba(var(--semi-blue-7), 1);
@@ -123,6 +125,7 @@ body .semi-always-dark {
   --semi-color-link-hover: rgba(var(--semi-blue-6), 1);
   --semi-color-primary: rgba(var(--semi-brand-5), 1);
   --semi-color-success: rgba(var(--semi-green-5), 1);
+  --semi-color-primary-dark: rgba(var(--semi-brand-0), 1);
   --semi-color-warning: rgba(var(--semi-orange-5), 1);
   --semi-color-info-active: rgba(var(--semi-blue-7), 1);
   --semi-color-link-active: rgba(var(--semi-blue-7), 1);
