@@ -63,6 +63,11 @@ const Button: React.FC<ButtonProps> = (props) => {
       e.preventDefault();
       return;
     }
+    //如果是禁用状态，点击不执行onClick的回调
+    if (disabled) {
+      e.preventDefault();
+      return;
+    }
     // 节流或防抖
     onClick && clickThrottleOrDebounce(e);
   };

@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Button, Icon, Input, Skeleton, Card, Popover, Transition } from 'pivot-design';
+import { Button, Icon, Input, Skeleton, Card, Popover, Modal, Transition } from 'pivot-design';
 // import router from '@/routers';
 import ButtonMdx from '../../components/Button/index.mdx';
 import IconMdx from '../../components/Icon/index.mdx';
 import InputMdx from '../../components/Input/index.mdx';
 import CardMdx from '../../components/Card/index.mdx';
 import SkeletonMdx from '../../components/Skeleton/index.mdx';
+//import PopoverMdx from '@/components/Popover/index.mdx';
+import ModalMdx from '../../components/Modal/index.mdx';
 import PopoverMdx from '../../components/Popover/index.mdx';
 import TransitionMdx from '../../components/Transition/index.mdx';
 import DraggableMdx from '../../components/Draggable/index.mdx';
@@ -22,7 +24,7 @@ import { list as TransitionList } from '../../components/Transition/.catalog';
 import './index.scss';
 
 function Index() {
-  const [select, setSelect] = useState('Switch');
+  const [select, setSelect] = useState('Modal');
   const demoSelect = () => {
     return (
       <div className="demo-container">
@@ -49,6 +51,9 @@ function Index() {
         </div>
         <div className={`demo-item ${select === 'Popover' ? 'active' : ''}`} onClick={() => setSelect('Popover')}>
           Popover 气泡
+        </div>
+        <div className={`demo-item ${select === 'Modal' ? 'active' : ''}`} onClick={() => setSelect('Modal')}>
+          弹窗
         </div>
         <div className={`demo-item ${select === 'Transition' ? 'active' : ''}`} onClick={() => setSelect('Transition')}>
           Transition 元素动画
@@ -92,6 +97,7 @@ function Index() {
         ) : null}
         {select === 'Transition' ? <TransitionMdx components={{ Transition, CodeBlock }} /> : null}
         {select === 'Skeleton' ? <SkeletonMdx components={{ Skeleton, CodeBlock }} /> : null}
+        {select === 'Modal' ? <ModalMdx components={{ Modal, CodeBlock }} /> : null}
       </div>
       <div className="demo-component-catalogue">
         {select === 'Draggable' && renderCatalog(DraggableList)}

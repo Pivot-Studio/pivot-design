@@ -4,7 +4,11 @@ import Props from './props.mdx';
 
 # Card
 
+通用卡片容器
+
 ## 默认样式
+
+一个简单的卡片用法。
 
 <CodeBlock line={'5-7'}>
   <Card title={<div>测试</div>} time="19:20 2020-09-15" extra={<More />} actions={<Actions></Actions>}>
@@ -14,6 +18,9 @@ import Props from './props.mdx';
   </Card>
 </CodeBlock>
 ## 带头像
+
+通过 avatar 属性来添加头像。
+
 <CodeBlock line={'5-7'}>
   <Card
     title={<div>多余文本</div>}
@@ -34,6 +41,8 @@ import Props from './props.mdx';
 
 ## 栅格
 
+利用 Grid 属性，实现栅格布局。
+
 <CodeBlock line={'5-7'}>
   <Card
     avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35" />}
@@ -52,6 +61,9 @@ import Props from './props.mdx';
   </Card>
 </CodeBlock>
 ## 收起与展开长度
+
+通过 css 变量实现展示内容的长度。
+
 <CodeBlock line={'5-7'}>
   <Card
     title={<div>多余文本</div>}
@@ -59,7 +71,7 @@ import Props from './props.mdx';
     extra={<More />}
     avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35" />}
     actions={<Actions />}
-    style={{ '--card-minLength': '5' }}
+    style={{ '--card-minLength': 5 }}
   >
     我好想买Airpods但是没有钱，梁老师可不可以资助我 我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢
     啊？不多不多的，球球了！我好想买Airpods但 是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，
@@ -75,7 +87,7 @@ import Props from './props.mdx';
     extra={<More />}
     avatar={<img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="35" height="35" />}
     actions={<Actions />}
-    style={{ '--card-maxLength': '7' }}
+    style={{ '--card-maxLength': 7 }}
   >
     我好想买Airpods但是没有钱，梁老师可不可以资助我 我好想买Airpods但是没有钱，梁老师可不可以资助我一点钱钱呢
     啊？不多不多的，球球了！我好想买Airpods但 是没有钱，梁老师可不可以资助我一点钱钱呢啊？不多不多的，
@@ -86,7 +98,11 @@ import Props from './props.mdx';
     梁老师可不可以资助我一点钱钱呢啊？不多不多的，球球了！ 我好想买Airpods但是没有钱，梁老师可
   </Card>
 </CodeBlock>
-## 自定义背景色和宽度
+
+## 自定义背景颜色和宽度
+
+自定义更改卡片的样式。
+
 <CodeBlock line={'5-7'}>
   <Card
     title={<div>多余文本</div>}
@@ -105,6 +121,8 @@ import Props from './props.mdx';
 </CodeBlock>
 
 ## 加载中
+
+数据读入前会有文本块样式。
 
 <CodeBlock line={'5-7'}>
   <Loading />
