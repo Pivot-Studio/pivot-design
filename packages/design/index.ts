@@ -13,11 +13,11 @@ export {
 import Icon from './components/Icon';
 import Input from './components/Input';
 import Card from './components/Card';
-import { Modal, useModal } from './components/Modal';
+import Modal from './components/Modal';
 import Skeleton from './components/Skeleton';
 import Popover from './components/Popover/';
 export * from './components/Modal';
-export { Button, Icon, Input, Card, Skeleton, Popover, Modal, useModal };
+export { Button, Icon, Input, Card, Skeleton, Popover, Modal };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();

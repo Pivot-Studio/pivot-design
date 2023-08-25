@@ -1,41 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { Component, MouseEventHandler } from 'react';
 import { ModalProps } from 'pivot-design-props';
-import { prefix } from '../constants';
 import './index.scss';
-import classnames from 'classnames';
-import ModalCard from './components/modalcard';
-import useModal from './useModal';
+import ModalContent from './ModalContent';
 import { createPortal } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-// todo: 蒙层关闭、不关闭；拖拽时无法关闭；mdx
-const Modal: React.FC<ModalProps> = (props) => {
-  const { maskstyle, open = false, children, hasMask = true, maskClosable = true, onCancel, modalRender } = props;
-
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : 'auto';
-  }, [open]);
-
-  return (
-    <>
-      {open &&
-        createPortal(
-          <div className={classnames(`${prefix}-modal`)}>
-            <div
-              className={classnames(`${prefix}-modal-mask`, {
-                [`${prefix}-modal-mask__hidden`]: !hasMask,
-              })}
-              style={maskstyle}
-              onClick={maskClosable ? onCancel : () => {}}
-            />
-            {modalRender ? (
-              modalRender(<ModalCard {...props}>{children}</ModalCard>)
-            ) : (
-              <ModalCard {...props}>{children}</ModalCard>
-            )}
-          </div>,
-          document.body
-        )}
-    </>
-  );
+const ModalFC: React.FC<ModalProps> = (props) => {
+  const { open, children } = props;
+  return <>{open && createPortal(<ModalContent {...props}>{children}</ModalContent>, document.body)}</>;
 };
-export { Modal, useModal };
+
+class Modal extends Component<ModalProps, {}> {
+  static defaultProps = {
+    maskstyle: {},
+    open: false,
+    children: null,
+    hasMask: true,
+    maskClosable: true,
+    onCancel: () => {},
+    modalRender: null,
+  };
+
+  static show = (props: ModalProps) => {
+    const modalDiv = document.createElement('div');
+    const modalRoot = createRoot(modalDiv);
+    document.body.appendChild(modalDiv);
+
+    const destory = () => {
+      modalRoot.unmount();
+      modalDiv.parentNode?.removeChild(modalDiv);
+    };
+    const _onCancel: MouseEventHandler<HTMLElement> = (e) => {
+      props.onCancel?.(e);
+      destory();
+    };
+    const _onOk: MouseEventHandler<HTMLElement> = (e) => {
+      props.onOk?.(e);
+      destory();
+    };
+    modalRoot.render(<Modal open={true} {...props} onCancel={_onCancel} onOk={_onOk} />);
+  };
+
+  constructor(props: ModalProps) {
+    super(props);
+  }
+  render(): React.ReactNode {
+    return <ModalFC {...this.props}>{this.props.children}</ModalFC>;
+  }
+}
+
+export default Modal;

@@ -1,30 +1,18 @@
-import { Button, useModal } from 'pivot-design';
-import React, { createContext } from 'react';
-const ReachableContext = createContext<string | null>(null);
-
-const config = {
-  title: 'Use Hook!',
-  content: (
-    <>
-      <ReachableContext.Consumer>{(name) => `ReachableContext: ${name}!`}</ReachableContext.Consumer>
-    </>
-  ),
-};
+import { Button, Modal } from 'pivot-design';
+import React from 'react';
 
 const App: React.FC = () => {
-  const [modal, contextHolder] = useModal();
   return (
-    <ReachableContext.Provider value="Light">
-      <Button
-        onClick={() => {
-          modal(config);
-        }}
-      >
-        确定
-      </Button>
-
-      {contextHolder}
-    </ReachableContext.Provider>
+    <Button
+      onClick={() => {
+        Modal.show({
+          title: 'Modal',
+          children: 'show调起的对话框',
+        });
+      }}
+    >
+      Show
+    </Button>
   );
 };
 export default App;

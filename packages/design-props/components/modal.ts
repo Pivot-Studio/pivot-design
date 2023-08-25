@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, MouseEventHandler } from 'react';
 import { PivotDesignProps } from '.';
 import { ButtonProps } from './button';
 interface postion {
@@ -38,13 +38,13 @@ export interface ModalProps extends PivotDesignProps {
    * @description 确定函数
    * @default undefined
    */
-  onOk?: (e?: MouseEvent<HTMLElement>) => void;
+  onOk?: MouseEventHandler<HTMLElement>
   /**
    * @version 1.0.0
    * @description 取消函数
    * @default undefined
    */
-  onCancel?: (e?: MouseEvent<HTMLElement>) => void;
+  onCancel?:MouseEventHandler<HTMLElement>
   /**
    * @version 1.0.0
    * @description 对话框是否开启
