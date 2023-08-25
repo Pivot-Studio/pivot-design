@@ -26,6 +26,21 @@
     overflow: hidden;
     border-radius: 50%;
   }
+  li {
+    border-radius: 4px;
+    list-style: none;
+    display: block;
+    width: 100%;
+    height: calc(var(--skeleton-paragraph-size, 0.8)* 1rem);
+    &:first-child {
+      width: 30%;
+    }
+    &:nth-child(2) {
+      width: 60%;
+    }
+  
+  }  
+
 }
 // li {
 //   border-radius: 4px;
@@ -40,7 +55,6 @@
 //     width: 60%;
 //   }
 // }
-
 .#{$prefix}-skeleton-loading {
   background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
 
@@ -50,6 +64,7 @@
 
   animation: var(--skeleton-active, active) 1.4s ease infinite;
 }
+
 @keyframes active {
   0% {
     background-position: 100% 50%;

@@ -23,5 +23,4 @@ ReactDom.createRoot(document.getElementById('root') as HTMLElement).render(
       <App />
     </AutoScrollToTop>
   </HashRouter>
-
 );
