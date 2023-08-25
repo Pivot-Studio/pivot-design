@@ -56,7 +56,7 @@ const ModalContent: React.FC<ModalProps> = (props) => {
         <div className={`${prefix}-modal-content`}>{children}</div>
 
         <div className={`${prefix}-modal-footer`}>
-          {footer ? (
+          {!footer ? (
             <div
               className={classnames({
                 [`${prefix}-modal-col-footer`]: footerButtonDirection == 'col',
