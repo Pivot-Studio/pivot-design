@@ -1,9 +1,10 @@
 {
   "extends": "../../tsconfig.json",
-  "include": [".", "Icon/icons/.tsx"],
+  "include": ["./src"],
   "exclude": ["lib"],
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "lib"
+    "outDir": "lib",
+    "types": ["./svg.d.ts"]
   }
 }

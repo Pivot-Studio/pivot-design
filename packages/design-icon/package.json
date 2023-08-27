@@ -4,18 +4,30 @@
   "description": "a react component library by Pivot Studio",
   "main": "index.ts",
   "scripts": {
-    "watch": "rm -rf ./lib && tsc -w",
-    "build": "rm -rf lib && tsc"
+    "build": "npx @svgr/cli --out-dir src/icons --icon --template template.js --typescript -- src/icon-svg && webpack --mode production"
   },
   "author": "psfe",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@svgr/cli": "^8.1.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.9",
     "classnames": "^2.3.2",
-    "pivot-design-props": "workspace:*"
+    "css-loader": "^6.7.1",
+    "pivot-design-props": "workspace:*",
+    "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "typescript": "^4.8.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
+    "@typescript-eslint/parser": "^6.4.1",
+    "babel-loader": "^8.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

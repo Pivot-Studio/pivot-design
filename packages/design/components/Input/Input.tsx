@@ -11,7 +11,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   function getIcon(): React.ReactNode {
     if (typeof icon !== 'string') return icon;
-    else return <Icon icon={icon}></Icon>;
+    else return <Icon icon={icon} />;
   }
 
   const classes = classNames([`${prefix}-input-wrapper`], {
