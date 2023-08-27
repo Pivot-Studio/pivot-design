@@ -1,6 +1,5 @@
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import '../index.scss';
 const SvgIconError = (props: SVGProps<SVGSVGElement>) => (
   <svg width="1em" height="1em" viewBox="0 0 1025 1024" {...props}>
     <path

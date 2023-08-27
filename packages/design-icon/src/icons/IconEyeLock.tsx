@@ -1,6 +1,5 @@
 import * as React from 'react';
 import type { SVGProps } from 'react';
-import '../index.scss';
 const SvgIconEyeLock = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="1em"

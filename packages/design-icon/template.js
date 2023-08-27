@@ -4,10 +4,9 @@ ${variables.imports};
 
 ${variables.interfaces};
 
-import '../index.scss';
 
 const ${variables.componentName} = (${variables.props}) => (
-  ${variables.jsx}
+    ${variables.jsx}
 );
 
 ${variables.exports};

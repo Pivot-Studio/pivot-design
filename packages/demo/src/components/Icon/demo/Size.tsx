@@ -4,10 +4,9 @@ import React from 'react';
 const App: React.FC = () => {
   return (
     <>
-      <IconLoading size="16" />
-      <IconLoading size="20" />
-      <IconLoading size="30" />
-      <IconLoading size="46" />
+      <IconLoading width={16} height={16} />
+      <IconLoading width={20} height={20} />
+      <IconLoading width={40} height={40} />
     </>
   );
 };

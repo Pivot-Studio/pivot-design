@@ -1,4 +1,13 @@
-import { IconBack, IconClose, IconError, IconLoading, IconSearch, IconWarning } from 'pivot-design-icon';
+import {
+  IconBack,
+  IconClose,
+  IconError,
+  IconLoading,
+  IconSearch,
+  IconWarning,
+  IconEye,
+  IconEyeLock,
+} from 'pivot-design-icon';
 import React from 'react';
 
 const App: React.FC = () => {
@@ -10,6 +19,8 @@ const App: React.FC = () => {
       <IconSearch />
       <IconWarning />
       <IconError />
+      <IconEye />
+      <IconEyeLock />
     </>
   );
 };
