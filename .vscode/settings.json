@@ -18,5 +18,5 @@
   "[typescript]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
-  "svg.preview.background": "black" // required to format on save
+  "svg.preview.background": "custom" // required to format on save
 }

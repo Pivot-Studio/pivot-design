@@ -3,16 +3,14 @@ import './index.scss';
 import Logo from '../../images/logo';
 import { Link, Outlet } from 'react-router-dom';
 import { Switch } from 'pivot-design';
+import { IconGithub } from 'pivot-design-icon';
 
 const navigatorList = [
-  {
-    text: '首页',
-    path: '/',
-  },
   {
     text: '组件',
     path: '/components',
   },
+
   // {
   //   text: '博客',
   //   path: '/blogs',
@@ -28,14 +26,19 @@ const Home: React.FC = () => {
   return (
     <div className="pivot-design-home">
       <div className="pivot-design-home-title">
-        <div className="title">Pivot Design</div>
+        <Link to={'/'} className="title">
+          Pivot Design
+        </Link>
         <div className="navigation-wrapper">
-          <Switch value={isLight} onChange={onThemeChange} />
           {navigatorList.map((nav) => (
-            <Link to={nav.path} className="navigator" key={nav.text}>
+            <Link to={nav.path} className="navigator" key={nav.path}>
               {nav.text}
             </Link>
           ))}
+          <Switch value={isLight} onChange={onThemeChange} />
+          <a href="https://github.com/Pivot-Studio/pivot-design" style={{ lineHeight: 0 }}>
+            <IconGithub color="var(--semi-color-text-0)" width={18} height={18} />
+          </a>
         </div>
       </div>
 
