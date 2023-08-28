@@ -9,6 +9,7 @@ import { getOssIcon } from './service';
 
 const Icon: React.FC<IconProps> = (props) => {
   const { className, theme = 'primary', style, ossIcon, url, rotate = false } = props;
+
   const classes = classnames(`${prefix}-icon`, className, {
     [`${prefix}-icon-${theme}`]: theme,
     [`${prefix}-icon-rotate`]: rotate,

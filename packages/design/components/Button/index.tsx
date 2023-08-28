@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import './index.scss';
 import { debounce } from '../utils/debounce';
 import { throttle } from '../utils/throttle';
-import { Loading } from 'pivot-design-icon';
+import { IconLoading as Loading } from 'pivot-design-icon';
 
 const Button: React.FC<ButtonProps> = (props) => {
   const {

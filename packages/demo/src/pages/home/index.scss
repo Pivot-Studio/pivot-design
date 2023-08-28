@@ -18,19 +18,19 @@
     .title {
       font-size: 24px;
       color: var(--semi-color-text-0);
+      text-decoration: none;
     }
     .navigation-wrapper {
       display: flex;
       align-items: center;
+      gap: 20px;
       .navigator {
-        margin: 0 20px;
-        padding: 4px 24px;
-        border: 1px solid transparent;
-        box-sizing: border-box;
+        padding: 2px 12px;
+        // border: 1px solid transparent;
         border-radius: 20px;
         text-decoration: none;
         color: var(--semi-color-link);
-        border: 1px solid;
+        // border: 1px solid;
         transition: 0.5s;
         &:hover {
           border-color: adjust-hue(rgba(11, 103, 217, 1), -16deg);

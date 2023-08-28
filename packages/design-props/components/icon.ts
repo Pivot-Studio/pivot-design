@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { SVGProps } from 'react';
 import { PivotDesignProps } from '.';
 
-export interface IconProps extends PivotDesignProps {
+export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'rotate'>, PivotDesignProps {
   /**
    * @version 1.0.0
    * @description 自定义样式
@@ -34,12 +34,6 @@ export interface IconProps extends PivotDesignProps {
   icon?: string;
   /**
    * @version 1.0.0
-   * @description Pivot Design官方矢量图库中的icon名称
-   * @default undefined
-   */
-  ossIcon?: string;
-  /**
-   * @version 1.0.0
    * @description 自定义导入的icon链接
    * @default undefined
    */
@@ -49,5 +43,5 @@ export interface IconProps extends PivotDesignProps {
    * @description 是否旋转
    * @default false
    */
-  rotate?: boolean;
+  rotating?: boolean;
 }

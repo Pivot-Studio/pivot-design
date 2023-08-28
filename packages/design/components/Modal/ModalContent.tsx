@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 import { ModalProps } from 'pivot-design-props';
 import Button from '../Button';
 import { prefix } from '../constants';
-import { Close } from 'pivot-design-icon';
+import { IconClose } from 'pivot-design-icon';
 import classnames from 'classnames';
 
 const ModalContent: React.FC<ModalProps> = (props) => {
@@ -49,7 +49,7 @@ const ModalContent: React.FC<ModalProps> = (props) => {
           {title}
           {isClose && (
             <div className={`${prefix}-modal-cancel`} onClick={onCancel}>
-              {closeIcon === undefined ? <Close theme="secondary" /> : closeIcon}
+              {closeIcon === undefined ? <IconClose theme="secondary" /> : closeIcon}
             </div>
           )}
         </div>
