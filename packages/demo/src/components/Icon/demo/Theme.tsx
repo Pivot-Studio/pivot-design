@@ -5,12 +5,12 @@ import React from 'react';
 const App: React.FC = () => {
   return (
     <>
-      <Loading theme="primary" />
-      <Loading theme="secondary" />
-      <Loading theme="success" />
-      <Loading theme="info" />
-      <Loading theme="warning" />
-      <Loading theme="danger" />
+      <Loading theme="primary" rotate />
+      <Loading theme="secondary" rotate />
+      <Loading theme="success" rotate />
+      <Loading theme="info" rotate />
+      <Loading theme="warning" rotate />
+      <Loading theme="danger" rotate />
     </>
   );
 };

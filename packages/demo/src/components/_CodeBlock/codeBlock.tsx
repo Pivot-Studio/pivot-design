@@ -6,6 +6,7 @@ import React, { useRef, useState, useEffect, TransitionEventHandler, CSSProperti
 interface ICodeProps {
   children: React.ReactNode;
   style?: CSSProperties;
+  id?: string;
   code: string;
   /**
    * @example 1-2, 5, 9-20
@@ -13,7 +14,7 @@ interface ICodeProps {
   line?: string;
 }
 const CodeBlock: React.FC<ICodeProps> = (props) => {
-  const { code, children, line, style } = props;
+  const { code, children, line, style, id } = props;
   const [expand, setExpand] = useState(true);
   // 使用max-height实现不确定数值的transition
   const [codeDisplay, setCodeDisplay] = useState(true);
@@ -30,7 +31,7 @@ const CodeBlock: React.FC<ICodeProps> = (props) => {
     }
   };
   return (
-    <div className="pivot-code-box">
+    <div className="pivot-code-box" id={id}>
       <div className="pivot-code-box-demo" style={style}>
         {children}
       </div>

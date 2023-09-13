@@ -25,9 +25,12 @@
     display: flex;
     flex-direction: row;
     .demo-container {
+      position: fixed;
       min-width: 240px;
+      height: 100%;
       background: var(--semi-color-bg-1);
       padding: 8px 0.6rem;
+      padding-top: 50px;
       font-size: 14px;
       .demo-item {
         padding: 0.6rem 1.2rem;
@@ -50,23 +53,57 @@
       border-top-right-radius: 10px;
       box-shadow: 0 8px 24px #0000000d;
       margin: 0;
+      margin-left: 240px;
     }
     .demo-component-catalogue {
       .catalog_content {
         position: fixed;
         top: 14vh;
         right: 24px;
-        max-width: 120px;
+        width: 120px;
         color: var(--semi-color-text-1);
+        padding-inline-start: 20px;
+        .link-visible {
+          display: inline-block;
+          position: absolute;
+          top: 14.5px;
+          inset-inline-start: 0;
+          transform: translateY(-50%);
+          transition: top 0.3s ease-in-out;
+          width: 2px;
+          height: 20px;
+          background-color: #1677ff;
+        }
         .catalog_h2 {
           font-size: 13px;
           padding: 6px 0;
+          &:hover {
+            cursor: pointer;
+          }
+          &.active {
+            color: #1677ff;
+          }
         }
         .catalog_h3 {
           font-size: 12px;
           text-indent: 1em;
           padding: 6px 0;
+          &:hover {
+            cursor: pointer;
+          }
+          &.active {
+            color: #1677ff;
+          }
         }
+      }
+
+      .catalog_content::before {
+        position: absolute;
+        inset-inline-start: 0;
+        top: 8px;
+        height: 100%;
+        border-inline-start: 2px solid rgba(5, 5, 5, 0.06);
+        content: ' ';
       }
     }
   }
@@ -158,7 +195,7 @@
 /* 引用文字 */
 #nice.demo-component .multiquote-1 p {
 }
-/* 链接 
+/* 链接
  * border-bottom: 1px solid #009688;
  */
 #nice.demo-component a {
@@ -220,7 +257,7 @@
 #nice.demo-component .footnote-ref {
   color: var(--semi-brand-4);
 }
-/* "参考资料"四个字 
+/* "参考资料"四个字
  * 内容 content: "参考资料";
  */
 #nice.demo-component .footnotes-sep:before {

@@ -6,7 +6,7 @@ const App: React.FC = () => {
     <>
       <Back theme="primary" />
       <Close theme="secondary" />
-      <Loading theme="success" />
+      <Loading theme="success" rotate />
       <Search theme="info" />
       <Warning theme="warning" />
       <DefautError theme="danger" />

@@ -5,10 +5,10 @@ import { Link, Outlet } from 'react-router-dom';
 import { Switch } from 'pivot-design';
 
 const navigatorList = [
-  {
-    text: '首页',
-    path: '/',
-  },
+  // {
+  //   text: '首页',
+  //   path: '/',
+  // },
   {
     text: '组件',
     path: '/components',

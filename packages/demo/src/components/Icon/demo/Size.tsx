@@ -4,10 +4,10 @@ import React from 'react';
 const App: React.FC = () => {
   return (
     <>
-      <Loading size="16" />
-      <Loading size="20" />
-      <Loading size="30" />
-      <Loading size="46" />
+      <Loading size="16" rotate />
+      <Loading size="20" rotate />
+      <Loading size="30" rotate />
+      <Loading size="46" rotate />
     </>
   );
 };
