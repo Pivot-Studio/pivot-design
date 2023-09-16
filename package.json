@@ -11,15 +11,16 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
-    "eslint-config-psfe": "1.0.5",
-    "husky": "^8.0.2",
     "@babel/core": "^7.19.1",
     "@babel/helper-plugin-utils": "^7.20.2",
     "@babel/parser": "^7.21.2",
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
     "babel-plugin-jsx": "^1.2.0",
-    "es-dirname": "^0.1.0"
+    "es-dirname": "^0.1.0",
+    "eslint-config-psfe": "1.0.5",
+    "@typescript-eslint/parser": "^6.4.1",
+    "husky": "^8.0.2"
   },
   "dependencies": {
     "core-js": "^3.25.1",
