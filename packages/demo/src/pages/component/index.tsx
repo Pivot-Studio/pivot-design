@@ -80,10 +80,11 @@ function Index() {
   const renderCatalog = (list) => {
     const scrollToElement = (id: string, index: number) => {
       const element = document.getElementById(id);
-      const linkVisible = document.querySelector('.link');
+      const linkVisible = document.querySelector<HTMLSpanElement>('.link');
       linkVisible?.classList.add('link-visible');
       if (element && linkVisible) {
         const { height, top } = element.getBoundingClientRect();
+        // 右侧anchor的scroolBar
         const topOffset = 14.5 + 30.5 * index;
         const scrollTop = top + window.pageYOffset - height / 3;
         linkVisible.style.top = topOffset + 'px';
