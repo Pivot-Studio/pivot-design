@@ -1,5 +1,7 @@
 {
   "extends": ["eslint-config-psfe"],
+  "import/extensions": 0,
+  "import/no-unresolved": 0,
   "settings": {
     "import/resolver": {
       "alias": {

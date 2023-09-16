@@ -33,7 +33,6 @@ module.exports = {
           },
         ],
       },
-
       {
         test: /\.(jpg|png|gif|svg)$/, //处理图片文件打包
         type: 'asset', //webpack5新增的处理静态资源的loader，替换之前的url-loder、file-loader,具体的可以官方文档
@@ -57,14 +56,22 @@ module.exports = {
       },
       {
         test: /\.mdx?$/,
-        use: [
+        oneOf: [
           {
-            loader: '@mdx-js/loader',
-            /** @type {import('@mdx-js/loader').Options} */
-            options: {},
+            resourceQuery: /code/, // code后缀，导入为字符串处理
+            type: 'asset/source',
           },
           {
-            loader: path.resolve(__dirname, 'loaders/index.js'),
+            use: [
+              {
+                loader: '@mdx-js/loader',
+                /** @type {import('@mdx-js/loader').Options} */
+                options: {},
+              },
+              {
+                loader: path.resolve(__dirname, 'loaders/index.js'),
+              },
+            ],
           },
         ],
       },
