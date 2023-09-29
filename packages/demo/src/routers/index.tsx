@@ -12,6 +12,8 @@ import Draggable from '@/pages/components/draggable';
 import Transition from '@/pages/components/transition';
 import Skeleton from '@/pages/components/skeleton';
 import Modal from '@/pages/components/modal';
+import Editor from '@/pages/components/editor';
+import { generateComponentRouter } from '@/utils';
 
 const router: RouteObject[] = [
   {
@@ -25,48 +27,19 @@ const router: RouteObject[] = [
       {
         path: 'components',
         element: <Components />,
-        children: [
-          {
-            path: 'button',
-            element: <Button />,
-          },
-          {
-            path: 'switch',
-            element: <Switch />,
-          },
-          {
-            path: 'icon',
-            element: <Icon />,
-          },
-          {
-            path: 'input',
-            element: <Input />,
-          },
-          {
-            path: 'card',
-            element: <Card />,
-          },
-          {
-            path: 'popover',
-            element: <Popover />,
-          },
-          {
-            path: 'draggable',
-            element: <Draggable />,
-          },
-          {
-            path: 'transition',
-            element: <Transition />,
-          },
-          {
-            path: 'skeleton',
-            element: <Skeleton />,
-          },
-          {
-            path: 'modal',
-            element: <Modal />,
-          },
-        ],
+        children: generateComponentRouter({
+          button: <Button />,
+          switch: <Switch />,
+          icon: <Icon />,
+          input: <Input />,
+          card: <Card />,
+          popover: <Popover />,
+          draggable: <Draggable />,
+          transition: <Transition />,
+          skeleton: <Skeleton />,
+          modal: <Modal />,
+          editor: <Editor />,
+        }),
       },
     ],
   },

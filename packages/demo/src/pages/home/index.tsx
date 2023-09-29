@@ -8,7 +8,7 @@ import { IconGithub } from 'pivot-design-icon';
 const navigatorList = [
   {
     text: '组件',
-    path: '/components',
+    path: '/components/button',
   },
 
   // {

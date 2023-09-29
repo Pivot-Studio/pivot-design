@@ -10,7 +10,8 @@ export {
   Droppable,
   SortableContext,
 } from './components/Draggable';
-import Icon from './components/Icon';
+export { default as Icon } from './components/Icon';
+export { default as Editor } from './components/MonacoEditor';
 import Input from './components/Input';
 import Card from './components/Card';
 import Modal from './components/Modal';
@@ -20,7 +21,7 @@ import Transition from './components/Transition';
 import CSSTransiton from './components/Transition/CSSTransiton';
 import Switch from './components/Switch';
 
-export { Button, Icon, Input, Card, Skeleton, Popover, Modal, Transition, CSSTransiton, Switch };
+export { Button, Input, Card, Skeleton, Popover, Modal, Transition, CSSTransiton, Switch };
 
 export const arrayMove = (array: any[], from: number, to: number) => {
   const resArray = array.slice();
