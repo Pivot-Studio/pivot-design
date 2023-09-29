@@ -6,7 +6,7 @@
   "editor.formatOnSaveMode": "file",
   "files.eol": "\n",
   "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
   },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
