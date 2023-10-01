@@ -1,11 +1,11 @@
-export default `import {
+export default `import ReactDom from 'react-dom/client';
+import React, {
   useEffect,
   useCallback,
   useLayoutEffect,
   useRef,
   useState
 } from "react";
-import "./index.scss";
 function getRandomColor() {
   const colors = ["green", "blue", "purple", "red", "pink"];
   return colors[Math.floor(Math.random() * colors.length)];
@@ -42,18 +42,20 @@ export default function App() {
     ButtonRef.current.addEventListener("click", handleEventClick);
   }, []);
   return (
-    <section>
+    <section style={{ color: '#fff' }}>
       <h1>useEvent</h1>
       <button className="link" ref={ButtonRef}>
         Next
       </button>
       <article>
         <figure>
-          <p style={{ background: \`$\{color}\` }} />
+          <p style={{ height:100, width: 100, background: \`$\{color}\` }} />
           <figcaption>Current: {color}</figcaption>
         </figure>
       </article>
     </section>
   );
 }
+
+ReactDom.createRoot(document.getElementById('root')).render(<App />)
 `;

@@ -10,4 +10,5 @@ export enum CodeType {
   c = 'c',
   dotnet = 'dotnet',
   ts = 'typescript',
+  html = 'html',
 }

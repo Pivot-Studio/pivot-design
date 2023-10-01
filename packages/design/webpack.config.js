@@ -1,30 +1,21 @@
-const path = require('path'); //node环境当前路径
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //模板文件插件，能够自动将打包的css和js加入到模板文件中
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const path = require('path');
 module.exports = {
   entry: {
-    app: './index.tsx', //找到咱们刚才在src下面的入口文件
+    app: './index.ts', //找到咱们刚才在src下面的入口文件
   },
   output: {
     path: path.resolve(__dirname, 'dist'), //打包文件输出的地址
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
     clean: true, //webpack5新增的，每次打包前删除旧的dist包文件
+    library: {
+      name: 'PivotDesign', // 这表示在浏览器环境下我们通过script直接引入的时候，这个变量名会被挂载到window上
+      type: 'umd', // 兼容性最强方案，支持esm、cjs、window
+    },
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-    fallback: {
-      fs: false,
-      assert: require.resolve('assert'),
-      path: require.resolve('path-browserify'),
-    },
   },
-  devServer: {
-    port: 8080,
-    historyApiFallback: true,
-  },
+  externals: [/^react\/.+$/, /^react-dom\/.+$/],
   module: {
     rules: [
       {
@@ -38,6 +29,10 @@ module.exports = {
             use: 'babel-loader', // 导入为正常ts，tsx文件
           },
         ],
+      },
+      {
+        test: /.d.ts$/,
+        use: ['raw-loader'],
       },
       {
         test: /\.(jpg|png|gif|svg)$/, //处理图片文件打包
@@ -60,38 +55,6 @@ module.exports = {
           'sass-loader',
         ],
       },
-      {
-        test: /\.mdx?$/,
-        oneOf: [
-          {
-            resourceQuery: /code/, // code后缀，导入为字符串处理
-            type: 'asset/source',
-          },
-          {
-            use: [
-              {
-                loader: '@mdx-js/loader',
-                /** @type {import('@mdx-js/loader').Options} */
-                options: {},
-              },
-              {
-                loader: path.resolve(__dirname, 'loaders/index.js'),
-              },
-            ],
-          },
-        ],
-      },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './index.html'),
-      minify: {
-        //压缩html
-        collapseWhitespace: true, //移除空格
-        removeComments: true, // 移除注释
-      },
-    }),
-    new NodePolyfillPlugin(),
-  ],
 };

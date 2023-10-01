@@ -21,9 +21,6 @@
     justify-content: center;
     align-items: center;
     background-color: var(--semi-color-fill-0);
-    > :not(.PIVOT-draggable-item) {
-      margin: 0 24px;
-    }
   }
 
   .line-numbers {
