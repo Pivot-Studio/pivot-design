@@ -12,3 +12,7 @@ export enum CodeType {
   ts = 'typescript',
   html = 'html',
 }
+
+export enum MessageChangeType {
+  Compile,
+}

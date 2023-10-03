@@ -60,7 +60,5 @@ export const babelTransform = (filename: string, code: string, tabs: Tab[]) => {
     //   },
     // ],
   });
-  console.log(resultCode);
-
   return resultCode;
 };

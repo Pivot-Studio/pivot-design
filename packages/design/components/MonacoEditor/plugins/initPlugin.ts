@@ -1,11 +1,5 @@
 import { Monaco } from '@monaco-editor/react';
 import REACT_TYPES from '!!raw-loader!/node_modules/@types/react/index.d.ts';
-
-const lib = `const test = {
-  testA: 1,
-  testB: 2,
-}`;
-
 const InitPlugin = (monaco: Monaco) => {
   // 添加ts编译设置
   monaco.languages.typescript.typescriptDefaults.setCompilerOptions({

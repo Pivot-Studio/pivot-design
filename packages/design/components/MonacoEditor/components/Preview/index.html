@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>preview</title>
+  </head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react",
+          "react-dom/client": "https://esm.sh/react-dom/client"
+        }
+      }
+    </script>
+    <div id="root"></div>
+  </body>
+  <script>
+    window.addEventListener('message', (e) => {
+      const { type, data } = e.data;
+      const compileScript = document.createElement('script');
+      compileScript.type = 'module';
+      compileScript.innerHTML = data;
+      document.body.appendChild(compileScript);
+    });
+  </script>
+</html>

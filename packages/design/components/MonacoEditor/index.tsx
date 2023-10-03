@@ -1,10 +1,11 @@
 import Editor, { EditorProps, OnChange, OnMount } from '@monaco-editor/react';
 import { useRef } from 'react';
-import { CodeType } from './types';
-import { useEventCode, testCode } from './code';
+import { CodeType, MessageChangeType } from './types';
+import { useEventCode } from './code';
 import InitPlugin from './plugins/initPlugin';
-import { babelTransform } from './compiler';
 import { useControlled, useDebounce } from '../hooks';
+import Preview from './components/Preview';
+import { useWorkers } from './workers/useWorkers';
 interface MocacoEditorProps extends EditorProps {}
 
 export const enum ThemeType {
@@ -14,7 +15,7 @@ export const enum ThemeType {
   'High Contrast Dark' = 'hc-black',
 }
 
-// todo: 解析jsx，插入iframe；worker通信
+// todo: 自动保存（storage）；代码优化；多文件引入（scss、tsx）
 const MonacoEditor = (props: MocacoEditorProps) => {
   const [value, onChange] = useControlled<string>(props, {
     valuePropName: 'value',
@@ -22,7 +23,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
     defaultValuePropName: 'defaultValue',
     defaultValue: useEventCode,
   });
-
+  const { compilerWorker } = useWorkers();
   const { height = 400, defaultLanguage = CodeType.ts } = props;
 
   const EditorRef = useRef<Parameters<OnMount>['0']>();
@@ -31,10 +32,24 @@ const MonacoEditor = (props: MocacoEditorProps) => {
     console.log('did mount', editor);
     EditorRef.current = editor;
     MonacoRef.current = monaco;
+    compilerWorker.postMessage({
+      type: MessageChangeType.Compile,
+      data: {
+        filename: 'test.tsx',
+        code: value,
+      },
+    });
     InitPlugin(monaco);
   };
   const handleEditorChange: OnChange = useDebounce((value, e) => {
     onChange(value ?? '');
+    compilerWorker.postMessage({
+      type: MessageChangeType.Compile,
+      data: {
+        filename: 'test.tsx',
+        code: value,
+      },
+    });
   }, 300);
   return (
     <div style={{ width: '100%' }}>
@@ -48,19 +63,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
         // beforeMount={handleEditorWillMount}
         // onValidate={handleEditorValidation}
       />
-      <iframe
-        srcDoc={`
-        <html>
-        <script type="importmap">{"imports":{"react":"https://esm.sh/react","react-dom/client":"https://esm.sh/react-dom/client"}}</script>
-        <body><div id="root"/></body>
-        <script type="module">${babelTransform('w.tsx', value, [])}</script>
-      </html>`}
-        title="output"
-        sandbox="allow-scripts"
-        frameBorder="1"
-        width="100%"
-        height={800}
-      />
+      <Preview compiler={compilerWorker} />
     </div>
   );
 };
