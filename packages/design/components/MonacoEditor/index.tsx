@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { CodeType, MessageChangeType } from './types';
 import { useEventCode } from './code';
 import InitPlugin from './plugins/initPlugin';
-import { useControlled, useDebounce } from '../hooks';
+import { useControlled, useDebounce, useLocalStorage } from '../hooks';
 import Preview from './components/Preview';
 import { useWorkers } from './workers/useWorkers';
 interface MocacoEditorProps extends EditorProps {}
@@ -15,7 +15,8 @@ export const enum ThemeType {
   'High Contrast Dark' = 'hc-black',
 }
 
-// todo: 自动保存（storage）；代码优化；多文件引入（scss、tsx）
+const FILENAME = 'index.tsx';
+// todo: 代码优化；加个Tab；多文件引入（scss、tsx）
 const MonacoEditor = (props: MocacoEditorProps) => {
   const [value, onChange] = useControlled<string>(props, {
     valuePropName: 'value',
@@ -23,30 +24,34 @@ const MonacoEditor = (props: MocacoEditorProps) => {
     defaultValuePropName: 'defaultValue',
     defaultValue: useEventCode,
   });
+  const [storedValue, setStoredValue] = useLocalStorage(`${FILENAME}`, {
+    defaultValue: value,
+  });
+
   const { compilerWorker } = useWorkers();
   const { height = 400, defaultLanguage = CodeType.ts } = props;
 
   const EditorRef = useRef<Parameters<OnMount>['0']>();
   const MonacoRef = useRef<Parameters<OnMount>['1']>();
   const handleEditorDidMount: OnMount = (editor, monaco) => {
-    console.log('did mount', editor);
     EditorRef.current = editor;
     MonacoRef.current = monaco;
     compilerWorker.postMessage({
       type: MessageChangeType.Compile,
       data: {
-        filename: 'test.tsx',
-        code: value,
+        filename: FILENAME,
+        code: storedValue,
       },
     });
     InitPlugin(monaco);
   };
   const handleEditorChange: OnChange = useDebounce((value, e) => {
     onChange(value ?? '');
+    setStoredValue(value ?? '');
     compilerWorker.postMessage({
       type: MessageChangeType.Compile,
       data: {
-        filename: 'test.tsx',
+        filename: FILENAME,
         code: value,
       },
     });
@@ -56,7 +61,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
       <Editor
         height={height}
         defaultLanguage={defaultLanguage}
-        defaultValue={value}
+        defaultValue={storedValue}
         theme={ThemeType['Visual Studio Dark']}
         onChange={handleEditorChange}
         onMount={handleEditorDidMount}
