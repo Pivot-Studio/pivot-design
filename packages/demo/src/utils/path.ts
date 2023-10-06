@@ -40,6 +40,10 @@ export const ComponentPath = [
     title: 'Transition 元素动画',
   },
   {
+    path: 'tabs',
+    title: 'Tabs 标签页',
+  },
+  {
     path: 'editor',
     title: 'Editor 代码编辑器',
   },
