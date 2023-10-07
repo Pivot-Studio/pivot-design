@@ -1,7 +1,4 @@
-import Table from '../table.tsx';
-
-export const params = [];
-
-## API 列表
-
-<Table name="input" params={params} />
+import Table from '../table.tsx'
+export const params = [{"key":"className","value":": string","optional":true,"version":"1.0.0","description":"自定义类名"},{"key":"style","value":": React.CSSProperties","optional":true,"version":"1.0.0","description":"自定义样式"},{"key":"items","value":": TabsItemProps[]","version":"1.0.0","description":"标签页项最主要的数据，用于渲染标签页","default":"[]"},{"key":"value","value":": UniqueId","optional":true,"version":"1.0.0","description":"当前激活的标签页索引","default":"0"},{"key":"onChange","value":": (tab: UniqueId) => void","optional":true,"version":"1.0.0","description":"标签页发生改变时触发的监听函数","default":"undefined"}]
+## API 列表
+<Table name='tabs' params={params}/>

@@ -10,7 +10,7 @@ const App: React.FC = () => {
     },
     {
       key: '2',
-      label: 'Tab 2',
+      label: 'Tab Second',
       children: 'Content of Tab Pane 2',
     },
     {

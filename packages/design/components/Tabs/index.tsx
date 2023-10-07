@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import { TabsProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
@@ -12,8 +12,16 @@ function getActiveItem(
   const activeItems = items
     .map((item, index) => ({ ...item, index }))
     .filter((item) => item.key === value);
-  return activeItems?.[0];
+  if (activeItems.length < 1) {
+    throw new Error('当前激活Tab发生未知错误');
+  }
+  return activeItems[0] as TabsProps['items'][number];
 }
+
+type TabSizeMap = Map<
+  TabsProps['items'][number]['key'],
+  { width: number; height: number; left: number; top: number }
+>;
 const Tabs: React.FC<TabsProps> = (props) => {
   const [value, onChange] = useControlled<TabsProps['items'][number]['key']>(
     props,
@@ -21,9 +29,49 @@ const Tabs: React.FC<TabsProps> = (props) => {
       defaultValue: props.items[0]?.key ?? 0,
     }
   );
-
+  const [tabSizes, setTabSizes] = useState<TabSizeMap>(new Map());
   const { className, style, items = [] } = props;
+
   const activeItem = getActiveItem(items, value);
+
+  // Update buttons records
+  const updateTabSizes = () =>
+    setTabSizes(() => {
+      const newSizes: TabSizeMap = new Map();
+      items.forEach(({ key }) => {
+        const btnNode = document.querySelector<HTMLElement>(
+          `[data-tab-key="${key}"]`
+        );
+        if (btnNode) {
+          newSizes.set(key, {
+            width: btnNode.offsetWidth,
+            height: btnNode.offsetHeight,
+            left: btnNode.offsetLeft,
+            top: btnNode.offsetTop,
+          });
+        }
+      });
+      return newSizes;
+    });
+
+  useEffect(() => {
+    updateTabSizes();
+  }, [items.map((tab) => tab.key).join('_')]);
+
+  const getScrollBarStyle = (): CSSProperties => {
+    const activeSize = tabSizes.get(activeItem.key);
+    if (activeSize) {
+      return {
+        left: activeSize?.left + activeSize?.width / 2,
+        width: activeSize?.width,
+        transform: 'translateX(-50%)',
+      };
+    }
+    return {
+      left: 0,
+      width: 0,
+    };
+  };
   return (
     <div className={classnames(`${prefix}_tabs`, className)} style={style}>
       <div className={`${prefix}_tabs_bar`}>
@@ -34,6 +82,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
                 [`${prefix}_tabs_bar_item__active`]: value === item.key,
               })}
               key={item.key}
+              data-tab-key={item.key}
               onClick={() => onChange(item.key)}
             >
               {item.label}
@@ -41,7 +90,10 @@ const Tabs: React.FC<TabsProps> = (props) => {
           );
         })}
         <div className={`${prefix}_tabs_bar_scrollrail`}>
-          <div className={`${prefix}_tabs_bar_scrollbar`} />
+          <div
+            className={`${prefix}_tabs_bar_scrollbar`}
+            style={getScrollBarStyle()}
+          />
         </div>
       </div>
       <div className={`${prefix}_tabs_content`}>{activeItem?.children}</div>

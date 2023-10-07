@@ -27,8 +27,12 @@
       background-color: var(--semi-color-border);
     }
     &_scrollbar {
-      width: 30px;
+      transition: all 0.3s ease-in-out;
       background-color: var(--semi-color-primary);
     }
+  }
+
+  &_content {
+    padding: 24px 0;
   }
 }
