@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { PivotDesignProps } from './';
 
 type UniqueId = string | number;
@@ -6,9 +6,19 @@ type UniqueId = string | number;
 interface TabsItemProps {
   label: UniqueId;
   key: UniqueId;
-  children: ReactNode;
+  children?: ReactNode;
 }
 export interface TabsProps extends PivotDesignProps {
+  /**
+   * @version 1.0.0
+   * @description 自定义Tabs内容容器样式
+   */
+  contentStyle?: CSSProperties;
+  /**
+   * @version 1.0.0
+   * @description 自定义渲染Tabs公共内容
+   */
+  renderCommonContent?: (item: TabsItemProps) => ReactNode;
   /**
    * @version 1.0.0
    * @description 标签页项最主要的数据，用于渲染标签页

@@ -22,6 +22,7 @@ type TabSizeMap = Map<
   TabsProps['items'][number]['key'],
   { width: number; height: number; left: number; top: number }
 >;
+
 const Tabs: React.FC<TabsProps> = (props) => {
   const [value, onChange] = useControlled<TabsProps['items'][number]['key']>(
     props,
@@ -30,7 +31,14 @@ const Tabs: React.FC<TabsProps> = (props) => {
     }
   );
   const [tabSizes, setTabSizes] = useState<TabSizeMap>(new Map());
-  const { className, style, items = [], type = 'default' } = props;
+  const {
+    className,
+    style,
+    contentStyle,
+    items = [],
+    type = 'default',
+    renderCommonContent,
+  } = props;
 
   const activeItem = getActiveItem(items, value);
 
@@ -104,7 +112,10 @@ const Tabs: React.FC<TabsProps> = (props) => {
           )}
         </div>
       </div>
-      <div className={`${prefix}_tabs_content`}>{activeItem?.children}</div>
+      <div className={`${prefix}_tabs_content`} style={contentStyle}>
+        {renderCommonContent && renderCommonContent(activeItem)}
+        {activeItem?.children}
+      </div>
     </div>
   );
 };
