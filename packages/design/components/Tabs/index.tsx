@@ -30,7 +30,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
     }
   );
   const [tabSizes, setTabSizes] = useState<TabSizeMap>(new Map());
-  const { className, style, items = [] } = props;
+  const { className, style, items = [], type = 'default' } = props;
 
   const activeItem = getActiveItem(items, value);
 
@@ -74,7 +74,12 @@ const Tabs: React.FC<TabsProps> = (props) => {
   };
   return (
     <div className={classnames(`${prefix}_tabs`, className)} style={style}>
-      <div className={`${prefix}_tabs_bar`}>
+      <div
+        className={classnames(
+          `${prefix}_tabs_bar`,
+          `${prefix}_tabs_bar_${type}`
+        )}
+      >
         {items.map((item) => {
           return (
             <div
@@ -89,11 +94,14 @@ const Tabs: React.FC<TabsProps> = (props) => {
             </div>
           );
         })}
+
         <div className={`${prefix}_tabs_bar_scrollrail`}>
-          <div
-            className={`${prefix}_tabs_bar_scrollbar`}
-            style={getScrollBarStyle()}
-          />
+          {type !== 'card' && (
+            <div
+              className={`${prefix}_tabs_bar_scrollbar`}
+              style={getScrollBarStyle()}
+            />
+          )}
         </div>
       </div>
       <div className={`${prefix}_tabs_content`}>{activeItem?.children}</div>

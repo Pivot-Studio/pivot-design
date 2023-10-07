@@ -17,6 +17,12 @@ export interface TabsProps extends PivotDesignProps {
   items: TabsItemProps[];
   /**
    * @version 1.0.0
+   * @description 标签种类样式
+   * @default "default"
+   */
+  type?: 'default' | 'card';
+  /**
+   * @version 1.0.0
    * @description 当前激活的标签页索引
    * @default 0
    */

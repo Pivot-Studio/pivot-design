@@ -5,6 +5,25 @@
     display: flex;
     align-items: center;
     column-gap: 32px;
+
+    &.#{$prefix}_tabs_bar_card {
+      column-gap: 4px;
+      .#{$prefix}_tabs_bar {
+        &_item {
+          padding: 8px 16px;
+          border-radius: 8px 8px 0 0;
+          border: 2px solid var(--semi-color-border);
+          transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+          &__active {
+            position: relative;
+            z-index: 1;
+            background-color: var(--semi-color-bg-1);
+            border-bottom-color: var(--semi-color-bg-2);
+          }
+        }
+      }
+    }
+
     &_item {
       cursor: pointer;
       padding: 12px 0;
@@ -27,7 +46,7 @@
       background-color: var(--semi-color-border);
     }
     &_scrollbar {
-      transition: all 0.3s ease-in-out;
+      transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
       background-color: var(--semi-color-primary);
     }
   }
