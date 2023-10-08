@@ -1,5 +1,5 @@
 /* eslint-disable no-redeclare */
-import { useCallback, useState, SetStateAction } from 'react';
+import { useCallback, useState, SetStateAction, useEffect } from 'react';
 
 export interface Options<T> {
   defaultValue?: T;
@@ -37,7 +37,6 @@ function useControlled<T = any>(props: Props = {}, options: Options<T> = {}) {
   const defaultPropsValue = props[defaultValuePropName] ?? defaultOptionsValue;
   const propsOnChange = props[changeName];
   const isControlled = Object.hasOwn(props, valuePropName);
-
   const [state, setState] = useState<T>(
     isControlled ? value : defaultPropsValue
   );

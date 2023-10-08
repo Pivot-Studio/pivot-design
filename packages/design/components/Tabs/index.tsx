@@ -1,35 +1,29 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import { TabsProps } from 'pivot-design-props';
+import { TabsItemProps, TabsProps } from 'pivot-design-props';
 import { prefix } from '../constants';
 import classnames from 'classnames';
 import './index.scss';
 import { useControlled } from '../hooks';
 
-function getActiveItem(
-  items: TabsProps['items'],
-  value: TabsProps['items'][number]['key']
-) {
+function getActiveItem(items: TabsItemProps[], value: TabsItemProps['key']) {
   const activeItems = items
     .map((item, index) => ({ ...item, index }))
     .filter((item) => item.key === value);
   if (activeItems.length < 1) {
     throw new Error('当前激活Tab发生未知错误');
   }
-  return activeItems[0] as TabsProps['items'][number];
+  return activeItems[0] as TabsItemProps;
 }
 
 type TabSizeMap = Map<
-  TabsProps['items'][number]['key'],
+  TabsItemProps['key'],
   { width: number; height: number; left: number; top: number }
 >;
 
 const Tabs: React.FC<TabsProps> = (props) => {
-  const [value, onChange] = useControlled<TabsProps['items'][number]['key']>(
-    props,
-    {
-      defaultValue: props.items[0]?.key ?? 0,
-    }
-  );
+  const [value, onChange] = useControlled<TabsItemProps['key']>(props, {
+    defaultValue: props.items[0]?.key ?? 0,
+  });
   const [tabSizes, setTabSizes] = useState<TabSizeMap>(new Map());
   const {
     className,

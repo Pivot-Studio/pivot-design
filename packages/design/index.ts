@@ -11,7 +11,7 @@ export {
   SortableContext,
 } from './components/Draggable';
 export { default as Icon } from './components/Icon';
-export { default as Editor } from './components/MonacoEditor';
+export * from './components/MonacoEditor';
 export { default as Tabs } from './components/Tabs';
 import Input from './components/Input';
 import Card from './components/Card';

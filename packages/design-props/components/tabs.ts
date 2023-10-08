@@ -3,10 +3,11 @@ import { PivotDesignProps } from './';
 
 type UniqueId = string | number;
 
-interface TabsItemProps {
+export interface TabsItemProps {
   label: UniqueId;
   key: UniqueId;
   children?: ReactNode;
+  [x: string]: any;
 }
 export interface TabsProps extends PivotDesignProps {
   /**

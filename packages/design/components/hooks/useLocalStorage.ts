@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 
 const useLocalStorage = (key: string, options: any) => {
-  const storedValue = localStorage.getItem(key);
+  const uniqueKey = `pivot_editor_${key}`;
+  const storedValue = localStorage.getItem(uniqueKey);
   const [value, setValue] = useState(storedValue || options.defaultValue);
   useEffect(() => {
-    localStorage.setItem(key, value);
-  }, [key, value]);
+    localStorage.setItem(uniqueKey, value);
+  }, [uniqueKey, value]);
   return [value, setValue];
 };
 

@@ -1,16 +1,14 @@
 export enum CodeType {
-  cpp = 'cpp',
-  nodejs = 'nodejs',
-  go = 'go',
-  python3 = 'python3',
-  python2 = 'python2',
-  java = 'java',
-  php = 'php',
-  rust = 'rust',
-  c = 'c',
-  dotnet = 'dotnet',
   ts = 'typescript',
   html = 'html',
+  css = 'css',
+}
+
+export const enum ThemeType {
+  'Visual Studio' = 'vs',
+  'Visual Studio Dark' = 'vs-dark',
+  'High Contrast' = 'hc-light',
+  'High Contrast Dark' = 'hc-black',
 }
 
 export enum MessageChangeType {
