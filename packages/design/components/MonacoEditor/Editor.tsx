@@ -1,11 +1,14 @@
 import Editor, { EditorProps, OnChange, OnMount } from '@monaco-editor/react';
 import { useRef } from 'react';
+import { TabsItemProps } from 'pivot-design-props';
 import { CodeType, MessageChangeType, ThemeType } from './types';
 import InitPlugin from './plugins/initPlugin';
 import { useControlled, useDebounce } from '../hooks';
 import Preview from './components/Preview';
 import { useWorkers } from './workers/useWorkers';
-interface MocacoEditorProps extends EditorProps {}
+interface MocacoEditorProps extends EditorProps {
+  modules?: TabsItemProps[];
+}
 
 const FILENAME = 'index.tsx';
 
@@ -21,6 +24,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
     defaultLanguage = CodeType.ts,
     path = FILENAME,
     theme = ThemeType['Visual Studio Dark'],
+    modules,
     ...rest
   } = props;
 
@@ -47,6 +51,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
       data: {
         filename: path,
         code: value,
+        modules,
       },
     });
   }, 300);

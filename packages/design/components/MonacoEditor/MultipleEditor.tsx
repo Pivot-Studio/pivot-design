@@ -49,6 +49,7 @@ const MultipleEditor = () => {
         renderCommonContent={(item) => {
           return (
             <MonacoEditor
+              modules={tabsValue}
               path={String(item.label)}
               defaultLanguage={item.language}
               value={item.value}

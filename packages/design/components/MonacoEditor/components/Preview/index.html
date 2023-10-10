@@ -19,10 +19,20 @@
   <script>
     window.addEventListener('message', (e) => {
       const { type, data } = e.data;
-      const compileScript = document.createElement('script');
-      compileScript.type = 'module';
-      compileScript.innerHTML = data;
-      document.body.appendChild(compileScript);
+      // 编译
+      if (type === 0) {
+        const CompileScriptId = '__PIVOT_EDITOR_COMPILE_ID__';
+        const documentCompileScript = document.getElementById(CompileScriptId);
+        if (!Boolean(documentCompileScript)) {
+          const compileScript = document.createElement('script');
+          compileScript.id = CompileScriptId;
+          compileScript.type = 'module';
+          compileScript.innerHTML = data;
+          document.body.appendChild(compileScript);
+          return;
+        }
+        documentCompileScript.innerHTML = data;
+      }
     });
   </script>
 </html>
