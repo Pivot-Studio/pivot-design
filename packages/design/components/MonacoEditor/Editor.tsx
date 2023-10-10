@@ -6,6 +6,7 @@ import InitPlugin from './plugins/initPlugin';
 import { useControlled, useDebounce } from '../hooks';
 import Preview from './components/Preview';
 import { useWorkers } from './workers/useWorkers';
+import { omit } from '../utils/omit';
 interface MocacoEditorProps extends EditorProps {
   modules?: TabsItemProps[];
 }
@@ -45,10 +46,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
     InitPlugin(monaco);
   };
 
-  // todo: 这里没有处罚
   const handleEditorChange: OnChange = useDebounce((value, e) => {
-    console.log(111);
-
     onChange?.(value ?? '', e);
     compilerWorker.postMessage({
       type: MessageChangeType.Compile,
@@ -70,7 +68,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
         theme={theme}
         onChange={handleEditorChange}
         onMount={handleEditorDidMount}
-        {...rest}
+        {...omit(rest, ['value', 'onChange'])}
         // beforeMount={handleEditorWillMount}
         // onValidate={handleEditorValidation}
       />
