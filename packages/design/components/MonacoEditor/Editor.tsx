@@ -2,7 +2,7 @@ import Editor, { EditorProps, OnChange, OnMount } from '@monaco-editor/react';
 import { useRef } from 'react';
 import { CodeType, MessageChangeType, ThemeType } from './types';
 import InitPlugin from './plugins/initPlugin';
-import { useDebounce } from '../hooks';
+import { useControlled, useDebounce } from '../hooks';
 import Preview from './components/Preview';
 import { useWorkers } from './workers/useWorkers';
 interface MocacoEditorProps extends EditorProps {}
@@ -11,21 +11,18 @@ const FILENAME = 'index.tsx';
 
 const MonacoEditor = (props: MocacoEditorProps) => {
   const { compilerWorker } = useWorkers();
+  const [value, onChange] = useControlled<string>(props, {
+    valuePropName: 'value',
+    changeName: 'onChange',
+    defaultValuePropName: 'defaultValue',
+  });
   const {
     height = 400,
     defaultLanguage = CodeType.ts,
     path = FILENAME,
     theme = ThemeType['Visual Studio Dark'],
-    value,
-    defaultValue,
-    onChange,
     ...rest
   } = props;
-
-  const privateKey = `pivot_editor_${path}`;
-  const localValue = localStorage.getItem(privateKey);
-
-  const storedValue = onChange ? value : localValue ?? defaultValue;
 
   const EditorRef = useRef<Parameters<OnMount>['0']>();
   const MonacoRef = useRef<Parameters<OnMount>['1']>();
@@ -37,7 +34,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
       type: MessageChangeType.Compile,
       data: {
         filename: path,
-        code: storedValue,
+        code: value,
       },
     });
     InitPlugin(monaco);
@@ -45,7 +42,6 @@ const MonacoEditor = (props: MocacoEditorProps) => {
 
   const handleEditorChange: OnChange = useDebounce((value, e) => {
     onChange?.(value ?? '', e);
-    localStorage.setItem(privateKey, value);
     compilerWorker.postMessage({
       type: MessageChangeType.Compile,
       data: {
@@ -61,7 +57,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
         height={height}
         path={path}
         defaultLanguage={defaultLanguage}
-        defaultValue={storedValue}
+        defaultValue={value}
         theme={theme}
         onChange={handleEditorChange}
         onMount={handleEditorDidMount}
