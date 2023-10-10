@@ -13,8 +13,6 @@ const useLocalStorage = (key: string, options: any) => {
   const [value, _setValue] = useState(storedValue || defaultValue);
 
   useEffect(() => {
-    console.log('set');
-
     localStorage.setItem(uniqueKey, value);
   }, [uniqueKey, value]);
   const setValue = (value: any) => {

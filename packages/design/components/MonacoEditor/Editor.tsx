@@ -39,12 +39,16 @@ const MonacoEditor = (props: MocacoEditorProps) => {
       data: {
         filename: path,
         code: value,
+        modules,
       },
     });
     InitPlugin(monaco);
   };
 
+  // todo: 这里没有处罚
   const handleEditorChange: OnChange = useDebounce((value, e) => {
+    console.log(111);
+
     onChange?.(value ?? '', e);
     compilerWorker.postMessage({
       type: MessageChangeType.Compile,
