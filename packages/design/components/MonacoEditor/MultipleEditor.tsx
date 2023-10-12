@@ -35,8 +35,9 @@ const items = [
     }`,
   },
 ];
-// todo: 1.多文件引入（scss、tsx），引入scss
-// 2.代码优化；
+// todo: 1. 编译文件的独立性。现在修改css实际走的是tsx的编译
+// 2.引入scss
+// 3.代码优化；
 const MultipleEditor = () => {
   const [tabsValue, setTabsValue] = useLocalStorage('tabs', {
     defaultValue: items,
@@ -52,7 +53,7 @@ const MultipleEditor = () => {
               modules={tabsValue}
               path={String(item.label)}
               defaultLanguage={item.language}
-              value={item.value}
+              defaultValue={item.value}
               onChange={(value) => {
                 const prevTabValue = tabsValue;
                 const activeTab = _find(prevTabValue, item.key);

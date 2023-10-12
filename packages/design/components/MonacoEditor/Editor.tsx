@@ -15,17 +15,19 @@ const FILENAME = 'index.tsx';
 
 const MonacoEditor = (props: MocacoEditorProps) => {
   const { compilerWorker } = useWorkers();
-  const [value, onChange] = useControlled<string>(props, {
-    valuePropName: 'value',
-    changeName: 'onChange',
-    defaultValuePropName: 'defaultValue',
-  });
+  // const [value, onChange] = useControlled<string>(props, {
+  //   valuePropName: 'value',
+  //   changeName: 'onChange',
+  //   defaultValuePropName: 'defaultValue',
+  // });
   const {
     height = 400,
     defaultLanguage = CodeType.ts,
     path = FILENAME,
     theme = ThemeType['Visual Studio Dark'],
     modules,
+    onChange,
+    defaultValue,
     ...rest
   } = props;
 
@@ -39,7 +41,7 @@ const MonacoEditor = (props: MocacoEditorProps) => {
       type: MessageChangeType.Compile,
       data: {
         filename: path,
-        code: value,
+        code: defaultValue,
         modules,
       },
     });
@@ -64,11 +66,11 @@ const MonacoEditor = (props: MocacoEditorProps) => {
         height={height}
         path={path}
         defaultLanguage={defaultLanguage}
-        defaultValue={value}
+        defaultValue={defaultValue}
         theme={theme}
         onChange={handleEditorChange}
         onMount={handleEditorDidMount}
-        {...omit(rest, ['value', 'onChange'])}
+        {...rest}
         // beforeMount={handleEditorWillMount}
         // onValidate={handleEditorValidation}
       />
