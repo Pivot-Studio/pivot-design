@@ -2,6 +2,7 @@ export enum CodeType {
   ts = 'typescript',
   html = 'html',
   css = 'css',
+  scss = 'scss',
 }
 
 export const enum ThemeType {

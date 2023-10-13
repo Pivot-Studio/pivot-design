@@ -3,8 +3,8 @@ import { transformFromAstSync } from '@babel/core';
 import { parse } from '@babel/parser';
 import ReactPreset from '@babel/preset-react';
 import TSPreset from '@babel/preset-typescript';
-import { getLocalPrivateKey } from '../utils';
 import { TabsItemProps } from 'pivot-design-props';
+import { compileString } from 'sass';
 
 const getInternalModule = (modules: TabsItemProps[], moduleSource: string) => {
   return modules.find((module) => module.key === moduleSource);
@@ -61,6 +61,25 @@ const babelTransform = (
                           document.head.appendChild(stylesheet)
                         }
                         const styles = document.createTextNode(\`${_module.value}\`)
+                        stylesheet.innerHTML = ''
+                        stylesheet.appendChild(styles)`;
+                    path.node.source.value = URL.createObjectURL(
+                      new Blob([js], { type: 'application/javascript' })
+                    );
+                  }
+                  if (_module && String(_module.key).endsWith('.scss')) {
+                    const js = `
+                        let stylesheet = document.getElementById('${
+                          _module.key
+                        }');
+                        if (!stylesheet) {
+                          stylesheet = document.createElement('style')
+                          stylesheet.setAttribute('id', '${_module.key}')
+                          document.head.appendChild(stylesheet)
+                        }
+                        const styles = document.createTextNode(\`${
+                          compileString(_module.value).css
+                        }\`)
                         stylesheet.innerHTML = ''
                         stylesheet.appendChild(styles)`;
                     path.node.source.value = URL.createObjectURL(

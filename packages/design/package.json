@@ -25,7 +25,7 @@
     "pivot-design-props": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.54.9",
+    "sass": "^1.69.3",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
     "typescript": "^4.8.3",

@@ -7,7 +7,7 @@ import MonacoEditor from './Editor';
 import { useLocalStorage } from '../hooks';
 
 const FILENAME1 = 'index.tsx';
-const FILENAME2 = 'index.css';
+const FILENAME2 = 'index.scss';
 const _find = (arr: any[], key: string) => {
   for (let index = 0; index < arr.length; index++) {
     const item = arr[index];
@@ -27,12 +27,13 @@ const items = [
   {
     key: FILENAME2,
     label: FILENAME2,
-    language: CodeType.css,
-    value: `{
-      .box {
+    language: CodeType.scss,
+    value: `.box {
         color: red;
-      }
-    }`,
+        &_footer{
+          color:green;
+        }
+      }`,
   },
 ];
 // todo: 1. 编译文件的独立性。现在修改css实际走的是tsx的编译
