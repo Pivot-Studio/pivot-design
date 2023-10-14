@@ -15,3 +15,11 @@ export const enum ThemeType {
 export enum MessageChangeType {
   Compile,
 }
+
+export interface Module {
+  key: string;
+  label: string;
+  language: CodeType;
+  value: string;
+  entry?: boolean;
+}

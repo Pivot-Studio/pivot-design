@@ -1,6 +1,6 @@
 import { EditorProps } from '@monaco-editor/react';
 import { useRef, useState } from 'react';
-import { CodeType } from './types';
+import { CodeType, Module } from './types';
 import { testCode } from './code';
 import Tabs from '../Tabs';
 import MonacoEditor from './Editor';
@@ -17,7 +17,7 @@ const _find = (arr: any[], key: string) => {
   }
   return {};
 };
-const items = [
+const items: Module[] = [
   {
     key: FILENAME1,
     label: FILENAME1,
@@ -40,7 +40,7 @@ const items = [
 // 2.引入scss
 // 3.代码优化；
 const MultipleEditor = () => {
-  const [tabsValue, setTabsValue] = useLocalStorage('tabs', {
+  const [tabsValue, setTabsValue] = useLocalStorage<Module[]>('tabs', {
     defaultValue: items,
   });
 

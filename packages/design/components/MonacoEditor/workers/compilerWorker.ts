@@ -1,20 +1,19 @@
-import { MessageChangeType } from '../types';
-import { transformFromAstSync } from '@babel/core';
+import { MessageChangeType, Module } from '../types';
+import { transformFromAstSync, PluginObj, Node } from '@babel/core';
 import { parse } from '@babel/parser';
 import ReactPreset from '@babel/preset-react';
 import TSPreset from '@babel/preset-typescript';
-import { TabsItemProps } from 'pivot-design-props';
 import { compileString } from 'sass';
+import { getInternalModule, getModulesEntry } from '../utils';
 
-const getInternalModule = (modules: TabsItemProps[], moduleSource: string) => {
-  return modules.find((module) => module.key === moduleSource);
-};
-const babelTransform = (
-  filename: string,
-  code: string,
-  modules: TabsItemProps[]
-) => {
-  if (filename.endsWith('.tsx')) {
+const ModuleDependencyGraph = new Map<'entry' | 'dependencies', any>();
+
+const babelTransform = (filename: string, code: string, modules: Module[]) => {
+  // 目前只存在一个入口
+  if (
+    ModuleDependencyGraph.get('entry') === filename &&
+    filename.endsWith('.tsx')
+  ) {
     /**
      *  (浏览器）踩坑~
      * 1. presets设置一定要有import引用，不能直接写'jsx'
@@ -37,14 +36,23 @@ const babelTransform = (
       plugins: ['jsx', 'typescript'],
       sourceType: 'unambiguous',
     });
-    const { code: resultCode } = transformFromAstSync(ast, code, {
+    const { code: resultCode } = transformFromAstSync(ast as Node, code, {
       filename: filename,
       presets: [ReactPreset, TSPreset],
       plugins: [
-        function importGetter() {
+        function importGetter(): PluginObj {
           return {
+            pre(file) {
+              file.metadata.dependencies = [];
+            },
+            post(file) {
+              ModuleDependencyGraph.set(
+                'dependencies',
+                file.metadata.dependencies
+              );
+            },
             visitor: {
-              ImportDeclaration(path: any) {
+              ImportDeclaration(path, state) {
                 const moduleSource: string = path.node.source.value;
                 // 相对路径模块引入
                 if (moduleSource.startsWith('.')) {
@@ -52,6 +60,9 @@ const babelTransform = (
                     modules,
                     moduleSource.slice(2)
                   );
+                  if (_module) {
+                    state.file.metadata.dependencies.push(_module.key);
+                  }
                   if (_module && String(_module.key).endsWith('.css')) {
                     const js = `
                         let stylesheet = document.getElementById('${_module.key}');
@@ -124,10 +135,25 @@ self.addEventListener('message', (e) => {
   const { type, data } = e.data;
 
   if (type === MessageChangeType.Compile) {
+    const { filename, modules } = data;
+
+    const entryModule = getModulesEntry(modules)!;
+
+    if (!ModuleDependencyGraph.has('entry')) {
+      ModuleDependencyGraph.set('entry', entryModule?.key);
+    }
+    // 不在依赖图中不编译
+    if (
+      filename !== entryModule.key &&
+      ModuleDependencyGraph.has('dependencies') &&
+      !ModuleDependencyGraph.get('dependencies')?.includes(filename)
+    ) {
+      return;
+    }
     // 发送结果回主线程
     self.postMessage({
       type,
-      data: babelTransform(data.filename, data.code, data.modules),
+      data: babelTransform(String(entryModule.key), entryModule.value, modules),
     });
   }
 });

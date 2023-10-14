@@ -1,14 +1,14 @@
 import Editor, { EditorProps, OnChange, OnMount } from '@monaco-editor/react';
 import { useRef } from 'react';
 import { TabsItemProps } from 'pivot-design-props';
-import { CodeType, MessageChangeType, ThemeType } from './types';
+import { CodeType, MessageChangeType, Module, ThemeType } from './types';
 import InitPlugin from './plugins/initPlugin';
 import { useControlled, useDebounce } from '../hooks';
 import Preview from './components/Preview';
 import { useWorkers } from './workers/useWorkers';
 import { omit } from '../utils/omit';
 interface MocacoEditorProps extends EditorProps {
-  modules?: TabsItemProps[];
+  modules?: Module[];
 }
 
 const FILENAME = 'index.tsx';
