@@ -1,9 +1,10 @@
 export default `import ReactDom from 'react-dom/client';
 import React from 'react';
+import './index.scss';
 function App() {
   return (
     <section>
-      <h1 style={{ color: '#fff' }}>Pivot Design Editor</h1>
+      <h1>Pivot Design Editor</h1>
     </section>
   );
 }

@@ -23,15 +23,18 @@
       if (type === 0) {
         const CompileScriptId = '__PIVOT_EDITOR_COMPILE_ID__';
         const documentCompileScript = document.getElementById(CompileScriptId);
-        if (!Boolean(documentCompileScript)) {
-          const compileScript = document.createElement('script');
-          compileScript.id = CompileScriptId;
-          compileScript.type = 'module';
-          compileScript.innerHTML = data;
-          document.body.appendChild(compileScript);
-          return;
-        }
-        documentCompileScript.innerHTML = data;
+        documentCompileScript?.remove();
+
+        // 解决更新不生效的问题：必须remove之前的script
+        // if (!Boolean(documentCompileScript)) {
+        const compileScript = document.createElement('script');
+        compileScript.id = CompileScriptId;
+        compileScript.type = 'module';
+        compileScript.innerHTML = data;
+        document.body.appendChild(compileScript);
+        // return;
+        // }
+        // documentCompileScript.innerHTML = data;
       }
     });
   </script>

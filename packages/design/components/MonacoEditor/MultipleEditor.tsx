@@ -1,7 +1,7 @@
 import { EditorProps } from '@monaco-editor/react';
 import { useRef, useState } from 'react';
 import { CodeType } from './types';
-import { useEventCode } from './code';
+import { testCode } from './code';
 import Tabs from '../Tabs';
 import MonacoEditor from './Editor';
 import { useLocalStorage } from '../hooks';
@@ -22,16 +22,16 @@ const items = [
     key: FILENAME1,
     label: FILENAME1,
     language: CodeType.ts,
-    value: useEventCode,
+    value: testCode,
+    entry: true,
   },
   {
     key: FILENAME2,
     label: FILENAME2,
     language: CodeType.scss,
-    value: `.box {
-        color: red;
-        &_footer{
-          color:green;
+    value: `section {
+        h1 {
+          color: white;
         }
       }`,
   },
