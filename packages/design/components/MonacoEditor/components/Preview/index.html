@@ -6,14 +6,7 @@
     <title>preview</title>
   </head>
   <body>
-    <script type="importmap">
-      {
-        "imports": {
-          "react": "https://esm.sh/react",
-          "react-dom/client": "https://esm.sh/react-dom/client"
-        }
-      }
-    </script>
+    <script type="importmap"></script>
     <div id="root"></div>
   </body>
   <script>
@@ -21,20 +14,31 @@
       const { type, data } = e.data;
       // 编译
       if (type === 0) {
+        const { code, importMap } = data;
+        // Import Map
+        if (importMap.size > 0) {
+          const ImportMapScript = document.querySelector(
+            'script[type="importmap"]'
+          );
+          const importMapResult = [...importMap.entries()].reduce(
+            (prev, cur) => ({
+              imports: { ...prev.imports, [cur[0]]: cur[1] },
+            }),
+            { imports: {} }
+          );
+          ImportMapScript.innerHTML = JSON.stringify(importMapResult);
+        }
+
+        // Entry Compiler
         const CompileScriptId = '__PIVOT_EDITOR_COMPILE_ID__';
         const documentCompileScript = document.getElementById(CompileScriptId);
         documentCompileScript?.remove();
-
         // 解决更新不生效的问题：必须remove之前的script
-        // if (!Boolean(documentCompileScript)) {
         const compileScript = document.createElement('script');
         compileScript.id = CompileScriptId;
         compileScript.type = 'module';
-        compileScript.innerHTML = data;
+        compileScript.innerHTML = code;
         document.body.appendChild(compileScript);
-        // return;
-        // }
-        // documentCompileScript.innerHTML = data;
       }
     });
   </script>

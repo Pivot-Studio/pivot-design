@@ -31,7 +31,7 @@ const babelTransform = (filename: string, code: string, modules: Module[]) => {
       ]
     }
      * */
-
+    const importMap = new Map();
     const ast = parse(code, {
       plugins: ['jsx', 'typescript'],
       sourceType: 'unambiguous',
@@ -97,37 +97,25 @@ const babelTransform = (filename: string, code: string, modules: Module[]) => {
                       new Blob([js], { type: 'application/javascript' })
                     );
                   }
+                } else {
+                  // 第三方依赖
+                  if (!importMap.has(moduleSource)) {
+                    importMap.set(
+                      moduleSource,
+                      `https://esm.sh/${moduleSource}`
+                    );
+                  }
                 }
-
-                //   const _module = getInternalModule(moduleSource.slice(2));
-                //   if (_module.value) {
-                //
-                //   }
-                //   else {
-                //     // handle ts file
-                //     path.node.source.value = URL.createObjectURL(
-                //       new Blob(
-                //         [babelTransform(_module.path, _module.content, tabs)],
-                //         {
-                //           type: 'application/javascript',
-                //         }
-                //       )
-                //     );
-                //   }
-                // } else {
-                //   // Third-party modules
-                //   if (!importmap[module]) {
-                //     importmap[module] = `https://esm.sh/${module}`;
-                //   }
-                // }
-                // }
               },
             },
           };
         },
       ],
     });
-    return resultCode;
+    return {
+      code: resultCode,
+      importMap,
+    };
   }
 };
 
