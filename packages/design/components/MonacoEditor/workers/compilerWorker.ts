@@ -8,6 +8,16 @@ import { getInternalModule, getModulesEntry } from '../utils';
 
 const ModuleDependencyGraph = new Map<'entry' | 'dependencies', any>();
 
+const fetchCodeRunner = async (code: string) => {
+  try {
+    const response = await fetch(`http://localhost:3000?code=${code}`, {
+      method: 'GET',
+    });
+    return await response.text();
+  } catch (error) {
+    return error.toString();
+  }
+};
 const babelTransform = (filename: string, code: string, modules: Module[]) => {
   // 目前只存在一个入口
   if (
@@ -119,7 +129,7 @@ const babelTransform = (filename: string, code: string, modules: Module[]) => {
   }
 };
 
-self.addEventListener('message', (e) => {
+self.addEventListener('message', async (e) => {
   const { type, data } = e.data;
 
   if (type === MessageChangeType.Compile) {
@@ -138,10 +148,20 @@ self.addEventListener('message', (e) => {
     ) {
       return;
     }
+
+    const babelTransformResult = babelTransform(
+      String(entryModule.key),
+      entryModule.value,
+      modules
+    );
+    const codeRunnerResult = await fetchCodeRunner(babelTransformResult?.code);
     // 发送结果回主线程
     self.postMessage({
       type,
-      data: babelTransform(String(entryModule.key), entryModule.value, modules),
+      data: {
+        ...babelTransformResult,
+        runcode: codeRunnerResult,
+      },
     });
   }
 });

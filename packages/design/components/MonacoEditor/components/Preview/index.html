@@ -8,13 +8,14 @@
   <body>
     <script type="importmap"></script>
     <div id="root"></div>
+    <code id="__CODE_RUN__" style="color: rgb(249, 146, 146)"></code>
   </body>
   <script>
     window.addEventListener('message', (e) => {
       const { type, data } = e.data;
       // 编译
       if (type === 0) {
-        const { code, importMap } = data;
+        const { code, importMap, runcode = '' } = data;
         // Import Map
         if (importMap.size > 0) {
           const ImportMapScript = document.querySelector(
@@ -37,8 +38,13 @@
         const compileScript = document.createElement('script');
         compileScript.id = CompileScriptId;
         compileScript.type = 'module';
-        compileScript.innerHTML = code;
+        compileScript.innerHTML = `try{${code}}catch(err){console.log(err)}`;
         document.body.appendChild(compileScript);
+
+        document.getElementById('__CODE_RUN__').innerHTML = runcode.replace(
+          /[\n]/g,
+          '<br />'
+        );
       }
     });
   </script>
