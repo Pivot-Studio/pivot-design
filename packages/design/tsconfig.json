@@ -4,6 +4,6 @@
   "exclude": ["lib", ".*"],
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "lib",
+    "outDir": "lib"
   }
 }

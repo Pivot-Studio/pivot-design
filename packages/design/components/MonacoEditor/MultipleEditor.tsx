@@ -1,10 +1,11 @@
 import { EditorProps } from '@monaco-editor/react';
-import { useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { CodeType, Module } from './types';
 import { testCode } from './code';
 import Tabs from '../Tabs';
 import MonacoEditor from './Editor';
 import { useLocalStorage } from '../hooks';
+import { MultipleEditorProps } from 'pivot-design-props';
 
 const FILENAME1 = 'index.tsx';
 const FILENAME2 = 'index.scss';
@@ -39,13 +40,13 @@ const items: Module[] = [
 // todo: 1. 编译文件的独立性。现在修改css实际走的是tsx的编译
 // 2.引入scss
 // 3.代码优化；
-const MultipleEditor = () => {
+const MultipleEditor: FC<MultipleEditorProps> = ({ style }) => {
   const [tabsValue, setTabsValue] = useLocalStorage<Module[]>('tabs', {
     defaultValue: items,
   });
 
   return (
-    <div style={{ width: '100%', padding: 12 }}>
+    <div style={{ width: '100%', padding: 12, ...style }}>
       <Tabs
         items={tabsValue}
         renderCommonContent={(item) => {

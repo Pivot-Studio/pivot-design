@@ -38,9 +38,10 @@
         const compileScript = document.createElement('script');
         compileScript.id = CompileScriptId;
         compileScript.type = 'module';
-        compileScript.innerHTML = `try{${code}}catch(err){console.log(err)}`;
+        compileScript.innerHTML = `${code}`;
         document.body.appendChild(compileScript);
 
+        // code runner exhibition
         document.getElementById('__CODE_RUN__').innerHTML = runcode.replace(
           /[\n]/g,
           '<br />'
