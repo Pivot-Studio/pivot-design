@@ -1,5 +1,6 @@
 const path = require('path'); //node环境当前路径
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //模板文件插件，能够自动将打包的css和js加入到模板文件中
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 module.exports = {
   entry: {
     app: './index.tsx', //找到咱们刚才在src下面的入口文件
@@ -13,6 +14,11 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@': path.resolve(__dirname, './src'),
+    },
+    fallback: {
+      fs: false,
+      assert: require.resolve('assert'),
+      path: require.resolve('path-browserify'),
     },
   },
   devServer: {
@@ -86,5 +92,6 @@ module.exports = {
         removeComments: true, // 移除注释
       },
     }),
+    new NodePolyfillPlugin(),
   ],
 };

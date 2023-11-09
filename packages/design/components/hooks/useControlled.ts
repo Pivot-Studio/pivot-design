@@ -1,5 +1,5 @@
 /* eslint-disable no-redeclare */
-import { useCallback, useState, SetStateAction } from 'react';
+import { useCallback, useState, SetStateAction, useEffect } from 'react';
 
 export interface Options<T> {
   defaultValue?: T;
@@ -11,12 +11,14 @@ export interface Options<T> {
 export interface StandardProps<T> {
   value?: T;
   defaultValue?: T;
-  onChange?: (val: T) => void;
+  onChange?: (val: T, ...args: any[]) => void;
 }
 
 type Props = Record<string, any>;
 
-function useControlled<T = any>(props: StandardProps<T>): [T, (v: SetStateAction<T>) => void];
+function useControlled<T = any>(
+  props: StandardProps<T>
+): [T, (v: SetStateAction<T>) => void];
 function useControlled<T = any>(
   props?: StandardProps<T>,
   options?: Options<T>
@@ -35,8 +37,9 @@ function useControlled<T = any>(props: Props = {}, options: Options<T> = {}) {
   const defaultPropsValue = props[defaultValuePropName] ?? defaultOptionsValue;
   const propsOnChange = props[changeName];
   const isControlled = Object.hasOwn(props, valuePropName);
-
-  const [state, setState] = useState(isControlled ? value : defaultPropsValue);
+  const [state, setState] = useState<T>(
+    isControlled ? value : defaultPropsValue
+  );
 
   const setValue = useCallback((v: T, ...args: any[]) => {
     if (isControlled) {

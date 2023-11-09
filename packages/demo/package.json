@@ -39,6 +39,7 @@
     "@mdx-js/loader": "^2.1.5",
     "babel-plugin-prismjs": "^2.1.0",
     "gsap": "^3.11.5",
+    "node-polyfill-webpack-plugin": "^2.0.1",
     "pivot-design": "workspace:*",
     "pivot-design-icon": "workspace:*",
     "prismjs": "^1.29.0",

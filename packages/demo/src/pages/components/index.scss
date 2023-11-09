@@ -12,7 +12,6 @@
 
   @media only screen and (min-width: 1900px) {
     &-content {
-      justify-content: center;
       padding: 50px 12vw;
     }
   }
@@ -30,7 +29,7 @@
       padding: 8px 0.6rem;
       padding-top: 50px;
       min-width: 240px;
-      background: var(--semi-color-bg-1);
+      background: var(--semi-color-bg-2);
       font-size: 14px;
 
       .demo-item {

@@ -7,6 +7,7 @@ body .semi-always-light {
   --semi-color-bg-2: rgba(var(--semi-white), 1);
   --semi-color-bg-3: rgba(var(--semi-white), 1);
   --semi-color-bg-4: rgba(var(--semi-white), 1);
+  --semi-color-bg-5: rgba(var(--semi-white), 1);
   --semi-color-info: rgba(var(--semi-blue-5), 1);
   --semi-color-link: rgba(var(--semi-blue-5), 1);
   --semi-color-nav-bg: rgba(var(--semi-white), 1);
@@ -83,11 +84,14 @@ body .semi-always-light {
   --semi-color-secondary-light-active: rgba(var(--semi-blue-2), 1);
   --semi-color-secondary-light-default: rgba(var(--semi-blue-0), 1);
   -webkit-font-smoothing: antialiased;
-  --semi-shadow-elevated: 0px 0px 1px 0px rgba(0, 0, 0, 0.3), 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+  --semi-shadow-elevated: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+    0px 4px 14px 0px rgba(0, 0, 0, 0.1);
   --semi-shadow-0: none;
   --semi-shadow-1: none;
-  --semi-shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.14), 0px 0px 1px 0px rgba(0, 0, 0, 0.16);
-  --semi-shadow-knob: 0px 4px 6px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+  --semi-shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.14),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.16);
+  --semi-shadow-knob: 0px 4px 6px 0px rgba(0, 0, 0, 0.1),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.3);
   --semi-border-radius-full: 9999px;
   --semi-border-radius-large: 12px;
   --semi-border-radius-small: 6px;
@@ -99,10 +103,11 @@ body .semi-always-light {
 body[pivot-theme='dark'],
 body .semi-always-dark {
   --semi-color-bg-0: rgba(22, 22, 26, 1);
-  --semi-color-bg-1: rgba(35, 36, 41, 1);
-  --semi-color-bg-2: rgba(53, 54, 60, 1);
-  --semi-color-bg-3: rgba(67, 68, 74, 1);
-  --semi-color-bg-4: rgba(79, 81, 89, 1);
+  --semi-color-bg-1: rgba(20, 20, 24, 0.571);
+  --semi-color-bg-2: rgba(35, 36, 41, 1);
+  --semi-color-bg-3: rgba(53, 54, 60, 1);
+  --semi-color-bg-4: rgba(67, 68, 74, 1);
+  --semi-color-bg-5: rgba(79, 81, 89, 1);
   --semi-color-info: rgba(var(--semi-blue-5), 1);
   --semi-color-link: rgba(var(--semi-blue-5), 1);
   --semi-color-nav-bg: rgba(35, 36, 41, 1);
@@ -180,11 +185,14 @@ body .semi-always-dark {
   --semi-color-secondary-light-active: rgba(var(--semi-blue-5), 0.4);
   --semi-color-secondary-light-default: rgba(var(--semi-blue-5), 0.2);
   -webkit-font-smoothing: antialiased;
-  --semi-shadow-elevated: 0px 0px 1px 0px rgba(0, 0, 0, 0.3), 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+  --semi-shadow-elevated: 0px 0px 1px 0px rgba(0, 0, 0, 0.3),
+    0px 4px 14px 0px rgba(0, 0, 0, 0.1);
   --semi-shadow-0: none;
   --semi-shadow-1: none;
-  --semi-shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.14), 0px 0px 1px 0px rgba(0, 0, 0, 0.16);
-  --semi-shadow-knob: 0px 4px 6px 0px rgba(0, 0, 0, 0.1), 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+  --semi-shadow-2: 0px 2px 4px 0px rgba(0, 0, 0, 0.14),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.16);
+  --semi-shadow-knob: 0px 4px 6px 0px rgba(0, 0, 0, 0.1),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.3);
   --semi-border-radius-full: 9999px;
   --semi-border-radius-large: 12px;
   --semi-border-radius-small: 6px;

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>preview</title>
+  </head>
+  <body>
+    <script type="importmap"></script>
+    <div id="root"></div>
+    <code id="__CODE_RUN__" style="color: rgb(249, 146, 146)"></code>
+  </body>
+  <script>
+    window.addEventListener('message', (e) => {
+      const { type, data } = e.data;
+      // 编译
+      if (type === 0) {
+        const { code, importMap, runcode = '' } = data;
+        // Import Map
+        if (importMap.size > 0) {
+          const ImportMapScript = document.querySelector(
+            'script[type="importmap"]'
+          );
+          const importMapResult = [...importMap.entries()].reduce(
+            (prev, cur) => ({
+              imports: { ...prev.imports, [cur[0]]: cur[1] },
+            }),
+            { imports: {} }
+          );
+          ImportMapScript.innerHTML = JSON.stringify(importMapResult);
+        }
+
+        // Entry Compiler
+        const CompileScriptId = '__PIVOT_EDITOR_COMPILE_ID__';
+        const documentCompileScript = document.getElementById(CompileScriptId);
+        documentCompileScript?.remove();
+        // 解决更新不生效的问题：必须remove之前的script
+        const compileScript = document.createElement('script');
+        compileScript.id = CompileScriptId;
+        compileScript.type = 'module';
+        compileScript.innerHTML = `${code}`;
+        document.body.appendChild(compileScript);
+
+        // code runner exhibition
+        document.getElementById('__CODE_RUN__').innerHTML = runcode.replace(
+          /[\n]/g,
+          '<br />'
+        );
+      }
+    });
+  </script>
+</html>

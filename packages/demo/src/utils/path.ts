@@ -12,10 +12,6 @@ export const ComponentPath = [
     title: 'Card 卡片',
   },
   {
-    path: 'button',
-    title: 'Card 卡片',
-  },
-  {
     path: 'draggable',
     title: 'Draggable 拖拽列表',
   },
@@ -42,6 +38,10 @@ export const ComponentPath = [
   {
     path: 'transition',
     title: 'Transition 元素动画',
+  },
+  {
+    path: 'tabs',
+    title: 'Tabs 标签页',
   },
   {
     path: 'editor',
