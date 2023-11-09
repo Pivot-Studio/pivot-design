@@ -1,12 +1,10 @@
 import Editor, { EditorProps, OnChange, OnMount } from '@monaco-editor/react';
 import { useRef } from 'react';
-import { TabsItemProps } from 'pivot-design-props';
 import { CodeType, MessageChangeType, Module, ThemeType } from './types';
 import InitPlugin from './plugins/initPlugin';
-import { useControlled, useDebounce } from '../hooks';
+import { useDebounce } from '../hooks';
 import Preview from './components/Preview';
 import { useWorkers } from './workers/useWorkers';
-import { omit } from '../utils/omit';
 interface MocacoEditorProps extends EditorProps {
   modules?: Module[];
 }
@@ -15,11 +13,6 @@ const FILENAME = 'index.tsx';
 
 const MonacoEditor = (props: MocacoEditorProps) => {
   const { compilerWorker } = useWorkers();
-  // const [value, onChange] = useControlled<string>(props, {
-  //   valuePropName: 'value',
-  //   changeName: 'onChange',
-  //   defaultValuePropName: 'defaultValue',
-  // });
   const {
     height = 400,
     defaultLanguage = CodeType.ts,
@@ -71,8 +64,6 @@ const MonacoEditor = (props: MocacoEditorProps) => {
         onChange={handleEditorChange}
         onMount={handleEditorDidMount}
         {...rest}
-        // beforeMount={handleEditorWillMount}
-        // onValidate={handleEditorValidation}
       />
       <Preview compiler={compilerWorker} />
     </div>

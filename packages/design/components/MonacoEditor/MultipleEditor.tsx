@@ -1,5 +1,4 @@
-import { EditorProps } from '@monaco-editor/react';
-import { FC, useRef, useState } from 'react';
+import { FC } from 'react';
 import { CodeType, Module } from './types';
 import { testCode } from './code';
 import Tabs from '../Tabs';
@@ -9,15 +8,6 @@ import { MultipleEditorProps } from 'pivot-design-props';
 
 const FILENAME1 = 'index.tsx';
 const FILENAME2 = 'index.scss';
-const _find = (arr: any[], key: string) => {
-  for (let index = 0; index < arr.length; index++) {
-    const item = arr[index];
-    if (item.key === key) {
-      return { value: item, index };
-    }
-  }
-  return {};
-};
 const items: Module[] = [
   {
     key: FILENAME1,
@@ -37,9 +27,6 @@ const items: Module[] = [
       }`,
   },
 ];
-// todo: 1. 编译文件的独立性。现在修改css实际走的是tsx的编译
-// 2.引入scss
-// 3.代码优化；
 const MultipleEditor: FC<MultipleEditorProps> = ({ style }) => {
   const [tabsValue, setTabsValue] = useLocalStorage<Module[]>('tabs', {
     defaultValue: items,
@@ -57,11 +44,14 @@ const MultipleEditor: FC<MultipleEditorProps> = ({ style }) => {
               defaultLanguage={item.language}
               defaultValue={item.value}
               onChange={(value) => {
-                const prevTabValue = tabsValue;
-                const activeTab = _find(prevTabValue, item.key);
-                const newTab = [...prevTabValue];
-                newTab[activeTab.index].value = value;
-                setTabsValue(newTab);
+                if (!value) return;
+                const updatedTabs: Module[] = tabsValue.map((tab) => {
+                  if (tab.key === item.key) {
+                    return { ...tab, value };
+                  }
+                  return tab;
+                });
+                setTabsValue(updatedTabs);
               }}
             />
           );

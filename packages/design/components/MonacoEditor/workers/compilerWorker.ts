@@ -53,7 +53,10 @@ const babelTransform = (filename: string, code: string, modules: Module[]) => {
         function importGetter(): PluginObj {
           return {
             pre(file) {
-              file.metadata.dependencies = [];
+              file.metadata = {
+                ...file.metadata,
+                dependencies: [],
+              };
             },
             post(file) {
               ModuleDependencyGraph.set(
@@ -134,9 +137,10 @@ self.addEventListener('message', async (e) => {
 
   if (type === MessageChangeType.Compile) {
     const { filename, modules } = data;
-
+    // 获取入口模块
     const entryModule = getModulesEntry(modules)!;
 
+    // 构建依赖图
     if (!ModuleDependencyGraph.has('entry')) {
       ModuleDependencyGraph.set('entry', entryModule?.key);
     }
