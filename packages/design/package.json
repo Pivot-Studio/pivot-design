@@ -35,6 +35,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
     "@monaco-editor/react": "^4.5.2",
+    "@xyflow/react": "^12.2.0",
     "prop-types": "^15.8.1",
     "raw-loader": "^4.0.2",
     "react-svg": "^16.1.4"

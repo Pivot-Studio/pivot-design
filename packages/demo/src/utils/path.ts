@@ -47,11 +47,14 @@ export const ComponentPath = [
     path: 'editor',
     title: 'Editor 代码编辑器',
   },
+  {
+    path: 'flow',
+    title: 'Flow 流程图',
+  },
 ] as const;
 
 export const generateComponentRouter = (mapping: Record<(typeof ComponentPath)[number]['path'], any>) => {
   return ComponentPath.map((component) => {
-    // eslint-disable-next-line no-prototype-builtins
     if (mapping.hasOwnProperty(component.path)) {
       return {
         ...component,

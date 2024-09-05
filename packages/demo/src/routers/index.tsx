@@ -14,6 +14,7 @@ import Skeleton from '@/pages/components/skeleton';
 import Modal from '@/pages/components/modal';
 import Editor from '@/pages/components/editor';
 import Tabs from '@/pages/components/tabs';
+import Flow from '@/pages/components/flow';
 import { generateComponentRouter } from '@/utils';
 
 const router: RouteObject[] = [
@@ -41,6 +42,7 @@ const router: RouteObject[] = [
           modal: <Modal />,
           editor: <Editor />,
           tabs: <Tabs />,
+          flow: <Flow></Flow>,
         }),
       },
     ],

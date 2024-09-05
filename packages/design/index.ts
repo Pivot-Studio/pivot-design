@@ -13,6 +13,7 @@ export {
 export { default as Icon } from './components/Icon';
 export * from './components/MonacoEditor';
 export { default as Tabs } from './components/Tabs';
+export { default as Flow } from './components/Flow';
 import Input from './components/Input';
 import Card from './components/Card';
 import Modal from './components/Modal';
