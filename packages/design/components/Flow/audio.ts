@@ -1,4 +1,4 @@
-import { Node, co } from '@xyflow/react';
+import { Edge, Node } from '@xyflow/react';
 
 const context = new AudioContext();
 const nodes = new Map<string, AudioNode>();
@@ -37,11 +37,12 @@ export function updateAudioNode(id: string, data: Record<string, any>) {
 export const createAudioNode = (node: Node) => {
   const { type, id, data } = node;
   const _node = type && NodesCreator[type]?.(data);
-  if (_node) {
+  if (!_node) {
     return null;
   }
   nodes.set(id, _node);
   updateAudioNode(id, data);
+  console.log('===[create node]:', nodes);
 
   return _node;
 };
@@ -71,10 +72,18 @@ export function removeAudioNode(id: string) {
   if (!node) return;
 
   node.disconnect();
-  node.stop?.();
+  node?.stop?.();
 
   nodes.delete(id);
 }
+export const removeAudioEdge = (edge: Edge) => {
+  const { source, target } = edge;
+  const sourceNode = nodes.get(source);
+  const targetNode = nodes.get(target);
+  if (!sourceNode || !targetNode) return;
+
+  sourceNode.disconnect(targetNode);
+};
 
 /**初始化节点 */
 export const initNodes = (initNodes: Node[], isRunning: boolean) => {

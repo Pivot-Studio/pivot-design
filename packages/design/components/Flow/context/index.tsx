@@ -26,8 +26,10 @@ import {
 } from '@xyflow/react';
 import { Props } from '../types';
 import {
+  connectNodes,
   createAudioNode,
   initNodes,
+  removeAudioEdge,
   removeAudioNode,
   toggleAudio,
   updateAudioNode,
@@ -45,11 +47,11 @@ const initialNodes = [
   //   data: { gain: 0 },
   //   position: { x: 0, y: 300 },
   // },
-  // {
-  //   type: 'output',
-  //   id: 'c',
-  //   position: { x: 0, y: 500 },
-  // },
+  {
+    type: 'output',
+    id: '__output',
+    position: { x: 200, y: 500 },
+  },
 ];
 const initialEdges = [
   // { id: 'e1-2', source: 'a', target: 'b' },
@@ -100,6 +102,12 @@ type ActionType =
       };
     }
   | {
+      type: 'removeEdges';
+      payload: {
+        edges: Edge[];
+      };
+    }
+  | {
       type: 'toggleAudio';
     };
 const Context = React.createContext<{
@@ -116,9 +124,13 @@ export function reducer(state: State, action: ActionType) {
   };
 
   const onEdgesChange = (changes: EdgeChange<Edge>[]) => {
+    console.log('====[onEdgesChange]:', changes);
+    // 取出对应id的edge对象进行合并
     return applyEdgeChanges(changes, edges);
   };
   const addEdge = (data: Connection) => {
+    // console.log('====[Connection]:', data);
+    connectNodes(data.source, data.target);
     const id = String(new Date().getTime());
     const edge = { ...data, id };
     return edge;
@@ -131,15 +143,16 @@ export function reducer(state: State, action: ActionType) {
       const data =
         type === 'osc' ? { frequency: 440, type: 'sine' } : { gain: 0 };
       const position = { x: 0, y: 0 };
+      const id = `${String(Date.now())}__${type}`;
       createAudioNode({
-        id: String(Date.now()),
+        id,
         type,
         data,
         position,
       });
       return {
         ...state,
-        nodes: [{ id: String(Date.now()), type, data, position }, ...nodes],
+        nodes: [{ id, type, data, position }, ...nodes],
       };
     }
     // 节点变化
@@ -176,6 +189,20 @@ export function reducer(state: State, action: ActionType) {
       return {
         ...state,
         nodes: newNodes,
+      };
+    }
+    // 删除节点
+    case 'removeEdges': {
+      const { edges: _edges } = action.payload;
+      for (const edge of _edges) {
+        removeAudioEdge(edge);
+      }
+
+      const ids = edges.map((e) => e.id);
+      const newEdges = edges.filter((e) => ids.includes(e.id));
+      return {
+        ...state,
+        edges: newEdges,
       };
     }
     // 节点值变化
@@ -248,6 +275,14 @@ export const ContextProvider: React.FC<PropsWithChildren<Props>> = ({
             dispatch({
               type: 'removeNodes',
               payload: { ids: nodes.map((node) => node.id) },
+            });
+          }}
+          onEdgesDelete={(edges) => {
+            console.log('=====[onEdgesDelete]:', edges);
+
+            dispatch({
+              type: 'removeEdges',
+              payload: { edges },
             });
           }}
         >
